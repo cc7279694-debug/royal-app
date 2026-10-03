@@ -30,7 +30,8 @@ policy exposure, overlay complexity, or device-capture variability.
 ### Consequences
 
 - Modules 1 through 6 operate offline.
-- Module 7 requires a fresh policy review and explicit approval.
+- Module 7 requires explicit Supercell permission covering specific live tool
+  behavior, version, and usage context, plus project approval.
 - Module 8 cannot begin before Module 7 is approved and verified.
 
 ## 2026-09-26 — Prohibit Game Interaction and Automation
@@ -172,3 +173,68 @@ maintenance debt that would block later distribution.
 
 - CR Vision is an algorithmic reference only while it lacks a declared license.
 - Every external artifact requires an evidence-backed review before inclusion.
+
+## 2026-10-03 — Require Specific Official Permission for Live Features
+
+### Decision
+
+Live online-match analysis and HUD remain Gated and disabled unless explicit
+Supercell permission covers the exact behavior, version, and usage context.
+Passive capture, local execution, alternate accounts, training-ground tests,
+and user risk acceptance cannot substitute for permission. Even with permission,
+reassess scope and never promise zero ban risk.
+
+### Context
+
+The Module 0 review found that risk acceptance could bypass the intended
+account-safety constraint. This entry supersedes that weaker gate. No official
+permission has been obtained or asserted.
+
+### Alternatives
+
+- Allow a user to accept remaining risk.
+- Require explicit, applicable official permission for live features.
+
+### Reason
+
+The user's requirement places account safety above live functionality.
+
+### Consequences
+
+Offline-file modules may continue. This module never accesses a running game.
+Live functionality remains closed; project approval is still necessary but
+cannot replace official permission.
+
+## 2026-10-03 — Python/PyAV Offline Experiment and Presentation-Time Contract
+
+### Decision
+
+Use a small Python 3.12 CLI with PyAV, Pillow, and pytest for Module 1. Select
+frames by actual PTS/time_base normalized to the first display frame. Use exact
+fraction arithmetic and choose the first frame at or after a target within an
+inclusive 100ms window. Scan sequentially with bounded frame memory.
+
+### Context
+
+The user specifically authorized this Windows experiment. Variable frame rates
+and nonzero starting PTS make frame-index/average-FPS calculation unreliable.
+
+### Alternatives
+
+- Estimate frame times from frame indices and average FPS.
+- Use actual decoded display timestamps.
+- Build an Android application before verifying recorded-video behavior.
+
+### Reason
+
+The selected approach makes temporal correctness reproducible using synthetic
+media while remaining independent of Android, game control, and model choices.
+
+### Consequences
+
+Python is an explicitly authorized experiment, not a replacement for a future
+app stack. Core app business logic/storage are not implemented here. No database
+or inference framework is added. Keep original videos untouched and generated
+media ignored. Missing timestamps fail explicitly; partial misses return nonzero.
+Runtime versions are pinned in the tool configuration and test requirements.
+Representative user-recording acceptance remains required after synthetic tests.

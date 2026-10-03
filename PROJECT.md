@@ -57,8 +57,11 @@ The project must not:
 
 The current authorized input is limited to recordings and test footage supplied
 by the user. Live online-match analysis and an overlay are gated future topics,
-not part of the current product. Their implementation requires a fresh review
-of current Supercell rules and explicit project approval.
+not part of the current product. They must remain disabled without explicit
+Supercell permission covering the specific tool behavior, version, and usage
+context. Passive capture, local execution, alternate accounts, training-ground
+tests, and user risk acceptance cannot substitute for permission. Even with
+permission, its scope must be reassessed; zero ban risk must never be promised.
 
 Relevant official policies:
 

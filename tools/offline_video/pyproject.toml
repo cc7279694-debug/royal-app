@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools==84.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "clash-tracker-video"
+version = "0.1.0"
+description = "Local MP4 metadata and timestamp-based frame extraction"
+requires-python = ">=3.12"
+dependencies = ["av==19.0.1", "Pillow==12.3.0"]
+
+[project.optional-dependencies]
+test = ["pytest==9.1.1"]
+
+[project.scripts]
+clash-tracker-video = "clash_tracker_video.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

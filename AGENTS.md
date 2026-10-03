@@ -30,8 +30,11 @@ within the authorized task.
 - Do not intercept game traffic or emulate its protocol.
 - Do not use AccessibilityService or synthetic input to control the game.
 - Do not create bots, automated card placement, or strategy execution.
-- Do not implement live online-match analysis or overlays unless a future task
-  explicitly passes the policy and project approval gate.
+- Live online-match analysis and HUD remain Gated. They must not be enabled
+  without explicit Supercell permission covering the specific behavior, version,
+  and usage context. Passive capture, local execution, alternate accounts,
+  training-ground tests, and user risk acceptance do not establish permission.
+- Even with permission, reassess its scope and never promise zero ban risk.
 - Never describe a calculated elixir value as exact hidden game state.
 
 ## Architecture Rules

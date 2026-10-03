@@ -27,14 +27,16 @@ Verification:
 
 ## Module 1 — Offline Video Pipeline
 
-Status: Planned
+Status: In Progress — implementation and synthetic tests complete; user-recording
+acceptance pending. Do not enter Module 2.
 
 Goal: read one user-provided MP4 without performing card recognition.
 
 Acceptance criteria:
 
 - report duration, FPS, width, and height;
-- retrieve a frame at a requested timestamp with defined seeking tolerance;
+- use PTS/time_base relative to the first display frame; choose first frame at or
+  after each requested time with inclusive 100ms tolerance, recording misses;
 - export selected frames to a disposable, Git-ignored output location;
 - return clear errors for missing, unreadable, or unsupported input;
 - keep user recordings and exported frames out of version control.
@@ -44,6 +46,9 @@ Verification:
 - automated tests for metadata and timestamp validation where practical;
 - run against a small non-sensitive fixture and a representative user recording;
 - verify exported frames visually and confirm Git remains clean of media.
+
+Evidence: [Module 1 verification](VERIFICATION_M1.md). Real-recording validation
+is required before marking this module Completed.
 
 ## Module 2 — Single Card Detection Proof of Concept
 
@@ -146,8 +151,11 @@ Goal: evaluate passive on-device capture only after offline recognition is prove
 Entry gates:
 
 - Modules 1 through 6 are accepted with measured reliability;
-- current Supercell rules are reviewed for the exact proposed behavior;
-- the user explicitly approves proceeding despite any remaining account risk;
+- explicit Supercell permission covers the tool behavior, version, and usage
+  context before live online-match analysis or HUD can be enabled;
+- passive capture, local execution, alternate accounts, training-ground tests,
+  and user risk acceptance cannot substitute for permission;
+- any permission is reassessed for scope; zero ban risk must never be promised;
 - the implementation remains passive and does not control the game.
 
 Potential acceptance criteria, to be finalized only after the gates pass:
@@ -166,7 +174,8 @@ separate policy review are accepted.
 Entry gates:
 
 - Module 7 is accepted;
-- live presentation is explicitly approved for the intended test context.
+- explicit Supercell permission covers the specific live HUD behavior, version,
+  and usage context; project approval alone cannot substitute for it.
 
 Potential acceptance criteria, to be finalized only after the gates pass:
 
