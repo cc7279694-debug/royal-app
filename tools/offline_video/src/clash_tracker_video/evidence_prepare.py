@@ -3,7 +3,9 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import re
+from collections.abc import Mapping
 from fractions import Fraction
 from pathlib import Path, PureWindowsPath
 
@@ -11,7 +13,7 @@ import av
 from PIL import Image, ImageDraw
 
 from . import pipeline
-from .evidence_contract import EvidenceError, SCHEMAS, load_evidence, valid_type, rational, seconds
+from .evidence_contract import EvidenceError, SCHEMAS, load_evidence, valid_type, rational, seconds, number
 
 PROJECT_ROOT = Path(__file__).resolve().parents[4]
 
@@ -151,6 +153,158 @@ def _reference(run, relative):
     return result
 
 
+def _report_base(value):
+    """The producer serializes positive Fraction time bases as strings."""
+    if not isinstance(value,str) or not re.fullmatch(r'[0-9]+(?:/[0-9]+)?',value):
+        raise EvidenceError('Invalid export report time base.')
+    try:
+        result = Fraction(value)
+    except (ValueError,ZeroDivisionError) as exc:
+        raise EvidenceError('Invalid export report time base.') from exc
+    if result <= 0: raise EvidenceError('Invalid export report time base.')
+    return result
+
+
+def _rounding_interval(value):
+    """Only the binary float's rounding cell, not an extra time tolerance."""
+    if not number(value): raise EvidenceError('Invalid export report number.')
+    if type(value) is int: return Fraction(value),Fraction(value)
+    lower,upper = math.nextafter(value,-math.inf),math.nextafter(value,math.inf)
+    if not math.isfinite(lower) or not math.isfinite(upper):
+        raise EvidenceError('Unrepresentable export report boundary.')
+    exact = Fraction(value)
+    return (Fraction(lower)+exact)/2,(exact+Fraction(upper))/2
+
+
+def _serialized_time(value, exact):
+    if not number(value) or value != float(exact):
+        raise EvidenceError('Export report PTS serialization conflict.')
+
+
+def _validate_export_report(index: Mapping[str, object], *, run_dir: Path) -> None:
+    """Validate each request before merging frames; never decode or modify input."""
+    report_path = _reference(run_dir,index['export_report'])
+    report = load_evidence(report_path)
+    if (set(report) != {'report_format_version','status','video','timeline','warnings','results'}
+            or type(report['report_format_version']) is not int or report['report_format_version'] != 1
+            or not valid_type(report['status'],{'success','partial'})
+            or report['status'] != index['status']
+            or not isinstance(report['warnings'],list)
+            or not all(isinstance(w,str) for w in report['warnings'])):
+        raise EvidenceError('Invalid export report fields/version/status.')
+    video,timeline,recording = report['video'],report['timeline'],index['recording']
+    video_fields = {'filename','stream_index','codec','width','height','duration_seconds','duration_source',
+                    'average_fps','fps_source','rotation_degrees','rotation_source','warnings'}
+    if (not isinstance(video,dict) or set(video) != video_fields
+            or any(not isinstance(video[k],str) for k in ('filename','codec','rotation_source'))
+            or type(video['stream_index']) is not int or video['stream_index'] < 0
+            or any(not valid_type(video[k],'positive_int') for k in ('width','height'))
+            or not valid_type(video['rotation_degrees'],{0,90,180,270})
+            or not valid_type(video['duration_seconds'],'duration')
+            or not (video['duration_source'] is None or valid_type(video['duration_source'],{'stream','container'}))
+            or not valid_type(video['average_fps'],'duration')
+            or not (video['fps_source'] is None or video['fps_source']=='stream.average_rate')
+            or not isinstance(video['warnings'],list) or not all(isinstance(w,str) for w in video['warnings'])
+            or any(video[k] != recording[k] for k in ('width','height','rotation_degrees','duration_seconds'))):
+        raise EvidenceError('Export report video metadata conflict.')
+    if (not isinstance(timeline,dict) or set(timeline) != {'basis','origin_seconds','origin_pts',
+            'origin_time_base','tolerance_seconds','selection'}
+            or timeline['basis'] != 'PTS * time_base, relative to first display frame; not game clock'
+            or timeline['selection'] != 'first frame at or after target'
+            or not number(timeline['tolerance_seconds'])
+            or timeline['tolerance_seconds'] != float(pipeline.TOLERANCE)
+            or type(timeline['origin_pts']) is not int
+            or timeline['origin_pts'] != recording['origin_pts']
+            or _report_base(timeline['origin_time_base']) != rational(recording['origin_time_base'])):
+        raise EvidenceError('Export report timeline conflict.')
+    origin = recording['origin_pts']*rational(recording['origin_time_base'])
+    _serialized_time(timeline['origin_seconds'],origin)
+    last_low,last_high = _rounding_interval(recording['last_frame_seconds'])
+    last_low = max(last_low,Fraction(0))
+    results,frames = report['results'],index['frames']
+    if not isinstance(results,list) or not results or len(results) != len(frames):
+        raise EvidenceError('Export report request count conflict.')
+    result_fields = {'requested_time_seconds','status','actual_time_seconds','error_seconds','image',
+                     'raw_pts','time_base','raw_time_seconds','output_width','output_height','reason'}
+    frame_fields = {'frame_id','requested_seconds','timestamp_seconds','raw_pts','time_base',
+                    'image_path','image_width','image_height','status','reason'}
+    previous = None
+    previous_actual = None
+    has_miss = False
+    for position in range(len(frames)):
+        f,e = frames[position],results[position]
+        if (not isinstance(f,dict) or set(f) != frame_fields
+                or not isinstance(e,dict) or set(e) != result_fields
+                or not valid_type(f['status'],{'success','miss'}) or e['status'] != f['status']
+                or not valid_type(e['requested_time_seconds'],'seconds')
+                or not valid_type(f['requested_seconds'],'seconds')
+                or e['requested_time_seconds'] != f['requested_seconds']
+                or not (e['reason'] is None or isinstance(e['reason'],str))
+                or e['reason'] != f['reason']):
+            raise EvidenceError('Export report request fields/status conflict.')
+        requested = e['requested_time_seconds']
+        if previous is not None and requested <= previous:
+            raise EvidenceError('Export requests must be strictly increasing.')
+        previous = requested
+        has_miss |= f['status']=='miss'
+        q_low,q_high = _rounding_interval(requested)
+        q_low = max(q_low,Fraction(0))
+        # EOF misses have no candidate; timeout misses retain the candidate PTS.
+        if f['status']=='miss' and f['reason']=='no_frame_at_or_after_target':
+            if (any(f[k] is not None for k in ('frame_id','timestamp_seconds','raw_pts','time_base',
+                    'image_path','image_width','image_height'))
+                    or any(e[k] is not None for k in ('actual_time_seconds','error_seconds','image',
+                    'raw_pts','time_base','raw_time_seconds','output_width','output_height'))
+                    or q_high <= max(last_low,previous_actual if previous_actual is not None else Fraction(0))):
+                raise EvidenceError('Invalid export EOF miss.')
+            continue
+        if (type(f['raw_pts']) is not int or type(e['raw_pts']) is not int or f['raw_pts'] != e['raw_pts']
+                or not valid_type(f['timestamp_seconds'],'seconds')
+                or not valid_type(e['actual_time_seconds'],'seconds')
+                or f['timestamp_seconds'] != e['actual_time_seconds']
+                or not valid_type(e['error_seconds'],'seconds')):
+            raise EvidenceError('Invalid export candidate fields.')
+        base = rational(f['time_base'])
+        if base != _report_base(e['time_base']) or f['frame_id'] != frame_id(recording['recording_id'],f['raw_pts'],base):
+            raise EvidenceError('Export report frame identity conflict.')
+        raw = f['raw_pts']*base
+        actual = raw-origin
+        _serialized_time(e['raw_time_seconds'],raw)
+        _serialized_time(e['actual_time_seconds'],actual)
+        if actual < 0 or actual > last_high:
+            raise EvidenceError('Export candidate outside recording timeline.')
+        d_low,d_high = _rounding_interval(e['error_seconds'])
+        # There must be ONE possible exact request consistent with both stored
+        # floats and A-Q; independent approximate comparisons would be too loose.
+        lower = max(q_low,actual-d_high)
+        upper = min(q_high,actual-d_low,actual)
+        if f['status']=='success':
+            lower = max(lower,actual-pipeline.TOLERANCE)
+            size = (recording['height'],recording['width']) if recording['rotation_degrees'] in (90,270) else (recording['width'],recording['height'])
+            if (f['reason'] is not None or lower > upper
+                    or any(not valid_type(f[k],'positive_int') for k in ('image_width','image_height'))
+                    or any(not valid_type(e[k],'positive_int') for k in ('output_width','output_height'))
+                    or (f['image_width'],f['image_height']) != size
+                    or (e['output_width'],e['output_height']) != size
+                    or not valid_type(f['image_path'],'png') or not valid_type(e['image'],'png')
+                    or _reference(run_dir,f['image_path']) != _reference(report_path.parent,e['image'])):
+                raise EvidenceError('Invalid successful export/report pairing.')
+        elif (f['reason'] != 'outside_100ms_tolerance' or lower > upper
+                or lower >= actual-pipeline.TOLERANCE
+                or any(f[k] is not None for k in ('image_path','image_width','image_height'))
+                or any(e[k] is not None for k in ('image','output_width','output_height'))):
+            raise EvidenceError('Invalid export timeout miss.')
+        # Ordered requests cannot select backwards, or skip an already-known
+        # eligible candidate. This is internal consistency, not source proof.
+        if previous_actual is not None and (actual < previous_actual
+                or (actual > previous_actual and upper <= previous_actual)):
+            raise EvidenceError('Export candidates contradict request order.')
+        previous_actual = actual
+    expected_status = 'partial' if has_miss else 'success'
+    if report['status'] != expected_status:
+        raise EvidenceError('Export report aggregate status conflict.')
+
+
 def load_indexes(paths):
     """Check explicitly supplied runs and merge true frame identities, never requests."""
     merged = {}
@@ -165,7 +319,7 @@ def load_indexes(paths):
                 raise EvidenceError('Invalid index recording.')
             if not isinstance(index['frames'],list) or not isinstance(index['contact_pages'],list) or index['status'] not in {'success','partial'}:
                 raise EvidenceError('Invalid index arrays/status.')
-            _reference(path.parent,index['export_report'])
+            _validate_export_report(index,run_dir=path.parent)
             for contact in index['contact_pages']: _reference(path.parent,contact)
             rid = r['recording_id']
             if rid in merged and merged[rid]['recording'] != r: raise EvidenceError('Recording metadata conflict.')

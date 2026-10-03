@@ -3,6 +3,118 @@
 Date: 2026-10-03. **Approved current-recording scope completed; awaiting user
 acceptance. Not merged into main and not ready for Module 2B.**
 
+## Report / Index Repair — 2026-10-04 Current Verification
+
+The initial repair authorization covered only the two tasks in the plan, against
+baseline `13330de9967b2c15af64d8b829be7431b6b10181`, with no commit or push.
+The acceptance review found that report existence alone did not establish
+per-request agreement, and impossible requested times could pass validation.
+
+- Production change is limited to evidence_prepare.py: strictly parse the v1
+  export report and check metadata, ordered one-to-one request pairing, safe
+  actual PNG paths, rational bases, PTS serialization, result states and timing
+  before any duplicate-frame merge. Module 1 pipeline/CLI are unchanged.
+- Success uses the existing inclusive 100ms constant. A timeout miss retains its
+  candidate PTS/time, an EOF miss has no candidate, and coherent partial/all-miss
+  runs remain legal. Error/contradictory runs fail with path-free EvidenceError.
+- Float compatibility uses adjacent-float midpoint rounding cells and one common
+  possible request satisfying A-Q and the recorded error. No extra millisecond,
+  relative isclose tolerance or adjustable report-provided business limit.
+- Tests mutate only real encoded synthetic exports in temporary locations.
+  Core baseline RED: both index-only and double-file impossible request tests
+  failed with DID NOT RAISE. Clean CLI RED: six assertions saw 0/3 instead of 2.
+  Refined positive-request 100ms+1us and same-basename/different-file cases also
+  failed on baseline, then passed after repair. A zero-denominator report base
+  reproduced uncaught ZeroDivisionError and now returns EvidenceError.
+- Initial test collection/encoding/time-base fixture mistakes were corrected;
+  those failures are not counted as defect evidence. One combined baseline run
+  overlapped restoration for CLI subprocesses; only the clean separate CLI run
+  is cited as its RED evidence. Existing compatibility tests were already green.
+- Before final review, targeted repaired suite: **99 passed, 1 skipped**, full
+  regression **220 passed, 1 skipped**. After final fixes, full regression:
+  **223 passed, 1 skipped**. pip check: no broken requirements; diff check passed.
+  Final targeted suite after the review fix: **102 passed, 1 skipped**.
+  Real Windows junction tests run; symlink creation remains permission-skipped.
+- Existing local input recheck: **4 reports, 533 original request records,
+  402 unique successful frames after merge**. Actual subprocess validate/review
+  exits **0 / 3**. Four verified deployments, 12 key boxes, candidate_gate true,
+  experiment_gate false, status insufficient and eight unknown gaps unchanged.
+- Pre/post hashes of **591 explicitly referenced existing files** match,
+  including source MP4, original PNGs/contact pages, indexes/export reports,
+  manual evidence/notes and prior review reports. A new ignored review report was
+  created without overwriting old outputs. No prepare/re-extraction/manual
+  playback or annotation edit occurred. File identities and hashes remain local.
+
+Repair verification is separate from user acceptance of Module 2A1. The unknown
+coverage and one-match insufficiency do not change. This consistency check is not
+source-video authenticity certification: without re-decoding it cannot establish
+that both files were never coherently forged, or that a chosen frame was the
+first source frame at/after the request. No anti-tampering system was added.
+
+One independent fresh-context read-only repair reviewer checked the working diff
+against the fixed baseline and independently ran the targeted suite. No Critical
+or new Minor findings; one Important cross-request inconsistency was reproduced:
+increasing requests could return decreasing candidate PTS. Executor ruled this
+within temporal-consistency scope, not source authenticity. One fix pass added
+three RED/GREEN regressions for backwards success, backwards timeout misses and
+skipping an already-known eligible candidate. Full post-fix suite: 223 passed,
+one permission skip. No second reviewer claimed. Real evidence recheck and all
+591 original-file hashes repeated after the fix; results unchanged. Reviewer did
+not access private footage/labels/hashes, independently redo whole-video review,
+or rerun full tests/dependencies/historical RED; those remain executor evidence.
+
+Execution rulings: use the specified feature checkout without a new worktree;
+retain ignored ledger/uncommitted review rather than commit-based cleanup; one
+narrow 30Hz fixture supports an exact 1/30s source clock absent in the millisecond
+fixture. Costs are less checkout isolation, retained local scratch and a small
+extra test fixture. Source authenticity stays unproven and stored advisory gap
+nested validation remains explicitly deferred. Module acceptance/integration is
+still the user's decision; no review verdict supplies that authorization.
+
+Final hygiene: all 595 checked project-local original/generated artifacts ignored
+by Git (the 591-file hash set also contains the external source MP4). Targeted
+private identifier/secret diff scan: zero matches. Exactly five tracked files
+modified: loader, its two test files and the two state/verification documents;
+none added/deleted. Development plan has no conflicting state to change.
+Not run: continuous video playback/re-annotation, source re-decoding, Android
+build, model training/accuracy and subsequent modules (intentionally out of scope).
+
+At the repair handoff, changes were uncommitted and unpushed on the existing
+feature branch. Subsequent publication authorization and fresh checks follow;
+no main merge, PR, next module, dependency/database/migration or Android change.
+
+## Final Publication Verification — 2026-10-04
+
+The user subsequently authorized checking the existing repair, final validation,
+committing exactly its five tracked files and a normal push of the existing
+feature branch. Baseline HEAD and branch were verified as `13330de9967b2c15af64d8b829be7431b6b10181`
+and `feat/module-2a1-current-recording-evidence`. No production/test change was
+needed during publication; only these two documents synchronize authorization
+and fresh verification. Exact commit SHA and push outcome belong to Git and the
+final handoff; permission alone does not establish either outcome.
+
+- Fresh full suite: **223 passed, 1 skipped** (25.16 seconds). The skip is Windows
+  symlink-creation permission; real Windows junction tests passed. Fresh pip check
+  reported no broken requirements; git diff --check passed.
+- Read-only loading of all **4 reports / 533 original requests** produced **402
+  unique successful frames**. Actual validate/review subprocesses exited **0 / 3**.
+  candidate_gate **true**, experiment_gate **false**, status **insufficient**.
+- **Four deployments, 12 key boxes and eight unknown intervals** unchanged;
+  computed counts, gates, status and the full gap list matched the previous repair
+  report. No manual playback, annotation changes, extraction or source decoding.
+- All **591 existing-file hashes** matched before and after, including the original
+  MP4. All **596 checked project-local artifacts** are Git-ignored: 590 protected
+  project files, five existing repair artifacts and one new exclusive review
+  report. The external MP4 is the remaining protected file, outside the checkout.
+  The new report did not overwrite any old report; private paths/hashes stay local.
+- Exactly five tracked files were modified: the loader, its two test files and
+  these two documents. No tracked private recordings, PNGs, actual index/report/
+  annotation JSON, hash manifests, models or unrelated generated files.
+- No dependency/storage/schema/configuration change, PR, release, main merge,
+  Module 2A2, Module 2B, Module 3, Android implementation or training. Formal
+  Module 2A1 acceptance remains pending independent user review; one-match
+  insufficiency, unknown intervals and source-authenticity limits remain intact.
+
 ## Task 4 Continuation — Fresh Evidence
 
 The user completed whole-recording playback and supplied opening/result

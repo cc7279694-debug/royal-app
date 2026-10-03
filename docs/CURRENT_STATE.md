@@ -1,6 +1,6 @@
 # Current State
 
-Last verified: 2026-10-03
+Last verified: 2026-10-04
 
 ## Current Stage
 
@@ -50,18 +50,40 @@ Module 2B and Module 3 have not started.
 - Reviewed selection/result/transition/system-UI negatives include the exact
   terminal timestamp. Broad battlefield absences are not certified from sparse
   frames or a rough user form. Local labels/media were not published.
-- Final regression: 145 passed, 1 symlink-permission skip; pip check passed.
+- Pre-repair regression: 145 passed, 1 symlink-permission skip; pip check passed.
   Real Windows junction escape regression passed. Independent branch review
   found three Important issues, reproduced/fixed with RED/GREEN and full regression.
   Minor nested advisory gap validation remains documented technical debt.
 - This continuation changed no tracked tool code, tests or dependencies.
   Whole-playback review is attributed to the user; static frame review and
   coordinate annotations are attributed to the executor.
+- Subsequent acceptance review found missing report/index request pairing and
+  time-relation validation. The authorized local repair adds these checks in
+  load_indexes before frame merging, with synthetic RED/GREEN regressions.
+  Success retains inclusive 100ms; legal timeout/EOF misses and partial runs
+  remain accepted using narrow float-rounding compatibility, not extra tolerance.
+- Final repair regression: 223 passed, 1 symlink-permission skip; dependency and diff
+  checks passed. Four existing export reports / 533 raw requests / 402 unique
+  successful frames revalidated; actual validate/review exits 0/3 and all gates,
+  four deployments, 12 boxes and eight unknown gaps unchanged. Hashes of 591
+  explicitly referenced original files unchanged; new report kept local/ignored.
+  No new extraction, playback, labels, dependencies or Module 1 producer changes.
+- Independent read-only repair review found one Important cross-request time
+  contradiction. Backwards candidates and skipping a known eligible candidate
+  reproduced with three RED/GREEN tests and were fixed in one pass; final full
+  regression and real evidence/hash recheck passed. No Critical/new Minor;
+  no second independent review or media-authenticity certification claimed.
 
 ## Pending
 
 - Module 2A1 Tasks 1–4 are verified for their approved scope and await acceptance.
   No implementation merge or automatic next-module authorization exists.
+- Report/index repair passed fresh pre-publication verification on 2026-10-04.
+  The user authorized committing its five tracked files and pushing only the
+  existing feature branch. Independent repair review and its tested fix pass are
+  complete; Module 2A1 acceptance remains the user's decision and does not approve
+  merging or a next module. Exact publication SHA/outcome are recorded in Git
+  and the final handoff, not inferred from this authorization.
 - Only one observed match is available. Inferno Dragon passes the current
   candidate gate with four distinct deployments and three key boxes each.
   This does not establish detector accuracy or complete negative coverage.
@@ -87,6 +109,9 @@ Module 2B and Module 3 have not started.
 - Undeclared color properties and silent decoder concealment cannot be certified
   from available metadata; no blanket format/integrity guarantee.
 - No feature is enabled for use during live online matches.
+- Report/index consistency is not proof of source-video authenticity or first
+  eligible source-frame selection without decoding. Coherent forgery and lost
+  sub-ULP request precision cannot be independently ruled out by this patch.
 
 ## Git
 
@@ -98,6 +123,9 @@ Module 2B and Module 3 have not started.
   scans passed. New planning commit/push is reported in the handoff and Git.
 - Approved planning branch fast-forwarded into main and pushed; planning branch kept.
 - Product code stays on implementation branch; no implementation merge authorized.
+- Repair baseline: `13330de9967b2c15af64d8b829be7431b6b10181`. Current authorization
+  permits the focused five-file repair commit and normal feature-branch push only;
+  no PR, release, implementation merge, history rewrite or next module.
 - No new dependency, SQLite, Android, inference, split/freeze or network runtime.
 
 ## Next Recommended Task

@@ -69,3 +69,33 @@ def test_malformed_report_and_huge_seconds_exit_two(video,kind):
     assert result.returncode == 2
     assert 'Traceback' not in result.stderr
     assert str(path) not in result.stderr
+
+
+@pytest.mark.parametrize('command',['validate','review'])
+@pytest.mark.parametrize('kind',['broken_report','index_request','both_requests'])
+def test_export_report_rejection_exit_and_preservation(video,command,kind):
+    root=output()
+    index=prepare_evidence(video,root,recording_id='synthetic')
+    evidence=root/'evidence.json'
+    evidence.write_text(json.dumps(dict(schema_version=1,recordings=[index['recording']],
+        match_segments=[],target_card=None,occurrences=[],frame_annotations=[],negative_intervals=[])))
+    report_path=root/index['export_report']
+    report=json.loads(report_path.read_text(encoding='utf-8'))
+    if kind=='broken_report': report_path.write_bytes(b'private-content-is-not-JSON')
+    else:
+        index['frames'][0]['requested_seconds']=1000
+        (root/'index.json').write_text(json.dumps(index))
+        if kind=='both_requests':
+            report['results'][0].update(requested_time_seconds=1000,error_seconds=-1000)
+            report_path.write_text(json.dumps(report))
+    protected=[video,evidence,root/'index.json',report_path,*list((root/'exports').glob('*.png'))]
+    before={p:p.read_bytes() for p in protected}
+    destination=root/'rejected-review.json'
+    args=('validate',evidence,'--indexes',root/'index.json') if command=='validate' else (
+        'review',evidence,'--indexes',root/'index.json','--output',destination)
+    result=run(*args)
+    assert result.returncode==2
+    assert not destination.exists()
+    for private in (str(root),str(video),'private-content-is-not-JSON','Traceback'):
+        assert private not in result.stdout+result.stderr
+    assert all(p.read_bytes()==data for p,data in before.items())
