@@ -4,7 +4,8 @@ import sys
 from pathlib import Path
 
 from .evidence_contract import EvidenceError, load_evidence, validate_evidence
-from .evidence_prepare import prepare_evidence, load_indexes, safe_path
+from .evidence_prepare import prepare_evidence, load_indexes, safe_path, new_output, write_json
+from .evidence_review import review_evidence
 
 
 class Parser(argparse.ArgumentParser):
@@ -23,6 +24,10 @@ def main(argv: list[str] | None = None) -> int:
     validate = sub.add_parser('validate')
     validate.add_argument('evidence')
     validate.add_argument('--indexes',nargs='+',required=True)
+    review = sub.add_parser('review')
+    review.add_argument('evidence')
+    review.add_argument('--indexes',nargs='+',required=True)
+    review.add_argument('--output',required=True)
     try:
         args = parser.parse_args(argv)
         if args.command == 'prepare':
@@ -31,6 +36,12 @@ def main(argv: list[str] | None = None) -> int:
             return 0 if index['status']=='success' else 3
         doc = load_evidence(safe_path(args.evidence,private=True))
         indexes = load_indexes(args.indexes)
+        if args.command == 'review':
+            report = review_evidence(doc,indexes)
+            destination = new_output(args.output,directory=False)
+            write_json(destination,dict(schema_version=1,**report))
+            print(f"Review: {report['status']}; candidate_gate={report['candidate_gate']}; experiment_gate=False")
+            return 2 if report['status']=='invalid' else 3
         errors = validate_evidence(doc,indexes)
         if errors:
             print(f'Invalid evidence: {len(errors)} validation errors.',file=sys.stderr)

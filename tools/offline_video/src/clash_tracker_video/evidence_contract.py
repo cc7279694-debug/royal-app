@@ -168,7 +168,11 @@ def validate_evidence(doc: Mapping[str, object], indexes: Mapping[str, Mapping[s
     frames = {}
     for rid, r in recordings.items():
         index = indexes.get(rid)
-        if not isinstance(index, Mapping) or index.get('recording') != r or not isinstance(index.get('frames'),list):
+        indexed_recording = index.get('recording') if isinstance(index, Mapping) else None
+        compatible = (isinstance(indexed_recording,dict) and set(indexed_recording)==set(r)
+                      and all(indexed_recording[k]==v for k,v in r.items() if k!='perspective')
+                      and indexed_recording['perspective'] in ('unknown',r['perspective']))
+        if not compatible or not isinstance(index.get('frames'),list):
             errors.append('recordings: missing/conflicting index'); continue
         frames[rid] = {}
         for f in index['frames']:
@@ -218,7 +222,8 @@ def validate_evidence(doc: Mapping[str, object], indexes: Mapping[str, Mapping[s
         if p is None or p['recording_id'] != a['recording_id']:
             errors.append('frame_annotations.play_id: dangling/conflicting'); continue
         if a['annotation_id'] not in p['evidence_annotation_ids']: errors.append('frame_annotations: unreferenced box')
-        if f is None or any(a[k] != f.get(k) for k in ('raw_pts','time_base','image_path','image_width','image_height','timestamp_seconds')):
+        if (f is None or any(a[k] != f.get(k) for k in ('raw_pts','time_base','image_width','image_height','timestamp_seconds'))
+                or a['image_path'] not in f.get('_aliases',[f.get('image_path')])):
             errors.append('frame_annotations.frame_id: missing/conflicting export')
         actual = a['raw_pts'] * rational(a['time_base']) - r['origin_pts'] * rational(r['origin_time_base'])
         if abs(actual-seconds(a['timestamp_seconds'])) > Fraction(1,1000000): errors.append('frame_annotations.timestamp_seconds: PTS mismatch')
