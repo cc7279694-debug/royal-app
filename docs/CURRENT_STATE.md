@@ -5,8 +5,8 @@ Last verified: 2026-10-03
 ## Current Stage
 
 Module 1 — Offline Video Pipeline: **Completed and user accepted**.
-Module 2A1 — Current Recording Evidence: **In progress; tool implementation verified,
-full-recording manual review and annotations blocked by playback capability**.
+Module 2A1 — Current Recording Evidence: **Completed for current-recording scope;
+awaiting user acceptance, not merged into main**.
 Module 2A2 — Independent Data and Split Freeze: **Not approved; deferred**.
 Module 2B and Module 3 have not started.
 
@@ -33,31 +33,41 @@ Module 2B and Module 3 have not started.
 - Partial-miss CLI exit code 3 verified; all local PNG/report outputs ignored by Git.
 - No Android, recognition, model, database, cloud, or game-connection code exists.
 
-## In Progress
+## Module 2A1 Verified Evidence
 
 - prepare / validate / review implemented without changing Module 1 decoding/CLI.
 - Strict local v1 evidence, stable frame identities, index conflict checks,
   full-image box helpers, interval gaps and conservative insufficiency reporting.
-- Current supplied recording prepared; source hash unchanged; valid unreviewed
-  evidence exits 0 and its insufficient review exits 3. No reviewed plays/boxes.
+- User supplied whole-recording playback review, completeness, perspective and
+  four distinct opponent normal Inferno Dragon deployment leads. Executor
+  inspected original onset, movement, disappearance and boundary frames; no
+  continuous playback by executor is claimed.
+- Four verified deployments and 12 distinct original key-frame boxes entered
+  into ignored local evidence; onset brackets and sampled visibility endpoints
+  retain uncertainty. Candidate gate true; experiment gate false; insufficient.
+- Three new fine-extraction runs succeeded; source hash unchanged; real validate
+  exits 0 and review exits 3. Eight unknown timeline gaps remain, never negatives.
+- Reviewed selection/result/transition/system-UI negatives include the exact
+  terminal timestamp. Broad battlefield absences are not certified from sparse
+  frames or a rough user form. Local labels/media were not published.
 - Final regression: 145 passed, 1 symlink-permission skip; pip check passed.
   Real Windows junction escape regression passed. Independent branch review
   found three Important issues, reproduced/fixed with RED/GREEN and full regression.
   Minor nested advisory gap validation remains documented technical debt.
-- Complete dynamic playback, candidate ownership/variant/deployment review,
-  complete intervals and 3–5 key boxes per confirmed play remain unfinished.
-  Static frames/contact previews must not be called full-playback review.
+- This continuation changed no tracked tool code, tests or dependencies.
+  Whole-playback review is attributed to the user; static frame review and
+  coordinate annotations are attributed to the executor.
 
 ## Pending
 
-- Module 2A1 implementation was explicitly authorized. Tasks 1–3 committed;
-  Task 4 is partial, not completed or accepted.
-- Only one observed match is available. Inferno Dragon remains a pending-review
-  candidate, with at least four provisionally identified independent appearances.
-  Ownership, variants and absence/spawn/visibility need re-review; no finalized
-  annotations or formal candidate-gate acceptance exists.
-- Planned boxing is 3–5 distinct key frames per verified play (12–20 for four
-  surviving plays), plus whole-match interval review; no dense 5FPS manual labels.
+- Module 2A1 Tasks 1–4 are verified for their approved scope and await acceptance.
+  No implementation merge or automatic next-module authorization exists.
+- Only one observed match is available. Inferno Dragon passes the current
+  candidate gate with four distinct deployments and three key boxes each.
+  This does not establish detector accuracy or complete negative coverage.
+- Unknown gaps and sampled endpoint uncertainty remain explicit. Further
+  interval review is needed before whole-timeline model scoring; no dense
+  5FPS manual annotation inventory was created.
 - Split assignments, Evaluation Protocol, digest/lock and freeze CLI belong only
   to separately approved Module 2A2 after a second independent complete match.
 - Module 2B requires at least two independent complete matches, six verified plays
@@ -92,13 +102,13 @@ Module 2B and Module 3 have not started.
 
 ## Next Recommended Task
 
-Complete the existing recording's full manual playback and evidence review using
-an available local playback reviewer; do not substitute preview samples. Then
-finish Task 4 and its acceptance checks. No second recording or installation
-is requested to finish 2A1. Commands remain prepare / validate / review only.
+Review and accept Module 2A1's completion report, including unknown gaps and
+sampled endpoint uncertainty. Do not merge main or start another module without
+explicit authorization. No second recording or installation is requested to
+finish 2A1. Commands remain prepare / validate / review only.
 Further independent recordings and separate Module 2A2 approval will be needed
 before Module 2B can be approved. Public summaries contain candidate names/counts/
 gates only; individual times, boxes and actual labels remain local and ignored.
 
-See [Module 2A1 partial verification](VERIFICATION_M2A1.md),
+See [Module 2A1 verification](VERIFICATION_M2A1.md),
 [Module 1 evidence](VERIFICATION_M1.md) and [Windows instructions](../README.md).

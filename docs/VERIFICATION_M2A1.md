@@ -1,6 +1,45 @@
-# Module 2A1 — Partial Verification
+# Module 2A1 — Verification
 
-Date: 2026-10-03. **In progress, not Module 2A1 complete.**
+Date: 2026-10-03. **Approved current-recording scope completed; awaiting user
+acceptance. Not merged into main and not ready for Module 2B.**
+
+## Task 4 Continuation — Fresh Evidence
+
+The user completed whole-recording playback and supplied opening/result
+completeness, no edits/skips/speed changes, own-bottom perspective and four new
+opponent normal Inferno Dragon deployment leads. Executor did not watch continuous
+playback: original static exports were inspected for absence/birth/motion,
+visibility endpoints, ownership markers, variant appearance and boundaries.
+Rough player times were refined using actual exported PTS, not game countdown.
+
+- Three new local fine-extraction runs: success, all 477 targets exported.
+- Four distinct verified opponent deployments; three distinct original key-frame
+  boxes each, 12 total. No repeated PNG counted as a second deployment.
+- Source hash rechecked against original preparation: unchanged.
+- Real validate exit **0**; real review exit **3**, status **insufficient**,
+  candidate_gate **true**, experiment_gate **false**. One reviewed complete segment.
+- Eight timeline gaps explicitly reported. Broad battlefield absences were not
+  inferred from sparse samples or from the rough deployment form. Reviewed
+  selection/result/transition/system negatives include the exact terminal frame.
+- Birth flashes, poison/countdown text and overlapping units were recorded as
+  limitations. Onset brackets are supported visible-onset estimates, not hidden
+  card-tap times. Disappearance endpoints are first confidently absent inspected
+  samples; residual uncertainty remains, especially one heavily obscured end.
+- Fine original-frame inspection corrected a rough loading-screen boundary.
+  Capture completeness is supported by user playback plus original opening/result
+  samples; it is not an independent codec-integrity guarantee.
+- Fresh pre-work contract/review regressions: **74 passed**. Fresh full regression:
+  **145 passed, 1 skipped**; pip check: no broken requirements. Symlink permission
+  skip unchanged. No code/test/config/dependency changes in this continuation.
+
+All precise times, boxes, source identifiers, user notes, original PNGs, indexes
+and evidence/report JSON remain in ignored local outputs. This finishes the
+lightweight current-recording stage with disclosed gaps, not complete temporal
+ground truth for model scoring. Further interval review, independent match data
+and separately approved 2A2 remain prerequisites for 2B. No second recording,
+training, live feature or implementation merge was performed.
+
+The sections below preserve the earlier partial verification and review history.
 
 ## Authorization and Git
 
@@ -15,7 +54,8 @@ Task commits:
 - Task 1: 53f772d — strict simplified evidence contract and synthetic fixtures.
 - Task 2: 59462f4 — safe local preparation, index/contact pages and CLI.
 - Task 3: f0c43e1 — box helpers, interval review, gaps/counts/insufficiency.
-- Task 4: partial verification/documentation; not a completed task.
+- Task 4: earlier partial verification/documentation, completed by the continuation
+  above; no additional tool implementation.
 
 ## Implementation and Test-First Evidence
 
@@ -61,18 +101,17 @@ the explicitly provided original remained available and was used directly.
   exit 0/0/3 for valid synthetic evidence; unsupported freeze rejected.
 - PNGs, indexes, actual JSON/reports and contacts confirmed ignored by Git.
 
-## Blocking Acceptance Item
+## Earlier Blocking Acceptance Item — Resolved by User Playback
 
-Available inspection tools provide static images, not full continuous local
-video playback to the executor. Contact pages do not substitute for watching the
-complete match. Full playback, all candidate ownership/variant/absence/spawn/
-visibility review, complete positive/negative intervals and reviewed key boxes
-have **not been performed**. Consequently Task 4 and Module 2A1 cannot be marked
-complete. An available local playback/manual reviewer must supply this evidence
-before acceptance. No second recording is required to finish 2A1.
+At the earlier stopping point, available tools provided static images, not full
+continuous local video playback to the executor. Contact pages do not substitute
+for watching the complete match. Playback/deployment review and key boxes had not
+been performed, so Task 4 could not then be marked complete. The user's subsequent
+whole-playback review resolved that blocker; current scope and remaining coverage
+limitations are stated in the continuation above. No second recording was required.
 
-This distinction is separate from the correct one-recording **insufficient for
-2B** result. 2A2 / 2B / Module 3 / Android / live assistance were not entered.
+This distinction remains separate from the correct one-recording **insufficient
+for 2B** result. 2A2 / 2B / Module 3 / Android / live assistance were not entered.
 
 ## Final Checks and Independent Review
 
@@ -114,7 +153,7 @@ list but not every nested gap object's fields. It cannot override recomputed
 counts, gates or gaps; stricter nested advisory validation remains a known debt.
 No second reviewer or independently certified actual footage is claimed.
 
-Not Run: full continuous playback/manual card annotations (acceptance blocker),
+Earlier Not Run: full continuous playback/manual card annotations (then a blocker),
 TypeScript/ESLint (Python experiment only), Android build/device test, recognition
 accuracy, external data/model evaluation, 2A2 splits/freeze and 2B (out of scope).
 
@@ -151,5 +190,6 @@ accuracy, external data/model evaluation, 2A2 splits/freeze and 2B (out of scope
   guarantees. Cost: future gates and current partial status remain unchanged.
 
 Implementation branch is authorized for push only; no PR, implementation merge,
-branch deletion or release. Full-playback evidence must be supplied by an
-available local manual reviewer before completing Task 4.
+branch deletion or release. The previously missing user playback evidence has
+now been supplied; original-frame annotations and actual CLI checks are reported
+in the continuation above. Await user acceptance; do not advance automatically.

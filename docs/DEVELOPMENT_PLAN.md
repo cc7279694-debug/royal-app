@@ -52,8 +52,8 @@ has passed timestamp, image, output safety, and visual verification.
 
 ## Module 2A — Offline Evidence and Annotation Preparation
 
-Status: In Progress — 2A1 tool implementation verified; complete manual video
-review/annotations unfinished. 2A2 remains unapproved and unimplemented.
+Status: In Progress — 2A1 current-recording scope verified, awaiting acceptance.
+2A2 remains unapproved and unimplemented.
 
 Goal: manually identify usable match ranges, inventory opponent cards, choose a
 defensible first target, prepare local annotations and assess data sufficiency.
@@ -78,15 +78,18 @@ Verification:
 Planning documents:
 [design](superpowers/specs/2026-10-03-module-2a-evidence-preparation-design.md),
 [implementation plan](superpowers/plans/2026-10-03-module-2a-evidence-preparation.md).
-Current pending-review candidate: Inferno Dragon, at least four preliminary
-independent appearances, not a locked class or formal candidate-gate pass.
+Current candidate: Inferno Dragon, four verified distinct opponent deployments
+and 12 original key-frame boxes; candidate gate passes. Unknown coverage gaps
+remain explicit; this is not detector accuracy or full negative certification.
 One observed match alone is insufficient for Module 2B.
 
 ### Module 2A1 — Current Recording Evidence
 
-Status: In Progress — implementation explicitly authorized. Tasks 1–3 implemented;
-Task 4 partial: real preparation and CLI checks passed, but complete dynamic
-playback/manual intervals/key boxes remain unverified. Not accepted as complete.
+Status: Completed for approved current-recording scope — awaiting user acceptance.
+Tasks 1–4 verified. User supplied whole-playback review; executor inspected
+original frames and entered four deployments, onset/visibility evidence and
+12 key boxes. Actual validate/review exit 0/3, candidate true, experiment false.
+Eight unknown gaps remain disclosed, not implicit negatives. Main not merged.
 
 Four tasks: simplified contract/tests; local index/contact pages/safe output;
 deployment intervals/key boxes/sufficiency; current-video verification/docs/report.
