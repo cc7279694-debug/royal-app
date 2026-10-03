@@ -27,8 +27,8 @@ Verification:
 
 ## Module 1 — Offline Video Pipeline
 
-Status: Completed — implementation, synthetic tests, and representative
-user-recording verification complete. Await user review before Module 2.
+Status: Completed — accepted by the user; fast-forwarded into main and pushed
+at e30ca01 on 2026-10-03 after 47 tests and dependency checks were rerun.
 
 Goal: read one user-provided MP4 without performing card recognition.
 
@@ -50,25 +50,58 @@ Verification:
 Evidence: [Module 1 verification](VERIFICATION_M1.md). The user-provided recording
 has passed timestamp, image, output safety, and visual verification.
 
-## Module 2 — Single Card Detection Proof of Concept
+## Module 2A — Offline Evidence and Annotation Preparation
 
-Status: Planned
+Status: Planned — design and implementation plan prepared for user review;
+implementation has not started.
 
-Goal: detect a deliberately small set of opponent-card candidates in recorded
-footage, beginning with Hog Rider and only adding classes supported by evidence.
+Goal: manually identify usable match ranges, inventory opponent cards, choose a
+defensible first target, prepare local annotations and assess data sufficiency.
+No model, automatic boundary detector or custom annotation GUI.
 
 Acceptance criteria:
 
-- produce timestamped observations with card identifier and confidence;
-- measure false positives and missed detections on labeled validation clips;
-- keep observations distinct from confirmed deployment events;
-- record model, dataset, and asset provenance.
+- exact PTS-normalized local evidence and manually reviewed boundaries;
+- at least four distinct manually confirmed deployments in current recording
+  before selecting a troop/building target; no predefined Hog Rider;
+- versioned annotations, full-image normalized boxes, reviewed negative ranges;
+- whole-match/source isolation and a clear sufficient/insufficient report;
+- no private media, labels, source paths or hashes in public Git.
 
 Verification:
 
-- reproducible evaluation on held-out clips;
-- documented accuracy and known failure cases;
-- no claim of full card coverage.
+- synthetic validation, timestamp, coordinates, file safety and split-leakage tests;
+- reviewed real recording with honest uncertainty and data limitations;
+- no model accuracy claim in this stage.
+
+Planning documents:
+[design](superpowers/specs/2026-10-03-module-2a-evidence-preparation-design.md),
+[implementation plan](superpowers/plans/2026-10-03-module-2a-evidence-preparation.md).
+Current recommendation: Inferno Dragon, at least four reviewed episodes;
+one observed match alone is insufficient for Module 2B.
+
+## Module 2B — Single Card Detection Proof of Concept
+
+Status: Gated — accepted Module 2A, independent data and separate approval required.
+
+Goal: detect exactly one evidence-selected card as timestamped visual Observations.
+No OpponentCardPlayed, card cycle or elixir updates.
+
+Entry gates:
+
+- at least two independent complete matches and six verified target plays total;
+- at least one whole held-out match with two target plays;
+- reviewed non-match negatives, valid annotations and a locked pre-training split;
+- all same-match/re-recording/adjacent occurrence frames remain in one split;
+- independently reviewed code/model/data provenance, not merely a repository license.
+
+Verification:
+
+- complete held-out matches; deployment-window coverage TP/FN and box TP/FP/FN;
+- FP/minute, timing errors, confidence/IoU and non-match/similar-unit confusions;
+- prospective go/revise/stop rule in the 2A design; no training-only score claim.
+
+Minimum data permit an experiment only, not generalized reliability or live use.
 
 ## Module 3 — Deployment Event Tracking
 

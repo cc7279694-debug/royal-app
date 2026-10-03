@@ -238,3 +238,38 @@ or inference framework is added. Keep original videos untouched and generated
 media ignored. Missing timestamps fail explicitly; partial misses return nonzero.
 Runtime versions are pinned in the tool configuration and test requirements.
 Representative user-recording acceptance remains required after synthetic tests.
+
+## 2026-10-03 — Evidence Preparation Before Single-Card Detection
+
+### Decision
+
+The user explicitly split Module 2 into 2A (manual evidence/annotations/sufficiency)
+and 2B (one-card visual Observations). Only Module 3 emits OpponentCardPlayed.
+Target selection requires four distinct reviewed opponent deployments in current
+footage; Hog Rider is not predefined. Before 2B require two independent complete
+matches, six total verified plays, a whole held-out match with two plays, reviewed
+non-match negatives and a locked split. Same underlying match/re-recording frames
+cannot cross development and test. These minima do not certify reliability.
+
+### Context
+
+Module 1 has been accepted. A single real recording proves extraction, not model
+generalization. Random frame splits would leak nearly identical match evidence.
+The current task authorizes planning only, plus the accepted branch's main merge.
+
+### Alternatives
+
+- Train immediately on frames randomly split from one recording.
+- Establish evidence and independent whole-match boundaries before an experiment.
+
+### Reason
+
+Manual evidence and pre-registered isolation make the next experiment verifiable
+without adding a model, GUI or live-game risk prematurely.
+
+### Consequences
+
+Module 2A implementation remains subject to separate user approval. Proposed
+target/tool/evaluation details in the design are recommendations, not decisions
+accepted by this entry. Real footage, hashes and labels remain local and ignored.
+External datasets/models remain separately provenance-gated; no download approved.

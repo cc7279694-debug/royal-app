@@ -4,14 +4,14 @@ Last verified: 2026-10-03
 
 ## Current Stage
 
-Module 1 — Offline Video Pipeline: **Completed**.
-Implementation, synthetic tests, and representative user-recording verification
-are complete. Stop for user review; Module 2 has not started.
+Module 1 — Offline Video Pipeline: **Completed and user accepted**.
+Module 2A — Evidence Preparation: **Planning ready for review; not implemented**.
+Module 2B and Module 3 have not started.
 
 ## Verified Completed
 
 - Module 0 baseline exists at `e8f702b5ed7ec33c852357f0be62ce0a8e25d3cd`;
-  this module branches from it rather than the unbootstrapped main branch.
+  Module 1 originally branched from it. Both modules are now on accepted main.
 - Safety gate corrected: explicit Supercell permission covering specific behavior,
   version, and usage context is required before live online-match analysis or HUD.
   Risk acceptance and passive capture do not substitute for permission.
@@ -33,11 +33,15 @@ are complete. Stop for user review; Module 2 has not started.
 
 ## In Progress
 
-- None. Awaiting user review of the completed Module 1 report.
+- None. This task stops at the Module 2A design/plan handoff.
 
 ## Pending
 
-- User review of Module 1; explicit authorization before Module 2.
+- Review Module 2A design and plan; separate implementation approval required.
+- Only one observed match is available. Inferno Dragon has at least four reviewed
+  deployment episodes; no finalized annotations or locked independent test exists.
+- Module 2B requires at least two independent complete matches, six verified plays
+  total and a whole held-out match with two plays. Current data are insufficient.
 - Model/runtime selection remains deferred; project license remains undecided.
 
 ## Current Risks and Limitations
@@ -56,16 +60,20 @@ are complete. Stop for user review; Module 2 has not started.
 
 ## Git
 
-- Branch: `feat/offline-video-pipeline`
-- Base: `e8f702b5ed7ec33c852357f0be62ce0a8e25d3cd`
+- Branch: `feat/plan-module-2a-evidence`
+- Base/main: `e30ca01fb7a70a0f3bfc14e4fb838dd7ff0da491`
 - Remote: `https://github.com/cc7279694-debug/royal-app`
-- Main remains unchanged. Exact module commit/push is reported in the handoff
-  and verifiable in Git rather than embedded in its own commit.
+- Main fast-forward and push verified on 2026-10-03; original feature branch kept.
+- Before merge: 47 tests passed, pip check passed, whitespace/media/targeted secret
+  scans passed. New planning commit/push is reported in the handoff and Git.
+- Planning branch is not merged; no product code or new dependency changed.
 
 ## Next Recommended Task
 
-Review Module 1 evidence. When authorized, plan Module 2's limited-card detection
-experiment on offline footage, including match-region/time selection and model
-provenance. Do not implement Module 2 before authorization.
+Review [Module 2A design](superpowers/specs/2026-10-03-module-2a-evidence-preparation-design.md)
+and [implementation plan](superpowers/plans/2026-10-03-module-2a-evidence-preparation.md).
+When separately authorized, implement only Module 2A and report honest sufficiency.
+No new recording or software installation is requested during this planning round.
+Further independent recordings will be needed before Module 2B can be approved.
 
 See [verification evidence](VERIFICATION_M1.md) and [Windows instructions](../README.md).
