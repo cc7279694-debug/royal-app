@@ -107,6 +107,25 @@ def test_bbox_overflow_and_unknown_nested_key():
     doc = synthetic_evidence()
     doc['frame_annotations'][0]['normalized_bbox'].update(x=.9, width=.2)
     assert validate_evidence(doc, synthetic_indexes(doc))
+
+
+def test_overflow_number_rejected_without_crash():
+    doc = synthetic_evidence()
+    doc['recordings'][0]['last_frame_seconds'] = 10 ** 400
+    assert validate_evidence(doc,synthetic_indexes(doc))
+
+
+def test_unhashable_report_status_rejected_without_crash():
+    doc = synthetic_evidence()
+    doc['preparation_report'] = dict(status=[],candidate_gate=False,experiment_gate=False,
+        counts=dict(recordings=0,reviewed_complete_segments=0,verified_plays=0,annotated_key_frames=0),reasons=[],coverage_gaps=[])
+    assert validate_evidence(doc,synthetic_indexes(doc))
+
+
+def test_json_overflow_constant_rejected(tmp_path):
+    path = tmp_path/'bad.json'
+    path.write_text('{"seconds":1e999}')
+    with pytest.raises(EvidenceError): load_evidence(path)
     doc = synthetic_evidence()
     doc['recordings'][0]['unknown'] = 1
     assert validate_evidence(doc, synthetic_indexes(doc))

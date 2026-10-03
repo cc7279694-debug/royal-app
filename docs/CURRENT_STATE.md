@@ -40,6 +40,10 @@ Module 2B and Module 3 have not started.
   full-image box helpers, interval gaps and conservative insufficiency reporting.
 - Current supplied recording prepared; source hash unchanged; valid unreviewed
   evidence exits 0 and its insufficient review exits 3. No reviewed plays/boxes.
+- Final regression: 145 passed, 1 symlink-permission skip; pip check passed.
+  Real Windows junction escape regression passed. Independent branch review
+  found three Important issues, reproduced/fixed with RED/GREEN and full regression.
+  Minor nested advisory gap validation remains documented technical debt.
 - Complete dynamic playback, candidate ownership/variant/deployment review,
   complete intervals and 3–5 key boxes per confirmed play remain unfinished.
   Static frames/contact previews must not be called full-playback review.

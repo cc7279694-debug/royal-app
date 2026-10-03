@@ -74,7 +74,82 @@ before acceptance. No second recording is required to finish 2A1.
 This distinction is separate from the correct one-recording **insufficient for
 2B** result. 2A2 / 2B / Module 3 / Android / live assistance were not entered.
 
-## Verification Still Being Finalized
+## Final Checks and Independent Review
 
-Final full-suite/dependency checks and independent branch-review results will be
-recorded from fresh output before handoff. No old test count certifies this branch.
+Actual final commands:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest -q --tb=short
+.\.venv\Scripts\python.exe -m pip check
+git diff --check
+```
+
+Results: **145 passed, 1 skipped**; no broken requirements; whitespace checks
+passed. Windows junction creation and ancestor-escape regression actually passed.
+The separate symlink-creation test remains skipped due OS permission.
+README three-command behavior tested against synthetic encoded MP4s and current
+unreviewed recording evidence. Relative documentation links and targeted private
+identifier/secret scans passed. Tracked media/model/actual annotation JSON scan
+empty; Module 1 pipeline/CLI and requirements/config unchanged. Local final report
+and ledger ignored. Original hash rechecked against pre-preparation value after
+fixes; still unchanged. Real validate/review repeated: **0 / 3**.
+
+One independent fresh-context reviewer examined the complete branch range
+35653db..e4e7013 plus spec/plan/ledger. No private media was opened by reviewer.
+No Critical findings. Three Important findings were reproduced with failing tests
+and fixed in one RED/GREEN pass:
+
+1. Malformed status/oversized numbers could crash validators/CLI. Direct and
+   subprocess tests reproduced TypeError/OverflowError; now path-free rejection.
+   Numeric-exponent overflow is also rejected by the strict JSON loader.
+2. Valid right/bottom pixel-edge boxes could normalize outside the strict decimal
+   contract. Exact pixel bounds and conservative one-ULP representation fixed it.
+   A skinny fractional boundary also exposed an iterative-rounding timeout during
+   this same fix pass; conversion is now bounded and the regression passes.
+3. Duplicate-image content hashes ignored alpha. A same-RGB/different-alpha
+   regression failed first; canonical RGBA comparison now detects the conflict.
+
+Deferred Minor: stored advisory preparation_report.coverage_gaps validates the
+list but not every nested gap object's fields. It cannot override recomputed
+counts, gates or gaps; stricter nested advisory validation remains a known debt.
+No second reviewer or independently certified actual footage is claimed.
+
+Not Run: full continuous playback/manual card annotations (acceptance blocker),
+TypeScript/ESLint (Python experiment only), Android build/device test, recognition
+accuracy, external data/model evaluation, 2A2 splits/freeze and 2B (out of scope).
+
+## Implementation Rulings and Costs
+
+- Current explicit approval supersedes old document-only handoff; only 2A1
+  executed. Cost if mistaken: unwanted scope; direct authorization is on record.
+- Keep this plan's ignored ledger rather than deleting scratch/user files.
+  Cost: small local scratch retained for the unfinished task.
+- Four contact thumbnails at three columns need two rows; corrected the test's
+  height expectation, not implementation. Cost: preview assertion only.
+- Merge same frame across requests/runs/filenames only with agreeing PTS/base,
+  dimensions/time and full pixel content; retain checked aliases. Cost: aliases
+  remain trusted only after supplied-run integrity checks.
+- Human evidence may set perspective while measured index stays unknown.
+  Cost: perspective requires actual manual review, never software inference.
+- Uncovered last actual timestamp is a singleton gap, not a closed positive.
+  Cost: clients must retain zero-duration endpoint gaps.
+- Task 4 pre-work regressions were already green; no invented RED for manual/doc
+  steps. Cost: no separate failing test for a non-production step.
+- Use only the explicitly supplied original when expected checkout recording
+  directory was absent. Cost: none to original; no search/copy performed.
+- Treat exponent overflow as part of Important malformed/nonfinite handling.
+  Cost: invalid numeric data are rejected earlier.
+- Represent valid exact ratios with at most one adjacent inward float when
+  needed; never clip invalid pixels. Cost: at most one-ULP representation change.
+- Reviewer excluded actual identity/owner/variant/count/interval/boxes/full-match
+  eligibility; they remain unverified. Cost: Task 4/module cannot be accepted.
+- Reviewer did not independently rerun source integrity/real CLI; executor
+  repeated these after fixes. Cost: one source-specific verifier.
+- Reviewer excluded OS link probes; native junction test added, symlink permission
+  skip retained. Cost: real symlink creation still not certified here.
+- Reviewer excluded model/data/split/Android/live/ban and module acceptance
+  guarantees. Cost: future gates and current partial status remain unchanged.
+
+Implementation branch is authorized for push only; no PR, implementation merge,
+branch deletion or release. Full-playback evidence must be supplied by an
+available local manual reviewer before completing Task 4.

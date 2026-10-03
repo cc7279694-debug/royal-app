@@ -1,5 +1,6 @@
 """Manual box helpers and conservative current-recording sufficiency."""
 from fractions import Fraction
+import math
 
 from .evidence_contract import EvidenceError, STATUS, number, rational, valid_type, seconds, validate_evidence
 
@@ -11,9 +12,21 @@ def normalize_box(rect: tuple[float,float,float,float], image_size: tuple[int,in
         raise EvidenceError('Invalid full-image rectangle or displayed size.')
     x,y,w,h = rect
     iw,ih = image_size
-    if x<0 or y<0 or w<=0 or h<=0 or x+w>iw or y+h>ih:
+    fx,fy,fw,fh = (Fraction(str(v)) for v in rect)
+    if fx<0 or fy<0 or fw<=0 or fh<=0 or fx+fw>iw or fy+fh>ih:
         raise EvidenceError('Rectangle outside full displayed image; no clipping performed.')
-    return dict(x=x/iw,y=y/ih,width=w/iw,height=h/ih)
+    def inward(value):
+        result = float(value)
+        if Fraction(str(result)) > value:
+            result = math.nextafter(result,0)
+        return result
+
+    # Each decimal representation is <= its exact ratio. This avoids outward
+    # roundoff without an unbounded loop for very narrow valid edge rectangles.
+    box = dict(x=inward(fx/iw),y=inward(fy/ih),width=inward(fw/iw),height=inward(fh/ih))
+    if not valid_type(box,'box'):
+        raise EvidenceError('Positive normalized rectangle cannot be represented.')
+    return box
 
 
 def make_frame_annotation(entry, *, annotation_id: str, recording_id: str, play_id: str,

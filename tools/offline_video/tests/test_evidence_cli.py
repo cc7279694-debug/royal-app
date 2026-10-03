@@ -3,6 +3,7 @@ import subprocess
 import sys
 import uuid
 import json
+import pytest
 from clash_tracker_video.evidence_prepare import prepare_evidence
 
 
@@ -49,3 +50,22 @@ def test_three_commands_real_synthetic(video):
     assert result.returncode == 3
     assert json.loads(report.read_text())['experiment_gate'] is False
     assert run('review',path,'--indexes',root/'index.json','--output',report).returncode == 2
+
+
+@pytest.mark.parametrize('kind',['report','seconds'])
+def test_malformed_report_and_huge_seconds_exit_two(video,kind):
+    root = output()
+    index = prepare_evidence(video,root,recording_id='synthetic')
+    doc = dict(schema_version=1,recordings=[index['recording']],match_segments=[],target_card=None,
+               occurrences=[],frame_annotations=[],negative_intervals=[])
+    path = root/'evidence.json'
+    if kind == 'report':
+        doc['preparation_report'] = dict(status=[],candidate_gate=False,experiment_gate=False,
+            counts=dict(recordings=0,reviewed_complete_segments=0,verified_plays=0,annotated_key_frames=0),reasons=[],coverage_gaps=[])
+    else:
+        doc['recordings'][0]['last_frame_seconds'] = 10**400
+    path.write_text(json.dumps(doc),encoding='utf-8')
+    result = run('validate',path,'--indexes',root/'index.json')
+    assert result.returncode == 2
+    assert 'Traceback' not in result.stderr
+    assert str(path) not in result.stderr

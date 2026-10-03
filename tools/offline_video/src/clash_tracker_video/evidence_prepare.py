@@ -194,7 +194,7 @@ def load_indexes(paths):
                 image_path = _reference(path.parent,f['image_path'])
                 with Image.open(image_path) as image:
                     if image.format!='PNG' or image.size!=size: raise EvidenceError('PNG geometry conflict.')
-                    pixel_hash = hashlib.sha256(image.convert('RGB').tobytes()).hexdigest()
+                    pixel_hash = hashlib.sha256(image.convert('RGBA').tobytes()).hexdigest()
                 entry = f.copy()
                 entry['_content_hash'] = pixel_hash
                 entry['_aliases'] = [f['image_path']]
@@ -207,5 +207,5 @@ def load_indexes(paths):
                     target['frames'].append(entry)
                     seen[f['frame_id']] = entry
         return merged
-    except (OSError,ValueError,TypeError,KeyError,Image.DecompressionBombError) as exc:
+    except (OSError,ValueError,TypeError,KeyError,OverflowError,Image.DecompressionBombError) as exc:
         raise EvidenceError('Cannot load local index/image references.') from exc

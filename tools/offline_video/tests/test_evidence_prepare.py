@@ -2,6 +2,8 @@ from fractions import Fraction as F
 from pathlib import Path
 import hashlib
 import json
+import subprocess
+import os
 
 import pytest
 from PIL import Image
@@ -122,3 +124,50 @@ def test_contacts_paginated(root):
     assert len(index['contact_pages']) == 2
     with Image.open(root/'outputs/run'/index['contact_pages'][0]) as page:
         assert page.size == (672,2016)
+
+
+def test_alpha_content_conflict(root):
+    video = make_video(root/'in.mp4')
+    a,b = root/'outputs/a',root/'outputs/b'
+    ep.prepare_evidence(video,a,recording_id='sample',times=[0])
+    ep.prepare_evidence(video,b,recording_id='sample',times=[0])
+    image_path = b/'exports/frame_0000.png'
+    with Image.open(image_path) as original:
+        changed = original.convert('RGBA')
+        changed.putalpha(0)
+    changed.save(image_path)
+    with pytest.raises(EvidenceError,match='conflict'): ep.load_indexes([a/'index.json',b/'index.json'])
+
+
+def test_huge_index_pts_returns_evidence_error(root):
+    video = make_video(root/'in.mp4')
+    run = root/'outputs/run'
+    index = ep.prepare_evidence(video,run,recording_id='sample')
+    entry = index['frames'][0]
+    entry['raw_pts'] = 10**400
+    entry['frame_id'] = ep.frame_id('sample',entry['raw_pts'],ep.rational(entry['time_base']))
+    (run/'index.json').write_text(json.dumps(index))
+    with pytest.raises(EvidenceError): ep.load_indexes([run/'index.json'])
+
+
+def test_huge_index_seconds_returns_evidence_error(root):
+    video = make_video(root/'in.mp4')
+    run = root/'outputs/run'
+    index = ep.prepare_evidence(video,run,recording_id='sample')
+    index['recording']['last_frame_seconds'] = 10**400
+    (run/'index.json').write_text(json.dumps(index))
+    with pytest.raises(EvidenceError): ep.load_indexes([run/'index.json'])
+
+
+@pytest.mark.skipif(os.name!='nt',reason='Windows junction only')
+def test_actual_windows_junction_escape(root):
+    target = root/'outside'
+    target.mkdir()
+    (root/'outputs').mkdir()
+    link = root/'outputs/junction'
+    result = subprocess.run(['cmd','/c','mklink','/J',str(link),str(target)],capture_output=True)
+    assert result.returncode == 0
+    assert link.is_junction()
+    video = make_video(root/'input.mp4')
+    with pytest.raises(EvidenceError): ep.prepare_evidence(video,link/'run',recording_id='sample')
+    assert not (target/'run').exists()

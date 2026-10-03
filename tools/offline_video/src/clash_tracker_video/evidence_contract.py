@@ -25,12 +25,19 @@ def load_evidence(path: Path) -> dict[str, object]:
     def constant(_):
         raise EvidenceError("Non-finite JSON constant.")
 
+    def finite_float(value):
+        parsed = float(value)
+        if not math.isfinite(parsed):
+            raise EvidenceError('Non-finite JSON number.')
+        return parsed
+
     try:
         with Path(path).open('rb') as handle:
             content = handle.read(16 * 1024 * 1024 + 1)
         if len(content) > 16 * 1024 * 1024:
             raise EvidenceError("JSON exceeds 16MiB.")
-        doc = json.loads(content.decode('utf-8'), object_pairs_hook=pairs, parse_constant=constant)
+        doc = json.loads(content.decode('utf-8'), object_pairs_hook=pairs,
+                         parse_constant=constant, parse_float=finite_float)
         if not isinstance(doc, dict):
             raise EvidenceError("JSON root must be an object.")
         return doc
@@ -39,7 +46,10 @@ def load_evidence(path: Path) -> dict[str, object]:
 
 
 def number(value):
-    return type(value) in (int, float) and math.isfinite(value)
+    try:
+        return type(value) in (int, float) and math.isfinite(value)
+    except OverflowError:
+        return False
 
 
 def rational(value):
@@ -152,7 +162,7 @@ def validate_evidence(doc: Mapping[str, object], indexes: Mapping[str, Mapping[s
     if 'preparation_report' in doc:
         report = doc['preparation_report']
         if (not isinstance(report, dict) or set(report) != {'status','candidate_gate','experiment_gate','counts','reasons','coverage_gaps'}
-                or report.get('status') not in {'invalid','insufficient'}
+                or not isinstance(report.get('status'),str) or report.get('status') not in {'invalid','insufficient'}
                 or type(report.get('candidate_gate')) is not bool or type(report.get('experiment_gate')) is not bool
                 or not isinstance(report.get('counts'), dict)
                 or set(report.get('counts', {})) != {'recordings','reviewed_complete_segments','verified_plays','annotated_key_frames'}

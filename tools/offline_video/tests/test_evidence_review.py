@@ -1,7 +1,9 @@
 from copy import deepcopy
 import pytest
+import subprocess
+import sys
 
-from clash_tracker_video.evidence_contract import EvidenceError, validate_evidence
+from clash_tracker_video.evidence_contract import EvidenceError, validate_evidence, valid_type
 from clash_tracker_video.evidence_review import normalize_box, make_frame_annotation, review_evidence
 from evidence_fixtures import synthetic_evidence, synthetic_indexes
 
@@ -105,3 +107,21 @@ def test_duplicate_export_cannot_add_third_timestamp():
     indexes['synthetic']['frames'].append(deepcopy(indexes['synthetic']['frames'][0]))
     doc['frame_annotations'][2].update({k:v for k,v in doc['frame_annotations'][1].items() if k!='annotation_id'})
     assert review_evidence(doc,indexes)['status'] == 'invalid'
+
+
+@pytest.mark.parametrize('rect,size', [((2,0,446,1),(448,960)),((0,2,1,958),(448,960)),((17,0,31,1),(48,64))])
+def test_valid_boundary_box_survives_contract(rect,size):
+    box = normalize_box(rect,size)
+    assert valid_type(box,'box')
+    assert box['x'] == pytest.approx(rect[0]/size[0],abs=1e-15)
+    assert box['width'] == pytest.approx(rect[2]/size[0],abs=1e-15)
+
+
+def test_fractional_skinny_boundary_finishes_without_rounding_loop():
+    script = ('from clash_tracker_video.evidence_review import normalize_box; '
+              'from clash_tracker_video.evidence_contract import valid_type; '
+              'box=normalize_box((447.99999999999994,0,5e-14,1),(448,960)); '
+              'assert valid_type(box,"box"); print("ok")')
+    result = subprocess.run([sys.executable,'-c',script],capture_output=True,text=True,timeout=5)
+    assert result.returncode == 0
+    assert result.stdout.strip() == 'ok'
