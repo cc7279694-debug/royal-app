@@ -52,8 +52,8 @@ has passed timestamp, image, output safety, and visual verification.
 
 ## Module 2A — Offline Evidence and Annotation Preparation
 
-Status: Planned — split into internal stages 2A1 and 2A2. Lightweight design and
-four-task 2A1 plan revised for review; neither stage has been implemented.
+Status: In Progress — 2A1 tool implementation verified; complete manual video
+review/annotations unfinished. 2A2 remains unapproved and unimplemented.
 
 Goal: manually identify usable match ranges, inventory opponent cards, choose a
 defensible first target, prepare local annotations and assess data sufficiency.
@@ -84,7 +84,9 @@ One observed match alone is insufficient for Module 2B.
 
 ### Module 2A1 — Current Recording Evidence
 
-Status: Planned — not implemented; separate approval required.
+Status: In Progress — implementation explicitly authorized. Tasks 1–3 implemented;
+Task 4 partial: real preparation and CLI checks passed, but complete dynamic
+playback/manual intervals/key boxes remain unverified. Not accepted as complete.
 
 Four tasks: simplified contract/tests; local index/contact pages/safe output;
 deployment intervals/key boxes/sufficiency; current-video verification/docs/report.

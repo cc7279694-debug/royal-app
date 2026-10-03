@@ -1,8 +1,10 @@
 # Clash Tracker
 
 本项目从用户主动提供的本地 MP4 开始，研究离线画面分析。
-目前只有 **Module 1 离线录像读取工具**：读取视频信息、按时间导出完整 PNG、
-生成 JSON 报告。它在 Windows 电脑上运行，不需要 Android Studio。
+现有 **Module 1 离线录像读取工具**，以及 **Module 2A1 证据准备工具**：
+读取视频、导出完整 PNG、准备索引和联系表、校验人工证据并报告数据不足。
+2A1 的完整录像人工复核尚未完成，不能宣称模块验收通过。
+工具在 Windows 电脑上运行，不需要 Android Studio，不会自动识别卡牌。
 
 实时在线对局分析和 HUD 保持 Gated：须取得覆盖具体行为、版本、使用场景的
 Supercell 官方明确许可。用户接受风险、只读屏幕、本地运行、小号或训练场均不能
@@ -95,6 +97,50 @@ Invoke-Item "outputs\module1"
 - 仅解码所选视频流；不分析音频，不上传文件，不连接账号、设备或运行中的游戏。
 - 合成素材与用户提供的 H.264 竖屏录像均已验证，Module 1 已完成。
   已验证录像为 448 × 960、约 273.17 秒、约 30 FPS；不代表所有手机格式均适配。
+
+## Module 2A1：本地人工证据
+
+使用现有环境，无需安装新依赖。三个命令独立于 Module 1：
+
+```powershell
+.\.venv\Scripts\python.exe -m clash_tracker_video.evidence_cli prepare "local_data\recordings\sample.mp4" --recording-id recording_01 --output "outputs\evidence\new-survey"
+.\.venv\Scripts\python.exe -m clash_tracker_video.evidence_cli validate "outputs\evidence\evidence.json" --indexes "outputs\evidence\new-survey\index.json"
+.\.venv\Scripts\python.exe -m clash_tracker_video.evidence_cli review "outputs\evidence\evidence.json" --indexes "outputs\evidence\new-survey\index.json" --output "outputs\evidence\new-review.json"
+```
+
+输出目录或报告必须全新，不能重复使用；只能放在项目 `outputs/` 或
+`local_data/`。禁止 URL、网络路径、路径穿越、符号链接及 junction。
+正常命令输出不显示私人路径。所有截图、索引、标注及详细报告仅保留本地。
+
+prepare 默认每五秒采样并加入真实最后一帧，精确去重；可用
+`--times 0 0.1 0.2` 指定更细的定位时间。输出 `exports/` 原始 PNG、
+Module 1 `report.json`、`index.json` 和 `contacts/` 预览。
+联系表只用于定位，标框必须依据旋转校正后的完整原始 PNG。
+
+**prepare 不会生成已确认的部署证据。** 人工观看完整录像后，按
+[证据契约](docs/superpowers/specs/2026-10-03-module-2a-evidence-preparation-design.md)
+建立六实体 JSON：recordings、match_segments、target_card、occurrences、
+frame_annotations、negative_intervals；writer 使用 schema_version=1。
+每次 verified 部署需要缺席→新出现→持续可见的依据、已确认归属/视角/变体、
+3～5 个不同真实时间戳的关键框。无法确认保持 ambiguous/draft，未知区间
+不能当负样本。同一帧的重复导出不会增加关键证据数量。
+
+可在本地 Python 中使用 `evidence_review.normalize_box` 和
+`make_frame_annotation` 辅助坐标录入；不会自动升级 draft。
+多个抽帧运行可通过 `--indexes INDEX1 INDEX2` 合并，真实帧身份稳定，
+重复帧尺寸、时间戳或图像内容冲突会报错。人工视角写入 evidence；
+prepare 索引中的 unknown 不会自动推断为某一方。
+
+普通区间右端不包含；仅到达实际最后一帧的终止负样本可包含右端。
+区间未完成会报告 coverage_gaps，不要求逐帧标框。
+
+退出码：prepare 成功 0、部分命中 3、错误 2；validate 有效 0、错误 2；
+review 有效但不足 3、无效/错误 2。review 在 2A1 永远
+`experiment_gate=false`，候选门槛是独立结论；没有 freeze 命令。
+
+当前真实录像仅完成准备和未复核证据的命令验证。完整播放、部署和时间区间
+人工复核及关键框尚未完成；这不是模型识别结果，也不是目标卡不存在的结论。
+参见 [Module 2A1 验证记录](docs/VERIFICATION_M2A1.md)。
 
 ## 项目事实源
 
