@@ -5,8 +5,10 @@ Last verified: 2026-10-04
 ## Current Stage
 
 Module 1 — Offline Video Pipeline: **Completed and user accepted**.
-Module 2A1 — Current Recording Evidence: **Completed for current-recording scope;
-awaiting user acceptance, not merged into main**.
+Module 2A1 — Current Recording Evidence: **Completed and formally user accepted
+on 2026-10-04 at `98037ceba81683ad1a2c214bada30a10f2f3f69e`**.
+Acceptance includes the current recording's manual evidence with eight unknown
+intervals retained. Candidate gate true; experiment gate false; insufficient.
 Module 2A2 — Independent Data and Split Freeze: **Not approved; deferred**.
 Module 2B and Module 3 have not started.
 
@@ -76,14 +78,11 @@ Module 2B and Module 3 have not started.
 
 ## Pending
 
-- Module 2A1 Tasks 1–4 are verified for their approved scope and await acceptance.
-  No implementation merge or automatic next-module authorization exists.
-- Report/index repair passed fresh pre-publication verification on 2026-10-04.
-  The user authorized committing its five tracked files and pushing only the
-  existing feature branch. Independent repair review and its tested fix pass are
-  complete; Module 2A1 acceptance remains the user's decision and does not approve
-  merging or a next module. Exact publication SHA/outcome are recorded in Git
-  and the final handoff, not inferred from this authorization.
+- Module 2A1 Tasks 1–4 and the report/index repair are formally accepted.
+  The user separately authorized only a four-document acceptance commit,
+  feature-branch push, ff-only integration/push to main and branch preservation.
+  Integration outcome is recorded in Git and the final handoff; this authorization
+  does not approve planning or implementing a next module.
 - Only one observed match is available. Inferno Dragon passes the current
   candidate gate with four distinct deployments and three key boxes each.
   This does not establish detector accuracy or complete negative coverage.
@@ -112,31 +111,35 @@ Module 2B and Module 3 have not started.
 - Report/index consistency is not proof of source-video authenticity or first
   eligible source-frame selection without decoding. Coherent forgery and lost
   sub-ULP request precision cannot be independently ruled out by this patch.
+- Nested preparation_report.coverage_gaps advisory validation remains deferred;
+  it cannot override recomputed counts, gates or gaps. The symlink permission skip
+  remains a limitation, distinct from passing real Windows junction tests.
+- Formal acceptance used remote code/test-design review plus committed local
+  verification. ChatGPT did not independently rerun the 223 tests or access
+  private footage/evidence; no independent private-media certification is claimed.
 
 ## Git
 
-- Branch: `feat/module-2a1-current-recording-evidence`
-- Base/main: `35653db3f50b756a53aa6a27c7d9de632c808b89`
+- Preserved implementation branch: `feat/module-2a1-current-recording-evidence`
+- Pre-integration main baseline: `35653db3f50b756a53aa6a27c7d9de632c808b89`
 - Remote: `https://github.com/cc7279694-debug/royal-app`
-- Main fast-forward and push verified on 2026-10-03; original feature branch kept.
-- Before merge: 47 tests passed, pip check passed, whitespace/media/targeted secret
-  scans passed. New planning commit/push is reported in the handoff and Git.
-- Approved planning branch fast-forwarded into main and pushed; planning branch kept.
-- Product code stays on implementation branch; no implementation merge authorized.
-- Repair baseline: `13330de9967b2c15af64d8b829be7431b6b10181`. Current authorization
-  permits the focused five-file repair commit and normal feature-branch push only;
-  no PR, release, implementation merge, history rewrite or next module.
+- Accepted repair commit: `98037ceba81683ad1a2c214bada30a10f2f3f69e`, verified
+  published on the implementation branch; repair baseline was `13330de9967b2c15af64d8b829be7431b6b10181`.
+- Integration target: main, ff-only after fresh full regression/dependency checks.
+  Exact acceptance-document commit and final local/remote refs are reported by Git
+  and the final handoff, not inferred from permission. Keep the original branch.
+- No PR, release, branch deletion, history rewrite or next module is authorized.
 - No new dependency, SQLite, Android, inference, split/freeze or network runtime.
 
 ## Next Recommended Task
 
-Review and accept Module 2A1's completion report, including unknown gaps and
-sampled endpoint uncertainty. Do not merge main or start another module without
-explicit authorization. No second recording or installation is requested to
-finish 2A1. Commands remain prepare / validate / review only.
-Further independent recordings and separate Module 2A2 approval will be needed
-before Module 2B can be approved. Public summaries contain candidate names/counts/
-gates only; individual times, boxes and actual labels remain local and ignored.
+Stop after the authorized acceptance recording and integration. Do not request a
+second recording or begin another module in this task. Commands remain prepare /
+validate / review only. Any future independent-recording, split-freeze or model
+work needs a separate user-approved Astra planning step and explicit module
+authorization; Module 2A2 remains unapproved and 2B gates remain closed.
+Public summaries contain candidate names/counts/gates only; individual times,
+boxes and actual labels remain local and ignored.
 
 See [Module 2A1 verification](VERIFICATION_M2A1.md),
 [Module 1 evidence](VERIFICATION_M1.md) and [Windows instructions](../README.md).

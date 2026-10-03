@@ -1,7 +1,56 @@
 # Module 2A1 — Verification
 
-Date: 2026-10-03. **Approved current-recording scope completed; awaiting user
-acceptance. Not merged into main and not ready for Module 2B.**
+Original verification: 2026-10-03. **Module 2A1 formally user accepted on
+2026-10-04 at `98037ceba81683ad1a2c214bada30a10f2f3f69e`.
+Not ready for Module 2B.**
+
+## Formal Acceptance and Integration Authorization — 2026-10-04
+
+The user supplied the formal acceptance verdict for
+`98037ceba81683ad1a2c214bada30a10f2f3f69e`
+(`fix(evidence): validate report-index consistency`), then explicitly authorized
+acceptance recording and integration. Both the 2A1 tool and current-recording
+manual evidence are accepted within the disclosed scope; eight unknown intervals
+remain unknown. Later sections preserve verification history and do not supersede
+this acceptance or expand its scope.
+
+- Accepted evidence aggregates: four reports, 533 requests, 402 unique successful
+  frames, four deployments and 12 boxes; validate/review 0/3, candidate_gate true,
+  experiment_gate false, status insufficient. These are the previously verified
+  local evidence results, not new manual review or a model accuracy result.
+- Accepted non-blocking limitations: eight unknown intervals are not negatives;
+  one match cannot establish cross-match generalization; report/index consistency
+  is not source authenticity or first-source-frame certification; nested advisory
+  preparation_report.coverage_gaps validation is deferred and cannot override
+  computed gates/gaps; Windows symlink creation is permission-skipped while real
+  junction tests have run; ChatGPT reviewed remote code/test design but did not
+  independently rerun 223 tests or access private recordings/labels/hashes.
+- This integration changes only README.md, CURRENT_STATE.md, DEVELOPMENT_PLAN.md
+  and this verification record. No tool, test, dependency, config, schema or private
+  evidence changes; no re-extraction or repeat manual playback/annotations.
+- Authorization: fresh full regression and dependency checks, one documentation
+  acceptance commit, normal feature-branch push, git merge --ff-only into main,
+  normal main push, preserve the original feature branch, then stop. No PR,
+  release, force push, rebase, branch deletion or subsequent module.
+- Before integration, both local/remote implementation refs were the accepted
+  SHA; local/remote main was `35653db3f50b756a53aa6a27c7d9de632c808b89` and
+  the worktree was clean. Exact documentation commit/integration outcome is
+  recorded by Git and the final handoff; authorization alone is not push evidence.
+
+Fresh acceptance checks on the documentation tree before commit/integration:
+
+- `.venv/Scripts/python.exe -m pytest -q --tb=short`: **223 passed, 1 skipped**
+  in 59.48 seconds; skip remains Windows symlink-creation permission.
+- `.venv/Scripts/python.exe -m pip check`: no broken requirements.
+- `git diff --check`: passed. Exact four-document diff, all 29 tracked filenames,
+  added-line private-path/secret patterns and local Markdown links checked;
+  no unintended tracked data or broken links, no tool/test/dependency changes.
+- A separate read-only documentation reviewer confirmed consistent current versus
+  historical status, all six accepted limitations, four-file scope and closed
+  later-module gates. Reviewer did not rerun tests or access private evidence.
+
+Private-evidence revalidation, source decoding, continuous playback, model training
+and Android builds are intentionally not rerun in this documentation-only task.
 
 ## Report / Index Repair — 2026-10-04 Current Verification
 
@@ -301,7 +350,8 @@ accuracy, external data/model evaluation, 2A2 splits/freeze and 2B (out of scope
 - Reviewer excluded model/data/split/Android/live/ban and module acceptance
   guarantees. Cost: future gates and current partial status remain unchanged.
 
-Implementation branch is authorized for push only; no PR, implementation merge,
-branch deletion or release. The previously missing user playback evidence has
-now been supplied; original-frame annotations and actual CLI checks are reported
-in the continuation above. Await user acceptance; do not advance automatically.
+At the earlier implementation handoff, authorization covered feature push only,
+not integration. The missing user playback evidence was subsequently supplied;
+original-frame annotations and actual CLI checks are reported above. The later
+formal acceptance and separate ff-only integration authorization at the top now
+supersede that former authorization state; no next module is approved.

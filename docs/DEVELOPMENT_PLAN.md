@@ -52,7 +52,7 @@ has passed timestamp, image, output safety, and visual verification.
 
 ## Module 2A — Offline Evidence and Annotation Preparation
 
-Status: In Progress — 2A1 current-recording scope verified, awaiting acceptance.
+Status: In Progress — 2A1 formally accepted on 2026-10-04 at `98037ceba81683ad1a2c214bada30a10f2f3f69e`.
 2A2 remains unapproved and unimplemented.
 
 Goal: manually identify usable match ranges, inventory opponent cards, choose a
@@ -85,11 +85,19 @@ One observed match alone is insufficient for Module 2B.
 
 ### Module 2A1 — Current Recording Evidence
 
-Status: Completed for approved current-recording scope — awaiting user acceptance.
+Status: Completed — formally user accepted on 2026-10-04 at
+`98037ceba81683ad1a2c214bada30a10f2f3f69e`.
 Tasks 1–4 verified. User supplied whole-playback review; executor inspected
 original frames and entered four deployments, onset/visibility evidence and
 12 key boxes. Actual validate/review exit 0/3, candidate true, experiment false.
-Eight unknown gaps remain disclosed, not implicit negatives. Main not merged.
+Eight unknown gaps remain disclosed, not implicit negatives; status insufficient
+correctly closes the one-match stage without opening the experiment gate.
+The user separately authorized only acceptance documentation, fresh full tests /
+dependency checks, a documentation commit/push, ff-only main integration/push and
+preserving the implementation branch. See verification record and Git for the
+actual integration outcome. No next module, second recording, split freeze or
+model experiment is authorized; future work requires a separate planning/approval
+step. Module 3, Android capture and HUD are not started or approved by acceptance.
 
 Four tasks: simplified contract/tests; local index/contact pages/safe output;
 deployment intervals/key boxes/sufficiency; current-video verification/docs/report.
