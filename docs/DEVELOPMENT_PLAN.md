@@ -52,8 +52,8 @@ has passed timestamp, image, output safety, and visual verification.
 
 ## Module 2A — Offline Evidence and Annotation Preparation
 
-Status: Planned — design and implementation plan prepared for user review;
-implementation has not started.
+Status: Planned — split into internal stages 2A1 and 2A2. Lightweight design and
+four-task 2A1 plan revised for review; neither stage has been implemented.
 
 Goal: manually identify usable match ranges, inventory opponent cards, choose a
 defensible first target, prepare local annotations and assess data sufficiency.
@@ -65,24 +65,54 @@ Acceptance criteria:
 - at least four distinct manually confirmed deployments in current recording
   before selecting a troop/building target; no predefined Hog Rider;
 - versioned annotations, full-image normalized boxes, reviewed negative ranges;
-- whole-match/source isolation and a clear sufficient/insufficient report;
+- a clear candidate-gate/insufficiency report; split implementation deferred to 2A2;
 - no private media, labels, source paths or hashes in public Git.
 
 Verification:
 
-- synthetic validation, timestamp, coordinates, file safety and split-leakage tests;
+- synthetic validation, timestamps, final-frame interval semantics, coordinates,
+  file safety, unique-play counts and current-single-recording insufficiency tests;
 - reviewed real recording with honest uncertainty and data limitations;
 - no model accuracy claim in this stage.
 
 Planning documents:
 [design](superpowers/specs/2026-10-03-module-2a-evidence-preparation-design.md),
 [implementation plan](superpowers/plans/2026-10-03-module-2a-evidence-preparation.md).
-Current recommendation: Inferno Dragon, at least four reviewed episodes;
-one observed match alone is insufficient for Module 2B.
+Current pending-review candidate: Inferno Dragon, at least four preliminary
+independent appearances, not a locked class or formal candidate-gate pass.
+One observed match alone is insufficient for Module 2B.
+
+### Module 2A1 — Current Recording Evidence
+
+Status: Planned — not implemented; separate approval required.
+
+Four tasks: simplified contract/tests; local index/contact pages/safe output;
+deployment intervals/key boxes/sufficiency; current-video verification/docs/report.
+Commands only prepare / validate / review. Each verified deployment requires
+last-absence/onset/visibility intervals and 3–5 distinct original key-frame boxes.
+Four surviving plays imply 12–20 boxes plus complete manual interval review, not
+5FPS per-frame annotation. Reviewed positives/negatives cover the timeline or
+report unknown gaps. Unknown gaps never become implicit negatives.
+
+Ordinary intervals are start<=t<end. Only a terminal NegativeInterval whose end
+equals the exact last actual frame permits start<=t<=end; boundary tests required.
+Public reporting permits anonymous candidate/count/gate aggregates, not private
+paths, hashes, screenshots, per-play times, boxes or actual annotation JSON.
+Correct insufficient output may complete 2A1 without satisfying 2B readiness.
+
+### Module 2A2 — Independent Data and Split Freeze
+
+Status: Gated — not approved or implemented.
+
+Requires a second independent complete recording and its own design/plan or
+separate explicit approval. Owns independence review, whole-match train/validation/
+test allocation, Evaluation Protocol, canonical digest, split lock and freeze CLI.
+Re-recordings/crops/re-encodes of one match and adjacent frames cannot cross splits;
+no random screenshot splitting. Do not implement these features during 2A1.
 
 ## Module 2B — Single Card Detection Proof of Concept
 
-Status: Gated — accepted Module 2A, independent data and separate approval required.
+Status: Gated — accepted Module 2A1 and 2A2, independent data and separate approval required.
 
 Goal: detect exactly one evidence-selected card as timestamped visual Observations.
 No OpponentCardPlayed, card cycle or elixir updates.
@@ -97,7 +127,10 @@ Entry gates:
 
 Verification:
 
-- complete held-out matches; deployment-window coverage TP/FN and box TP/FP/FN;
+- full held-out inference can use 5FPS with reviewed visibility/negative intervals;
+- occurrence coverage TP/FN, recall, earliest delay, whole-match FP/minute and non-match FP;
+- box TP/FP/FN and IoU on explicitly boxed key-frame subset only, with actual
+  frame/box counts and subset bias disclosed; not a full-frame accuracy claim;
 - FP/minute, timing errors, confidence/IoU and non-match/similar-unit confusions;
 - prospective go/revise/stop rule in the 2A design; no training-only score claim.
 

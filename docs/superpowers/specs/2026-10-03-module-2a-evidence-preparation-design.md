@@ -1,362 +1,262 @@
-# Module 2A — Offline Evidence and Annotation Preparation
+# Module 2A — Lightweight Offline Evidence Preparation
 
-Date: 2026-10-03. Status: **Proposed design; implementation not authorized.**
-The user requested this design and its accompanying implementation plan together.
-Module 1 is accepted; this document does not claim Module 2A is implemented.
+Date: 2026-10-03. Status: **Revised proposal; Module 2A1 not implemented**.
+This revision supersedes the heavier draft at 8f613a7. The current authorization
+is documentation only, not permission to implement either internal stage.
 
-## 1. Goal, scope and safety
+## 1. Goal and safety
 
-Prepare trustworthy local evidence for a one-card offline experiment. Answer which
-parts of a supplied recording are usable, which opponent card is a defensible
-target, and whether independent match data are sufficient. The user's eventual
-goal is information without obstructing game input; this stage runs after play on
-local recordings and has no contact with the game. No zero-ban-risk promise.
+Use a few reviewed original frames plus complete visibility intervals to prepare
+a one-card offline experiment. Preserve the user's priorities: no obstruction
+of gameplay, account safety and local processing. No running-game access and no
+zero-ban-risk promise. This revision reads no new private footage.
 
-Only explicitly supplied files may be read. No private-directory discovery,
-uploads, accounts, cloud, game process access, traffic interception, synthetic
-input, AccessibilityService, bots, Android capture, or overlays. Live analysis
-remains disabled behind the specific official-permission and project-approval
-gate in PROJECT.md. No external models, media, datasets or ML packages are added.
-No app framework or database is selected by this Python experiment.
+No uploads, ML installation/model/dataset download, inference/training, custom GUI,
+Android, MediaProjection, HUD, game process/network access, synthetic input,
+AccessibilityService or automation. Live features remain disabled behind
+PROJECT.md's specific official-permission and project-approval gate. No database,
+migration or app-stack decision is needed here.
 
-## 2. Module responsibilities
+## 2. Stage boundaries
 
-| Stage | Owns | Does not own |
+| Stage | Responsibility | Entry / exclusion |
 | --- | --- | --- |
-| 2A | Manual match boundaries, card inventory, occurrence evidence, boxes, negatives, split manifest, sufficiency | Inference or training |
-| 2B | One selected class, timestamped visual Observation, independent-match evaluation | Confirmed events, cycle or elixir |
-| 3 | Multi-frame confirmation, spatial/time deduplication, ownership evidence, OpponentCardPlayed | Treating each detection as a play |
+| 2A1 Current Recording Evidence | Local index/contacts, manual match/card/occurrence review, 3–5 key boxes per play, complete positive/negative intervals, validation and insufficiency report | Separate implementation approval; no split/freeze system |
+| 2A2 Independent Data and Split Freeze | Independence review, train/validation/test assignments, Evaluation Protocol, canonical digest, split lock and freeze CLI | At least a second independent complete match supplied, plus separate design/plan or explicit approval; not approved now |
+| 2B Single Card Detection PoC | One class, timestamped visual Observation and independent-match evaluation | Accepted evidence/frozen independent test; no events/cycle/elixir |
+| 3 Deployment Event Tracking | Multi-frame confirmation, temporal/spatial deduplication, ownership evidence, then OpponentCardPlayed | Separate module; only this stage produces gameplay events |
 
-A manually reviewed annotation is ground truth for evaluation, not a runtime
-OpponentCardPlayed event. Module 2B observes visible objects, including continuing
-units; only Module 3 can emit confirmed gameplay events. Never infer owner solely
-from current screen half: opponent units cross the river.
+Manual annotations are evaluation evidence, not runtime OpponentCardPlayed events.
+Opponent units cross the river; screen half alone cannot establish ownership.
+2A1 commands are prepare / validate / review only. No freeze command, canonical
+evidence digest, split lock or Evaluation Protocol implementation in 2A1.
 
-## 3. Current read-only evidence
+## 3. Existing evidence and limits
 
-Repository source, tests and all seven context documents were read. Before the
-authorized merge, the pinned environment reran 47 pytest tests successfully;
-pip check, whitespace checks, tracked-file/media and targeted secret scans passed.
-Local and remote accepted branch were exactly
-`e30ca01fb7a70a0f3bfc14e4fb838dd7ff0da491`; main was its ancestor. Main was
-fast-forwarded and pushed to that commit, without deleting or rewriting branches.
+Module 1 is accepted on main at e30ca01. The previous planning task reran 47 tests
+and inspected the supplied recording; that is historical evidence, not a claim
+of new test execution or video review in this revision.
 
-Exactly the supplied MP4 was examined, not other private files. Its metadata is
-448 x 960, H.264, 273.166333 seconds; the last display timestamp is
-273.133333 seconds. The existing Module 1 extractor produced a 5-second whole-file
-survey, 0.5-second candidate windows and selected 0.1-second boundary/spawn windows.
-All successful exports and contact sheets are ignored local outputs. Contact
-sheet thumbnails/crops aided inspection only; original full-size PNGs remain the
-coordinate source. No recognition code was written or run.
+One supplied recording includes pre-match screens, a battlefield, a visible
+outcome and system UI. Match boundaries and individual plays stay local. Complete
+match eligibility still requires checking initial transition, hidden deployments,
+cuts and speed changes during 2A1.
 
-### Match and non-match ranges
+**Inferno Dragon / 地狱飞龙 remains a pending-review candidate**, not a locked class.
+Earlier inspection provisionally identified at least four independent candidate
+deployments, a lower bound rather than an exhaustive verified count. 2A1 must
+recheck opponent ownership, variant and absence → spawn → continued visibility
+before candidate_gate=true. Preliminary notes alone do not formally pass it.
 
-There is one observed match, with pre-match screens and a visible ending. At
-23.6 seconds the card-selection overlay still obscures the arena; at 23.7–23.9 it
-transitions away; 24.0 is the first sampled unobstructed battlefield. At 268.0
-play is still visible, and 268.1 shows tower destruction/crown-result UI. Use the
-conservative usable battlefield interval **[24.0, 268.1)** seconds. These are
-manual display-boundary measurements at 0.1-second sampling, not hidden game-start
-times or frame-exact event timestamps. The earlier battle clock is partly behind
-selection UI; do not derive start_seconds from its countdown.
+Other preliminary candidates include Skeleton Army, Bats and Goblin Barrel; no
+complete deck is claimed. Unresolved units stay unknown; own troops, hand icons
+and towers are not opponent plays. Hog Rider is not predefined.
+One observed match, no finalized boxes and no independent locked test mean
+**insufficient for 2B**. Successfully completing 2A1 may still yield insufficient.
 
-The recording covers pre-match through outcome, but full-match eligibility must
-still be explicitly reviewed in 2A: confirm no early deployment was hidden by
-the selection transition, no edits/speed changes and no missing combat interval.
-Current count is one match, never two; even if it passes completeness review it
-cannot satisfy the independent-match gate alone.
+## 4. Lightweight workflow and workload
 
-Conservative non-match intervals: [0,24.0) menu/loading/selection/transition;
-[268.1,273.133333] outcome/result/system UI. At 271.5 result transition and
-272.5 system UI are visible. Boundaries must be refined or marked uncertain in
-actual annotations; do not label uncertain target-containing frames as negative.
-Game emotes/UI sometimes obstruct the battlefield and require exclusion notes.
+1. Reuse Module1 unchanged: every5-second survey plus last actual frame; original
+   PNGs, local index and contact pages (max12 thumbnails, 3 columns, fit224x480
+   preserving ratio, actual-time labels). Input SHA256 checked before/after.
+2. Human watches the whole match, confirms usable boundaries/completeness/
+   perspective and inventories all candidate plays and target-visible intervals.
+   Contacts locate moments, not a substitute for full playback review.
+3. Around plays extract at0.5s, refining onset at0.1s as needed. Record last
+   confirmed absence, onset bracket/point, first appearance and visibility end.
+4. Assign unique play_id per distinct deployment, not per PNG. Review identity,
+   variant and owner with absence/spawn/continued-visibility evidence.
+5. Box only **3–5 distinct original timestamps per verified play**, spanning
+   appearance/motion/occlusion. Full rotation-corrected PNG coordinates only.
+   Include visible body/wings, exclude beams/labels/shadows/timers. Ambiguity stays
+   ambiguous; do not invent concealed extents.
+6. Record complete target-visible intervals for all plays, reviewed target-absent
+   battlefield and menu/loading/selection/result/system negatives. Unknown gaps
+   and possible-target occlusion are not implicit negatives.
+7. Validate structure/references/PTS/intervals/boxes, report candidate gate,
+   counts, review gaps and missing prerequisites. No allocation/freeze system.
 
-### Opponent inventory and target recommendation
+Four surviving candidate plays imply **12–20 key boxes**; re-review or additional
+plays can change the total. Full playback/interval review is still necessary.
+No manual EvaluationFrame for every5FPS sample and no thousand-image boxing task.
+This is proposed workload, not completed labels or exhaustive per-frame truth.
 
-The strongest manually identified candidate is **Inferno Dragon / 地狱飞龙**:
-green armored flying unit, wings and sustained beam, opponent-colored level/bar,
-new spawn evidence followed by movement. At least four separate episodes were
-reviewed with absence-before/spawn/continued-visibility context, approximately
-66, 113, 133 and 212 seconds. The local review retains sample brackets and PNG
-references, not a fabricated frame-exact deployment time. This is a lower bound,
-not a complete count of all deployments. Later dragon appearances are not added
-to the count without the same review. Thus the current **four-occurrence target
-selection gate passes**, but the Module 2B data gate fails.
+Time is (raw_pts * time_base) - (origin_pts * origin_time_base), with exact
+fractions internally; never frame index/average FPS or game countdown.
+Extraction misses/errors remain explicit and never become successful evidence.
 
-Other visual candidates: Skeleton Army / 骷髅军团 (mass skeletons), Bats / 蝙蝠
-(small flying group), and Goblin Barrel / 哥布林飞桶 (landing/spawn group near
-our tower). They are preliminary inventory, not a verified complete eight-card
-deck. Small groups, spells and particle-only appearances are poor initial targets.
-An additional green mechanical/armed unit is unresolved and must stay unknown.
-Own Bomber, Cannon, Knight, hand icons and tower units must not enter the enemy
-inventory merely because they are visible. Hog Rider is not assumed or selected.
+## 5. Simple 2A1 local v1 contract
 
-Recommend inferno_dragon for the first annotation exercise, not an accepted model
-class yet. Recheck normal/evolution identity and ownership at full resolution;
-ambiguous variants must not be silently merged into the verified class. If this
-review invalidates any of the four episodes, reassess the selection gate.
+Required root keys: recordings[], match_segments[], target_card (object or null),
+occurrences[], frame_annotations[], negative_intervals[]. Optional: schema_version
+(exactly1 if present; absent interpreted as v1), preparation_report. Writers emit
+version1. Reject unknown fields, duplicate JSON keys, NaN/Infinity, wrong types and
+bool-as-integer; load limit16MiB. evaluation_frames, evaluation_protocol,
+split_manifest, test_locked and freeze objects are deferred and rejected in 2A1.
+No freeze_split or canonical lock function.
 
-## 4. Manual evidence workflow
-
-1. Inspect only supplied files and verify the input hash before/after processing.
-   Assign opaque recording_id; keep source path and hash in a local descriptor.
-2. Reuse Module 1 extract_frames to sample every 5 seconds and the final actual
-   display frame. Contact pages contain at most 12 full-frame thumbnails, labeled
-   with actual PTS-normalized time. No thumbnail is an annotation coordinate space.
-3. Human reviews match start/end, completeness, perspective and interference;
-   record brackets and uncertainty. No automatic match-boundary detection.
-4. Inventory possible opponent cards with context. Rank troop/building candidates
-   by distinctness, sustained visibility, repeat plays and confusability. Select
-   only after at least four distinct manually verified deployments in the current
-   recording. Persistent frames of one unit count once, never once per PNG.
-5. Around each candidate use 0.5-second sampling; refine onset with 0.1-second
-   sampling and inspect full PNGs. Record last absence, first spawn evidence and
-   visible start/end. Uncertain owner/card/onset means ambiguous, not verified.
-6. Assign unique play_id to each independently reviewed deployment. Label 3–5
-   visible key frames spanning appearance/motion/occlusion; annotate tight visible
-   body-and-wing boxes, excluding beam, shadow, level text and spawn timer. Mark
-   severe occlusion ambiguous rather than inventing the concealed extent.
-7. Record reviewed target-absent battlefield and non-match negative intervals;
-   retain menus/results/system UI locally, never share them publicly.
-8. Validate structure, references, PTS, bounds, review state and evidence files.
-   Build a whole-match split and sufficiency report. Missing data are a valid
-   blocked-for-experiment outcome, not a reason to fabricate labels.
-
-All times: `(raw_pts * time_base) - (origin_pts * origin_time_base)`, using exact
-fractions internally. Average FPS and game countdown never replace this rule.
-Extraction misses/errors remain explicit and cannot be used as successful frames.
-
-## 5. Versioned local JSON contract (proposed v1)
-
-Root keys: schema_version=1, recordings[], match_segments[], target_card (object
-or null), occurrences[], frame_annotations[], negative_intervals[], evaluation_frames[],
-evaluation_protocol (object or null), split_manifest (object or null).
-Reject unknown root/entity fields; allow the documented optional
-fields below. Strict JSON rejects duplicate keys, NaN/Infinity and wrong types;
-bool is not an integer. JSON inputs are limited to 16MiB. IDs are opaque nonempty
-strings, unique within their entity. FrameAnnotation uniqueness uses annotation_id;
-frame_id references an export and may be shared by boxes for different plays.
-Strings in notes never trigger actions.
-
-| Entity | Required fields and meaning |
+| Entity | Fields |
 | --- | --- |
-| RecordingDescriptor | schema_version=1, recording_id, source_sha256 (64 lowercase hex), width/height (positive encoded pixel integers), duration_seconds (positive finite metadata value or null), time_base (positive rational object), origin_pts (integer), origin_time_base, last_frame_seconds (finite >=0), rotation_degrees (0/90/180/270), orientation (portrait/landscape/square displayed orientation), perspective (own_bottom/opponent_bottom/unknown) |
-| MatchSegment | segment_id, recording_id, match_group_id, start_seconds, end_seconds, perspective, validation_status, capture_complete (bool), boundary_uncertainty_seconds (finite >=0), notes |
+| RecordingDescriptor | recording_id, source_sha256 (64 lowercase hex, local only), width/height (encoded pixels), duration_seconds (positive finite or null), time_base, origin_pts, origin_time_base, last_frame_seconds, rotation_degrees (0/90/180/270), orientation (displayed portrait/landscape/square), perspective |
+| MatchSegment | segment_id, recording_id, start_seconds, end_seconds, perspective, validation_status, capture_complete bool, boundary_uncertainty_seconds, notes |
 | TargetCard | card_id, display_name, selection_reason, ambiguity_notes, variant (normal/known_evolution/unknown) |
-| CardOccurrence | play_id, recording_id, card_id, owner=opponent, deployment_time_seconds, deployment_lower_seconds, deployment_upper_seconds, visible_start_seconds, visible_end_seconds, match_segment_id, manual_verification_status, evidence_frame_ids (>=3 for verified), notes |
-| FrameAnnotation | annotation_id, frame_id, recording_id, play_id, timestamp_seconds, raw_pts, time_base, image_path (local relative PNG reference), image_width/image_height (positive displayed pixels), normalized_bbox={x,y,width,height}, annotation_source=manual, review_status |
-| NegativeInterval | negative_id, recording_id, start_seconds, end_seconds, reason (target_absent/menu/loading/selection/result/system_ui/transition), match_segment_id (ID or null), non_match (bool), review_status |
-| EvaluationFrame | frame_id (successful export ID), recording_id, timestamp_seconds, raw_pts, time_base, image_path, image_width/image_height, match_segment_id (ID or null), review_status, target_present (bool), frame_annotation_ids[], negative_id (ID or null) |
-| EvaluationProtocol | schema_version=1, sample_rate_fps=5, iou_threshold=0.5, confidence_threshold (finite [0,1], selected from development only), window_extension_seconds=2.0, go_min_recall=0.8, go_max_fp_per_minute=1.0, go_max_non_match_fp=0, go_min_median_iou=0.5, go_max_median_delay_seconds=1.0 |
-| SplitManifest | schema_version=1, target_card_id, assignments=[{match_group_id,split}], recording_assignments=[{recording_id,split}], non_match_assignments=[{negative_id,split}], test_locked (bool), evidence_sha256 (hash of canonical evidence JSON excluding split_manifest), locked_at (UTC ISO8601 or null), independence_reviewed (bool), notes |
+| CardOccurrence | play_id, recording_id, card_id, owner=opponent, last_absent_seconds, deployment_lower_seconds, deployment_time_seconds, deployment_upper_seconds, visible_start_seconds, visible_end_seconds, match_segment_id, manual_verification_status, evidence_annotation_ids[], notes |
+| FrameAnnotation | annotation_id, frame_id (export reference), recording_id, play_id, timestamp_seconds, raw_pts, time_base, image_path (local relative PNG), image_width/image_height (displayed pixels), normalized_bbox={x,y,width,height}, annotation_source=manual, review_status |
+| NegativeInterval | negative_id, recording_id, start_seconds, end_seconds, reason (target_absent/menu/loading/selection/result/system_ui/transition), match_segment_id (ID or null), non_match bool, review_status |
 
-Each rational is `{numerator: positive integer, denominator: positive integer}`;
-origin_time_base may differ from stream time_base and annotation frame time_base.
-Validation statuses are draft/verified/ambiguous/rejected. Unknown perspective or
-variant may be retained but cannot satisfy a verified-target gate.
+Perspective: own_bottom/opponent_bottom/unknown. Review/validation status:
+draft/verified/ambiguous/rejected. IDs are nonempty and unique per entity; boxes for
+different plays may share frame_id. Sizes are positive integers, relative times
+finite/nonnegative. Rational time_base is positive integer numerator/denominator;
+raw/origin PTS are integers. All entity fields above are required.
 
-Rules:
+Validation:
 
-- Use half-open match/negative intervals [start,end); visible frame intervals are
-  inclusive. Bound all times by last_frame_seconds, not nominal container duration.
-  A last-frame negative endpoint may equal last_frame_seconds; that final frame
-  is assigned explicitly as a non-match frame rather than silently lost.
-- `0 <= segment.start < segment.end <= last_frame_seconds`; for a play,
-  segment.start <= lower <= deployment_time <= upper <= visible_start <=
-  visible_end < segment.end. deployment_time is first supported spawn evidence,
-  not guaranteed exact card-tap time; preserve its uncertainty bracket.
-- Every annotation refers to a real successful Module 1 export, one recording,
-  one occurrence and its containing segment. timestamp must fall within that
-  occurrence's visible range. Rational-derived time must match timestamp within
-  1e-6 seconds; raw PTS/time_base/origin are required, even when FPS is available.
-- Coordinates use the full, rotation-corrected PNG. x/y in [0,1], width/height in
-  (0,1]; x+width and y+height <=1. Reject clipping, coercion and silent swapping.
-  Conversion from a reviewed pixel rectangle divides by displayed width/height;
-  crop offsets must be restored first. Rotation swaps encoded dimensions at 90/270.
-- No duplicate (play_id, raw_pts, time_base) annotation. Multiple separately
-  verified units may share a frame but do not multiply deployment counts.
-- Verified occurrences need >=3 verified frame references and an absence/spawn
-  narrative in notes. Software checks format; a human confirms distinct plays.
-  Same-card overlapping visible intervals are possible, not automatically duplicates.
-- Non-match=true requires null match_segment_id and a non-match reason; false
-  requires a valid segment and target_absent. Reviewed negative intervals must
-  not overlap verified target visibility or an ambiguous possible-target interval.
-- Source paths are a separate local `sources.json` map recording_id -> absolute
-  source file. No absolute private source path in public docs or exported indexes.
-  image_path resolves inside an allowed ignored evidence run, never a URL, UNC,
-  traversal, symlink/junction escape, or arbitrary private-directory search.
-- EvaluationFrame shares the export frame_id (it need not be a positive annotation).
-  Require exactly one review for every successful 5FPS held-out/non-match export;
-  raw timestamp/path/dimensions must agree with its index. target_present=true
-  requires all visible target boxes referenced by annotation_id as verified FrameAnnotations and
-  null negative_id. target_present=false requires no boxes and a verified
-  covering NegativeInterval. Incomplete/ambiguous reviews or extraction misses
-  block readiness, not label-free false-negative counting. FrameAnnotation IDs
-  may be referenced here without creating a second annotation of that object.
-- evaluation_protocol may stay null during preparation; first freeze requires
-  all its fields. Experiment thresholds are a proposed fixed protocol in this
-  design, not measurements. Evaluation protocol is included in evidence_digest.
-- Version upgrades require explicit conversion into a new file; unknown versions
-  fail. Do not overwrite recordings, previous evidence or a locked split.
+- Ordinary intervals use start<=t<end. Visible end is first reviewed absent time
+  after the unit, not its final visible key frame. start<end and all endpoints
+  <=last_frame_seconds. An unfinished positive interval cannot prove completeness.
+- **Terminal-negative exception only:** if NegativeInterval.end_seconds equals
+  the exact stored last_frame_seconds, membership is start<=t<=end. Otherwise
+  start<=t<end. Match/positive intervals stay half-open. Copy the actual index
+  endpoint without rounding and compare rationals, not approximate equality.
+  Future tests must cover inclusion/exclusion at this endpoint.
+- Play bounds: segment.start<=last_absent<=lower<=deployment_time<=upper<=
+  visible_start<visible_end<=segment.end. Absence is for that newly deployed
+  instance, not a claim another same-card unit cannot already exist. Point time
+  is supported onset evidence, not exact hidden card-tap time.
+- Annotation references a successful export and its recording/play/segment;
+  timestamp lies in visible interval. PTS-derived time agrees within1e-6s.
+  Rotation determines displayed dimensions, never thumbnail size.
+- x/y in[0,1], width/height in(0,1], sums<=1. Reject clipping/coercion and missing
+  crop offsets. A verified play needs3–5 verified annotations at different
+  rational actual times, reviewed opponent/variant identity and manual
+  absence/spawn/visible narrative. Repeated exports/IDs for one timestamp do not
+  satisfy three frames; multiple images of one play do not increase play count.
+- Unknown perspective/variant prevents candidate gate. Software never promotes
+  drafts or infers a deployment from boxes. Overlapping separate same-card plays
+  are allowed with manual evidence, not automatically deduplicated.
+- non_match=true requires null segment and a non-match reason; false requires
+  valid segment and target_absent. Negatives must respect segment bounds and
+  cannot overlap known or ambiguous possible-target visibility. Reviewed positive/
+  negative union covers intended match time or reports gaps. An unboxed frame
+  inside a reviewed interval is NOT itself an unreviewed gap.
+- Source maps, if used, are separate local sources.json recording_id→supplied path.
+  Images/indexes/reports resolve inside explicitly supplied ignored runs, not URL/
+  UNC, traversal, symlink/junction escape or unrestricted private-directory reads.
 
-Public source in a future approved 2A may contain rules and entirely synthetic
-examples only. Real descriptors, hashes, notes and labels remain private.
+Optional preparation_report uses section8's return fields, all required when
+present. It is advisory; counts/gates are recomputed, not trusted success flags.
+No migration from an older implemented schema exists; unknown versions fail.
 
-## 6. Annotation tooling comparison
+## 6. Tools, privacy and source gates
 
-**B — recommended proposed default:** existing Module 1 frames plus small local
-index, pixel-box conversion, validation and sufficiency helpers. Human reviews
-original images and enters reviewed coordinates in a local JSON draft; Codex
-can assist transcription, but only human-reviewed boxes become verified. Low
-volume makes this viable without a GUI. No new dependency, installation, license
-or upload path. If manual coordinate entry proves too slow, revisit A separately.
+Proposed B: existing extraction plus small JSON/box helpers and manual coordinates
+at this scale. A mature local standalone annotator is an alternative if entry
+proves inconvenient; before selecting one review official source/version/license,
+separate-tool use/no code copying, offline/upload/telemetry/download behavior,
+Windows install/uninstall and project-license impact. No tool selected/installed.
+C, custom GUI, is unjustified. No SQLite/migration/cloud/backup infrastructure.
 
-**A — mature standalone local annotator:** faster interactive boxes and familiar
-exports, but installation, format mapping and privacy/license verification are
-additional work. No concrete third-party tool is selected or recommended for
-installation here. Before selecting one, record official source, exact version
-and license, standalone-only use/no copied code, offline behavior and upload/
-telemetry/model-download controls, Windows isolated install/uninstall, and any
-distribution implications. Test with synthetic images without network before
-private footage. A tool's license does not license the game's assets.
+Public documents allow **anonymized aggregate conclusions only**: candidate name,
+deployment count, gate status and identity-free statistics. Original filenames/
+absolute paths/SHA256, player identities/tags, notifications, screenshots,
+individual frame/deployment/boundary times, boxes, actual JSON, indexes and contacts
+stay in local_data/ or outputs/. Remove detailed times from the current public
+draft; do not rewrite historical Git commits. Future public fixtures use synthetic
+geometry/colors and identities only. Exclusive new outputs; no overwrite/cleanup.
 
-**C — custom full annotation GUI:** rejected for this PoC; highest maintenance
-cost with no demonstrated unmet need. No GUI tasks in the accompanying plan.
+Data routes: A own supplied footage, recommended but small/manual/overfitting-prone;
+B external datasets/models, separately provenance-gated; C template matching,
+possible future brittle baseline, not final. The earlier
+[dataset README review](https://github.com/wty-yy/Clash-Royale-Detection-Dataset/blob/31b4151fedb1b914e99c3c122c16dca61cb2b905/README.md)
+recorded YouTube/self-recorded origins and MIT repository metadata, not blanket
+media rights. Before external use review code, original media, uploader authority,
+game assets, training/model publication/redistribution and weights licenses.
+No new rights review or download here; project license remains undecided. Local
+reading permission does not establish redistribution rights for game imagery.
 
-## 7. Private data, storage and provenance
+## 7. Deferred2A2 and unchanged experiment gates
 
-Recording inputs stay at user-selected paths. All evidence/media/annotations/
-hashes/manifests/contact sheets are under local_data/ or outputs/, already ignored.
-New output runs are exclusive, fail on existing files; no automatic cleanup.
-No SQLite, migration, repository business layer or backup infrastructure is
-needed for this disposable evidence experiment. Original media stay untouched.
-Public commits contain only design/state documents this round. Future public
-tests contain generated geometric/color images, not cropped game assets.
+2A1 records evidence without a split system. 2A2 needs a second independent
+complete match AND separate approval/design. It will review underlying match
+identity, allocate train/validation/test, fix Evaluation Protocol/digest and
+implement split lock/freeze. Whole matches, source recordings, their negatives,
+re-recordings/crops/re-encodes and adjacent frames must stay in one split.
+Different filenames do not prove independence.
 
-Three data routes:
+Before2B: >=2 independent complete matches, >=6 verified target plays total, >=1
+whole held-out match with>=2 plays, reviewed non-match negatives, valid interval/
+key-box evidence and pre-training locked test. Prefer>=3 matches for separate
+validation; two matches do not establish independent validation. No random-image
+split or tuning on test. These minima permit a PoC, not reliability or live use.
+If the four provisional plays survive review, another complete independent match
+with>=2 reviewed plays may meet the numeric minimum; identity/completeness/variant
+must still pass. No new footage is requested during this documentation revision.
 
-- A: own supplied recordings, recommended. Closest to real resolution/UI, clear
-  user permission to read locally, but small/manual/overfitting-prone. Ownership
-  of a recording is not proof of permission to redistribute Supercell imagery.
-- B: external datasets, future provenance-gated only. On 2026-10-03 the official
-  [dataset README](https://github.com/wty-yy/Clash-Royale-Detection-Dataset/blob/31b4151fedb1b914e99c3c122c16dca61cb2b905/README.md)
-  was read as text via GitHub API; repository metadata declares MIT, and README
-  describes YouTube/self-recorded video origins. This establishes a need for
-  separate rights review, not blanket usability. Verify code license, each media
-  origin, uploader's right to sublicense, game-asset rights, training/model
-  publication/redistribution permissions, third-party video terms and independent
-  weights license. No images, repository clone, dataset or model were downloaded.
-- C: traditional template matching, possible future controlled baseline only.
-  Pose, scale, direction, animation, occlusion and effects make it brittle; not a
-  final system. User footage used for templates belongs to training, never test.
+## 8. 2A1 sufficiency and acceptance
 
-Project license remains undecided. Reference ideas do not authorize unlicensed
-source copying; this design imports no third-party source or assets.
+candidate_gate: >=4 distinct verified opponent deployments in one recording,
+resolved perspective/variant and section5 evidence. Favor distinctive sustained
+troop/building appearances, not spells/swarms/towers/icons. Preliminary count alone
+does not bypass review.
 
-## 8. Split isolation and minimum evidence gates
+review returns {status,candidate_gate,experiment_gate,counts,reasons,coverage_gaps}.
+status=invalid for invalid evidence, otherwise insufficient in2A1;
+experiment_gate=false because independent-data/split approval is deferred.
+counts={recordings,reviewed_complete_segments,verified_plays,annotated_key_frames}.
+coverage_gaps=[{recording_id,match_segment_id,start_seconds,end_seconds}].
+These detailed gaps are private. Reasons list missing numeric data, ambiguous
+identity, incomplete interval review and deferred2A2 where applicable. File/segment
+counts never certify independence. Stored reports cannot override recomputation.
 
-Gate A, target choice: >=4 distinct manually verified opponent plays in the
-current recording, distinctive troop/building, sustained visible frames, resolved
-variant. No forced Hog Rider, spell/small-swarm/tower/icon or one-off target.
+Valid empty/draft evidence returns insufficient, not a crash. Malformed JSON,
+missing PTS/image, bad references, contradictory intervals and unsafe output fail
+explicitly. Partial extraction is reported, not silently filled. One recording
+must yield insufficient regardless of image count.
 
-Gate B, Module 2B: >=2 independent complete matches, >=6 verified target opponent
-plays total, >=1 whole held-out match with >=2 plays; reviewed menu/result/system
-negative ranges; valid reviewed annotations; test locked before any training.
-These are executable-PoC minima, not reliability certification.
+2A1 may finish when prepare/validate/review, synthetic tests and real local
+key-frame/interval review work and correctly return insufficient. It needs no
+second video to finish its own scope. Tests cover nonzeroPTS/VFR/rotation, terminal
+negatives, boxes/references, unique plays/frames, conflicts, paths/file protection
+and Git ignore; no freeze/detector tests. No implementation exists in this revision.
 
-match_group_id is manually assigned to the same underlying match even for
-re-recordings/crops; hashes detect identical files, not semantic duplicates.
-All frames, occurrences, recordings/re-encodes of a match stay in one split.
-For initial simplicity, each source recording also stays in one split (multiple
-matches in one file are co-assigned). Non-match negatives inherit that recording's
-split, including otherwise-unassigned files. Reject cross-split shared hashes,
-match groups, recordings or frames. Different filenames are not independence.
+## 9. Prospective lightweight2B evaluation
 
-At the two-match minimum use one development/train match and one test match;
-no independent validation score is claimed. Pre-register parameters or use
-training-only internal tuning, clearly labeled non-independent. Prefer >=3
-independent matches for train/validation/test; validation tuning never uses test.
-Lock the reviewed canonical evidence hash, target, assignments and evaluation
-protocol before training. Changing annotations, target or split invalidates lock
-and requires an explicit new reviewed experiment; never tune repeatedly on test.
+Desired future metrics, not2A1 code or fixed protocol. 2A2 must approve/fix protocol
+before2B trains. Infer whole held-out matches at5FPS using actual PTS, with extra
+inference at the3–5 key timestamps for IoU. Extra key samples do not inflate
+the5FPS denominator. No per-frame manual EvaluationFrame inventory.
 
-Current data: four conservatively counted plays in one observed match; no
-independent held-out match, no finalized boxes or split lock. **Insufficient for
-2B.** Minimum useful next input after planning approval: one additional independent
-complete match with >=2 unambiguous opponent Inferno Dragon deployments, normal
-speed, full portrait battlefield, pre-match through outcome, no cuts. Reusing or
-re-encoding this match does not count. If completeness/variant review fails,
-replace or add recordings until both gates actually pass. No recording required
-from the user during this planning round.
+- Occurrence window: deployment_lower through min(visible_end, deployment_upper
+  +2.0), excluding visible_end. Correct candidate in that window ->coverageTP;
+  none ->occurrenceFN. Review first candidate's card/owner/instance against local
+  footage; time overlap alone cannot prove a correct unit. One candidate cannot
+  cover two overlapping plays. Report rawTP/FN, recall and earliest delay versus
+  point and uncertainty bracket.
+- Whole-matchFP: target observations outside the union of all reviewed visible
+  intervals in reviewed absent/non-match regions. Unknown gaps are excluded with
+  duration/count reported, not silently treated asFP. Complete interval review
+  enables whole-timeline scoring. Report rawFP, FP/minute and non-matchFP/rate,
+  actual sampled durations/rate and misses. Repeated false boxes count as
+  observations, not deduplicated deployment events. Inside-positive unrelated/
+  own-unit confusion cannot be certified away using interval metrics alone.
+- BoxTP/FP/FN and IoU only on explicitly boxed key frames, one-to-one matching
+  (proposedIoU>=0.5). State actual evaluated frame/box count and subset bias;
+  never call this full-frame accuracy. Unboxed frames create no boxFN; continuing
+  units create no extra occurrenceTP.
+- Confidence distributions, similar-unit/ownership failures, timing errors and raw
+  denominators; no training-only score or calibrated-probability claim.
 
-## 9. Prospective Module 2B evaluation (not implemented by 2A)
+Proposed go: occurrence recall>=0.80, reviewedFP/minute<=1.0, non-matchFP=0,
+key-subset medianIoU>=0.5, median earliest delay<=1s, valid independent data and
+complete reviewed intervals. These are2A2 review proposals, not predictions.
+Go means separately plan3, not live use. Revise on misses using development only,
+then a fresh untouched test match. Stop on insufficient/ambiguous/leaked/unlicensed
+data or live/control scope.
 
-Pre-register one-class evaluation on whole locked matches at 5 FPS, preserving
-actual PTS-selected sample times and extraction misses. Freeze confidence and
-IoU thresholds using development data only. Default prospective IoU match >=0.5.
-Manually label each reviewed test frame in 2A before locking; evaluate all sampled
-frames, not only selected successful screenshots. Later dense test labeling is
-a new reviewed evidence revision if not already present in the lock.
+## 10. Handoff
 
-For each human occurrence, deployment window is
-[deployment_lower_seconds, min(visible_end_seconds, deployment_upper_seconds+2.0)].
-Detection coverage succeeds if >=1 correct spatially matched candidate appears
-in that window. Missed windows are deployment FN, successful ones coverage TP;
-these are evaluation summaries, NOT generated deployment events. Report raw
-coverage TP/FN and recall, earliest matched candidate delay relative to the
-human point AND uncertainty bounds (median/p95/max), and all missed play IDs.
-
-Separately report frame/box TP/FP/FN against reviewed boxes with one-to-one IoU
-matching; unmatched detections are FP, unmatched visible boxes FN. Repeated
-correct detections of a continuing unit remain frame TP, not false extra plays.
-Report outside-target-visibility FP boxes, FP/minute over all evaluated minutes,
-non-match FP and FP/minute separately, IoU distribution, confidence distributions
-for TP/FP, similar-unit confusions, own-unit errors, occlusion and stage breakdown.
-Annotations of one object cannot conceal a second object's missed detection.
-No confidence probability calibration claim; retain raw denominators and counts.
-
-Prospective decision rule, frozen before 2B:
-
-- **Go to a separately approved Module 3 design**, not live play: coverage recall
-  >=0.80, FP/minute <=1.0, zero non-match FP, median matched IoU >=0.5, median
-  earliest-candidate delay <=1.0 second; no leakage, unreadable labels or unresolved
-  owner/variant. Show counts: with just two held-out plays 0.80 means both detected.
-- **Revise**: gates/provenance valid but one performance threshold misses; report
-  cases, change only development evidence/parameters, and obtain a fresh untouched
-  held-out match before judging an adjusted method. No silent test retuning.
-- **Stop**: insufficient/invalid data, leakage, ambiguous target, unavailable rights,
-  or a proposed live/control capability. Report exact missing conditions.
-
-These thresholds are proposed experimental acceptance criteria, not predictions.
-PoC success cannot establish generalized accuracy, phone performance or account safety.
-
-## 10. Error behavior, acceptance and verification
-
-Missing source/PTS/image, malformed JSON, bad references/bounds, hash mismatch,
-unresolved perspective, no target, partial extraction, unsafe output and unlocked
-split yield explicit reasons. Invalid input fails; valid but insufficient evidence
-returns a structured insufficient report, not a crash or synthetic successes.
-No automatic repair, silent discard, owner guessing, destructive overwrite or
-promotion from draft to verified. New runs preserve incomplete prior outputs.
-
-Future 2A is complete when the local workflow, validation and sufficiency report
-are reproducible with synthetic tests and actual user evidence, including a
-correct insufficient result. 2B readiness is a separate decision. Test version,
-types, references, rational timestamps/nonzero origins/VFR/rotation, coordinates,
-duplicates, uncertainty, negative conflicts, split leakage, gate thresholds,
-file protection and CLI exit codes. No game screenshots in public fixtures.
-
-This planning round verified existing tests and evidence only. Schema validation,
-annotation tooling, split freezing, sufficiency implementation and detector/model
-evaluation are **not run because not implemented**. No Android/TypeScript/build
-changes are part of these documents. Self-review must check requirements coverage,
-privacy, leakage, target assumptions and Observation/event separation before commit.
-
-## 11. Explicit non-goals and handoff
-
-No product code, ML installation/inference/training, external media import,
-automatic boundaries, complete-deck claim, custom GUI, app UI, database, Android,
-capture/HUD, card cost/cycle/elixir or runtime deployment event in this task.
-Read the accompanying plan; implementation requires a separate user approval.
-Proposed tool/target/evaluation choices remain reviewable, not accepted decisions.
+Read the four-task2A1 plan before separate implementation approval. 2A1 has not
+started,2A2 is unapproved, Inferno Dragon remains a candidate and data remain
+insufficient for2B. This revision changes documents only; no source/dependencies/
+storage changes or main merge.

@@ -5,7 +5,8 @@ Last verified: 2026-10-03
 ## Current Stage
 
 Module 1 — Offline Video Pipeline: **Completed and user accepted**.
-Module 2A — Evidence Preparation: **Planning ready for review; not implemented**.
+Module 2A1 — Current Recording Evidence: **Lightweight plan revised; not implemented**.
+Module 2A2 — Independent Data and Split Freeze: **Not approved; deferred**.
 Module 2B and Module 3 have not started.
 
 ## Verified Completed
@@ -33,13 +34,19 @@ Module 2B and Module 3 have not started.
 
 ## In Progress
 
-- None. This task stops at the Module 2A design/plan handoff.
+- None. This task stops at the revised Module 2A1 design/plan handoff.
 
 ## Pending
 
-- Review Module 2A design and plan; separate implementation approval required.
-- Only one observed match is available. Inferno Dragon has at least four reviewed
-  deployment episodes; no finalized annotations or locked independent test exists.
+- Review revised Module 2A1 design and four-task plan; separate approval required.
+- Only one observed match is available. Inferno Dragon remains a pending-review
+  candidate, with at least four provisionally identified independent appearances.
+  Ownership, variants and absence/spawn/visibility need re-review; no finalized
+  annotations or formal candidate-gate acceptance exists.
+- Planned boxing is 3–5 distinct key frames per verified play (12–20 for four
+  surviving plays), plus whole-match interval review; no dense 5FPS manual labels.
+- Split assignments, Evaluation Protocol, digest/lock and freeze CLI belong only
+  to separately approved Module 2A2 after a second independent complete match.
 - Module 2B requires at least two independent complete matches, six verified plays
   total and a whole held-out match with two plays. Current data are insufficient.
 - Model/runtime selection remains deferred; project license remains undecided.
@@ -67,13 +74,18 @@ Module 2B and Module 3 have not started.
 - Before merge: 47 tests passed, pip check passed, whitespace/media/targeted secret
   scans passed. New planning commit/push is reported in the handoff and Git.
 - Planning branch is not merged; no product code or new dependency changed.
+- This revision changes five planning/state documents only. No new private media
+  was read, no dependency installed, no main merge or implementation performed.
 
 ## Next Recommended Task
 
 Review [Module 2A design](superpowers/specs/2026-10-03-module-2a-evidence-preparation-design.md)
 and [implementation plan](superpowers/plans/2026-10-03-module-2a-evidence-preparation.md).
-When separately authorized, implement only Module 2A and report honest sufficiency.
+When separately authorized, implement only Module 2A1 and report honest insufficiency
+with current one-match evidence. Commands are prepare / validate / review only.
 No new recording or software installation is requested during this planning round.
-Further independent recordings will be needed before Module 2B can be approved.
+Further independent recordings and separate Module 2A2 approval will be needed
+before Module 2B can be approved. Public summaries contain candidate names/counts/
+gates only; individual times, boxes and actual labels remain local and ignored.
 
 See [verification evidence](VERIFICATION_M1.md) and [Windows instructions](../README.md).

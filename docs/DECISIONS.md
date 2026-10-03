@@ -241,6 +241,9 @@ Representative user-recording acceptance remains required after synthetic tests.
 
 ## 2026-10-03 — Evidence Preparation Before Single-Card Detection
 
+Status: retained for stage/event separation and minimum independent-data gates;
+the scope of 2A is refined by the lightweight-stage decision below.
+
 ### Decision
 
 The user explicitly split Module 2 into 2A (manual evidence/annotations/sufficiency)
@@ -273,3 +276,43 @@ Module 2A implementation remains subject to separate user approval. Proposed
 target/tool/evaluation details in the design are recommendations, not decisions
 accepted by this entry. Real footage, hashes and labels remain local and ignored.
 External datasets/models remain separately provenance-gated; no download approved.
+
+## 2026-10-03 — Lightweight Key Evidence Before Independent Split Infrastructure
+
+### Decision
+
+The user's review directs 2A1 to prepare current-recording evidence only, with
+prepare/validate/review commands, full manual deployment/visibility/negative
+interval review and 3–5 distinct original key-frame boxes per verified play.
+No dense 5FPS manual annotation inventory. Independence allocation, Evaluation
+Protocol, canonical digest, split lock and freeze are deferred to 2A2 after at
+least a second independent complete recording and separate design/approval.
+
+### Context
+
+The prior draft required every 5FPS held-out/non-match frame to be reviewed and
+planned freeze infrastructure despite having only one observed match. Neither
+implementation nor final annotations exist; this task authorizes document revision.
+
+### Alternatives
+
+- Build the original dense-label/freeze system immediately.
+- Complete a lightweight current-recording stage, then approve independent-data
+  preparation when a second match exists.
+
+### Reason
+
+The smaller stage matches an individual PoC's workload without lowering the
+independent full-match isolation, data/provenance or live-safety gates.
+
+### Consequences
+
+2A1 is not implemented; 2A2 is unapproved. Inferno Dragon stays a pending-review
+candidate, and one match remains insufficient for 2B. Future box metrics cover
+only the disclosed key-frame subset; temporal coverage/FP metrics use complete
+reviewed intervals, not implicitly negative unlabeled frames.
+Ordinary intervals stay half-open, with a closed end only for terminal negatives
+ending at the exact last actual frame. Public documents allow anonymous candidate/
+count/gate aggregates; actual timestamps, paths, hashes, boxes, media and labels
+stay local. Prior commits are not rewritten. Proposed model/protocol details are
+not made accepted technical decisions by this entry.

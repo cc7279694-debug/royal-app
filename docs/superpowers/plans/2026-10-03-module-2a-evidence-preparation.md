@@ -1,170 +1,144 @@
-# Module 2A Evidence Preparation Implementation Plan
+# Module 2A1 Current Recording Evidence Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task after separate user approval. Steps use checkbox (`- [ ]`) syntax for tracking. No implementation is authorized by this planning handoff.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans after separate implementation approval. Steps use checkbox (`- [ ]`) syntax. This revision authorizes documents only; do not execute this plan now.
 
-**Goal:** Prepare reviewed local evidence and report whether a single-card offline experiment has enough independent data.
+**Goal:** Prepare small local key-frame/interval evidence and honestly report current data insufficient for a single-card experiment.
 
-**Architecture:** Reuse Module 1's exact-PTS extractor unchanged. Add small evidence preparation, validation and review helpers to its Python experiment package. Human review supplies boundaries, identity, owner and boxes; helpers never infer cards or emit gameplay events.
+**Architecture:** Reuse Module1 extraction unchanged. Three small helpers cover contract, preparation and annotation/review, plus a thin three-command CLI. Humans supply identity, owner, match boundaries and complete reviewed visibility intervals; no card detector.
 
-**Tech Stack:** Existing isolated Python 3.12, PyAV 19.0.1, Pillow 12.3.0, pytest 9.1.1 and standard library; no new dependencies.
+**Tech Stack:** Existing Python3.12, PyAV19.0.1, Pillow12.3.0, pytest9.1.1 and standard library; no new dependencies.
 
-**Spec:** [2026-10-03-module-2a-evidence-preparation-design.md](../specs/2026-10-03-module-2a-evidence-preparation-design.md)
+**Spec:** [Revised2A design](../specs/2026-10-03-module-2a-evidence-preparation-design.md)
 
 ## Global Constraints
 
-- Only explicitly supplied local recordings; no private-directory discovery or uploads.
-- All times use actual PTS/time_base relative to the first displayed frame; inclusive Module 1 100ms extraction tolerance remains unchanged.
-- Schema version 1 and all entities/rules from spec section 5; unknown versions/fields and nonfinite numbers fail, never coerce or silently repair.
-- Current target choice requires >=4 distinct manually verified opponent plays in one recording; no predefined Hog Rider.
-- 2B requires >=2 independent complete matches, >=6 target plays, >=1 held-out whole match with >=2 plays, reviewed negatives and a pre-training locked split.
-- Whole underlying matches and all their re-recordings stay in one split; whole source recordings and their non-match negatives also stay in one split.
-- Media, hashes, actual labels and source paths stay in local_data/ or outputs/; public fixtures are entirely synthetic.
-- No ML framework/model/data downloads, training, inference, Android/live/HUD, game control, cycle/elixir or OpponentCardPlayed production.
-- No new database, GUI, package installation or changes to the existing video extraction algorithm.
-- Begin only on a separately authorized feature branch from the accepted baseline; never automatically merge main or push without scope authorization.
+- Execute2A1 only after approval;2A2 has no approval or implementation tasks here.
+- Commands: prepare, validate, review. No freeze, split lock, canonical digest or Evaluation Protocol implementation.
+- Only supplied local media, ignored outputs and synthetic public tests; never publish private timestamps/paths/hashes/boxes/screenshots.
+- Exact PTS-normalized times, unchanged inclusive100ms extraction tolerance; no FPS-derived times or game countdown.
+- Three to five distinct-timestamp original key frames per verified play, not manual labels for every5FPS inference frame.
+- candidate_gate>=4 distinct reviewed opponent plays in one recording; Inferno Dragon is a pending-review candidate.
+- Current one-match data return insufficient; independent full-match isolation/pre-training test lock remain future2A2/2B gates.
+- No inference, ML downloads/training, Android/live/HUD, game interaction, events, custom GUI, database or dependency installation.
 
 ## Review Focus
 
-1. Same underlying match re-encoded under another name: manual group assignment and split collision rejection, Task 4.
-2. Nonzero origin, VFR and rotation: frame coordinates and time derive from successful original PNG/export metadata, Tasks 1–3.
-3. Ambiguous appearance or missing frames: cannot become verified evidence or raise data counts, Tasks 1 and 4.
-4. Private paths, symlink/junction escape, existing output: reject without reading outside supplied paths or overwriting, Tasks 2 and 5.
-5. UI/uncertain-target negatives and changed locked evidence: refuse conflicting labels or stale lock, Tasks 1 and 4.
+1. Final frame equals negative endpoint: terminal-negative closure only, Task1.
+2. NonzeroPTS/VFR/rotation: original times/display coordinates, Tasks1–3.
+3. Duplicate key exports: one play counts once;3–5 different times required, Tasks1/3.
+4. Path escape/existing output/private data: reject and preserve, Tasks2/4.
+5. Ambiguous visibility/variant: cannot become negative or verified implicitly, Tasks1/3.
 
-## File and interface map
+## Future file map
 
-All files below are **future implementation**, not created by this round.
+All paths below are relative to tools/offline_video/. None are created by this revision.
 
-| File under tools/offline_video/ | Responsibility |
+| File | Owner / responsibility |
 | --- | --- |
-| src/clash_tracker_video/evidence_contract.py | strict JSON loading, EvidenceError, v1 entity/reference/time/box validation |
-| src/clash_tracker_video/evidence_prepare.py | reuse extraction, safe local run, SHA check, indexed contact pages; no manual decisions |
-| src/clash_tracker_video/evidence_annotations.py | reviewed pixel rectangle to normalized box; frame identity from export report |
-| src/clash_tracker_video/evidence_review.py | manual whole-match split checks, evidence digest/lock, sufficiency report |
-| src/clash_tracker_video/evidence_cli.py | prepare/validate/review/freeze commands; explicit status exits |
-| tests/evidence_fixtures.py | programmatically created synthetic v1 entities and geometric/color PNGs |
-| tests/test_evidence_contract.py | structural/referential/time/negative correctness |
-| tests/test_evidence_prepare.py | index/PTS/rotation, paths/output/input preservation |
-| tests/test_evidence_annotations.py | coordinates and original PNG identity |
-| tests/test_evidence_review.py | unique plays, completeness, splits, lock and gate boundaries |
-| tests/test_evidence_cli.py | end-to-end synthetic command/exit/report behavior |
+| src/clash_tracker_video/evidence_contract.py | Task1: EvidenceError, strict JSON/v1 validation, interval membership |
+| src/clash_tracker_video/evidence_prepare.py | Task2: safe extraction/index/contact pages and source integrity |
+| src/clash_tracker_video/evidence_review.py | Task3: box conversion, annotation references, unique-play counts/gaps/insufficiency |
+| src/clash_tracker_video/evidence_cli.py | Tasks2/3: thin prepare/validate/review dispatcher |
+| tests/evidence_fixtures.py | Task1: synthetic six-entity v1 fixtures |
+| tests/test_evidence_contract.py | Task1: structure/time/interval/reference tests |
+| tests/test_evidence_prepare.py | Task2: synthetic real MP4/index/output/contact tests |
+| tests/test_evidence_review.py | Task3: boxes/counts/gates/gaps |
+| tests/test_evidence_cli.py | Tasks2/3: synthetic command/exit tests |
 
-Also update README.md, docs/CURRENT_STATE.md, docs/DEVELOPMENT_PLAN.md and create
-docs/VERIFICATION_M2A.md after actual verification. No existing pipeline/CLI
-refactor; run the new interface as `python -m clash_tracker_video.evidence_cli`.
-Local source maps/evidence must be manually supplied, never committed.
+Task4 updates README.md, docs/CURRENT_STATE.md, docs/DEVELOPMENT_PLAN.md and creates
+docs/VERIFICATION_M2A1.md after verification. Keep pipeline.py and Module1 CLI
+unchanged. No separate annotations/split module or dense evaluation-frame list.
 
-### Task 1: Strict evidence contract
+### Task 1: Simplified evidence contract and tests
 
-**Files:** create evidence_contract.py, tests/evidence_fixtures.py,
-tests/test_evidence_contract.py from the map above.
+**Files:** evidence_contract.py, tests/evidence_fixtures.py, tests/test_evidence_contract.py.
 
 **Interfaces:**
 
-- `EvidenceError(Exception)` for invalid I/O/JSON evidence.
-- `load_evidence(path: Path) -> dict[str, object]`: strict JSON; duplicates/nonfinite fail.
-- `validate_evidence(doc: Mapping[str, object], export_reports: Mapping[str, Mapping[str, object]]) -> list[str]`: empty for valid, otherwise stable field-qualified errors; does not mutate.
-- Fixture `synthetic_evidence(plays_per_match: tuple[int, ...] = (4, 2)) -> dict[str, object]`: all spec v1 entities, two synthetic hashes/groups and no gameplay imagery.
+- EvidenceError(Exception); load_evidence(path: Path) -> dict[str,object]: strict JSON,16MiB cap.
+- validate_evidence(doc: Mapping[str,object], indexes: Mapping[str,Mapping[str,object]]) -> list[str]: field-qualified errors; empty if valid, no mutation. Indexes keyed by recording_id, contain successful export metadata from Task2; fixtures provide equivalents.
+- interval_contains(t: Fraction, start: Fraction, end: Fraction, *, last_frame: Fraction, terminal_negative: bool = False) -> bool: ordinary start<=t<end; close endpoint only when terminal_negative=true AND end==last_frame.
+- synthetic_evidence(plays: int = 4) -> dict[str,object]: one recording/segment, synthetic card, plays with3 distinct successful key references each, reviewed intervals; no game imagery.
 
-- [ ] Write failing tests: valid synthetic v1 returns []; version2/unknown fields/missing keys/bool-as-int/NaN/duplicate JSON keys fail; x=0.9,width=0.2 fails; x=0,width=1 succeeds; dangling recording/segment/play/frame fails.
-- [ ] Add time/reference tests: origin_pts=5000, origin_time_base=1/1000, frame_pts=5210 gives timestamp0.21; timestamp0.2 fails; VFR never uses FPS; frames with miss status fail; a 90-degree64x48 input requires48x64 display dimensions. Overlap of a negative with verified or ambiguous target visibility fails. Draft/unknown owner/variant cannot become verified silently; duplicate frame references do not satisfy the three-frame requirement.
-- [ ] Run `.venv/Scripts/python.exe -m pytest tools/offline_video/tests/test_evidence_contract.py -q`; expect import failure before implementation, then assertion failures as behavior is added.
-- [ ] Implement exactly spec section5 using standard-library validation; use Fraction internally and absolute1e-6 tolerance for stored float timestamps. Preserve explicit ambiguity and error lists; JSON load limits16MiB to bound accidental huge labels.
-- [ ] Rerun that test file and all Module1 tests; expect all pass, no media tracked.
-- [ ] Commit only this task's source/tests: `feat(evidence): validate versioned local annotations`.
+- [ ] Write failing tests for six required entities, optional version1/report, missing keys/dangling references, bool-as-int, NaN/duplicate keys/oversize JSON. Reject deferred root objects. No split manifest needed for valid2A1 evidence.
+- [ ] Add boundary test assertions exactly:
 
-### Task 2: Local frame index and contact pages
+```python
+F = Fraction
+assert not interval_contains(F(1), F(0), F(1), last_frame=F(1))
+assert interval_contains(F(1), F(0), F(1), last_frame=F(1), terminal_negative=True)
+assert not interval_contains(F(1, 2), F(0), F(1, 2), last_frame=F(1), terminal_negative=True)
+```
 
-**Files:** create evidence_prepare.py and tests/test_evidence_prepare.py.
+- [ ] Add nonzero origin5000ms/frame5210ms ->0.21s (stored0.2 invalid); VFR without FPS;90-degree64x48 ->48x64; x0.9+width0.2 invalid/full-image box valid; negative overlapping verified/ambiguous visibility invalid; repeated actual timestamp cannot satisfy three key frames. Positive end remains half-open even at last frame.
+- [ ] Run `.venv/Scripts/python.exe -m pytest tools/offline_video/tests/test_evidence_contract.py -q`; expect initial import/behavior failures.
+- [ ] Implement spec sections4/5 only, with Fraction membership and1e-6 timestamp consistency. Preserve drafts/ambiguity; no target guessing or deferred objects.
+- [ ] Rerun task and Module1 tests; expect all pass with synthetic fixtures only.
+- [ ] Commit: `feat(evidence): validate lightweight key-frame evidence`.
 
-**Interfaces:**
+### Task 2: Local index, contact pages and safe output
 
-- Consumes existing `pipeline.inspect_video(path)` and `pipeline.extract_frames(path,times,output)` unchanged.
-- `prepare_evidence(source: Path, output: Path, times: Sequence[float] | None = None) -> dict[str, object]`: exclusive ignored run; creates exports/report.json, index.json, contacts/page_0000.png etc. Default targets every5s plus final actual PTS. Optional explicit times follow Module1 ordering rules.
-- index.json={schema_version:1,recording:RecordingDescriptor,export_report:"exports/report.json",frames:[{frame_id,requested_seconds,timestamp_seconds,raw_pts,time_base,image_path,image_width,image_height,status,reason}],contact_pages:[relative paths],status}. No public/source absolute path; include misses explicitly. A run records exactly one recording_id; explicit correspondence to contract records is required.
-
-- [ ] Write failing tests using real synthetic MP4 from conftest: index times0/0.07/0.21/0.5 for nonzero-start VFR, actual not requested times; final display frame included; same raw frame not counted as a second occurrence; rotation preserved and original exports never resized.
-- [ ] Add safety tests: input SHA before/after identical; existing sentinel output untouched; URL/UNC/traversal/symlink and Windows junction escape rejected; resolved output must stay in local_data or outputs. Missing source, corrupt input, gap>100ms and unwritable output preserve explicit errors/partial status.
-- [ ] Run `.venv/Scripts/python.exe -m pytest tools/offline_video/tests/test_evidence_prepare.py -q`; expect failure without helper.
-- [ ] Implement sequential PTS pre-scan for default final time, then reuse extraction into a new run; at most12 thumbnails/page, column count3, 224x480 fit preserving ratio, labels with actual time or miss reason. Never assign match/card/owner/review status. Treat images as images, not schema source; save new files exclusively.
-- [ ] Run task tests and complete pytest; inspect synthetic contact page only; expect PNG/index metadata match exports and original source unchanged.
-- [ ] Commit: `feat(evidence): prepare private timestamped frame indexes`.
-
-### Task 3: Manual box conversion and frame references
-
-**Files:** create evidence_annotations.py, tests/test_evidence_annotations.py.
+**Files:** evidence_prepare.py, evidence_cli.py, tests/test_evidence_prepare.py,
+tests/test_evidence_cli.py. Uses Task1 contract; no identity/inference logic.
 
 **Interfaces:**
 
-- `normalize_box(rect: tuple[float,float,float,float], image_size: tuple[int,int]) -> dict[str,float]`: input full-display pixel x,y,width,height, output normalized_bbox.
-- `make_frame_annotation(entry: Mapping[str,object], *, annotation_id: str, recording_id: str, play_id: str, rect: tuple[float,float,float,float], review_status: str = "draft") -> dict[str,object]`: entry from successful Task2 index, copies frame_id and actual PTS/timebase/PNG dimensions and sets annotation_source=manual. No card identification, owner inference or approval automation.
+- Consume existing pipeline.inspect_video(path) and pipeline.extract_frames(path,times,output) unchanged.
+- prepare_evidence(source: Path, output: Path, *, recording_id: str, times: Sequence[float] | None = None) -> dict[str,object]: new ignored run, exports/report.json, index.json, contacts/page_0000.png. Default every5s plus last actual PTS; explicit times permit fine candidate windows.
+- Index={schema_version:1,recording:RecordingDescriptor,export_report:"exports/report.json",frames:[{frame_id,requested_seconds,timestamp_seconds,raw_pts,time_base,image_path,image_width,image_height,status,reason}],contact_pages:[relative paths],status}. Preserve misses/partial status; source path stays in separate local map. Same recording_id across finer runs; repeated timestamp remains one frame of a play.
+- evidence_cli.main(argv: list[str] | None = None) -> int; entry `python -m clash_tracker_video.evidence_cli`. Commands `prepare INPUT --recording-id ID --output NEW_RUN [--times T ...]` and `validate EVIDENCE --indexes INDEX ...`. Only supplied ignored indexes/reports; combine same-recording frames with checked metadata agreement. Resolve images relative to supplied run, never arbitrary private directories.
 
-- [ ] Write failing tests: (10,20,30,40) in100x200 -> {x:0.1,y:0.1,width:0.3,height:0.2}; negative/out-of-bounds/zero-size/nonfinite/bool values fail without clipping; image64x48 rotated90 uses48x64; miss/no-PTS/no-image entry fails; draft stays draft.
-- [ ] Run `.venv/Scripts/python.exe -m pytest tools/offline_video/tests/test_evidence_annotations.py -q`; expect helper import failure.
-- [ ] Implement pure conversion/reference helpers and reuse contract rules, not copied pipeline logic. Require restored full-image pixel coordinates, not contact-sheet or crop coordinates.
-- [ ] Run task tests plus contract tests; confirm generated annotations validate against synthetic export reports.
-- [ ] Commit: `feat(evidence): convert reviewed pixel boxes to local labels`.
+- [ ] Write failing synthetic encoded MP4 tests: VFR/nonzero-start actual times0/0.07/0.21/0.5, finalPTS included, rotation preserved; contacts keep ratio/actual labels, never change original PNGs; source SHA before/after identical.
+- [ ] Test URL/UNC, traversal and symlink/junction/ancestor escape, sentinel/existing-output and write failure; outputs must resolve within local_data or outputs and be exclusively new. Partial misses stay explicit, no last-frame fallback. Confirm private outputs Git-ignored. CLI invalid input exits2 without traceback/private source path.
+- [ ] Run `.venv/Scripts/python.exe -m pytest tools/offline_video/tests/test_evidence_prepare.py tools/offline_video/tests/test_evidence_cli.py -q`; expect failures before helpers exist.
+- [ ] Implement PTS pre-scan for default last time, reuse extraction and create max12 thumbnails/page,3 columns, fit224x480. No automatic match/card/owner review. Thin prepare/validate dispatch, exit0 success/valid,2 invalid/I/O,3 partial.
+- [ ] Rerun task and full tests; visually inspect synthetic contacts; check source/sentinel preservation and metadata.
+- [ ] Commit: `feat(evidence): prepare private frame indexes and contacts`.
 
-### Task 4: Whole-match isolation, lock and sufficiency
+### Task 3: Deployment intervals, key-frame boxes and sufficiency
 
-**Files:** create evidence_review.py, tests/test_evidence_review.py.
+**Files:** evidence_review.py, tests/test_evidence_review.py; extend evidence_cli.py
+and tests/test_evidence_cli.py only with review.
 
 **Interfaces:**
 
-- `review_evidence(doc: Mapping[str,object], export_reports: Mapping[str,Mapping[str,object]]) -> dict[str,object]`: status=invalid/insufficient/ready, candidate_gate bool, experiment_gate bool, counts={independent_complete_matches,verified_plays,held_out_matches,held_out_plays}, reasons list; ready means data only, not permission to train.
-- `evidence_digest(doc: Mapping[str,object]) -> str`: SHA256 of UTF8 sorted-key compact canonical JSON, exclude split_manifest; disallow nonfinite numbers.
-- `freeze_split(doc: Mapping[str,object], *, locked_at: str) -> dict[str,object]`: returns a new document with reviewed split digest/UTC date locked; never overwrites disk or old lock. Allows creation of the first lock only after all gates except the lock itself pass; changing existing lock raises EvidenceError.
+- normalize_box(rect: tuple[float,float,float,float], image_size: tuple[int,int]) -> dict[str,float]: full displayed pixel x/y/width/height ->normalized_bbox.
+- make_frame_annotation(entry: Mapping[str,object], *, annotation_id: str, recording_id: str, play_id: str, rect: tuple[float,float,float,float], review_status: str = "draft") -> dict[str,object]: copy successful export frame_id/PTS/dimensions/path; no automatic approval.
+- review_evidence(doc: Mapping[str,object], indexes: Mapping[str,Mapping[str,object]]) -> dict[str,object]: spec section8 fields/status/counts/reasons/gaps. Recompute distinct plays and reviewed interval-union gaps; no independence certification or split system. Valid status=insufficient,experiment_gate=false in2A1; candidate gate separate.
+- `review EVIDENCE --indexes INDEX ... --output NEW_REPORT`: exclusively new ignored report, exit2 invalid/I/O,3 valid insufficient. No ready/freeze shortcut if another file supplied.
 
-- [ ] Write failing boundary tests: (4) one-match -> candidate true, experiment false; (4,2) independent complete -> six total, two test, unlocked insufficient; same inputs frozen -> ready; (3,2) fails candidate/total; (4,1) fails six/test2; duplicate play_id or many annotations of one play do not increase play count. Ambiguous, rejected or missing>=3 reviewed frame evidence cannot count.
-- [ ] Add isolation tests: same hash in train/test, same match_group with another filename/re-encode, shared recording, non-match negative moved to another split, mixed assignments -> invalid. require independence_reviewed and capture_complete verified; same recording's two matches cannot supply independent splits. Changed content/hash/target invalidates old lock; no auto-update. Entire review is non-mutating.
-- [ ] Run `.venv/Scripts/python.exe -m pytest tools/offline_video/tests/test_evidence_review.py -q`; expect failure.
-- [ ] Implement grouping/counting using manually verified identities, not inferred file count. Validate all referenced successful frames and negative coverage before counting. Require EvaluationFrame records at5FPS over each held-out match and its non-match intervals before locking: every extracted sample marked a verified positive box or reviewed target-absent, misses reported and blocking readiness; never infer absence from unlabeled frames. Require EvaluationProtocol from spec section5 before freezing, including development-only confidence selection and fixed prospective metrics. Store these only in local evidence JSON, not a detector.
-- [ ] Run task tests then complete pytest; expect all pass, including intentionally insufficient inputs returning reasons rather than crashes. Add coverage test: one unreviewed held-out sample blocks freeze/ready.
-- [ ] Commit: `feat(evidence): enforce match-isolated experiment readiness`.
+- [ ] Write failing tests: rect(10,20,30,40)/size100x200 ->{x:0.1,y:0.1,width:0.3,height:0.2}; negative/zero/nonfinite/bool/out-of-range fails without clipping. Miss/noPTS/no dimensions fails; draft unchanged; rotation uses display size.
+- [ ] Test four verified plays/one recording ->candidate true,experiment false,insufficient; three ->candidate false; many images of one play count1. Only2 distinct timestamps or6 verified boxes fail3–5 rule. Unknown variant/owner/perspective, missing narrative or draft frames cannot count. One unboxed frame in a reviewed interval is NOT a gap/blocker.
+- [ ] Test complete interval union vs unknown gap; ambiguous possible target cannot become negative. Terminal-negative covers last frame. Stored preparation_report cannot override recomputed counts. Review is non-mutating. Synthetic prepare/validate/review ->0/0/3; invalid box ->2; unsupported freeze command fails rather than existing.
+- [ ] Run `.venv/Scripts/python.exe -m pytest tools/offline_video/tests/test_evidence_review.py tools/offline_video/tests/test_evidence_cli.py -q`; expect failures before implementation.
+- [ ] Implement pure box/reference helpers, interval-union gaps, unique-play counting and thin review command. Keep last_absent/onset/visibility evidence manual. Report independent-data/lock prerequisites as deferred reasons, not new features.
+- [ ] Rerun task and full tests; expect all pass with insufficient treated as expected output.
+- [ ] Commit: `feat(evidence): review deployment intervals and data sufficiency`.
 
-### Task 5: CLI and reproducible synthetic end-to-end check
+### Task 4: Current real recording verification and completion report
 
-**Files:** create evidence_cli.py and tests/test_evidence_cli.py; update README.md.
+**Files:** ignored local evidence only; README.md, docs/VERIFICATION_M2A1.md,
+docs/CURRENT_STATE.md, docs/DEVELOPMENT_PLAN.md. No new recognition code.
 
-**Interfaces:** `main(argv: list[str] | None = None) -> int` and module entry point.
+**Interfaces:** Tasks1–3 and six-entity JSON. Requires separate implementation
+approval; this document revision reads no new footage.
 
-- `prepare INPUT --output NEW_IGNORED_RUN [--times T ...]` -> Task2.
-- `validate EVIDENCE --indexes INDEX ...` -> strict contract/reference checks.
-- `review EVIDENCE --indexes INDEX ... --output NEW_REPORT` -> Task4 report.
-- `freeze EVIDENCE --indexes INDEX ... --output NEW_LOCKED_JSON` -> validate/review then explicit first lock, never guess a split. freeze_split receives UTC now from CLI.
-- Exit0=valid/prepared/ready/frozen; 2=invalid/I/O,3=partial extraction or valid-but-insufficient. Concise errors, no traceback/private absolute path in routine stdout. Outputs must resolve within ignored roots and use exclusive creation; use actual internal export reports referenced by indexes.
+- [ ] First run/add synthetic regressions: non-match negatives outside positives, persistent frames count once, unknown variants stay ambiguous, one recording returns insufficient. No game media in fixtures.
+- [ ] Prepare the already explicitly supplied video in a new ignored run; verify source SHA before/after. Watch whole match, refine boundaries and all candidate plays; review owner/variant/absence→spawn→visibility. If candidate gate fails, report it without a guessed replacement.
+- [ ] Enter last_absent/onset bracket/point and complete visibility interval per play; box3–5 distinct original key frames. Four surviving plays imply12–20 boxes; additional plays add3–5 each. Record reviewed negatives and unresolved gaps. No5FPS manual inventory or second-video demand simply to finish2A1.
+- [ ] Run validate (0 if valid) and review (3 insufficient for current one-match data); compare local report/key boxes/timestamps with original PNGs. No2A2/freeze work.
+- [ ] Run full pytest, pip check, git diff --check and tracked-file/secret/private-path scans; confirm actual media/hash/timestamps/JSON ignored. Public report only candidate/count/gate/anonymous aggregates.
+- [ ] Document actual checks/totals, Not Run and limitations, three-command generic Windows usage; update state from verified reality.2A1 completion and2B readiness differ. No SQLite/migration/config/dependency changes expected.
+- [ ] Commit `docs(evidence): verify module 2a1 preparation`; push only if authorized; stop for2A1 acceptance. Second independent data plus separate2A2 design/approval are future steps, never automatic continuation.
 
-- [ ] Write failing tests executing synthetic prepare->manual draft fixture->validate->review->freeze: one match exits3 with independent-match reason; two valid reviewed groups freeze exits0; invalid box exits2; stale lock exits2; full source images/index privacy and output-sentinel protection remain intact. CLI freeze cannot bypass unreviewed coverage.
-- [ ] Run `.venv/Scripts/python.exe -m pytest tools/offline_video/tests/test_evidence_cli.py -q`; expect module-not-found, then behavior assertions fail until implemented.
-- [ ] Implement thin CLI composition only, no GUI or models. Document explicit manual JSON entry, pixel coordinates and version/PTS rules; freeze is not a training command.
-- [ ] Run complete pytest and pip check; inspect actual synthetic index/contacts/results. README commands must use generic local paths, not the user's private file.
-- [ ] Commit: `feat(evidence): add offline evidence review commands`.
+## Self-review and handoff
 
-### Task 6: Actual evidence review and Module 2A acceptance
+Exactly four tasks: spec contract/terminal interval ->Task1; preparation ->Task2;
+key annotations/gates/gaps ->Task3; real verification/privacy/state ->Task4.
+All five Review Focus items have tests. Split/protocol/digest/freeze and detector
+remain deferred, not missing implementation tasks. Prospective2B metrics use
+complete reviewed intervals plus a disclosed small boxed subset, not dense labels.
 
-**Files:** local_data/ or outputs/ only for actual records; update
-docs/VERIFICATION_M2A.md, CURRENT_STATE.md and DEVELOPMENT_PLAN.md.
-
-**Interfaces:** use Tasks1–5, spec v1 JSON and structured sufficiency report.
-This is an integration/review deliverable, not a new recognition component.
-
-- [ ] Add/run regression tests first: synthetic menus/results/system negatives excluded from match positives; repeated unit frames remain one play; unknown variant stays ambiguous; data insufficient does not authorize next module. Test expected lack of second match independently of the real recording.
-- [ ] Using only separately approved supplied files, create a new local evidence run; check source hashes before/after; manually review boundaries/completeness/perspective and the four dragon episodes identified in planning. Assign distinct play IDs and reviewed boxes only where justified; don't pre-fill unobserved cards. Retain at least3 original annotated frames/play.
-- [ ] Review non-match/target-absent intervals and all intended held-out samples. With this single recording report insufficient unless new independent recordings were explicitly supplied. Do not search for/download missing data or request training authorization as a substitute for evidence.
-- [ ] Validate references/PTS/coordinates/negative ranges; run review and record its exit3 if insufficient. Freeze only if separate input additions satisfy every gate; evidence readiness does not authorize 2B.
-- [ ] Run full pytest, pip check, git diff --check and tracked media/secret/path scans. Verify all private evidence is ignored. Record actual test totals/commands/results, files, data-layer nonchanges, remaining data needs and scope exclusions; do not copy private hashes or notifications into docs.
-- [ ] Commit only source/docs/synthetic tests: `docs(evidence): verify module 2a preparation`; push only if authorized. Stop for user acceptance. No 2B execution, model training task or Module3 event code belongs to this plan.
-
-## Plan self-review and handoff
-
-Spec sections1–3/7/11 -> all constraints and Task6; section4 -> Tasks2/3/6;
-section5/10 -> Tasks1–5; section6 -> Task3 manual helper, no GUI;
-section8 -> Task4; section9 -> Task4 reviewed held-out coverage and frozen protocol,
-not evaluation implementation. Section7 external route remains a gate, no downloads.
-All five Review Focus failure classes have assigned tests. Public examples use
-synthetic identities/geometry only; actual annotations and hashes never enter Git.
-
-This plan is not executed. The user should review both documents before approving
-Module 2A implementation. Native task-by-task execution is proposed because the
-small helpers share a tight contract and reuse an already-tested decoder; no
-subagent dispatch or new conversation is part of this task.
+Plan not executed. Review both revised documents before separately approving2A1.
+2A2 unapproved. No new chat, delegation, merge, installation, new private-file
+read or model execution is authorized by this revision.
