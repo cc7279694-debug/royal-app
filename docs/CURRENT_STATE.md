@@ -4,9 +4,9 @@ Last verified: 2026-10-03
 
 ## Current Stage
 
-Module 1 — Offline Video Pipeline: **In Progress**.
-Implementation and synthetic validation complete; representative user-recording
-acceptance is pending. Module 2 must not start.
+Module 1 — Offline Video Pipeline: **Completed**.
+Implementation, synthetic tests, and representative user-recording verification
+are complete. Stop for user review; Module 2 has not started.
 
 ## Verified Completed
 
@@ -23,23 +23,28 @@ acceptance is pending. Module 2 must not start.
 - 47 automated tests passed on Windows using real encoded synthetic MP4s.
 - Dependency integrity check and Python wheel build passed.
 - Selected synthetic PNGs were visually inspected.
+- User-provided H.264 MP4 (448 x 960, 273.166333 seconds, approximately 30 FPS)
+  decoded completely: 8,195 frames, nine successful extraction targets, maximum
+  lateness 13.333ms. A deliberate out-of-range target correctly missed.
+- All nine PNGs matched independently decoded pixel data; start, middle, and
+  end images were visually inspected. Input SHA-256 remained unchanged.
+- Partial-miss CLI exit code 3 verified; all local PNG/report outputs ignored by Git.
 - No Android, recognition, model, database, cloud, or game-connection code exists.
 
 ## In Progress
 
-- Module 1 real-recording acceptance.
+- None. Awaiting user review of the completed Module 1 report.
 
 ## Pending
 
-- User-provided `local_data/recordings/sample.mp4` (not present at verification).
-- Inspect and extract that recording; validate time, dimensions, orientation,
-  PNG content, and JSON before considering Module 1 accepted.
-- User acceptance of Module 1 after representative recording verification.
+- User review of Module 1; explicit authorization before Module 2.
 - Model/runtime selection remains deferred; project license remains undecided.
 
 ## Current Risks and Limitations
 
-- Synthetic H.264 8-bit SDR tests do not establish compatibility with every phone.
+- Synthetic and one real H.264 recording do not establish compatibility with every phone.
+- User recording includes non-match screens at its beginning and end; future
+  recognition work must distinguish match footage from menus/system UI.
 - Pure 0/90/180/270 rotation is supported; other display transforms, non-square
   pixels, HDR markers, and high-bit-depth frames are explicitly rejected.
 - Sequential decoding scans the entire video; no random-seek optimization.
@@ -59,8 +64,8 @@ acceptance is pending. Module 2 must not start.
 
 ## Next Recommended Task
 
-Provide a 30–60 second local MP4 of an already completed match replay at normal
-speed. Run Module 1 against that file and review the PNGs/report. Keep Module 1
-In Progress until this acceptance is verified.
+Review Module 1 evidence. When authorized, plan Module 2's limited-card detection
+experiment on offline footage, including match-region/time selection and model
+provenance. Do not implement Module 2 before authorization.
 
 See [verification evidence](VERIFICATION_M1.md) and [Windows instructions](../README.md).

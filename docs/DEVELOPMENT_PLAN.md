@@ -27,8 +27,8 @@ Verification:
 
 ## Module 1 — Offline Video Pipeline
 
-Status: In Progress — implementation and synthetic tests complete; user-recording
-acceptance pending. Do not enter Module 2.
+Status: Completed — implementation, synthetic tests, and representative
+user-recording verification complete. Await user review before Module 2.
 
 Goal: read one user-provided MP4 without performing card recognition.
 
@@ -47,8 +47,8 @@ Verification:
 - run against a small non-sensitive fixture and a representative user recording;
 - verify exported frames visually and confirm Git remains clean of media.
 
-Evidence: [Module 1 verification](VERIFICATION_M1.md). Real-recording validation
-is required before marking this module Completed.
+Evidence: [Module 1 verification](VERIFICATION_M1.md). The user-provided recording
+has passed timestamp, image, output safety, and visual verification.
 
 ## Module 2 — Single Card Detection Proof of Concept
 

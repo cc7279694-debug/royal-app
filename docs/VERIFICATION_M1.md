@@ -1,7 +1,8 @@
 # Module 1 Verification
 
-Verification date: 2026-10-03. Implementation complete; **real recording
-acceptance pending**. Module 1 remains In Progress.
+Verification date: 2026-10-03. Implementation, synthetic tests, and representative
+user-recording verification complete. **Module 1 Completed**; await user review
+before advancing to Module 2.
 
 ## Scope
 
@@ -90,20 +91,44 @@ by pixel-position tests, not claimed as individually visually inspected.
 
 ## B. User Recording Validation
 
-**Not Run — no user-provided recording at the designated local path.**
-No private-directory search was performed. Phone-specific resolution, codec,
-orientation, real timestamps, and game-image quality remain unverified.
+**Passed — exactly the local MP4 explicitly supplied by the user was read.**
+No private-directory search, source copy, or upload was performed. This public
+record deliberately excludes its filename, private source path, player identities,
+screenshots, and notifications.
 
-To finish acceptance: place a representative replay MP4 at
-`local_data/recordings/sample.mp4`, follow README inspect/extract commands,
-then compare selected PNGs with the requested moments and JSON.
+- H.264, 448 x 960, no display rotation, duration 273.166333 seconds from video
+  stream metadata; average FPS metadata approximately 30.000037.
+- Full independent decode: 8,195 frames, origin PTS 0, time_base 1/90000,
+  final relative presentation timestamp 273.133333 seconds. Timestamp spacing
+  remained 1/30 second throughout.
+- Successful requested times: 0, 1.5, 10, 60, 120, 180, 240, 272.9, 273.12 seconds.
+  The first eight matched exactly; the last selected 273.133333 seconds, late by
+  13.333ms (within the inclusive 100ms limit).
+- Deliberate request at 274 seconds: miss, no PNG, null actual timestamp.
+  Report correctly recorded partial status; a separate CLI boundary check
+  explicitly confirmed exit code 3. This expected negative case is not a failure.
+- Independent timestamp lookup via sorted decoded PTS and binary search matched
+  all report selections/errors. Every successful PNG reopened at 448 x 960 and
+  matched the independently decoded frame's RGB bytes exactly.
+- First, 60-second, 240-second, and last selected PNG were actually opened and
+  viewed. Portrait orientation, complete frame, and scene progression were correct.
+  The recording includes menus at the start and system UI at the end; the tool
+  correctly preserves these. Future detection must distinguish non-match frames.
+- Original source SHA-256 before/after decoding and extraction was identical.
+- PNGs and raw JSON reports reside only under Git-ignored local outputs.
+  No gameplay/media bytes are included in this repository update.
+- Full automated suite rerun after real recording validation: 47 passed.
+
+The already documented synthetic tests remain the evidence for rotation variants,
+variable frame rate, nonzero initial PTS, and malformed-input boundaries; this
+single real recording does not establish those properties for every phone.
 
 ## Not Run / Not Applicable
 
 - TypeScript / ESLint: Python-only module.
 - Android build / device test: no Android application in this module.
 - Recognition accuracy: no recognition implementation.
-- User MP4 and its visual check: pending user file.
+- Other phone recordings/codecs: not tested.
 - Broader codec/HDR compatibility: not claimed.
 
 ## Dependency Provenance and Licenses
