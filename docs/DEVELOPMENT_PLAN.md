@@ -53,7 +53,8 @@ has passed timestamp, image, output safety, and visual verification.
 ## Module 2A — Offline Evidence and Annotation Preparation
 
 Status: In Progress — 2A1 formally accepted on 2026-10-04 at `98037ceba81683ad1a2c214bada30a10f2f3f69e`.
-2A2 was separately approved on 2026-10-04 and is in progress. Its prospective
+2A2 was separately approved on 2026-10-04 and reached DEV_LOCKED, awaiting
+independent acceptance. Its prospective
 experiment rules below supersede the original 2A first-experiment thresholds;
 the following four-play rules remain historical 2A1 semantics only.
 
@@ -127,8 +128,13 @@ incompleteness or a Freeze veto; damaged/undecodable/obviously truncated/key-bat
 missing/human-incomplete material still rejects. Old checks and exclusions remain
 historical, all footage/evidence retained, not automatic negatives. Resume source
 one in the unchanged intake order, using its existing rough review; no card/
-difficulty/quality filtering. Precise evidence and real Development Data Lock
-still require verification; no DEV_LOCKED or 2B work is assumed.
+difficulty/quality filtering. Fresh first-source evidence reached DEV_LOCKED:
+user-confirmed ordinary Minions, two independent verified plays and six original
+key boxes; four candidate bundles retain other forms/doubts as unknown. Readiness,
+freeze and lock validation all exit 0 with stable recomputed digest. Three explicit
+unknown intervals and zero negatives remain; complete-file boundary is actual
+first-to-last PTS, not game-clock/result UI. Independent acceptance is pending;
+no Module 2B, Model Lock or Test GT operation is authorized.
 
 Owns a separate development readiness/freeze layer, declared underlying-match
 identity, manual candidate/form selection, evolution ground truth, canonical

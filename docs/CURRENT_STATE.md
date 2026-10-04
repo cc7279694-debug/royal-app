@@ -11,14 +11,18 @@ Last verified: 2026-10-04.
 - Module 2A2 Independent Evidence & Experiment Lock: separately authorized
   2026-10-04; infrastructure implemented and verified on its feature branch.
   Final review's blocking finding is fixed and scoped re-review passed;
-  real evidence/lock phase remains incomplete.
+  first-source real evidence/lock phase is verified at DEV_LOCKED, awaiting
+  independent formal acceptance. This is not Module 2B authorization.
 - Real experiment: user reconfirms all four natural replay recordings cover full
   matches and explicitly supersedes the result-screen completeness gate. Use
   user_confirmed completion provenance and the actual file-end boundary; absence
   of victory/defeat UI is not incompleteness. Resume the first original-order
-  input using its existing rough review. Precise evidence/target remain pending.
+  input using its existing rough review. The user corrected two deployments to
+  normal Minions (three units), not Minion Horde. Target minions/normal is frozen
+  with two independent verified plays and six original key-frame boxes.
   All sources, prior exclusions and first survey/rough review are retained.
-  No actual Development Data Lock or DEV_LOCKED result.
+  One actual exclusive version-one Development Data Lock exists locally;
+  readiness/freeze/lock validation exit 0 and digest reload/recomputation agree.
 - Module 2B, Module 3, Android, HUD and realtime remain closed and unstarted.
 
 ## Inherited verified capabilities
@@ -50,9 +54,9 @@ snapshot types. Task 1/2/3 reviews passed. Final whole-branch review identified
 cross/incomplete-segment accumulation; the new adapter now requires exactly one
 complete shared match segment. Scoped re-review confirmed the finding addressed,
 with no new Critical/Important issue or out-of-scope observation.
-Last infrastructure post-fix full suite: 385 passed, one known Windows symlink
-permission skip; not rerun during the subsequent recording-only intake.
-Dependency check, compile check and no-index wheel build passed; dependencies
+Fresh completion-amendment/real-freeze full suite: 403 passed, one known Windows
+symlink permission skip; pip check passed. Earlier compile check and no-index
+wheel build passed; those build checks were not rerun this session. Dependencies
 and all existing Module 1/2A1 production/tests are unchanged. Full evidence and
 limits are recorded in [2A2 verification](VERIFICATION_M2A2.md).
 
@@ -95,6 +99,26 @@ Historical Inferno Dragon evidence is regression-only, not the first new target.
 - Fresh pre-change protection: all 96 current-recording files and 591 historical
   2A1 files checked, 687 distinct protected files unchanged. First report/index
   loaded again; supplements/attestation/drafts use new ignored paths only.
+- First-source precise review: seven report/index pairs, 191 raw requests and
+  188 unique successful frames. These include the reused 37-frame survey and
+  154 new locator/identity/visibility/key requests; three overlapping requests
+  merge after strict request/content checks, not before. No old export regenerated
+  or replaced. Other original-order sources were not re-inspected for target quality.
+- User explicitly confirms both corrected ordinary Minions deployments after a
+  targeted original-image question. Four actual candidate bundles retain Cannon,
+  Flying Machine and Witch as unknown form/unqualified; original misidentified
+  Horde/Cart/Golden Knight hypotheses remain in local history and frozen rationale.
+  Only selected Minions qualifies: two clear independent verified plays, six boxes.
+- Capture segment covers the whole evaluable file from first actual PTS through
+  last actual PTS, including opening UI as unknown, not a cut battle prefix or
+  negative. Positive visibility uses conservative reviewed windows, not exact
+  death/full-lifetime claims. Three explicit unknown intervals and six recomputed
+  per-candidate gaps remain; zero verified negatives. All evolution progress unknown.
+- Actual CLI for all four candidate bundles: validate 0, review 3; v1 candidate
+  and experiment gates false / status insufficient. Separate 2A2 readiness 0
+  gives DEV_VALIDATED, freeze 0 gives DEV_LOCKED, validate-lock 0; canonical digest
+  recomputation and repeated reload match. Old 2A1 candidate remains true and its
+  533 requests/402 frames/four plays/12 boxes/eight gaps remain unchanged.
 
 ## Limits and unchanged gates
 
@@ -110,6 +134,13 @@ Historical Inferno Dragon evidence is regression-only, not the first new target.
 - Duplicate frame/bbox annotations within one GT play under different IDs remain
   a deferred minor limitation; future metrics must reject/deduplicate them.
   No current GT box-count threshold or metric relies on this annotation count.
+- Candidate capability values use a manually checked current public catalog;
+  absence-based capability is an inference, not an authenticated complete rules
+  registry or future guarantee. Equipment, charge, rules and progression remain
+  unknown/null. Freeze correction must create a new version, never edit the lock.
+- Six selected boxes describe the three-unit deployment group, not single-unit
+  tracking; split-lane group rectangles include intervening space. This is a
+  disclosed PoC data-design limitation, not recognition accuracy.
 - No dependency/database/cloud/model/runtime networking/Android/game-input change.
   No automatic selection, evolution, cycle or elixir. Model runtime and project
   license remain undecided.
@@ -124,13 +155,11 @@ Feature: `feat/module-2a2-experiment-lock`, from
 no push, main merge, PR, release, rebase or branch deletion. Preserve the 2A1 branch.
 Exact final commit belongs to Git and the handoff.
 
-Continue first-source PTS-aligned deployment/key-frame review and manual candidate
-comparison under the user's authorized amendment. Preserve unknowns; only freeze
-if >=2 clear independent deployments of one known form pass all existing checks.
-Do not skip to a more convenient source, re-record for result UI, edit old evidence,
-or treat human completeness as target/negative annotation. Stop at a truthful
-DEV_LOCKED or unresolved evidence blocker; final 2A2 acceptance remains separate,
-and no model/test work or next module is opened.
+Stop at verified DEV_LOCKED and provide the completion evidence for independent
+Module 2A2 acceptance. No new source, Model/Test GT Lock, model experiment or
+Module 2B begins without separate authorization. Preserve every source, old rough
+review, prior exclusion and new lock; corrections use another freeze version.
+Do not turn full-match attestation or uncovered visibility into negative labels.
 
 See [2A2 verification](VERIFICATION_M2A2.md),
 [blind protocol](MODULE_2A2_BLIND_TEST_PROTOCOL.md),

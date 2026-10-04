@@ -1,7 +1,8 @@
 # Module 2A2 verification
 
-Date: 2026-10-04. Module implementation was explicitly authorized. This is a
-staged verification record, not final Module 2A2 acceptance or DEV_LOCKED.
+Date: 2026-10-04. Module implementation was explicitly authorized. This staged
+record now includes a real DEV_LOCKED result below; it is not formal Module 2A2
+acceptance. Earlier checkpoint results retain their historical scope.
 
 ## Baseline
 
@@ -393,3 +394,86 @@ No DEV_LOCKED or Module 2A2 acceptance/completion claim.
   do not select among recordings by card difficulty. Unknown intervals/forms stay
   unknown, not negatives. Only adequate precise independent deployment evidence
   may produce DEV_LOCKED. No push, main merge, model work or Module 2B authorized.
+
+## 2026-10-04 — First-source real Development Data Lock
+
+- Continued original position one only, without choosing a source by card quality.
+  All four user-confirmed sources and prior exclusions remain unchanged. The
+  existing 37-frame survey and five-entry/12-time rough inventory were reused;
+  no second whole-playback request or model-assisted candidate selection.
+- Precise original-PNG inspection exposed rough identity/time mismatches. A
+  targeted local-image question received explicit user confirmation: both clear
+  opponent deployments are ordinary Minions (three), not Minion Horde (six).
+  The original rough review was not rewritten. Frozen selection rationale retains
+  the discarded Horde/Cart/Golden Knight hypotheses and why they do not count.
+- Four actual candidate bundles: Minions/normal is qualified with two independent
+  clear verified deployments and three original key boxes each; Cannon, Flying
+  Machine and Witch retain unknown form/ambiguity, no known-form verified plays.
+  No fixed card-name priority. Only the corrected target has adequate clear,
+  known-form evidence; distinctive group/visibility/occlusion/owner/form rationale
+  is explicit. Card groups, not persistent per-frame instances, count as plays.
+- Source timeline/boundaries come from measured PTS and strictly loaded indexes,
+  not average FPS or game clock. Shared complete capture segment starts at actual
+  first PTS and ends at actual last PTS; opening UI stays unknown within capture,
+  not a skipped battle prefix. User completion attestation is recorded independently
+  of result-screen absence. Onsets are sampled absence/first-appearance brackets,
+  not exact input times. Positive visibility windows are conservative reviewed
+  subsets; surviving/partially visible units outside them are unknown, not absent.
+- Seven real report/index pairs: 191 raw requests, 188 unique successful frames.
+  Reused survey contributes 37; new exclusive supplements contribute 154 requests.
+  Three overlaps during visibility diagnostics are retained and checked before
+  merging. No existing source, PNG, index, export report or human label overwritten.
+  Six selected original-key boxes are group rectangles; split-lane boxes include
+  intervening space. This is disclosed experimental data, not a detector result.
+- Fresh actual candidate CLI: four validates exit 0; four reviews exit 3,
+  candidate_gate=false / experiment_gate=false / status=insufficient. Historical
+  v1's four-play rule is unchanged and does not veto 2A2's two-play readiness.
+  Separate readiness exits 0 / DEV_VALIDATED, freeze-development exits 0 /
+  DEV_LOCKED, validate-lock exits 0. Canonical re-creation from the same verified
+  disk indexes equals the stored lock; repeated reload yields the same SHA-256.
+  Exclusive canonical experiment/type/version-one lock stays local/ignored.
+- Three explicit unknown intervals, six recomputed per-candidate coverage gaps,
+  zero verified negatives; Witch unknown and dense combat remain uncertainty.
+  No automatic evolution/cycle/elixir inference. Equipment, charge, rule version
+  and progress remain unknown/null. Evolution capability uses a manually inspected
+  current public catalog; missing variants are an inference, not an independently
+  authenticated exhaustive rules registry or future guarantee. This limitation is
+  in the frozen rationale and private source notes; correction requires new version.
+- Fresh historical Module 2A1 read-only regression: four reports, 533 requests,
+  402 unique frames; validate/review 0/3, four plays, 12 boxes, eight gaps,
+  candidate true, experiment false, insufficient. Only a new ignored review output;
+  no historical extraction/playback/label rewrite.
+- Fresh final full regression: **403 passed, one existing Windows permission skip
+  in 76.06 seconds**, exit 0. Pip check: no broken requirements, exit 0.
+  No dependencies or v1 producer/CLI/format changed. Current change consists of
+  one compatible identity validator, three test/fixture files and affected public
+  documentation; real evidence is private. Build/compile/wheel not rerun in this
+  continuation; model accuracy, Android/device, Model/Test GT and live safety
+  checks are not run and not claimed.
+- Protection recheck: all 687 existing file hashes unchanged, zero missing/changed,
+  including four new source recordings and original historical video. Before-hash
+  inventory and local attestation/provisional/final bundles are retained. Earlier
+  provisional serialization excluded an opening prefix; pre-freeze inspection
+  corrected it by creating a separate complete-file bundle, retaining the unfrozen
+  provisional file rather than overwriting it. Only the complete-file bundle froze.
+
+- Final fresh-context code/document review approved this narrow continuation,
+  with no Critical, Important or Minor finding. The reviewer independently ran
+  17 pure regression cases and legacy/new-identity lock compatibility checks;
+  did not independently rerun the full suite or certify private media, manual
+  labels, hashes, candidate truth, catalog completeness or future model suitability.
+  This scoped review does not replace independent ChatGPT module acceptance.
+- Final protection scan again matched all 687 protected hashes. The explicit
+  existing/new private set contained 899 files, all Git-ignored, zero tracked;
+  no tracked media/model/archive/credential binary was found. The new aggregate
+  protection report is also checked as ignored separately. Old Module 1/2A1
+  producer, loader, CLI, tests and dependency configuration remain unchanged.
+- Independent read-only public hygiene audit checked eight affected documents:
+  all 23 relative Markdown links exist; added text exposes no private source
+  filename, absolute path, SHA-256, account identifier or credential. The two
+  apparent private paths in changed tests are synthetic rejection inputs only.
+  Final diff check exits 0; local feature commits only, no push or main merge.
+
+Current verified stopping point: **DEV_LOCKED, ready for independent Module 2A2
+acceptance**, not formal acceptance. No push, main merge, PR/release, model or test
+experiment, Module 2B/3, Android/live/HUD, deletion or old evidence mutation.

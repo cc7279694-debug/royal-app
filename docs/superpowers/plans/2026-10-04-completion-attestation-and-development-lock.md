@@ -37,7 +37,7 @@
 - [x] Run focused tests before production change; expected new acceptance/lock cases fail because the identity is currently closed.
 - [x] Extend only development identity's allowed fields, requiring both new fields when either appears. No permissive generic-object change.
 - [x] Run focused and full existing tests; expected no failures, known permission skip only. Run pip check/diff check.
-- [ ] Record the superseding definition and actual verification, then local feature commit only.
+- [x] Record the superseding definition and actual verification, then local feature commit only.
 
 ### Task 2: Original-order real development evidence
 
@@ -45,9 +45,9 @@
 
 **Interfaces:** Consumes Task 1 identity metadata, original intake, first rough review, existing prepare/load_indexes and experiment CLI. Produces real DEV_LOCKED only with adequate verified evidence; otherwise an honest NOT_READY/blocked handoff.
 
-- [ ] Protect explicitly listed existing four-recording and historical 2A1 files by before hashes. Save the current user statement as a new sidecar, superseding but not rewriting old exclusions.
-- [ ] Reconsider source one first. Reuse its survey/rough review and last actual PTS; only extract missing locator/key-frame requests around reported deployments.
-- [ ] Review absence/spawn/visibility and original key-frame boxes, preserve ambiguous observations and unknown regions; record manual candidate comparison and known-form choice.
-- [ ] Run existing v1 validate/review and new readiness with all actual indexes; expect 0/3/0 only if evidence is valid and eligible. Otherwise do not change labels to force expected results.
-- [ ] Only then freeze-development into a new dedicated versioned lock directory and validate-lock; expect 0/0 with stable SHA-256. Stop at DEV_LOCKED; do not infer test qualification or enter 2B.
-- [ ] Fresh full regression/dependency/diff/privacy/hash checks, one fresh-context whole-change review, verified aggregate documents, local feature commit and stop. No push/merge.
+- [x] Protect explicitly listed existing four-recording and historical 2A1 files by before hashes. Save the current user statement as a new sidecar, superseding but not rewriting old exclusions.
+- [x] Reconsider source one first. Reuse its survey/rough review and last actual PTS; only extract missing locator/key-frame requests around reported deployments.
+- [x] Review absence/spawn/visibility and original key-frame boxes, preserve ambiguous observations and unknown regions; record manual candidate comparison and known-form choice.
+- [x] Run existing v1 validate/review and new readiness with all actual indexes; expect 0/3/0 only if evidence is valid and eligible. Otherwise do not change labels to force expected results.
+- [x] Only then freeze-development into a new dedicated versioned lock directory and validate-lock; expect 0/0 with stable SHA-256. Stop at DEV_LOCKED; do not infer test qualification or enter 2B.
+- [x] Fresh full regression/dependency/diff/privacy/hash checks, one fresh-context whole-change review, verified aggregate documents, local feature commit and stop. No push/merge.
