@@ -26,6 +26,7 @@ def _checked_report(draft, indexes):
     _unique([(c["card_id"], c["form"]) for c in candidates])
     _unique([u["unknown_id"] for u in draft["unknown_intervals"]])
     recording = None
+    development_segment = None
     all_plays = []
     all_refs = []
     gaps = []
@@ -49,9 +50,15 @@ def _checked_report(draft, indexes):
         if (target is None or target["card_id"] != candidate["card_id"]
                 or target["variant"] != FORM_TO_V1[candidate["form"]]):
             raise EvidenceError("Candidate card/form must match v1 evidence target.")
-        if not any(s["validation_status"] == "verified" and s["capture_complete"]
-                   and s["perspective"] != "unknown" for s in evidence["match_segments"]):
-            raise EvidenceError("Reviewed complete development match segment required.")
+        if len(evidence["match_segments"]) != 1:
+            raise EvidenceError("Exactly one development match segment required per candidate.")
+        segment = evidence["match_segments"][0]
+        if (segment["validation_status"] != "verified" or not segment["capture_complete"]
+                or segment["perspective"] == "unknown"):
+            raise EvidenceError("The sole development match segment must be complete and verified.")
+        if development_segment is not None and development_segment != segment:
+            raise EvidenceError("Candidate bundles must share identical development match metadata.")
+        development_segment = segment
         play_ids = [p["play_id"] for p in evidence["occurrences"]]
         deployment_ids = [d["play_id"] for d in candidate["deployments"]]
         _unique(deployment_ids)
@@ -124,7 +131,8 @@ def _checked_report(draft, indexes):
             if progress["remaining_count"] is not None and progress["remaining_count"] > evolution["charge_requirement"]:
                 raise EvidenceError("Manual evolution remaining count exceeds charge requirement.")
             if (deployment["clear"] and plays[deployment["play_id"]]["manual_verification_status"] == "verified"
-                    and candidate["form"] != "unknown"):
+                    and candidate["form"] != "unknown"
+                    and plays[deployment["play_id"]]["match_segment_id"] == development_segment["segment_id"]):
                 count += 1
         reasons = []
         if candidate["form"] == "unknown":

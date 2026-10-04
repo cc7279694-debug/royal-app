@@ -4,7 +4,9 @@ from importlib import import_module
 
 import pytest
 
-from clash_tracker_video.evidence_contract import EvidenceError
+from clash_tracker_video.evidence_contract import EvidenceError, validate_evidence
+from clash_tracker_video.experiment_lock import make_development_lock
+from evidence_fixtures import synthetic_evidence, synthetic_indexes
 from experiment_fixtures import development_fixture, split_forms
 
 
@@ -309,3 +311,99 @@ def test_malformed_index_snapshot_is_sanitized_without_traceback(mutation):
     with pytest.raises(EvidenceError) as error:
         api().require_development(draft, indexes)
     assert "private" not in str(error.value)
+
+
+def _assert_development_refused(draft, indexes):
+    for candidate in draft["candidates"]:
+        assert validate_evidence(candidate["evidence"], indexes) == []
+    report = api().validate_development(draft, indexes)
+    assert report["valid"] is False
+    assert report["status"] == "NOT_READY"
+    with pytest.raises(EvidenceError):
+        api().require_development(draft, indexes)
+    with pytest.raises(EvidenceError):
+        make_development_lock(draft, indexes)
+
+
+@pytest.mark.parametrize("first_complete", [True, False])
+def test_development_cannot_accumulate_plays_across_match_segments(first_complete):
+    draft, indexes = development_fixture()
+    candidate = draft["candidates"][0]
+    evidence = candidate["evidence"]
+    first = deepcopy(evidence["match_segments"][0])
+    first.update(end_seconds=3, capture_complete=first_complete)
+    second = deepcopy(evidence["match_segments"][0])
+    second.update(segment_id="second_match", start_seconds=4)
+    evidence["match_segments"] = [first, second]
+    evidence["occurrences"][1]["match_segment_id"] = "second_match"
+    # Remove only the old negative crossing both matches; keep legal reviewed
+    # absences inside their assigned match and the result screen outside both.
+    evidence["negative_intervals"] = [n for n in evidence["negative_intervals"]
+                                      if n["negative_id"] != "negative1"]
+    evidence["negative_intervals"][1]["match_segment_id"] = "second_match"
+    for deployment in candidate["deployments"]:
+        deployment["evolution"] = {"progress": "unknown", "remaining_count": None, "source": "manual"}
+    _assert_development_refused(draft, indexes)
+
+
+def _two_candidate_shared_match():
+    draft, _ = development_fixture()
+    full = synthetic_evidence(3)
+    indexes = synthetic_indexes(full)
+    normal = draft["candidates"][0]
+    normal["evidence"] = deepcopy(full)
+    normal["evidence"]["occurrences"] = normal["evidence"]["occurrences"][:2]
+    normal["evidence"]["frame_annotations"] = normal["evidence"]["frame_annotations"][:6]
+    normal["evidence"]["negative_intervals"] = []
+    other = deepcopy(normal)
+    other["candidate_id"] = "candidate_other"
+    other["card_id"] = "other_synthetic_card"
+    other["evidence"] = deepcopy(full)
+    other["evidence"]["target_card"]["card_id"] = "other_synthetic_card"
+    other["evidence"]["occurrences"] = other["evidence"]["occurrences"][2:]
+    other["evidence"]["occurrences"][0]["card_id"] = "other_synthetic_card"
+    other["evidence"]["frame_annotations"] = other["evidence"]["frame_annotations"][6:]
+    other["evidence"]["negative_intervals"] = []
+    other["deployments"] = [deepcopy(normal["deployments"][0])]
+    other["deployments"][0]["play_id"] = "play2"
+    draft["candidates"] = [normal, other]
+    for candidate in draft["candidates"]:
+        for deployment in candidate["deployments"]:
+            deployment["evolution"] = {"progress": "unknown", "remaining_count": None, "source": "manual"}
+    return draft, indexes
+
+
+@pytest.mark.parametrize("field,value", [
+    ("segment_id", "inconsistent_match"), ("start_seconds", .5),
+    ("end_seconds", 18), ("boundary_uncertainty_seconds", .25),
+    ("notes", "Different whole-match metadata"),
+])
+def test_candidate_bundles_must_share_identical_complete_match_metadata(field, value):
+    draft, indexes = _two_candidate_shared_match()
+    other = draft["candidates"][1]["evidence"]
+    other["match_segments"][0][field] = value
+    if field == "segment_id":
+        other["occurrences"][0]["match_segment_id"] = value
+    _assert_development_refused(draft, indexes)
+
+
+def test_one_shared_complete_match_remains_valid_for_all_candidates():
+    draft, indexes = _two_candidate_shared_match()
+    for candidate in draft["candidates"]:
+        assert validate_evidence(candidate["evidence"], indexes) == []
+    report = api().validate_development(draft, indexes)
+    assert report["status"] == "DEV_VALIDATED"
+    assert [c["clear_verified_plays"] for c in report["candidates"]] == [2, 1]
+    assert make_development_lock(draft, indexes)["lock_type"] == "development"
+
+
+def test_empty_candidates_remain_valid_but_not_ready():
+    draft, indexes = development_fixture()
+    draft["candidates"] = []
+    draft["selection"] = None
+    report = api().validate_development(draft, indexes)
+    assert report["valid"] is True
+    assert report["status"] == "NOT_READY"
+    assert report["candidates"] == []
+    with pytest.raises(EvidenceError):
+        make_development_lock(draft, indexes)
