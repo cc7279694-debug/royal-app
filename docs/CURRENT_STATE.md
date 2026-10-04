@@ -10,7 +10,8 @@ Last verified: 2026-10-04.
   integration published at `3ad657f2c9190f4e389ccd035682becd12d0c51c`.
 - Module 2A2 Independent Evidence & Experiment Lock: separately authorized
   2026-10-04; infrastructure implemented and verified on its feature branch.
-  Final branch review is pending; real evidence/lock phase remains incomplete.
+  Final review's blocking finding is fixed and scoped re-review passed;
+  real evidence/lock phase remains incomplete.
 - Real experiment: WAITING_FOR_DEVELOPMENT_MATCH. No new natural development
   replay supplied; no actual Development Data Lock or DEV_LOCKED result.
 - Module 2B, Module 3, Android, HUD and realtime remain closed and unstarted.
@@ -40,8 +41,11 @@ No extraction/playback/label change; only a new ignored machine review report.
 Separate development contract/readiness, immutable SHA-256/versioned lock chain,
 future Model/Test GT contracts and private experiment CLI are implemented.
 TDD fixes and scoped re-review closed contradictory evolved equipment and weak
-snapshot types. Task 1/2/3 reviews passed; final whole-branch review is pending.
-Fresh full suite: 376 passed, one known Windows symlink permission skip.
+snapshot types. Task 1/2/3 reviews passed. Final whole-branch review identified
+cross/incomplete-segment accumulation; the new adapter now requires exactly one
+complete shared match segment. Scoped re-review confirmed the finding addressed,
+with no new Critical/Important issue or out-of-scope observation.
+Fresh post-fix full suite: 385 passed, one known Windows symlink permission skip.
 Dependency check, compile check and no-index wheel build passed; dependencies
 and all existing Module 1/2A1 production/tests are unchanged. Full evidence and
 limits are recorded in [2A2 verification](VERIFICATION_M2A2.md).
@@ -86,7 +90,7 @@ Feature: `feat/module-2a2-experiment-lock`, from
 no push, main merge, PR, release, rebase or branch deletion. Preserve the 2A1 branch.
 Exact final commit belongs to Git and the handoff.
 
-Finish final review/document checkpoint, then await a NEW natural replay at
+Infrastructure checkpoint complete; await a NEW natural replay at
 `local_data/recordings/development_01.mp4`. Record battle-history replay from
 opening through result at normal speed, no edits. Do not preselect a card or
 arrange the opponent. Missing footage blocks DEV_LOCKED and final 2A2 acceptance.

@@ -89,9 +89,78 @@ Android, HUD, live game access, runtime network request or external asset import
 - README/state/protocol/contract/plan cross-links checked: no missing relative
   targets. The detailed protected hash inventory remains ignored and private.
 
-Real readiness/freezing cannot run without new development footage. Final branch
-review will be recorded before the staged handoff. This is infrastructure
-verification, not Module 2A2 acceptance or recognition-performance evidence.
+### Final branch review and gate correction
+
+The fresh whole-branch review at `3ad657f..9cabd10` found one Important issue:
+the new adapter accepted any complete segment and counted clear verified plays
+across disjoint or incomplete segments. An in-memory two-segment fixture reached
+DEV_VALIDATED and a development lock. This is a detectable structural conflict,
+not a request to authenticate source footage or human declarations.
+
+A narrow two-file new-adapter/test fix now requires one complete reviewed shared
+segment per candidate bundle, consistent identity/bounds/metadata across
+candidates and qualifying deployments bound to it. The original v1 validator,
+extractor and old CLI are untouched. Local code commit: `beda5b8`.
+
+- Nine new regression cases: two cross-segment/incomplete variants, five
+  cross-candidate metadata conflicts, valid shared-match lock compatibility,
+  and empty valid-but-NOT_READY compatibility.
+- Every malformed fixture first passes unchanged v1 validation, then must be
+  refused by development readiness, require_development and lock construction.
+- TDD RED: 7 failed / 56 passed, then GREEN: 63 passed. Controller focused run:
+  63 passed in 0.89s; exit 0.
+- Latest controller full run: **385 passed, 1 skipped in 77.14s**, exit 0.
+  This supersedes the earlier 376-pass full run as final regression evidence.
+- Fresh pip check and rebuilt no-index wheel: exit 0. No dependency change.
+- Fresh scoped re-review: finding ADDRESSED; no new breakage, Critical/Important
+  issue or out-of-scope observation. No new full-branch review loop or feature
+  expansion. All blocking findings from the whole-branch review are closed.
+- Post-fix old CLI validate/review repeated: exit 0/3. All 591 protected hashes
+  checked again after the 385-pass regression; zero changes, original MP4 intact.
+  Compile/diff checks passed. No extraction, playback or annotation changes.
+
+Real readiness/freezing cannot run without new development footage. This is
+infrastructure verification, not Module 2A2 acceptance or recognition-performance
+evidence. The 376-pass run above precedes this final gate correction.
+
+## Changed file inventory and storage
+
+Nine new Python files under tools/offline_video/:
+
+- src/clash_tracker_video/experiment_contract.py
+- src/clash_tracker_video/experiment_development.py
+- src/clash_tracker_video/experiment_lock.py
+- src/clash_tracker_video/experiment_cli.py
+- tests/experiment_fixtures.py
+- tests/lock_fixtures.py
+- tests/test_experiment_development.py
+- tests/test_experiment_lock.py
+- tests/test_experiment_cli.py
+
+Four new public documents: MODULE_2A2_BLIND_TEST_PROTOCOL.md,
+MODULE_2A2_CONTRACTS.md, VERIFICATION_M2A2.md and
+superpowers/plans/2026-10-04-module-2a2-experiment-lock.md, all under docs/.
+Four updated documents: README.md, docs/CURRENT_STATE.md, docs/DECISIONS.md,
+docs/DEVELOPMENT_PLAN.md. No files deleted or old Python/dependency files modified.
+
+Storage: separate versioned local JSON contracts/locks in ignored outputs/ or
+local_data/, exclusively created. No SQLite, migration, repository storage,
+backup format, dependency or original annotation format change. Synthetic media,
+locks, build files and detailed review artifacts remain ignored and are not real
+experiment evidence. All public documents contain only aggregate private results.
+
+## Staged checkpoint
+
+Infrastructure is implemented and verified, with final blocking review findings
+closed; Module 2A2 itself is not accepted or complete. Waiting for a new complete
+natural development replay at local_data/recordings/development_01.mp4. No actual
+development selection/freeze, Model Lock, Test GT or Evaluation Result exists.
+The prepare handoff command and recording instructions are in README.md.
+
+All changes are focused local feature commits. Main and its remote remain at
+the baseline, the original 2A1 branch is preserved, and no 2A2 branch is pushed.
+No PR, merge, release, history rewrite, next module or model work occurred.
+Final commit SHA is reported from Git in the handoff, not self-referenced here.
 
 ## Acceptance boundary
 

@@ -20,7 +20,9 @@ The closed root has `schema_version=1`, `experiment_id`, positive `freeze_versio
 - `evidence` is an unchanged v1 single-target bundle for this card/form. Map
   evolved to v1 known_evolution only at this boundary. Unknown observations remain
   ambiguous/draft; they cannot become verified positives. All candidates refer to
-  the same measured recording metadata and reviewed complete match segment.
+  the same measured recording metadata and exactly one shared reviewed complete
+  match segment. Segment identity/bounds/metadata must agree across bundles;
+  deployment counts cannot be combined across segments or incomplete matches.
 - Deployment annotations reference each v1 play_id exactly once and add clear,
   form, possible_missed_play, evolution={progress, remaining_count, source=manual}.
 - Candidate evolution={capable, equipped, charge_requirement, rules_version}.
