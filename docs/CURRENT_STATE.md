@@ -10,16 +10,17 @@ Last verified: 2026-10-04.
   integration published at `3ad657f2c9190f4e389ccd035682becd12d0c51c`.
 - Module 2A2 Independent Evidence & Experiment Lock: separately authorized
   2026-10-04; infrastructure implemented and verified on its feature branch.
-  First-source real evidence/lock phase is verified at DEV_LOCKED. Independent
-  ChatGPT review found that user-confirmed completeness did not enforce the
-  actual first/last recording boundaries. This narrow repair is verified locally,
-  awaiting independent re-review and formal acceptance. This is not Module 2B
-  authorization.
+  Formally user accepted on 2026-10-04 at
+  `69162023b87b71209f8dec9ebc9af69d4bfda944`, after the independent-review
+  completion-boundary repair. First-source real evidence/lock remains DEV_LOCKED.
+  The current user instruction authorizes acceptance documentation, ff-only main
+  integration and publication, not Module 2B. Formal acceptance is recorded from
+  that user instruction; this session did not retrieve another ChatGPT response.
 - Real experiment: user reconfirms all four natural replay recordings cover full
   matches and explicitly supersedes the result-screen completeness gate. Use
   user_confirmed completion provenance and the actual file-end boundary; absence
-  of victory/defeat UI is not incompleteness. Resume the first original-order
-  input using its existing rough review. The user corrected two deployments to
+  of victory/defeat UI is not incompleteness. The first original-order input was
+  completed using its existing rough review. The user corrected two deployments to
   normal Minions (three units), not Minion Horde. Target minions/normal is frozen
   with two independent verified plays and six original key-frame boxes.
   All sources, prior exclusions and first survey/rough review are retained.
@@ -56,7 +57,7 @@ snapshot types. Task 1/2/3 reviews passed. Final whole-branch review identified
 cross/incomplete-segment accumulation; the new adapter now requires exactly one
 complete shared match segment. Scoped re-review confirmed the finding addressed,
 with no new Critical/Important issue or out-of-scope observation.
-Fresh completion-boundary repair full suite: 406 passed, one known Windows
+Fresh acceptance-integration full suite: 406 passed, one known Windows
 symlink permission skip; pip check passed. Earlier compile check and no-index
 wheel build passed; those build checks were not rerun this session. Dependencies
 and all existing Module 1/2A1 production/tests are unchanged. Full evidence and
@@ -159,13 +160,17 @@ Historical Inferno Dragon evidence is regression-only, not the first new target.
 
 ## Git and next step
 
-Feature: `feat/module-2a2-experiment-lock`, from
-`3ad657f2c9190f4e389ccd035682becd12d0c51c`. Focused local feature commits only;
-no push, main merge, PR, release, rebase or branch deletion. Preserve the 2A1 branch.
-Exact final commit belongs to Git and the handoff.
+Accepted feature: `feat/module-2a2-experiment-lock`, from
+`3ad657f2c9190f4e389ccd035682becd12d0c51c`; accepted code is
+`69162023b87b71209f8dec9ebc9af69d4bfda944`. The user explicitly authorized a
+documentation-only acceptance commit, feature publication and ff-only main
+integration/publication. Preserve this feature and the 2A1 branch; no PR, release,
+rebase, force push or deletion. Exact publication outcome/tip belongs to verified
+Git refs and the integration handoff, not an inference from acceptance status.
 
-Stop at verified DEV_LOCKED and provide the completion evidence for independent
-Module 2A2 acceptance. No new source, Model/Test GT Lock, model experiment or
+Stop at formally accepted DEV_LOCKED. Module 2B is the next planned module,
+but remains Gated until separate planning and explicit authorization.
+No new source, Model/Test GT Lock, model experiment or
 Module 2B begins without separate authorization. Preserve every source, old rough
 review, prior exclusion and new lock; corrections use another freeze version.
 Do not turn full-match attestation or uncovered visibility into negative labels.

@@ -1,8 +1,9 @@
 # Module 2A2 verification
 
-Date: 2026-10-04. Module implementation was explicitly authorized. This staged
-record now includes a real DEV_LOCKED result below; it is not formal Module 2A2
-acceptance. Earlier checkpoint results retain their historical scope.
+Date: 2026-10-04. Module 2A2 is formally user accepted at
+`69162023b87b71209f8dec9ebc9af69d4bfda944`; accepted stopping point is DEV_LOCKED.
+See the final acceptance/integration section. Earlier pending-review/no-push
+checkpoints retain their historical scope and are not the current status.
 
 ## Baseline
 
@@ -474,7 +475,7 @@ No DEV_LOCKED or Module 2A2 acceptance/completion claim.
   apparent private paths in changed tests are synthetic rejection inputs only.
   Final diff check exits 0; local feature commits only, no push or main merge.
 
-Current verified stopping point: **DEV_LOCKED, ready for independent Module 2A2
+Historical pre-repair stopping point: **DEV_LOCKED, ready for independent Module 2A2
 acceptance**, not formal acceptance. No push, main merge, PR/release, model or test
 experiment, Module 2B/3, Android/live/HUD, deletion or old evidence mutation.
 
@@ -484,7 +485,8 @@ experiment, Module 2B/3, Android/live/HUD, deletion or old evidence mutation.
   found one Important blocker missed by the earlier scoped local review: a
   user-confirmed draft could mark a shortened shared segment complete, leave the
   excluded tail unknown, and still validate/freeze. The prior local review does
-  not establish independent acceptance; this fix awaits ChatGPT re-review.
+  not establish independent acceptance; at this repair checkpoint the fix awaited
+  ChatGPT re-review. The later user acceptance is recorded below.
 - Minimal adapter-only repair: when completion_attestation=user_confirmed, every
   candidate's sole verified complete shared segment must start at relative zero
   and end exactly at recording.last_frame_seconds. Comparisons use existing
@@ -536,4 +538,48 @@ experiment, Module 2B/3, Android/live/HUD, deletion or old evidence mutation.
   Model/Test GT experiment and independent module acceptance are not rerun or
   claimed. No dependency, database, extractor, lock algorithm or module expansion.
   Repair remains on the original feature branch: local commit only, no push or
-  main merge. Stop for independent re-review; Module 2B remains closed.
+  main merge at that historical checkpoint. Module 2B remains closed.
+
+## 2026-10-04 — Formal acceptance and authorized main integration
+
+- Acceptance source: the user's explicit instruction to record formal Module 2A2
+  acceptance, merge into main and push, without starting Module 2B. Accepted code:
+  `69162023b87b71209f8dec9ebc9af69d4bfda944`. The earlier complete review and
+  narrow repair packet are retained unchanged. This session does not claim to
+  have retrieved a new ChatGPT verdict or independently rewatched private media.
+- Module 2A2 is Completed at DEV_LOCKED: separate readiness/contracts, immutable
+  development lock and the reviewed user-confirmed completion-boundary repair.
+  This is not successful recognition, model training, Model Lock or Test GT Lock.
+  Module 2B requires separate planning and explicit authorization and is not begun.
+- Fetched origin/main and local main match
+  `3ad657f2c9190f4e389ccd035682becd12d0c51c`; accepted feature is a fast-forward
+  descendant. The original feature is retained. This acceptance commit changes
+  only README, CURRENT_STATE, DEVELOPMENT_PLAN and this verification document;
+  implementation, tests, dependencies and private evidence are unchanged.
+- Fresh pre-integration full command:
+  `./.venv/Scripts/python.exe -m pytest -q --tb=short`:
+  **406 passed, 1 skipped in 391.22 seconds**, exit 0. The known Windows symlink
+  permission skip remains; this run is slower than prior repair runs, not their
+  reused output. Fresh pip check: no broken requirements, exit 0. Diff check: exit 0.
+- Fresh real read-only check reloads seven report/index pairs, 191 requests,
+  188 unique frames; readiness and validate-lock exit 0. Canonical reconstruction
+  equals the original version-one lock; no new freeze, overwrite, label change,
+  extraction or human review. Minions/normal, two verified independent plays,
+  six boxes, three explicit unknown intervals and six gaps remain unchanged.
+- All **912** explicitly protected existing files match pre-integration SHA-256
+  hashes, zero changed/missing. This includes 901 source/evidence/lock files and
+  the eleven existing repair receipts. Detailed inventories remain private.
+  Explicit private-file Git ignore checks pass; no private files are tracked.
+  All eighteen old Module 1/2A1 offline-tool files still match the accepted main
+  baseline. Review packets stay outside the repository and are not published.
+- Authorized sequence: documentation-only acceptance commit on the feature;
+  publish the feature; ff-only merge into main; rerun the full suite on resulting
+  main before publishing it; verify both remote refs and preserve both old feature
+  branches. Final publication SHA/status and post-merge results belong to Git and
+  the final integration handoff, not an assumption from this acceptance record.
+- Remaining limitations are inherited unchanged: human provenance/complete-view
+  attestations are not source authenticity; unknown intervals/forms are not
+  negatives; one match does not establish generalization; group boxes and deferred
+  GT duplicate-annotation validation remain disclosed; live safety is still gated.
+  Build/compile, model accuracy, blind test and Android/live checks are not rerun.
+  No PR, release, force push, rebase, branch deletion or subsequent module work.

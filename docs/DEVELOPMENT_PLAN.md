@@ -52,9 +52,9 @@ has passed timestamp, image, output safety, and visual verification.
 
 ## Module 2A — Offline Evidence and Annotation Preparation
 
-Status: In Progress — 2A1 formally accepted on 2026-10-04 at `98037ceba81683ad1a2c214bada30a10f2f3f69e`.
-2A2 was separately approved on 2026-10-04 and reached DEV_LOCKED, awaiting
-independent acceptance. Its prospective
+Status: Completed — 2A1 formally accepted on 2026-10-04 at `98037ceba81683ad1a2c214bada30a10f2f3f69e`.
+2A2 was separately approved and formally user accepted on 2026-10-04 at
+`69162023b87b71209f8dec9ebc9af69d4bfda944`, with DEV_LOCKED. Its prospective
 experiment rules below supersede the original 2A first-experiment thresholds;
 the following four-play rules remain historical 2A1 semantics only.
 
@@ -119,22 +119,25 @@ Correct insufficient output may complete 2A1 without satisfying 2B readiness.
 
 ### Module 2A2 — Independent Evidence & Experiment Lock
 
-Status: In Progress — implementation separately authorized on 2026-10-04.
+Status: Completed — formally user accepted on 2026-10-04 at
+`69162023b87b71209f8dec9ebc9af69d4bfda944` after the completion-boundary repair.
 Infrastructure implemented; full synthetic/regression tests passed. Four new
 recordings received. User explicitly reconfirms complete natural whole-match
 coverage and replaces the result-screen requirement with user_confirmed completion
 and the last actual decoded frame as evaluable end. Result-screen absence is not
 incompleteness or a Freeze veto; damaged/undecodable/obviously truncated/key-battle-
 missing/human-incomplete material still rejects. Old checks and exclusions remain
-historical, all footage/evidence retained, not automatic negatives. Resume source
-one in the unchanged intake order, using its existing rough review; no card/
+historical, all footage/evidence retained, not automatic negatives. Source
+one was completed in the unchanged intake order, using its existing rough review; no card/
 difficulty/quality filtering. Fresh first-source evidence reached DEV_LOCKED:
 user-confirmed ordinary Minions, two independent verified plays and six original
 key boxes; four candidate bundles retain other forms/doubts as unknown. Readiness,
 freeze and lock validation all exit 0 with stable recomputed digest. Three explicit
 unknown intervals and zero negatives remain; complete-file boundary is actual
-first-to-last PTS, not game-clock/result UI. Independent acceptance is pending;
-no Module 2B, Model Lock or Test GT operation is authorized.
+first-to-last PTS, not game-clock/result UI. User-confirmed segments must cover
+exactly 0..last_frame_seconds. The user authorizes only acceptance records,
+ff-only main integration and push, retaining the feature branch. No Module 2B,
+Model Lock or Test GT operation is authorized; no model success is claimed.
 
 Owns a separate development readiness/freeze layer, declared underlying-match
 identity, manual candidate/form selection, evolution ground truth, canonical
@@ -156,7 +159,7 @@ retains non-evaluable/other-form/unknown cases and locks GT before any inference
 Same underlying match cannot cross splits, regardless of recording/file hashes.
 Unknown intervals and other/unknown forms are not negatives; no evolution estimate.
 
-Real execution of this module stops at DEV_LOCKED for independent acceptance.
+Real execution of this module has stopped at formally accepted DEV_LOCKED.
 Building future contracts does not authorize actual model/test execution or 2B.
 See [implementation plan](superpowers/plans/2026-10-04-module-2a2-experiment-lock.md)
 and [blind-test protocol](MODULE_2A2_BLIND_TEST_PROTOCOL.md).
