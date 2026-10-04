@@ -6,7 +6,12 @@ It does not authorize Module 2B or certify detection accuracy or zero ban risk.
 ## Development first
 
 1. Play normally. After the match, record its entire replay with the system
-   recorder, from opening through result, at normal speed and without edits.
+   recorder, at normal speed and without edits. Completeness means the user
+   confirms coverage of the full match; the last actual decoded frame is the
+   evaluable end. A victory/defeat/result screen is not required. Record
+   completion_attestation=user_confirmed and result-screen presence separately.
+   Still reject damage, decoding failure, obvious mid-match truncation, missing
+   key battle intervals or an explicit human statement of incompleteness.
 2. Keep a new recording in `local_data/recordings/development_01.mp4`. The old
    2A1 Inferno Dragon match is only a historical pipeline regression sample.
 3. A human reviews the whole replay, inventories the opponent's actual cards
@@ -67,6 +72,13 @@ that a declared match ID is truthful, that the first qualifying match was chosen
 or that nobody saw predictions. This is not OS isolation, signing, tamper-proof
 storage or original-video authenticity certification. Local files can be edited
 outside the tool; consumers must revalidate digests and references.
+
+The 2026-10-04 user-confirmed completeness amendment supersedes the earlier
+result-screen boundary gate. Missing ending UI alone is not missing battle
+content and does not prevent development freeze. It is also not evidence of
+target absence: retain uncertainty/other forms and ordinary half-open intervals,
+including explicit terminal uncertainty where needed. Technical contradictions
+about damaged/missing battle content still require rejection or resolution.
 
 Core processing remains local. Private recordings, indexes, labels, identifiers,
 hash manifests and locks stay in Git-ignored `local_data/` or `outputs/`. Public

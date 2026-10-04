@@ -79,8 +79,16 @@ def validate_draft_shape(draft):
     _text(draft["experiment_id"])
     utc_time(draft["created_at"])
     identity = draft["identity"]
-    _object(identity, {"underlying_match_id", "recording_id", "split", "provenance",
-                       "complete_recording", "unedited_recording", "full_human_review"})
+    identity_fields = {"underlying_match_id", "recording_id", "split", "provenance",
+                       "complete_recording", "unedited_recording", "full_human_review"}
+    completion_fields = {"completion_attestation", "terminal_result_screen_present"}
+    # Old drafts stay valid; new paired metadata records provenance, not a UI gate.
+    if type(identity) is dict and set(identity) & completion_fields:
+        _object(identity, identity_fields | completion_fields)
+        _enum(identity["completion_attestation"], {"user_confirmed"})
+        _boolean(identity["terminal_result_screen_present"])
+    else:
+        _object(identity, identity_fields)
     for field in ("underlying_match_id", "recording_id"):
         _text(identity[field])
     _enum(identity["split"], {"development"})

@@ -12,11 +12,12 @@ Last verified: 2026-10-04.
   2026-10-04; infrastructure implemented and verified on its feature branch.
   Final review's blocking finding is fixed and scoped re-review passed;
   real evidence/lock phase remains incomplete.
-- Real experiment: no confirmed complete recording in the original four after
-  authorized sequential boundary checks. First/second remain incomplete;
-  third/fourth have unconfirmed final whole-match result boundaries, not
-  Freeze-eligible. Boundary diagnostics do not establish full human review.
-  All sources and first-recording survey/rough review are retained, never negatives.
+- Real experiment: user reconfirms all four natural replay recordings cover full
+  matches and explicitly supersedes the result-screen completeness gate. Use
+  user_confirmed completion provenance and the actual file-end boundary; absence
+  of victory/defeat UI is not incompleteness. Resume the first original-order
+  input using its existing rough review. Precise evidence/target remain pending.
+  All sources, prior exclusions and first survey/rough review are retained.
   No actual Development Data Lock or DEV_LOCKED result.
 - Module 2B, Module 3, Android, HUD and realtime remain closed and unstarted.
 
@@ -69,57 +70,31 @@ Historical Inferno Dragon evidence is regression-only, not the first new target.
 
 ## Current recording intake
 
-- User originally declared four distinct NEW natural matches, complete opening-to-result
-  replays, normal speed and unedited; none is the historical Inferno Dragon match.
-  These are provenance/completeness attestations, not a new full evidence review.
-- Metadata/hash checks cover all four sources. Filename order selected the first
-  provisional development candidate before pixel exposure, without card filtering.
-  Distinct byte hashes do not independently establish underlying-match identity.
-- Existing prepare exited 0; its one report/index pair loads successfully:
-  37 requests, 37 unique successful frames and four contact pages. All four
-  original source hashes are unchanged. Sources and generated outputs are ignored.
-- User explicitly authorized switching to the second item in the preserved intake
-  array, then separately authorized third followed by fourth, stopping at the first
-  confirmed complete input. Third was checked before fourth; no qualifying complete
-  input was found. No re-sorting, card/difficulty/candidate-quality filtering or
-  natural chronological ordering is inferred. All four have now had pixel exposure;
-  none is an accepted independent blind-test selection.
-- User has watched the whole available first file and supplied five card/form
-  inventory entries and 12 approximate deployment times, without asserting an
-  exhaustive inventory. One form is unknown; dense combat uncertainty is retained,
-  with no verified negative labels or precise occurrence/box annotations created.
-- A fresh read-only full scan and checked index agree on the exact actual last
-  frame. Its original PNG remains gameplay without a verified ending/result.
-  Whole-file viewing is not opening-to-result recording completeness. The user
-  explicitly requires this first file to remain preserved and marked incomplete,
-  not meeting Development Data Freeze conditions and never used as a negative.
-- Rough human review and end-check results are stored as an ignored local sidecar,
-  not a development draft or lock. No code/model work or next module started.
-- Second item: fresh full technical scan, then six boundary-only exports succeed.
-  Battle-history/loading/matchup opening is visible; its actual last frame is
-  ongoing gameplay, not a result. Marked incomplete/not Freeze-eligible, not a
-  negative. The conditional full-survey prepare command was not run; no whole-file
-  human/card review, target choice or lock is claimed for it.
-- Third item: six opening/end exports plus 13 supplementary tail exports to check
-  whether crown/transition animation establishes a final whole-match result. It
-  does not unambiguously show one; the actual end remains a red/blue transition.
-  Result boundary unconfirmed, not Freeze-eligible; not a negative sample. Its
-  searching-for-opponent opening differs from the original replay declaration;
-  provenance remains unresolved, not silently certified or rewritten.
-- Fourth was checked only after the third's result-boundary failure. Six boundary
-  exports show a battlefield opening and terminal enemy crown-scoring animation,
-  not an unambiguous final whole-match outcome. Result boundary unconfirmed,
-  not Freeze-eligible and not a negative. No default full-survey preparation,
-  full human/card review, target, precise labels or lock for either new item.
-- The protocol requires opening through a clear final match result, not a reward
-  page. An unambiguous result animation may suffice; tower destruction/crown
-  increments/transitions alone must not be promoted to final-result proof.
-- Fresh checks: three diagnostic reports, 25 successful exports (24 unique
-  recording/PTS identities, not merged evidence indexes). PNG dimensions and
-  PTS-derived times agree, including both exact actual end frames. All 61 explicit
-  pre-check files (four sources and earlier evidence) remain unchanged; all 96
-  explicit private source/output files are Git-ignored, zero tracked private data.
-  New boundary/decision/check files are private exclusive additions, not overwrites.
+- User confirms four distinct new natural whole-match replays, normal speed,
+  unedited, not the historical Inferno Dragon match; the current statement resolves
+  the old missing-result gate by a new definition, not by rewriting past images.
+- Complete replay now means user confirms full-match coverage; last actual decoded
+  frame is the evaluable end. Record completion_attestation=user_confirmed and
+  terminal_result_screen_present independently. Missing result UI alone never
+  blocks freeze. Technical corruption/undecodability, obvious mid-match truncation,
+  missing key battle content or explicit human incompleteness still reject.
+- Original intake array remains fixed. Source one is the first usable continuation;
+  no re-sorting or card/difficulty/quality-based source selection. Byte hashes do
+  not prove match independence. All four have had prior boundary pixel exposure;
+  none is selected or qualified for prospective independent blind testing.
+- Existing first prepare/report/index remains valid: 37 successful unique frames
+  and four contact pages. Its actual measured last frame supplies the endpoint;
+  no ending UI is fabricated, no original survey/rough-review file overwritten.
+- User already watched the first file in full, own-bottom view, with five card/form
+  entries and 12 approximate independent deployments. The list is not exhaustive;
+  one form and dense combat remain unknown. These times locate precision work,
+  not verified onset intervals, exact boxes or automatically negative coverage.
+- Historical first/second incomplete classifications and third/fourth result-boundary
+  failures are superseded solely as result-screen requirements. Existing factual
+  technical/image observations and all old private sidecars remain untouched.
+- Fresh pre-change protection: all 96 current-recording files and 591 historical
+  2A1 files checked, 687 distinct protected files unchanged. First report/index
+  loaded again; supplements/attestation/drafts use new ignored paths only.
 
 ## Limits and unchanged gates
 
@@ -149,16 +124,13 @@ Feature: `feat/module-2a2-experiment-lock`, from
 no push, main merge, PR, release, rebase or branch deletion. Preserve the 2A1 branch.
 Exact final commit belongs to Git and the handoff.
 
-Infrastructure checkpoint complete; the authorized third/fourth checks have ended
-without a confirmed complete input. Next obtain a complete natural replay from
-opening through an unambiguous final match result; do not require a reward page
-or ask for card labels before resolving the source boundary. Preserve all four
-sources, first-file rough review and uncertainty without repeat review or negative
-labels. No new full-survey preparation, selection or Freeze is justified by these
-diagnostics. Never relax completeness or infer a final result to force a lock.
-This boundary/document-only turn changes no production/test/dependency file;
-full pytest/pip/build were not rerun. Precise evidence/selection/freeze and final
-2A2 acceptance remain pending; no model/test work opened.
+Continue first-source PTS-aligned deployment/key-frame review and manual candidate
+comparison under the user's authorized amendment. Preserve unknowns; only freeze
+if >=2 clear independent deployments of one known form pass all existing checks.
+Do not skip to a more convenient source, re-record for result UI, edit old evidence,
+or treat human completeness as target/negative annotation. Stop at a truthful
+DEV_LOCKED or unresolved evidence blocker; final 2A2 acceptance remains separate,
+and no model/test work or next module is opened.
 
 See [2A2 verification](VERIFICATION_M2A2.md),
 [blind protocol](MODULE_2A2_BLIND_TEST_PROTOCOL.md),

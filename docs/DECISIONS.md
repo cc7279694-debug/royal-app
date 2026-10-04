@@ -362,3 +362,47 @@ independence and avoiding parameter tuning on test pixels or ground truth.
   attestations, coherent forgery or source-video authenticity.
 - Module 2B still requires separate acceptance, planning and explicit approval.
   No training, inference, Android or live feature is authorized by this decision.
+
+## 2026-10-04 — User-Confirmed Completeness and Actual File-End Boundary
+
+### Decision
+
+The user explicitly replaces the result-screen requirement: a complete replay is
+one the user confirms covers the full natural match. Its last actual decoded
+frame is the valid evaluable end. Record completion_attestation=user_confirmed
+and terminal_result_screen_present separately; false screen presence is not
+incompleteness or a Development Data Freeze veto.
+
+### Context
+
+The user reconfirms all four supplied recordings and authorizes continuing in
+their original intake order, starting with the first usable input and reusing its
+existing human rough review. This supersedes the visible-result-based exclusions
+in the earlier boundary-check documents, not their factual image observations.
+Historical exclusions, files and reviews are retained rather than rewritten.
+
+### Alternatives
+
+- Require a visible victory/defeat/result screen before any development evidence.
+- Use explicit human whole-match coverage plus technical integrity and actual PTS.
+
+### Reason
+
+Missing ending UI does not establish missing battle content. Human confirmation
+is an auditable declaration, not software-certified source authenticity.
+
+### Consequences
+
+- Still reject damaged or undecodable files, obvious mid-match truncation, missing
+  key battle intervals or explicit human incompleteness. Do not hide such conflicts
+  behind an attestation; absence of result UI alone is not one.
+- Preserve strict report/index/PNG/PTS checks, whole-file human review, one shared
+  complete segment and >=2 independent clear verified deployments of one known form.
+- Ordinary intervals remain half-open; retain explicit terminal uncertainty when
+  needed. The file end or missing result screen is never an automatic negative.
+- Retain the existing v1 evidence/extractor and prior immutable records. Additive
+  development identity metadata can be bound by the existing digest without a
+  new database, dependency or lock format.
+- No result-screen-driven re-recording is required for these four inputs. Do not
+  filter or reorder them by card/difficulty/quality. Stop at a truthful Development
+  Data Lock or unresolved evidence blocker; Module 2B remains separately gated.

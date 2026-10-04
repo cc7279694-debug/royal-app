@@ -67,3 +67,19 @@ def split_forms(draft):
         candidates.append(candidate)
     draft["candidates"] = candidates
     return draft
+
+
+def user_confirmed_development_fixture():
+    """No result-screen negative; actual file end and terminal uncertainty retained."""
+    draft, indexes = development_fixture()
+    draft["identity"].update(completion_attestation="user_confirmed",
+                             terminal_result_screen_present=False)
+    candidate = draft["candidates"][0]
+    candidate["evidence"]["match_segments"][0]["end_seconds"] = 20
+    candidate["evidence"]["negative_intervals"] = [
+        n for n in candidate["evidence"]["negative_intervals"] if n["reason"] != "result"]
+    draft["unknown_intervals"] = [{"unknown_id": "terminal_unknown", "recording_id": "synthetic",
+        "start_seconds": 19, "end_seconds": 20, "reason": "Result UI is absent; target absence is not inferred"}]
+    for deployment in candidate["deployments"]:
+        deployment["evolution"] = {"progress": "unknown", "remaining_count": None, "source": "manual"}
+    return draft, indexes

@@ -358,8 +358,38 @@ for target selection. All former unknown evidence stays unknown, not negative.
   full-file inventory, target, precise labels, Development Lock, 2B, Android,
   live/HUD, source deletion, push, main merge, PR or release.
 
-Current stopping point: all original four checked in the authorized sequence;
+At that stopping point: all original four checked in the authorized sequence;
 no confirmed complete development recording found. Stop; obtain a complete
 natural replay through an unambiguous final match result before full review.
 All sources, historical review and uncertainty remain preserved, not negatives.
 No DEV_LOCKED or Module 2A2 acceptance/completion claim.
+
+## 2026-10-04 — Authorized completion-definition amendment
+
+- The user now explicitly confirms all four recordings cover complete natural
+  matches. This supersedes the earlier result-screen-based exclusions, not the
+  immutable historical observations or files. A visible victory/defeat/result
+  screen is no longer required; the actual final decoded PTS frame is the valid
+  evaluable end. Missing result UI alone must not block Development Data Freeze.
+- Identity may record the strict paired fields
+  `completion_attestation=user_confirmed` and
+  `terminal_result_screen_present=false`. Legacy identities remain compatible;
+  both new fields are required together and are included in the existing freeze
+  digest. False complete/unedited/full-review attestations, incomplete segments,
+  corrupt or undecodable files and missing key battle coverage remain blockers.
+- Tests first: three new acceptance/lock cases failed on the old closed identity
+  shape; 139 focused cases passed. The minimal loader shape extension then passed
+  all 142 focused cases. Fresh complete regression: 403 passed, one existing
+  Windows permission skip, in 51.33 seconds; exit 0. Fresh pip check exited 0,
+  reporting no broken requirements. No extractor, v1 evidence semantics, CLI,
+  lock algorithm, dependency or schema-version change.
+- Before continuation, all 687 explicitly protected existing files matched their
+  hashes: 96 four-recording intake/evidence files plus 591 historical Module 2A1
+  files. The first existing report/index strictly reloads with 37 successful unique
+  frames. Prior source files, rough review, result-screen findings and exclusion
+  records remain unchanged. No new real precise annotations or lock are claimed
+  by this rule-only verification.
+- Continue from original position one using its existing rough review and survey;
+  do not select among recordings by card difficulty. Unknown intervals/forms stay
+  unknown, not negatives. Only adequate precise independent deployment evidence
+  may produce DEV_LOCKED. No push, main merge, model work or Module 2B authorized.

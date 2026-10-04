@@ -7,7 +7,7 @@ import pytest
 from clash_tracker_video.evidence_contract import EvidenceError, validate_evidence
 from clash_tracker_video.experiment_lock import make_development_lock
 from evidence_fixtures import synthetic_evidence, synthetic_indexes
-from experiment_fixtures import development_fixture, split_forms
+from experiment_fixtures import development_fixture, split_forms, user_confirmed_development_fixture
 
 
 def api():
@@ -405,5 +405,62 @@ def test_empty_candidates_remain_valid_but_not_ready():
     assert report["valid"] is True
     assert report["status"] == "NOT_READY"
     assert report["candidates"] == []
+    with pytest.raises(EvidenceError):
+        make_development_lock(draft, indexes)
+
+
+@pytest.mark.parametrize("screen_present", [False, True])
+def test_user_confirmed_completion_does_not_require_result_screen(screen_present):
+    draft, indexes = user_confirmed_development_fixture()
+    draft["identity"]["terminal_result_screen_present"] = screen_present
+    report = api().validate_development(draft, indexes)
+    assert report["status"] == "DEV_VALIDATED"
+    assert report["valid"] is True
+    assert report["candidates"][0]["clear_verified_plays"] == 2
+    frozen = api().require_development(draft, indexes)
+    assert frozen["draft"]["identity"]["completion_attestation"] == "user_confirmed"
+    assert frozen["draft"]["identity"]["terminal_result_screen_present"] is screen_present
+    assert frozen["draft"]["candidates"][0]["evidence"]["match_segments"][0]["end_seconds"] == 20
+    assert frozen["derived"]["unknown_intervals"][0]["end_seconds"] == 20
+    assert not any(n["reason"] == "result" for n in frozen["draft"]["candidates"][0]["evidence"]["negative_intervals"])
+
+
+@pytest.mark.parametrize("field,value", [
+    ("completion_attestation", None), ("completion_attestation", True),
+    ("completion_attestation", "machine_confirmed"), ("completion_attestation", "C:/private/account"),
+    ("terminal_result_screen_present", 0), ("terminal_result_screen_present", 1),
+    ("terminal_result_screen_present", "false"), ("terminal_result_screen_present", None),
+    ("extra", "C:/private/account"),
+])
+def test_completion_metadata_is_closed_and_strictly_typed(field, value):
+    draft, indexes = user_confirmed_development_fixture()
+    draft["identity"][field] = value
+    report = api().validate_development(draft, indexes)
+    assert report["valid"] is False
+    with pytest.raises(EvidenceError) as error:
+        api().require_development(draft, indexes)
+    assert "private" not in str(error.value)
+
+
+@pytest.mark.parametrize("missing", ["completion_attestation", "terminal_result_screen_present"])
+def test_completion_metadata_must_be_paired(missing):
+    draft, indexes = user_confirmed_development_fixture()
+    del draft["identity"][missing]
+    assert api().validate_development(draft, indexes)["valid"] is False
+
+
+@pytest.mark.parametrize("field", ["complete_recording", "unedited_recording", "full_human_review"])
+def test_user_confirmation_does_not_override_false_review_attestations(field):
+    draft, indexes = user_confirmed_development_fixture()
+    draft["identity"][field] = False
+    assert api().validate_development(draft, indexes)["valid"] is False
+    with pytest.raises(EvidenceError):
+        make_development_lock(draft, indexes)
+
+
+def test_user_confirmation_does_not_override_incomplete_segment():
+    draft, indexes = user_confirmed_development_fixture()
+    draft["candidates"][0]["evidence"]["match_segments"][0]["capture_complete"] = False
+    assert api().validate_development(draft, indexes)["valid"] is False
     with pytest.raises(EvidenceError):
         make_development_lock(draft, indexes)

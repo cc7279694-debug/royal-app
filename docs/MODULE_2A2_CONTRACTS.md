@@ -14,6 +14,13 @@ The closed root has `schema_version=1`, `experiment_id`, positive `freeze_versio
 - `identity`: underlying_match_id, recording_id, split=development,
   provenance=new_natural, complete_recording, unedited_recording, full_human_review.
   All three attestations must be true; they are not machine-proven facts.
+  A compatible optional pair records completion_attestation=user_confirmed and
+  terminal_result_screen_present (strict Boolean). Both must appear together;
+  no other extra identity fields are allowed. False screen presence is not a
+  rejection gate and cannot override a false completeness/review/unedited
+  attestation. Old identities without the pair remain valid. Real current drafts
+  use the pair and end the shared segment at the last actual decoded frame under
+  the user's amended completeness definition. Digest coverage includes this pair.
 - Each candidate: candidate_id, card_id, form, notes, evidence, deployments,
   evolution. Forms are normal/evolved/unknown. Notes explicitly record distinctness,
   visibility, occlusion, owner_clarity, form_clarity.
@@ -157,8 +164,9 @@ The command requires the full valid lock chain and equality of the supplied GT
 snapshot with the loaded report/index/PNG binding before any write. Exit 0 means
 the contract froze; failure is 2. There is deliberately no freeze-model command:
 only the metadata API exists for the separately authorized model stage. No real
-Model/GT operation is authorized by these examples. New development footage is
-currently absent; none of the development/test examples have been run on it.
+Model/GT operation is authorized by these examples. Actual private development
+progress and execution results are in CURRENT_STATE.md and VERIFICATION_M2A2.md;
+example paths do not identify the user's real footage or freeze directory.
 
 No live functionality, model inference or next-module authorization follows from
 a syntactically valid contract. Refer to [the blind protocol](MODULE_2A2_BLIND_TEST_PROTOCOL.md).

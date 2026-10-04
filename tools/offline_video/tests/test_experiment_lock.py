@@ -7,7 +7,7 @@ import json
 import pytest
 
 from clash_tracker_video.evidence_contract import EvidenceError
-from experiment_fixtures import development_fixture
+from experiment_fixtures import development_fixture, user_confirmed_development_fixture
 from lock_fixtures import gt_fixture, model_fixture
 
 
@@ -59,6 +59,22 @@ def test_development_reordered_keys_are_stable_and_file_has_one_lf(directory):
     assert other["sha256"] == lock["sha256"]
     draft["candidates"][0]["notes"]["visibility"] = "A changed manual observation"
     assert api().make_development_lock(draft, indexes)["sha256"] != lock["sha256"]
+
+
+def test_user_confirmed_completion_metadata_survives_disk_lock_and_changes_digest(directory):
+    draft, indexes = user_confirmed_development_fixture()
+    locked = api().freeze_development(draft, indexes, directory)
+    loaded = api().load_lock(next(directory.glob("*.json")))
+    assert loaded["payload"]["draft"]["identity"]["completion_attestation"] == "user_confirmed"
+    assert loaded["payload"]["draft"]["identity"]["terminal_result_screen_present"] is False
+    assert loaded["sha256"] == locked["sha256"]
+    changed = deepcopy(draft)
+    changed["identity"]["terminal_result_screen_present"] = True
+    assert api().make_development_lock(changed, indexes)["sha256"] != locked["sha256"]
+    tampered = deepcopy(locked)
+    tampered["payload"]["draft"]["identity"]["terminal_result_screen_present"] = True
+    with pytest.raises(EvidenceError):
+        api().validate_lock(tampered)
 
 
 def test_same_version_alternate_filename_is_rejected_without_overwrite(directory):
