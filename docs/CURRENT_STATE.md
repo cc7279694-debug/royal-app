@@ -10,9 +10,11 @@ Last verified: 2026-10-04.
   integration published at `3ad657f2c9190f4e389ccd035682becd12d0c51c`.
 - Module 2A2 Independent Evidence & Experiment Lock: separately authorized
   2026-10-04; infrastructure implemented and verified on its feature branch.
-  Final review's blocking finding is fixed and scoped re-review passed;
-  first-source real evidence/lock phase is verified at DEV_LOCKED, awaiting
-  independent formal acceptance. This is not Module 2B authorization.
+  First-source real evidence/lock phase is verified at DEV_LOCKED. Independent
+  ChatGPT review found that user-confirmed completeness did not enforce the
+  actual first/last recording boundaries. This narrow repair is verified locally,
+  awaiting independent re-review and formal acceptance. This is not Module 2B
+  authorization.
 - Real experiment: user reconfirms all four natural replay recordings cover full
   matches and explicitly supersedes the result-screen completeness gate. Use
   user_confirmed completion provenance and the actual file-end boundary; absence
@@ -54,7 +56,7 @@ snapshot types. Task 1/2/3 reviews passed. Final whole-branch review identified
 cross/incomplete-segment accumulation; the new adapter now requires exactly one
 complete shared match segment. Scoped re-review confirmed the finding addressed,
 with no new Critical/Important issue or out-of-scope observation.
-Fresh completion-amendment/real-freeze full suite: 403 passed, one known Windows
+Fresh completion-boundary repair full suite: 406 passed, one known Windows
 symlink permission skip; pip check passed. Earlier compile check and no-index
 wheel build passed; those build checks were not rerun this session. Dependencies
 and all existing Module 1/2A1 production/tests are unchanged. Full evidence and
@@ -82,6 +84,13 @@ Historical Inferno Dragon evidence is regression-only, not the first new target.
   terminal_result_screen_present independently. Missing result UI alone never
   blocks freeze. Technical corruption/undecodability, obvious mid-match truncation,
   missing key battle content or explicit human incompleteness still reject.
+- For user_confirmed development drafts, every candidate's unique shared complete
+  segment must start at relative zero and end exactly at recording.last_frame_seconds.
+  Unknown prefix/suffix labels cannot excuse a shortened segment. New readiness,
+  construction and loaded-lock validation enforce this without changing legacy v1.
+  Existing real version-one lock already satisfies both boundaries; it revalidates
+  unchanged and no new freeze version was needed. All 901 protected existing files,
+  including that lock and the source recordings, retain their pre-repair hashes.
 - Original intake array remains fixed. Source one is the first usable continuation;
   no re-sorting or card/difficulty/quality-based source selection. Byte hashes do
   not prove match independence. All four have had prior boundary pixel exposure;

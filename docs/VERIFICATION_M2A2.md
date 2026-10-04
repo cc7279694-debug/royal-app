@@ -477,3 +477,63 @@ No DEV_LOCKED or Module 2A2 acceptance/completion claim.
 Current verified stopping point: **DEV_LOCKED, ready for independent Module 2A2
 acceptance**, not formal acceptance. No push, main merge, PR/release, model or test
 experiment, Module 2B/3, Android/live/HUD, deletion or old evidence mutation.
+
+## 2026-10-04 — Independent-review completion-boundary repair
+
+- Independent ChatGPT review of `6fa1706d74d4bc68c960ee4e03bac2fc13d6563a`
+  found one Important blocker missed by the earlier scoped local review: a
+  user-confirmed draft could mark a shortened shared segment complete, leave the
+  excluded tail unknown, and still validate/freeze. The prior local review does
+  not establish independent acceptance; this fix awaits ChatGPT re-review.
+- Minimal adapter-only repair: when completion_attestation=user_confirmed, every
+  candidate's sole verified complete shared segment must start at relative zero
+  and end exactly at recording.last_frame_seconds. Comparisons use existing
+  rational seconds conversion, without tolerance or a result-screen requirement.
+  Missing terminal result UI remains legal. Legacy completion identities and
+  Module 1/2A1 prepare/validate/review code, tests, formats and gates are untouched.
+- TDD reproduction: added synthetic shortened-end (0..19 of a 20-second file)
+  and delayed-start (0.25..20) cases retain terminal 19..20 unknown. Both remain
+  valid under v1 but must be refused by development readiness, require_development
+  and make_development_lock. Before production repair: **2 failed, 1 passed**;
+  both failures show the incorrectly accepted valid=True. Added positive test
+  freezes 0..last_frame with terminal_result_screen_present=false successfully.
+- Fresh focused development/lock/CLI suite: **183 passed in 58.19 seconds**.
+  Fresh complete regression: **406 passed, 1 skipped in 76.32 seconds**, exit 0.
+  The skip remains the known Windows symlink permission case. Commands actually
+  executed with the fixed local environment:
+
+  ```powershell
+  .\.venv\Scripts\python.exe -m pytest -q --tb=short
+  .\.venv\Scripts\python.exe -m pip check
+  git diff --check
+  ```
+
+  Pip check reports no broken requirements, exit 0; diff check exits 0.
+- Read-only real revalidation strictly reloads all seven existing report/index
+  pairs: 191 requests, 188 unique successful frames. The existing shared segment
+  already starts at zero and ends exactly at its recording's last actual frame.
+  Result screen remains false. Readiness exits 0 / DEV_VALIDATED; validate-lock
+  exits 0. Pure canonical lock reconstruction equals the stored version-one lock;
+  no freeze command, lock overwrite or new version was necessary.
+- Target minions/normal, two independent clear verified deployments, six boxes,
+  three explicit unknown intervals and six recomputed coverage gaps are unchanged.
+  No unknown interval becomes negative. Stored lock digest and bytes are unchanged;
+  no extraction, playback, repeated human review or evidence edit was performed.
+- Protection: all **901** existing files match pre-repair SHA-256 hashes, zero
+  missing/changed, including the original 687 protected set, all four current
+  source recordings, historical source and current private evidence/lock. The
+  final explicit privacy scan covers **911** local files including fresh receipts:
+  all Git-ignored, none tracked. All **18** baseline Module 1/2A1 offline-tool
+  files are unchanged from main. New machine receipts are in a fresh ignored run;
+  no private paths, images, labels, hash inventories or generated files are committed.
+- Fresh-context read-only scoped repair review found no Critical, Important or
+  Minor issue. Reviewer ran 13 targeted cases plus four pure in-memory assertions
+  covering legacy compatibility and loaded-lock refusal of both shortened ranges;
+  that probe mocked disk reading and did not certify private evidence. The root
+  performed the separate real disk lock/index check described above. This local
+  review supplements, but does not replace, ChatGPT independent re-review.
+- Build/compile, source-video authenticity, model accuracy, Android/live behavior,
+  Model/Test GT experiment and independent module acceptance are not rerun or
+  claimed. No dependency, database, extractor, lock algorithm or module expansion.
+  Repair remains on the original feature branch: local commit only, no push or
+  main merge. Stop for independent re-review; Module 2B remains closed.

@@ -56,6 +56,10 @@ def _checked_report(draft, indexes):
         if (segment["validation_status"] != "verified" or not segment["capture_complete"]
                 or segment["perspective"] == "unknown"):
             raise EvidenceError("The sole development match segment must be complete and verified.")
+        if identity.get("completion_attestation") == "user_confirmed" and (
+                seconds(segment["start_seconds"]) != 0
+                or seconds(segment["end_seconds"]) != seconds(current["last_frame_seconds"])):
+            raise EvidenceError("User-confirmed development segment must cover the complete recording.")
         if development_segment is not None and development_segment != segment:
             raise EvidenceError("Candidate bundles must share identical development match metadata.")
         development_segment = segment

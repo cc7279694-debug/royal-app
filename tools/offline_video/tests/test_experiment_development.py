@@ -464,3 +464,32 @@ def test_user_confirmation_does_not_override_incomplete_segment():
     assert api().validate_development(draft, indexes)["valid"] is False
     with pytest.raises(EvidenceError):
         make_development_lock(draft, indexes)
+
+
+@pytest.mark.parametrize("start,end", [(0, 19), (.25, 20)])
+def test_user_confirmed_segment_must_cover_entire_recording(start, end):
+    draft, indexes = user_confirmed_development_fixture()
+    evidence = draft["candidates"][0]["evidence"]
+    # Keep the shortened segment valid under v1; only the new completion
+    # attestation binds it to the full file. Terminal 19..20 stays unknown.
+    evidence["negative_intervals"] = []
+    evidence["match_segments"][0].update(start_seconds=start, end_seconds=end)
+    assert validate_evidence(evidence, indexes) == []
+    report = api().validate_development(draft, indexes)
+    assert report["valid"] is False
+    assert report["status"] == "NOT_READY"
+    with pytest.raises(EvidenceError):
+        api().require_development(draft, indexes)
+    with pytest.raises(EvidenceError):
+        make_development_lock(draft, indexes)
+
+
+def test_user_confirmed_full_segment_without_result_screen_can_lock():
+    draft, indexes = user_confirmed_development_fixture()
+    assert draft["identity"]["terminal_result_screen_present"] is False
+    evidence = draft["candidates"][0]["evidence"]
+    segment = evidence["match_segments"][0]
+    assert segment["start_seconds"] == 0
+    assert segment["end_seconds"] == evidence["recordings"][0]["last_frame_seconds"]
+    assert api().validate_development(draft, indexes)["status"] == "DEV_VALIDATED"
+    assert make_development_lock(draft, indexes)["lock_type"] == "development"
