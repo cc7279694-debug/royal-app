@@ -301,7 +301,65 @@ not authenticate provenance or guarantee no unseen edits in the recording.
   files changed; diff check exited 0. Read-only document scope audit found no
   blocking wording issue. No code or full-regression success claim for this check.
 
-Current stopping point: second recording incomplete, not DEV_LOCKED or ready for
+At that stopping point: second recording incomplete, not DEV_LOCKED or ready for
 Module 2A2 acceptance. Obtain its complete version or an explicit next-item direction;
 do not ask the user to annotate this incomplete file or inspect remaining matches
 for target selection. All former unknown evidence stays unknown, not negative.
+
+## 2026-10-04 — Authorized ordered third/fourth boundary checks
+
+- New user authority: check original intake position three, then four only if
+  three fails completeness; stop at the first confirmed complete recording.
+  Read-only order audit confirmed this scope. The original intake array, prior
+  dispositions and first rough review remain historical snapshots, not overwritten.
+  No re-sorting, inferred natural chronology or card/difficulty/quality filtering.
+- Third first: fresh existing full technical scan, six opening/end exports and
+  13 supplementary tail exports. The extra tail images check whether crown and
+  transition scenes show a final match result; they are not a card survey. Tower
+  destruction/own crown scoring and a terminal red/blue transition are observed,
+  but no unambiguous final whole-match outcome. Result boundary unconfirmed;
+  not Freeze-eligible, not a negative. Searching-for-opponent opening also differs
+  from the prior replay declaration; this is an unresolved provenance discrepancy,
+  not proof of a replay or permission to rewrite the user's historical statement.
+- Fourth was decoded/viewed only after the third's failed result-boundary check.
+  Fresh full technical scan and six opening/end exports succeed. Opening has a
+  battlefield start; the actual terminal PNG has enemy crown-scoring animation,
+  not an unambiguous final whole-match outcome. Result boundary unconfirmed;
+  not Freeze-eligible, not a negative. Neither boundary outcome proves that no
+  combat was recorded; it fails to establish the required final result boundary.
+- No final reward-page requirement added. The protocol's opening-through-result
+  rule permits an unambiguous final win/loss/result animation, but not an inferred
+  final outcome from one tower destruction, crown increment or screen transition.
+  Read-only protocol audit confirmed this distinction; it did not inspect media.
+- Fresh mechanical checks: three strictly loaded diagnostic export reports,
+  25 successful full-size PNG exports, 24 unique recording/PTS identities because
+  the exact third end frame was exported twice. All original PNG dimensions and
+  PTS-derived timestamps match their report entries. Terminal export times equal
+  each corresponding fresh full scan's actual end. These are diagnostic reports,
+  not new prepare/index bundles or full human-review/verified-play evidence.
+- All 61 explicit pre-check existing files match their before hashes, zero missing
+  or changed, including the four sources, original intake, first survey/rough review
+  and second boundary check. New diagnostics, disposition and protection records
+  are exclusively created in a fresh ignored run, with no old evidence rewrite.
+- NUL-delimited Git path checks confirm all 96 explicit private files ignored and
+  zero tracked private/generated media, labels, reports or model weights. This
+  avoids Windows text-mode newline ambiguity; private paths/hashes/images remain
+  local and out of public documents.
+- Final public checks: git diff --check exited 0; exactly the four expected
+  Markdown files changed, zero production/test/dependency edits. Added-line
+  private-path/source-filename/hash/secret-pattern scan found zero matches.
+  Protection and ignore checks were repeated after the documentation update:
+  all 61 existing hashes unchanged and all 96 explicit private files ignored.
+  Read-only public-document scope review found no blocking wording issue.
+- Only four public status/verification Markdown files updated. No production,
+  test, extractor, dependency or storage-format change. Full pytest/pip/build
+  not rerun for this boundary/document-only task; the infrastructure 385-pass/
+  one-skip result is historical, not a fresh result. No model execution, human
+  full-file inventory, target, precise labels, Development Lock, 2B, Android,
+  live/HUD, source deletion, push, main merge, PR or release.
+
+Current stopping point: all original four checked in the authorized sequence;
+no confirmed complete development recording found. Stop; obtain a complete
+natural replay through an unambiguous final match result before full review.
+All sources, historical review and uncertainty remain preserved, not negatives.
+No DEV_LOCKED or Module 2A2 acceptance/completion claim.
