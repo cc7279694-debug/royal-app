@@ -120,11 +120,12 @@ Correct insufficient output may complete 2A1 without satisfying 2B readiness.
 
 Status: In Progress — implementation separately authorized on 2026-10-04.
 Infrastructure implemented; full synthetic/regression tests passed. Four new
-replays received; the first is prepared and user whole-file rough review received.
-Actual final-frame verification conflicts with its complete-recording declaration:
-the file ends in gameplay without a verified result. The other three remain
-unseen/unassigned. Resolve completeness before precise evidence/selection/freeze;
-no real Development Data Lock or DEV_LOCKED result.
+replays received. First preparation/rough review retained as incomplete, not
+Freeze-eligible and not a negative sample. User authorized the next recorded item,
+without card/difficulty/quality filtering. Second boundary check also shows an
+incomplete recording, so conditional full-survey preparation was not run. Third/
+fourth remain unseen/unassigned; complete input or further sequential direction
+is required. No real Development Data Lock, DEV_LOCKED result or 2B work.
 
 Owns a separate development readiness/freeze layer, declared underlying-match
 identity, manual candidate/form selection, evolution ground truth, canonical

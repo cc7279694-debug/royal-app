@@ -12,10 +12,11 @@ Last verified: 2026-10-04.
   2026-10-04; infrastructure implemented and verified on its feature branch.
   Final review's blocking finding is fixed and scoped re-review passed;
   real evidence/lock phase remains incomplete.
-- Real experiment: blocked by the first candidate's recording-completeness
-  conflict. Whole-file human review and rough inventory received; fresh source
-  scan confirms its exported final frame is the actual file end, still gameplay
-  without a verified result. No actual Development Data Lock or DEV_LOCKED result.
+- Real experiment: blocked by the second recording's incompleteness after the
+  user-authorized sequential switch. It ends in active gameplay without a result;
+  only boundary frames were prepared. First recording/source/survey/rough review
+  retained as incomplete, ineligible for Freeze and never a negative sample.
+  No actual Development Data Lock or DEV_LOCKED result.
 - Module 2B, Module 3, Android, HUD and realtime remain closed and unstarted.
 
 ## Inherited verified capabilities
@@ -67,7 +68,7 @@ Historical Inferno Dragon evidence is regression-only, not the first new target.
 
 ## Current recording intake
 
-- User confirms four distinct NEW natural matches, complete opening-to-result
+- User originally confirmed four distinct NEW natural matches, complete opening-to-result
   replays, normal speed and unedited; none is the historical Inferno Dragon match.
   These are provenance/completeness attestations, not a new full evidence review.
 - Metadata/hash checks cover all four sources. Filename order selected the first
@@ -76,19 +77,29 @@ Historical Inferno Dragon evidence is regression-only, not the first new target.
 - Existing prepare exited 0; its one report/index pair loads successfully:
   37 requests, 37 unique successful frames and four contact pages. All four
   original source hashes are unchanged. Sources and generated outputs are ignored.
-- The other three remain unseen and unassigned, not an accepted independent test
-  set. No chronological/first-qualifying test selection claim is made.
+- User explicitly authorized switching to the second item in the preserved intake
+  array, without card, difficulty or candidate-quality filtering. No re-sorting or
+  natural chronological ordering is inferred. Third/fourth remain unseen/unassigned,
+  not an accepted independent test set or first-qualifying-test selection.
 - User has watched the whole available first file and supplied five card/form
   inventory entries and 12 approximate deployment times, without asserting an
   exhaustive inventory. One form is unknown; dense combat uncertainty is retained,
   with no verified negative labels or precise occurrence/box annotations created.
 - A fresh read-only full scan and checked index agree on the exact actual last
   frame. Its original PNG remains gameplay without a verified ending/result.
-  Whole-file viewing is not opening-to-result recording completeness. Preserve
-  the earlier user declaration as history, but do not mark a complete match segment
-  verified, choose a target or freeze while this detectable conflict is unresolved.
+  Whole-file viewing is not opening-to-result recording completeness. The user
+  explicitly requires this first file to remain preserved and marked incomplete,
+  not meeting Development Data Freeze conditions and never used as a negative.
 - Rough human review and end-check results are stored as an ignored local sidecar,
   not a development draft or lock. No code/model work or next module started.
+- Second item: fresh full technical scan, then six boundary-only exports succeed.
+  Battle-history/loading/matchup opening is visible; its actual last frame is
+  ongoing gameplay, not a result. Marked incomplete/not Freeze-eligible, not a
+  negative. The conditional full-survey prepare command was not run; no whole-file
+  human/card review, target choice or lock is claimed for it.
+- All 50 explicitly protected pre-switch files (four sources, first preparation,
+  intake records and rough review) remain unchanged. Boundary/decision/check files
+  are exclusively new and private/ignored, not overwrites of earlier evidence.
 
 ## Limits and unchanged gates
 
@@ -118,14 +129,13 @@ Feature: `feat/module-2a2-experiment-lock`, from
 no push, main merge, PR, release, rebase or branch deletion. Preserve the 2A1 branch.
 Exact final commit belongs to Git and the handoff.
 
-Infrastructure checkpoint complete; next resolve the candidate's recording-end
-conflict using a complete source for the same match, or an explicitly documented
-change to the next provisional development recording. Retain this user's rough
-review and uncertainty, do not ask for repeat whole-file review just to resolve
-the missing ending, and never relax completeness to force a lock. Source mappings
-stay private; do not overwrite/rename inputs or inspect other matches to tune
-target selection. Precise evidence/selection/freeze and final 2A2 acceptance remain
-pending; no model/test work is opened by this checkpoint.
+Infrastructure checkpoint complete; next obtain a complete version of the second
+match or user direction for the next item in the recorded order. Do not advance to
+third/fourth on this second-item-only authorization, ask for second-file card review
+before resolving completeness, overwrite sources or tune match/target selection.
+Retain all first-file rough review and uncertainty without repeat review or negative
+labels. Never relax completeness to force a lock. Precise evidence/selection/freeze
+and final 2A2 acceptance remain pending; no model/test work opened.
 
 See [2A2 verification](VERIFICATION_M2A2.md),
 [blind protocol](MODULE_2A2_BLIND_TEST_PROTOCOL.md),

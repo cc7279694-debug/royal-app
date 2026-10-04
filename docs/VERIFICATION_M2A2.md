@@ -261,7 +261,47 @@ No push, main merge, PR, release, model work or next module during this intake.
   matches. Only the four intended public Markdown status files changed; diff
   check exited 0. No production/test/dependency file changed.
 
-Current state: blocked by recording-completeness conflict, not DEV_LOCKED or
+At that checkpoint: blocked by recording-completeness conflict, not DEV_LOCKED or
 MODULE_2A2_READY_FOR_ACCEPTANCE. Private timestamps, source mapping and terminal
 image stay local/ignored. This check identifies a visible contradiction; it does
 not authenticate provenance or guarantee no unseen edits in the recording.
+
+## 2026-10-04 — Authorized sequential second-recording boundary check
+
+- User explicitly authorized the second item in the unchanged original intake
+  array; no re-sorting, card/difficulty/candidate-quality selection or automatic
+  continuation to third/fourth. Read-only order/reason audit confirmed the position
+  and completeness-based rejection of the first recording, not a quality filter.
+- First source, 37-frame preparation, original report/index/contacts, intake and
+  five-card/12-time rough review all retained unchanged. A new private disposition
+  record marks it "incomplete; does not meet Development Data Freeze conditions",
+  never a negative sample. Earlier declarations/review are preserved as history.
+- Second only: existing full _scan establishes technical origin/actual last frame;
+  existing Module 1 extraction exports six boundary frames successfully. Opening
+  shows battle history, replay loading and matchup introduction. The last export
+  equals the exact measured file end and still shows ongoing gameplay, no result.
+  Thus the second also fails recording completeness; this is not a card-quality or
+  recognition judgement. No runtime/model used to choose targets or count plays.
+- Because completeness fails, no default full-survey prepare/index/contact pages,
+  human full-file card inventory request, precise annotations, negatives, target
+  selection or Development Data Lock. Six boundary images are diagnostic outputs,
+  not a completed survey or full human review. Third/fourth remain unseen/unassigned.
+- Fresh protection check: all 50 explicit pre-switch source/evidence files match
+  their before hashes, zero missing/changed, including all four original MP4s.
+  Original preparation/intake/rough review files were not rewritten. New boundary,
+  hash/check and disposition artifacts are private/ignored, exclusively new.
+- No production/test/dependency/storage-format changes, model training/inference,
+  2B, Android, live/HUD, source deletion, push or main merge. Full pytest/pip/build
+  not rerun for this data/document-only check; earlier tests remain historical.
+- Final boundary checks: all six original PNG sizes and PTS-derived timestamps
+  match their report entries; strict disposition JSON retains original positions
+  and rejects Freeze/negative use for both incomplete recordings. All 61 explicitly
+  listed private files are Git-ignored; zero tracked private/generated files or
+  added private-path/hash/secret-pattern matches. Exactly four intended Markdown
+  files changed; diff check exited 0. Read-only document scope audit found no
+  blocking wording issue. No code or full-regression success claim for this check.
+
+Current stopping point: second recording incomplete, not DEV_LOCKED or ready for
+Module 2A2 acceptance. Obtain its complete version or an explicit next-item direction;
+do not ask the user to annotate this incomplete file or inspect remaining matches
+for target selection. All former unknown evidence stays unknown, not negative.
