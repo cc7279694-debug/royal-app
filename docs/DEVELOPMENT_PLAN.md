@@ -119,8 +119,10 @@ Correct insufficient output may complete 2A1 without satisfying 2B readiness.
 ### Module 2A2 — Independent Evidence & Experiment Lock
 
 Status: In Progress — implementation separately authorized on 2026-10-04.
-Infrastructure implemented; full synthetic/regression tests passed. No new
-natural development replay supplied: WAITING_FOR_DEVELOPMENT_MATCH, not DEV_LOCKED.
+Infrastructure implemented; full synthetic/regression tests passed. Four new
+replays received; the first provisional development candidate is prepared and
+awaits full human evidence review. The other three are unseen/unassigned.
+Target selection and real development freeze remain pending: not DEV_LOCKED.
 
 Owns a separate development readiness/freeze layer, declared underlying-match
 identity, manual candidate/form selection, evolution ground truth, canonical

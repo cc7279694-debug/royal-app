@@ -12,8 +12,9 @@ Last verified: 2026-10-04.
   2026-10-04; infrastructure implemented and verified on its feature branch.
   Final review's blocking finding is fixed and scoped re-review passed;
   real evidence/lock phase remains incomplete.
-- Real experiment: WAITING_FOR_DEVELOPMENT_MATCH. No new natural development
-  replay supplied; no actual Development Data Lock or DEV_LOCKED result.
+- Real experiment: development evidence review pending. Four new replay files
+  received; only the first is a provisional development candidate, prepared but
+  not fully human-reviewed. No actual Development Data Lock or DEV_LOCKED result.
 - Module 2B, Module 3, Android, HUD and realtime remain closed and unstarted.
 
 ## Inherited verified capabilities
@@ -45,7 +46,8 @@ snapshot types. Task 1/2/3 reviews passed. Final whole-branch review identified
 cross/incomplete-segment accumulation; the new adapter now requires exactly one
 complete shared match segment. Scoped re-review confirmed the finding addressed,
 with no new Critical/Important issue or out-of-scope observation.
-Fresh post-fix full suite: 385 passed, one known Windows symlink permission skip.
+Last infrastructure post-fix full suite: 385 passed, one known Windows symlink
+permission skip; not rerun during the subsequent recording-only intake.
 Dependency check, compile check and no-index wheel build passed; dependencies
 and all existing Module 1/2A1 production/tests are unchanged. Full evidence and
 limits are recorded in [2A2 verification](VERIFICATION_M2A2.md).
@@ -61,6 +63,22 @@ precise GT -> first qualifying independent natural test replay (>=1 locked-form
 play) -> new annotation session -> Test GT Lock before any inference.
 Underlying match, not recording filename/hash, is the split identity.
 Historical Inferno Dragon evidence is regression-only, not the first new target.
+
+## Current recording intake
+
+- User confirms four distinct NEW natural matches, complete opening-to-result
+  replays, normal speed and unedited; none is the historical Inferno Dragon match.
+  These are provenance/completeness attestations, not a new full evidence review.
+- Metadata/hash checks cover all four sources. Filename order selected the first
+  provisional development candidate before pixel exposure, without card filtering.
+  Distinct byte hashes do not independently establish underlying-match identity.
+- Existing prepare exited 0; its one report/index pair loads successfully:
+  37 requests, 37 unique successful frames and four contact pages. All four
+  original source hashes are unchanged. Sources and generated outputs are ignored.
+- The other three remain unseen and unassigned, not an accepted independent test
+  set. No chronological/first-qualifying test selection claim is made.
+- Full human evidence review, opponent card/form inventory, target selection,
+  annotations and real locks remain pending. No model work or new module started.
 
 ## Limits and unchanged gates
 
@@ -90,10 +108,12 @@ Feature: `feat/module-2a2-experiment-lock`, from
 no push, main merge, PR, release, rebase or branch deletion. Preserve the 2A1 branch.
 Exact final commit belongs to Git and the handoff.
 
-Infrastructure checkpoint complete; await a NEW natural replay at
-`local_data/recordings/development_01.mp4`. Record battle-history replay from
-opening through result at normal speed, no edits. Do not preselect a card or
-arrange the opponent. Missing footage blocks DEV_LOCKED and final 2A2 acceptance.
+Infrastructure checkpoint complete; next review the prepared development
+candidate in full and record a rough opponent card/form inventory and independent
+deployment times. The private intake manifest preserves the source mapping;
+do not rename sources, inspect the other three for target selection or ask the
+user to edit JSON/draw boxes. Locator contact pages cannot replace full playback.
+Missing human evidence/selection/freeze blocks DEV_LOCKED and final 2A2 acceptance.
 
 See [2A2 verification](VERIFICATION_M2A2.md),
 [blind protocol](MODULE_2A2_BLIND_TEST_PROTOCOL.md),

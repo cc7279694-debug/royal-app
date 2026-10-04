@@ -119,7 +119,8 @@ extractor and old CLI are untouched. Local code commit: `beda5b8`.
   checked again after the 385-pass regression; zero changes, original MP4 intact.
   Compile/diff checks passed. No extraction, playback or annotation changes.
 
-Real readiness/freezing cannot run without new development footage. This is
+At the infrastructure checkpoint, real readiness/freezing could not run without
+new development footage. This is
 infrastructure verification, not Module 2A2 acceptance or recognition-performance
 evidence. The 376-pass run above precedes this final gate correction.
 
@@ -149,11 +150,11 @@ backup format, dependency or original annotation format change. Synthetic media,
 locks, build files and detailed review artifacts remain ignored and are not real
 experiment evidence. All public documents contain only aggregate private results.
 
-## Staged checkpoint
+## Infrastructure checkpoint (before recording intake)
 
 Infrastructure is implemented and verified, with final blocking review findings
-closed; Module 2A2 itself is not accepted or complete. Waiting for a new complete
-natural development replay at local_data/recordings/development_01.mp4. No actual
+closed; Module 2A2 itself was not accepted or complete. At this checkpoint,
+new complete natural development footage was still awaited. No actual
 development selection/freeze, Model Lock, Test GT or Evaluation Result exists.
 The prepare handoff command and recording instructions are in README.md.
 
@@ -162,11 +163,11 @@ the baseline, the original 2A1 branch is preserved, and no 2A2 branch is pushed.
 No PR, merge, release, history rewrite, next module or model work occurred.
 Final commit SHA is reported from Git in the handoff, not self-referenced here.
 
-## Acceptance boundary
+## Infrastructure acceptance boundary
 
-No new natural development recording has been supplied in this task. No actual
+No new natural development recording had been supplied at that checkpoint. No actual
 Development Data Lock, Model Lock, Test GT Lock or Evaluation Result was created.
-Synthetic lock tests are not real experiment evidence. The honest current
+Synthetic lock tests are not real experiment evidence. The checkpoint's
 experiment status is WAITING_FOR_DEVELOPMENT_MATCH, not DEV_LOCKED.
 
 Match identity, natural provenance, whole-playback completeness, first qualifying
@@ -175,9 +176,51 @@ checks do not independently prove them or certify original-video authenticity.
 Immutable means exclusive creation by these tools with versioned snapshots;
 it is not OS protection against someone editing local files outside the tools.
 
-Not run: new real development review/selection/freeze, model work, independent
-test inference, recognition metrics, TypeScript/ESLint and Android builds. Missing
-real footage blocks DEV_LOCKED; other checks are outside this Python module.
+Not run at that checkpoint: new real development review/selection/freeze, model
+work, independent test inference, recognition metrics, TypeScript/ESLint and
+Android builds. Missing real footage blocked DEV_LOCKED; other checks are outside
+this Python module.
 
 No push, merge, PR, release, history rewrite or next module is authorized by
 this record. Exact local commits and final status belong to Git and the handoff.
+
+## 2026-10-04 — Recording intake / first development survey
+
+- Four local MP4s received. User confirms four distinct new natural matches,
+  opening-to-result complete normal-speed unedited replays, excluding the old
+  Inferno Dragon match. These are human attestations, not machine proof or a
+  completed full human evidence review.
+- All four were checked for metadata and SHA-256 only before selection. All are
+  H.264, 432x960, approximately 24 FPS. Distinct byte hashes do not prove distinct
+  underlying matches. Original filenames/mappings and hashes remain private.
+- Filename order selected the first provisional development candidate before
+  any pixel exposure; no card/difficulty/model-based filtering. Existing unchanged
+  prepare exited 0. Its one report/index pair and PNGs were loaded and checked:
+  37 raw requests, 37 unique successful frames, four contact pages, success.
+- All four source hashes still match the intake values. No source rename, move,
+  overwrite, old evidence edit or re-labeling. New intake/preparation/check files
+  are in fresh ignored output directories; sources are ignored too.
+- The other three were not decoded or viewed and remain unassigned. They are not
+  a selected/qualified independent test set; no future first-qualifying-test or
+  natural chronology claim is inferred from filenames.
+- Full human playback review, opponent inventory/forms, independent deployments,
+  target selection, precise annotations and real Development Lock remain pending.
+  Source declarations and locator frames do not establish full_human_review=true.
+  No Model Lock, Test GT Lock, Evaluation Result, model execution or 2B work.
+- This intake changes only generated private outputs and four public status/
+  verification documents. No production/test code, dependency or storage-format
+  change. Full pytest/pip/build were not rerun for this recording/document-only
+  update; the preceding 385-pass/one-skip result remains historical infrastructure
+  verification, not a fresh intake test result.
+- Final intake checks: all four source hashes unchanged; all 49 explicitly listed
+  source/generated files ignored; zero tracked private/generated files or added
+  private-path/hash/secret-pattern matches. Only the four expected Markdown files
+  changed; diff check exited 0. Read-only public-document scope review found no
+  blocking wording issue. No full regression result is claimed for this intake.
+
+Current stopping point: development evidence review pending, not DEV_LOCKED or
+Module 2A2 completion. Next, review only the prepared candidate in full and record
+rough opponent card/form/deployment times; do not use contacts as full-playback
+evidence, inspect the remaining matches to tune selection, or lower thresholds.
+Private source paths, frame labels and hash inventories are not public artifacts.
+No push, main merge, PR, release, model work or next module during this intake.
