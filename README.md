@@ -143,10 +143,50 @@ review 有效但不足 3、无效/错误 2。review 在 2A1 永远
 地狱飞龙部署及 12 张关键帧框。候选门槛通过，但仍有八个明确报告的未知区间，
 并未完成全时间轴负样本认证。单场录像的训练门槛保持关闭，review 正确返回
 insufficient。这是已验收的人工证据，不是模型识别结果；未知区间不能当负样本。
-用户仅另行授权验收记录及快进合并、推送 main，保留原功能分支；实际整合结果
-以 Git 和本次完成报告为准。Module 2A2、2B、Module 3、Android 和实时 HUD
-仍未批准或开始，本轮不补第二场录像、不冻结数据划分、不训练模型。
+2A1 已完成验收记录及快进整合；`main` 基线为 `3ad657f…`，原功能分支保留。
+用户于 2026-10-04 另行正式授权 Module 2A2 实施。2B、Module 3、Android 和
+实时 HUD 仍未批准或开始；2A1 review 仍不代表新实验就绪。
 参见 [Module 2A1 验证记录](docs/VERIFICATION_M2A1.md)。
+
+## Module 2A2：独立证据与实验锁
+
+本模块已授权，开发就绪与不可覆盖冻结基础设施已实现，不修改上述三条命令，
+不训练或运行模型。当前没有新的自然开发录像，不能生成真实 Development Lock，
+也不能宣称 `DEV_LOCKED` 或 Module 2A2 完成。
+
+新增独立实验命令：`readiness`、`freeze-development`、`validate-lock`、
+`freeze-test-gt`。最后一条仅提供未来盲测契约，当前未开展真实测试／模型工作。
+本轮完整测试 376 项通过、1 项权限跳过，依赖检查和本地打包通过；最终复核记录
+见下方验证文档。命令细节见数据契约，无需你手动编写标注 JSON。
+
+第一轮改为：一场**新的自然开发对局**，人工整局复核后从对手实际用过的卡中选
+一个明确形态，至少两次清晰独立部署；没有合格目标就换下一场自然对局，不降低
+标准。旧地狱飞龙录像只用于历史回归，不能默认沿用为第一张模型目标。
+普通、觉醒和未知形态分开；未知区间及另一形态不能作为负样本。
+
+开发数据锁定后仍须独立验收及 2B 授权。后续顺序为：开发锁 → 模型锁 → 独立
+测试录像及新会话人工标注 → 测试标注锁 → 首次整场模型推理；不得先看预测再改
+标签。同一真实比赛即使重录或换文件，也不能跨开发/测试。
+
+### 下一份录像怎么准备
+
+正常打一场游戏，结束后从**对战记录打开完整回放**，用系统录屏从开头录到结算，
+正常速度，不剪辑、不倍速、不安排对手。无需提前挑卡。
+推荐放到 `local_data\recordings\development_01.mp4`（该目录已创建并被忽略）。
+
+提供录像后，首条具体命令是准备定位画面，不是训练或自动认牌：
+
+```powershell
+.\.venv\Scripts\python.exe -m clash_tracker_video.evidence_cli prepare "local_data\recordings\development_01.mp4" --recording-id development_01 --output ("outputs\module2a2\dev-survey-" + [guid]::NewGuid().ToString("N"))
+```
+
+现有 prepare 的参数和退出码已核对。每次新目录；不会覆盖录像或先前输出。
+缺少录像时不执行这条命令。后续人工证据和新实验冻结使用不同的流程，不能用
+contact 缩略图或模型预测替代整局人工复核。
+
+参见 [盲测协议](docs/MODULE_2A2_BLIND_TEST_PROTOCOL.md)、
+[数据契约](docs/MODULE_2A2_CONTRACTS.md)、
+[本轮验证记录](docs/VERIFICATION_M2A2.md)。
 
 ## 项目事实源
 

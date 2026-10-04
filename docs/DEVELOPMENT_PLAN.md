@@ -53,7 +53,9 @@ has passed timestamp, image, output safety, and visual verification.
 ## Module 2A — Offline Evidence and Annotation Preparation
 
 Status: In Progress — 2A1 formally accepted on 2026-10-04 at `98037ceba81683ad1a2c214bada30a10f2f3f69e`.
-2A2 remains unapproved and unimplemented.
+2A2 was separately approved on 2026-10-04 and is in progress. Its prospective
+experiment rules below supersede the original 2A first-experiment thresholds;
+the following four-play rules remain historical 2A1 semantics only.
 
 Goal: manually identify usable match ranges, inventory opponent cards, choose a
 defensible first target, prepare local annotations and assess data sufficiency.
@@ -96,8 +98,9 @@ The user separately authorized only acceptance documentation, fresh full tests /
 dependency checks, a documentation commit/push, ff-only main integration/push and
 preserving the implementation branch. See verification record and Git for the
 actual integration outcome. No next module, second recording, split freeze or
-model experiment is authorized; future work requires a separate planning/approval
-step. Module 3, Android capture and HUD are not started or approved by acceptance.
+model experiment was authorized by that acceptance action itself. Module 2A2
+was subsequently authorized separately, as recorded below; it does not authorize
+Module 2B. Module 3, Android capture and HUD remain unstarted and unapproved.
 
 Four tasks: simplified contract/tests; local index/contact pages/safe output;
 deployment intervals/key boxes/sufficiency; current-video verification/docs/report.
@@ -113,30 +116,60 @@ Public reporting permits anonymous candidate/count/gate aggregates, not private
 paths, hashes, screenshots, per-play times, boxes or actual annotation JSON.
 Correct insufficient output may complete 2A1 without satisfying 2B readiness.
 
-### Module 2A2 — Independent Data and Split Freeze
+### Module 2A2 — Independent Evidence & Experiment Lock
 
-Status: Gated — not approved or implemented.
+Status: In Progress — implementation separately authorized on 2026-10-04.
+Infrastructure implemented; full synthetic/regression tests passed. No new
+natural development replay supplied: WAITING_FOR_DEVELOPMENT_MATCH, not DEV_LOCKED.
 
-Requires a second independent complete recording and its own design/plan or
-separate explicit approval. Owns independence review, whole-match train/validation/
-test allocation, Evaluation Protocol, canonical digest, split lock and freeze CLI.
-Re-recordings/crops/re-encodes of one match and adjacent frames cannot cross splits;
-no random screenshot splitting. Do not implement these features during 2A1.
+Owns a separate development readiness/freeze layer, declared underlying-match
+identity, manual candidate/form selection, evolution ground truth, canonical
+SHA-256, immutable freeze versions, Model Lock contract and later Test GT lock.
+It does not change prepare/validate/review or the old experiment_gate=false.
+
+First experiment: one NEW natural complete unedited development replay, manually
+reviewed in full. Human target selection requires >=2 clear independent verified
+deployments of the same logical card and one known form. No fixed card priority,
+model-assisted selection or reuse of the historical Inferno Dragon sample.
+No qualifying target means NOT_READY; missing footage means
+WAITING_FOR_DEVELOPMENT_MATCH. No invented data or lowered standard.
+
+Freeze development before Module 2B. After separate 2B approval, freeze the model
+before test pixels/precise labels enter the development session. The first
+qualifying independent natural test replay needs >=1 locked-form deployment;
+do not skip difficult matches. A separate session labels all target deployments,
+retains non-evaluable/other-form/unknown cases and locks GT before any inference.
+Same underlying match cannot cross splits, regardless of recording/file hashes.
+Unknown intervals and other/unknown forms are not negatives; no evolution estimate.
+
+Real execution of this module stops at DEV_LOCKED for independent acceptance.
+Building future contracts does not authorize actual model/test execution or 2B.
+See [implementation plan](superpowers/plans/2026-10-04-module-2a2-experiment-lock.md)
+and [blind-test protocol](MODULE_2A2_BLIND_TEST_PROTOCOL.md).
 
 ## Module 2B — Single Card Detection Proof of Concept
 
-Status: Gated — accepted Module 2A1 and 2A2, independent data and separate approval required.
+Status: Gated — accepted Module 2A1, accepted 2A2 DEV_LOCKED and separate
+planning/authorization required. No training or inference has started.
 
 Goal: detect exactly one evidence-selected card as timestamped visual Observations.
 No OpponentCardPlayed, card cycle or elixir updates.
 
 Entry gates:
 
-- at least two independent complete matches and six verified target plays total;
-- at least one whole held-out match with two target plays;
-- reviewed non-match negatives, valid annotations and a locked pre-training split;
-- all same-match/re-recording/adjacent occurrence frames remain in one split;
+- a new complete natural development match with >=2 clear independent known-form
+  target plays and an accepted immutable Development Data Lock;
+- manual candidate selection, reviewed negatives and explicit unknown intervals;
+- prospective whole-match isolation and blind-test protocol fixed in advance;
 - independently reviewed code/model/data provenance, not merely a repository license.
+
+Required later sequence within a separately authorized Module 2B (not additional
+preconditions for starting development on already locked development data):
+
+- Model Lock after development, before accessing test pixels or precise GT;
+- first qualifying independent complete test match with >=1 locked-form play,
+  whole-match GT locked by a separate session before any test inference;
+- same underlying match/re-recording/adjacent frames remain in one split;
 
 Verification:
 

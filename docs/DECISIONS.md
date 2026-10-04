@@ -241,8 +241,9 @@ Representative user-recording acceptance remains required after synthetic tests.
 
 ## 2026-10-03 — Evidence Preparation Before Single-Card Detection
 
-Status: retained for stage/event separation and minimum independent-data gates;
-the scope of 2A is refined by the lightweight-stage decision below.
+Status: retained for stage/event separation and historical 2A1 behavior.
+Its first-experiment data thresholds are superseded by the 2026-10-04 Module 2A2
+decision below; do not reuse the old 4/6/2 experiment gate for new 2A2 work.
 
 ### Decision
 
@@ -278,6 +279,9 @@ accepted by this entry. Real footage, hashes and labels remain local and ignored
 External datasets/models remain separately provenance-gated; no download approved.
 
 ## 2026-10-03 — Lightweight Key Evidence Before Independent Split Infrastructure
+
+Historical scope: its 2A1 constraints remain valid. Its deferral of 2A2 until
+a second recording is superseded by the separately approved 2026-10-04 design.
 
 ### Decision
 
@@ -316,3 +320,45 @@ ending at the exact last actual frame. Public documents allow anonymous candidat
 count/gate aggregates; actual timestamps, paths, hashes, boxes, media and labels
 stay local. Prior commits are not rewritten. Proposed model/protocol details are
 not made accepted technical decisions by this entry.
+
+## 2026-10-04 — Independent Experiment Locks and Prospective Blind Testing
+
+### Decision
+
+The user approved Module 2A2 implementation: a new natural development replay,
+human target selection, at least two clear independent deployments of one known
+card/form, immutable versioned Development Data Lock, later Model Lock, and a
+separate-session Test Ground Truth Lock before any test inference. The first
+qualifying independent natural test match needs at least one locked-form play.
+The old Inferno Dragon recording is historical regression evidence only.
+
+### Context
+
+The accepted 2A1 tools establish evidence consistency, not model readiness.
+Freezing the model before test exposure prevents test-driven target/parameter
+selection. The user explicitly approved building infrastructure before supplying
+new development footage. Real Module 2A2 execution stops at DEV_LOCKED; absent
+that footage it stops WAITING_FOR_DEVELOPMENT_MATCH, without fabricated locks.
+
+### Alternatives
+
+- Require all development and test labels before developing a model.
+- Prospectively freeze development, then model, then independent blind labels.
+
+### Reason
+
+The second flow preserves a small one-development/one-test PoC while protecting
+independence and avoiding parameter tuning on test pixels or ground truth.
+
+### Consequences
+
+- Supersedes the old first-experiment 4/6/2 thresholds and pre-2B test-label
+  requirement only; existing 2A1 four-play candidate/review behavior stays intact.
+- Add a separate Python experiment layer; no database or new dependency.
+- normal/evolved/unknown are separate. Other/unknown forms and timeline gaps
+  are not negatives. Evolution is manual ground truth, not an automatic counter.
+- Split identity is the underlying match, not the recording file or its hash.
+- Digests and exclusive creation detect inconsistencies, not dishonest human
+  attestations, coherent forgery or source-video authenticity.
+- Module 2B still requires separate acceptance, planning and explicit approval.
+  No training, inference, Android or live feature is authorized by this decision.
