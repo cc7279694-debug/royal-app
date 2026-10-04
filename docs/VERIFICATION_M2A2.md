@@ -218,9 +218,50 @@ this record. Exact local commits and final status belong to Git and the handoff.
   changed; diff check exited 0. Read-only public-document scope review found no
   blocking wording issue. No full regression result is claimed for this intake.
 
-Current stopping point: development evidence review pending, not DEV_LOCKED or
-Module 2A2 completion. Next, review only the prepared candidate in full and record
-rough opponent card/form/deployment times; do not use contacts as full-playback
+At the intake stopping point, development evidence review was pending, not
+DEV_LOCKED or Module 2A2 completion. Its next step was full candidate review and
+recording rough opponent card/form/deployment times; do not use contacts as full-playback
 evidence, inspect the remaining matches to tune selection, or lower thresholds.
 Private source paths, frame labels and hash inventories are not public artifacts.
 No push, main merge, PR, release, model work or next module during this intake.
+
+## 2026-10-04 — Human rough review and recording-end conflict
+
+- User confirms full viewing of the available first file, own-bottom perspective,
+  and no repeated counting of a persistent unit. Preserved five card/form inventory
+  entries with 12 approximate new-deployment times; one form remains unknown.
+  User explicitly discloses dense-combat ambiguity/missed plays and does not claim
+  an exhaustive deck inventory. These are human observations and location hints,
+  not precise verified onset/visibility intervals or key-frame annotations.
+- Before precision extraction/selection, inspected original first, sample and
+  actual last exported frames. The final frame is still gameplay, not a verified
+  ending/result. This contradicts the earlier opening-to-result declaration;
+  full viewing of an available file does not certify its recording completeness.
+- Fresh read-only existing _scan plus strict load_indexes exited 0: the source's
+  measured actual end equals its indexed end and last successful exported frame;
+  one report/index pair, 37 requests/successful unique frames. Source SHA-256
+  matches the intake value. No new frames extracted or old files changed.
+- Added one ignored human-review sidecar preserving the original rough inventory,
+  unknown form/dense-combat notes, prior source declarations and the contradictory
+  terminal-frame findings. This is not a production development draft/lock. No
+  negative intervals, precise occurrences, boxes, target choice or lock fabricated.
+- Do not mark a reviewed complete match segment verified or freeze development
+  despite this conflict. Retain the rough review; resolving the missing ending
+  does not require the user to repeat the same complete-file review/table.
+  A complete source for this match, or an explicit documented switch to another
+  provisional development match, is the next required input/choice.
+- Other three sources remain unseen/unassigned. No third-party vision service,
+  detector/model execution, code/dependency change, training, 2B, Model/Test GT
+  Lock, Android, realtime, push or main merge. Full pytest/pip/build not rerun for
+  this evidence/document-only checkpoint; old results are not fresh proof.
+- Final checks: strict sidecar JSON loads with five entries/12 rough deployments,
+  one unknown form and no verified negatives or development lock. All four source
+  hashes unchanged; all 50 explicitly listed private source/output files ignored;
+  no tracked private/generated files or added private-path/hash/secret-pattern
+  matches. Only the four intended public Markdown status files changed; diff
+  check exited 0. No production/test/dependency file changed.
+
+Current state: blocked by recording-completeness conflict, not DEV_LOCKED or
+MODULE_2A2_READY_FOR_ACCEPTANCE. Private timestamps, source mapping and terminal
+image stay local/ignored. This check identifies a visible contradiction; it does
+not authenticate provenance or guarantee no unseen edits in the recording.

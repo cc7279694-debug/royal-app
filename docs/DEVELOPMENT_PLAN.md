@@ -120,9 +120,11 @@ Correct insufficient output may complete 2A1 without satisfying 2B readiness.
 
 Status: In Progress — implementation separately authorized on 2026-10-04.
 Infrastructure implemented; full synthetic/regression tests passed. Four new
-replays received; the first provisional development candidate is prepared and
-awaits full human evidence review. The other three are unseen/unassigned.
-Target selection and real development freeze remain pending: not DEV_LOCKED.
+replays received; the first is prepared and user whole-file rough review received.
+Actual final-frame verification conflicts with its complete-recording declaration:
+the file ends in gameplay without a verified result. The other three remain
+unseen/unassigned. Resolve completeness before precise evidence/selection/freeze;
+no real Development Data Lock or DEV_LOCKED result.
 
 Owns a separate development readiness/freeze layer, declared underlying-match
 identity, manual candidate/form selection, evolution ground truth, canonical

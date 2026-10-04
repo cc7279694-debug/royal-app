@@ -12,9 +12,10 @@ Last verified: 2026-10-04.
   2026-10-04; infrastructure implemented and verified on its feature branch.
   Final review's blocking finding is fixed and scoped re-review passed;
   real evidence/lock phase remains incomplete.
-- Real experiment: development evidence review pending. Four new replay files
-  received; only the first is a provisional development candidate, prepared but
-  not fully human-reviewed. No actual Development Data Lock or DEV_LOCKED result.
+- Real experiment: blocked by the first candidate's recording-completeness
+  conflict. Whole-file human review and rough inventory received; fresh source
+  scan confirms its exported final frame is the actual file end, still gameplay
+  without a verified result. No actual Development Data Lock or DEV_LOCKED result.
 - Module 2B, Module 3, Android, HUD and realtime remain closed and unstarted.
 
 ## Inherited verified capabilities
@@ -77,8 +78,17 @@ Historical Inferno Dragon evidence is regression-only, not the first new target.
   original source hashes are unchanged. Sources and generated outputs are ignored.
 - The other three remain unseen and unassigned, not an accepted independent test
   set. No chronological/first-qualifying test selection claim is made.
-- Full human evidence review, opponent card/form inventory, target selection,
-  annotations and real locks remain pending. No model work or new module started.
+- User has watched the whole available first file and supplied five card/form
+  inventory entries and 12 approximate deployment times, without asserting an
+  exhaustive inventory. One form is unknown; dense combat uncertainty is retained,
+  with no verified negative labels or precise occurrence/box annotations created.
+- A fresh read-only full scan and checked index agree on the exact actual last
+  frame. Its original PNG remains gameplay without a verified ending/result.
+  Whole-file viewing is not opening-to-result recording completeness. Preserve
+  the earlier user declaration as history, but do not mark a complete match segment
+  verified, choose a target or freeze while this detectable conflict is unresolved.
+- Rough human review and end-check results are stored as an ignored local sidecar,
+  not a development draft or lock. No code/model work or next module started.
 
 ## Limits and unchanged gates
 
@@ -108,12 +118,14 @@ Feature: `feat/module-2a2-experiment-lock`, from
 no push, main merge, PR, release, rebase or branch deletion. Preserve the 2A1 branch.
 Exact final commit belongs to Git and the handoff.
 
-Infrastructure checkpoint complete; next review the prepared development
-candidate in full and record a rough opponent card/form inventory and independent
-deployment times. The private intake manifest preserves the source mapping;
-do not rename sources, inspect the other three for target selection or ask the
-user to edit JSON/draw boxes. Locator contact pages cannot replace full playback.
-Missing human evidence/selection/freeze blocks DEV_LOCKED and final 2A2 acceptance.
+Infrastructure checkpoint complete; next resolve the candidate's recording-end
+conflict using a complete source for the same match, or an explicitly documented
+change to the next provisional development recording. Retain this user's rough
+review and uncertainty, do not ask for repeat whole-file review just to resolve
+the missing ending, and never relax completeness to force a lock. Source mappings
+stay private; do not overwrite/rename inputs or inspect other matches to tune
+target selection. Precise evidence/selection/freeze and final 2A2 acceptance remain
+pending; no model/test work is opened by this checkpoint.
 
 See [2A2 verification](VERIFICATION_M2A2.md),
 [blind protocol](MODULE_2A2_BLIND_TEST_PROTOCOL.md),
