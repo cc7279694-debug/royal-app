@@ -112,6 +112,8 @@ def validate_draft_shape(draft):
             raise EvidenceError("Conflicting evolution capability metadata.")
         if candidate["form"] == "evolved" and not evolution["capable"]:
             raise EvidenceError("Known evolved form requires evolution capability.")
+        if candidate["form"] == "evolved" and evolution["equipped"] == "not_equipped":
+            raise EvidenceError("Known evolved form conflicts with unequipped evolution.")
         if type(candidate["deployments"]) is not list:
             raise EvidenceError("Deployment annotations must be an array.")
         for deployment in candidate["deployments"]:

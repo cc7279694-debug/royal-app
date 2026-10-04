@@ -245,3 +245,67 @@ def test_independent_units_can_share_original_frame_with_distinct_boxes():
     report = api().validate_development(draft, indexes)
     assert report["status"] == "DEV_VALIDATED"
     assert report["candidates"][0]["clear_verified_plays"] == 2
+
+
+@pytest.mark.parametrize("equipment,expected_valid", [("not_equipped", False), ("unknown", True)])
+def test_evolved_form_rejects_explicit_unequipped_but_preserves_unknown(equipment, expected_valid):
+    draft, indexes = development_fixture()
+    candidate = draft["candidates"][0]
+    candidate["form"] = "evolved"
+    candidate["evidence"]["target_card"]["variant"] = "known_evolution"
+    candidate["evolution"]["equipped"] = equipment
+    draft["selection"]["form"] = "evolved"
+    for deployment in candidate["deployments"]:
+        deployment["form"] = "evolved"
+        deployment["evolution"] = {"progress": "unknown", "remaining_count": None, "source": "manual"}
+    report = api().validate_development(draft, indexes)
+    assert report["valid"] is expected_valid
+    if expected_valid:
+        assert report["status"] == "DEV_VALIDATED"
+        assert report["candidates"][0]["clear_verified_plays"] == 2
+        assert api().require_development(draft, indexes)["draft"]["candidates"][0]["evolution"]["equipped"] == "unknown"
+    else:
+        with pytest.raises(EvidenceError):
+            api().require_development(draft, indexes)
+
+
+@pytest.mark.parametrize("container,field,value", [
+    ("recording", "time_base", {"numerator": True, "denominator": 1000}),
+    ("recording", "origin_time_base", {"numerator": True, "denominator": 1000}),
+    ("recording", "width", 64.0),
+    ("recording", "height", 48.0),
+    ("recording", "origin_pts", 5000.0),
+    ("recording", "rotation_degrees", 0.0),
+    ("frame", "time_base", {"numerator": True, "denominator": 1000}),
+    ("frame", "raw_pts", 6000.0),
+    ("frame", "timestamp_seconds", True),
+    ("frame", "image_width", 64.0),
+    ("frame", "image_height", 48.0),
+])
+def test_numerically_equal_invalid_snapshot_types_cannot_freeze(container, field, value):
+    draft, indexes = development_fixture()
+    target = indexes["synthetic"]["recording"] if container == "recording" else indexes["synthetic"]["frames"][0]
+    target[field] = value
+    report = api().validate_development(draft, indexes)
+    assert report["valid"] is False
+    with pytest.raises(EvidenceError):
+        api().require_development(draft, indexes)
+
+
+@pytest.mark.parametrize("mutation", [
+    lambda i: i["synthetic"].update(extra="C:/private/account"),
+    lambda i: i["synthetic"].update(frames={"private": "C:/private/account"}),
+    lambda i: i["synthetic"]["frames"].__setitem__(0, "C:/private/account"),
+    lambda i: i["synthetic"]["frames"][0].update(time_base={"numerator": [], "denominator": 1000}),
+    lambda i: i["synthetic"]["frames"].append({**deepcopy(i["synthetic"]["frames"][0]),
+                                            "time_base": {"numerator": True, "denominator": 1000}}),
+])
+def test_malformed_index_snapshot_is_sanitized_without_traceback(mutation):
+    draft, indexes = development_fixture()
+    mutation(indexes)
+    report = api().validate_development(draft, indexes)
+    assert report["valid"] is False
+    assert "private" not in " ".join(report["reasons"])
+    with pytest.raises(EvidenceError) as error:
+        api().require_development(draft, indexes)
+    assert "private" not in str(error.value)

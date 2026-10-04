@@ -2,7 +2,7 @@
 from copy import deepcopy
 from collections.abc import Mapping
 
-from .evidence_contract import EvidenceError, validate_evidence, seconds, valid_type, interval_contains
+from .evidence_contract import EvidenceError, SCHEMAS, validate_evidence, seconds, valid_type, interval_contains
 from .evidence_review import review_evidence
 from .experiment_contract import FORM_TO_V1, validate_draft_shape
 
@@ -162,30 +162,53 @@ def validate_development(draft, indexes):
 def _index_snapshot(draft, indexes):
     """Bind used export metadata/pixel hashes, without persisting filesystem roots."""
     rid = draft["identity"]["recording_id"]
+    index = indexes.get(rid)
+    if type(index) is not dict or set(index) != {"recording", "frames"}:
+        raise EvidenceError("Invalid bound recording index fields.")
+    recording = index["recording"]
+    recording_schema = SCHEMAS["recordings"]
+    if (type(recording) is not dict or set(recording) != set(recording_schema)
+            or any(not valid_type(recording[field], kind) for field, kind in recording_schema.items())):
+        raise EvidenceError("Invalid bound recording metadata.")
+    if type(index["frames"]) is not list:
+        raise EvidenceError("Bound export frames must be an array.")
     used = {a["frame_id"] for c in draft["candidates"] for a in c["evidence"]["frame_annotations"]}
-    entries = {f["frame_id"]: f for f in indexes[rid]["frames"]
-               if isinstance(f, dict) and f.get("status") == "success" and f.get("frame_id") in used}
-    fields = ("frame_id", "requested_seconds", "timestamp_seconds", "raw_pts", "time_base",
-              "image_path", "image_width", "image_height", "status", "reason")
+    frame_schema = dict(frame_id="id", requested_seconds="seconds", timestamp_seconds="seconds",
+                        raw_pts="int", time_base="rational", image_path="png",
+                        image_width="positive_int", image_height="positive_int", status={"success"})
+    fields = (*frame_schema, "reason")
+    entries = {}
+    for source in index["frames"]:
+        if type(source) is not dict:
+            raise EvidenceError("Invalid bound export frame object.")
+        if source.get("status") != "success":
+            continue
+        if not valid_type(source.get("frame_id"), "id"):
+            raise EvidenceError("Invalid bound export frame identity.")
+        if source["frame_id"] not in used:
+            continue
+        if (not set(fields) <= set(source) or set(source) - set(fields) - {"_content_hash", "_aliases"}
+                or any(not valid_type(source[field], kind) for field, kind in frame_schema.items())
+                or source["reason"] is not None):
+            raise EvidenceError("Invalid bound export metadata.")
+        # Check each retained occurrence before merging: True == 1 must never
+        # allow an invalid duplicate to replace a valid original entry.
+        if "_content_hash" in source and not valid_type(source["_content_hash"], "hash"):
+            raise EvidenceError("Invalid bound export pixel hash.")
+        if "_aliases" in source and (type(source["_aliases"]) is not list
+                or not all(valid_type(alias, "png") for alias in source["_aliases"])):
+            raise EvidenceError("Invalid bound export aliases.")
+        entries[source["frame_id"]] = source
     frames = []
     for fid in sorted(entries):
         source = entries[fid]
-        if (not set(fields) <= set(source) or set(source) - set(fields) - {"_content_hash", "_aliases"}
-                or not valid_type(source["requested_seconds"], "seconds")
-                or source["reason"] is not None):
-            raise EvidenceError("Invalid bound export metadata.")
-        frame = {field: deepcopy(source.get(field)) for field in fields}
+        frame = {field: deepcopy(source[field]) for field in fields}
         if "_content_hash" in source:
-            if not valid_type(source["_content_hash"], "hash"):
-                raise EvidenceError("Invalid bound export pixel hash.")
             frame["_content_hash"] = source["_content_hash"]
         if "_aliases" in source:
-            if (type(source["_aliases"]) is not list
-                    or not all(valid_type(alias, "png") for alias in source["_aliases"])):
-                raise EvidenceError("Invalid bound export aliases.")
             frame["_aliases"] = sorted(set(source["_aliases"]))
         frames.append(frame)
-    return {rid: {"recording": deepcopy(indexes[rid]["recording"]), "frames": frames}}
+    return {rid: {"recording": deepcopy(recording), "frames": frames}}
 
 
 def require_development(draft, indexes):
