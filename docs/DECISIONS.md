@@ -493,3 +493,53 @@ useful infrastructure, mutating old evidence or treating visual units as cards.
 - Stop for ChatGPT independent review. New implementation planning/execution,
   model installation, weights, training, inference, Model Lock, Module 3 and
   Android/live functionality require later authority. No push/main integration.
+
+## 2026-10-05 — Accept Multiclass Design with Development Scale Coverage
+
+### Decision
+
+Record the user's reported independent ChatGPT verdict at
+`cec8abc35fce2438d149fe4b68b203650cb835e4`:
+MODULE_2B2A_DESIGN_ACCEPTED_WITH_AMENDMENT. Close the design stage after adding
+the Scale Coverage Gate and documentation checks; write, but do not execute,
+the Module 2B-2B data/training-infrastructure plan. This supersedes only the
+preceding decision's pending-review/planning stop, not its paused specialist route.
+
+### Context
+
+An easy-large-only 3-5-class baseline would not test a material risk for real
+gameplay: small moving targets. Class names or subjective impressions cannot
+substitute for original-image bbox measurements. Data and environment gates
+must remain separate to avoid moving straight from design to training.
+
+### Alternatives
+
+- Preselect named small/large cards or adjust categories after seeing test results.
+- Fix a Development-only relative-size policy before final class selection,
+  measure the full qualified mobile candidate pool, and retain insufficiency.
+
+### Reason
+
+The second approach keeps dynamic target choice, avoids test leakage and reports
+actual scale support without claiming a universal absolute small-object threshold.
+The exact fixed policy, grouped weighting and tie fallback are in the
+[amended spec](superpowers/specs/2026-10-05-module-2b2a-multiclass-design.md).
+
+### Consequences
+
+- Choose at least one relative-small and one medium/large mobile class among
+  the 3-5 targets; both remain subject to independent group and own/opponent
+  train/validation support. No preset card priority or specialist Minions gate.
+- Report pixel dimensions and normalized-area distributions for all candidates
+  and chosen classes. Clear boxes define scale; occluded/pending data stays
+  preserved, not negative. Missing scale support yields SIZE_COVERAGE_INSUFFICIENT.
+- Freeze the rule, candidate universe/statistics, cutpoints and whole-match split
+  before final selection; bind them and selection rationale into the dataset digest.
+  A revision needs a new version, never future-test-driven regrouping/overwriting.
+- Relative scale is not COCO absolute-small coverage, training success or proof
+  of cross-match generalization. Model/environment performance is still unmeasured.
+- New multiclass contracts are additive; old locks/tools/FAIL stay unchanged.
+  Reference-only assets remain forbidden training inputs.
+- Phase A data infrastructure/preparation and Phase B isolated model-environment
+  qualification each need separate approval/acceptance. No weights/training,
+  Model Lock, Test GT, blind test, later modules, push or main integration now.

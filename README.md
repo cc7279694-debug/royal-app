@@ -14,14 +14,23 @@ Module 2A2 已于 2026-10-04 由用户确认正式验收，基准为
 识别成功：两轮仍未达到 Top5/2 秒门槛，未生成 Model Lock。
 2B-1 的验收记录和发布已完成。2026-10-05 用户暂停 **2B-2 普通亡灵专项数据补齐**，
 不再以普通亡灵 4 场／8 次部署作为后续产品训练门槛；保留旧契约、标注工具和锁基础设施。
-当前仅授权 **Module 2B-2A — Multi-class Dataset & Taxonomy Audit**：公开资料研究、
-许可／来源核查、统一视觉标签与模型路线设计，不安装模型、不下载训练素材／权重、不训练。
+用户于 2026-10-05 报告 ChatGPT 对 **Module 2B-2A — Multi-class Dataset & Taxonomy Audit**
+独立复核通过，结论为 `MODULE_2B2A_DESIGN_ACCEPTED_WITH_AMENDMENT`，
+审查提交为 `cec8abc35fce2438d149fe4b68b203650cb835e4`；本轮补入 Scale Coverage Gate 并收尾设计阶段。
 产品目标是每局动态出现的多种视觉单位，普通亡灵仅为历史样本和未来类别之一。
 旧 pending 数据、录像完整性疑点、2A2 锁与 2B-1 失败结果保留，不在本轮修改或补录。
-新多类别 schema、3–5 类 PoC 和 Nano/Tiny 比较顺序是**待 ChatGPT 复核的建议**，
-未实现、未获训练授权，更不是识别成功。公开数据的素材权利未明确，当前 reference_only。
+新多类别 schema 与 3–5 类 PoC 是**已接受设计，尚未实现**。类别从按原序复核的
+Development 数据动态选择；先固定尺度政策、统计全部合格移动候选，再选至少一个
+相对小移动类和一个中／大移动类。报告原图框像素尺寸及归一化面积分布；不足输出
+`SIZE_COVERAGE_INSUFFICIENT` 并补 Development 素材，不恢复专项亡灵路线或降低门槛。
+Nano/Tiny/Faster 仍是候选比较，不是已验证的模型选型。公开素材权利未明确，当前 reference_only。
+下一步已编写 **Module 2B-2B — Multiclass PoC Data & Training Infrastructure** 实施计划：
+数据 schema/readiness/准备与锁定先独立验收，模型环境资格验证另行授权；不一口气训练。
+本轮只改文档，不安装模型、不下载权重、不分析私人数据、不训练，也不 push/merge。
 参见[研究审查](docs/research/2026-10-05-multiclass-dataset-taxonomy-audit.md)与
-[待审设计](docs/superpowers/specs/2026-10-05-module-2b2a-multiclass-design.md)。
+[已接受设计](docs/superpowers/specs/2026-10-05-module-2b2a-multiclass-design.md)、
+[设计收尾检查](docs/VERIFICATION_M2B2A.md)与
+[待复核实施计划](docs/superpowers/plans/2026-10-05-module-2b2b-multiclass-data-training-infrastructure.md)。
 工具在 Windows 电脑上运行，不需要 Android Studio；尚无已验收的自动识别能力。
 
 实时在线对局分析和 HUD 保持 Gated：须取得覆盖具体行为、版本、使用场景的
@@ -163,7 +172,7 @@ insufficient。这是已验收的人工证据，不是模型识别结果；未�
 2A1 已完成验收记录及快进整合；其历史 `main` 基线为 `3ad657f…`，原功能分支保留。
 用户于 2026-10-04 另行正式授权 Module 2A2 实施。当时 2B 尚未批准；
 2026-10-05 当时的另行授权仅打开 2B-1；随后 2B-2 专项数据准备现已暂停，
-当前仅研究的 2B-2A 授权见本文开头。
+当前 2B-2A 设计收尾／2B-2B 计划授权见本文开头。
 Module 3、Android 和实时 HUD 仍未批准，
 2A1 review 仍不代表新实验就绪。
 参见 [Module 2A1 验证记录](docs/VERIFICATION_M2A1.md)。
@@ -202,7 +211,7 @@ readiness / freeze-development / validate-lock 均退出 0，2A2 验收停点为
 普通、觉醒和未知形态分开；未知区间及另一形态不能作为负样本。
 
 开发数据锁定与 2A2 验收已完成；当时另行授权仅覆盖 2B-1 开发基线，
-随后 2B-2 数据准备曾获批准，现已暂停；当前仅授权 2B-2A 研究，不包含训练或盲测。
+随后 2B-2 数据准备曾获批准，现已暂停；当前仅设计收尾与下一阶段计划，不包含训练或盲测。
 后续顺序为：开发锁 → 模型锁 → 独立
 测试录像及新会话人工标注 → 测试标注锁 → 首次整场模型推理；不得先看预测再改
 标签。同一真实比赛即使重录或换文件，也不能跨开发/测试。
@@ -272,7 +281,7 @@ Module 1 与 2A1 三条命令和 `experiment_gate=false` 语义不变。
 零认证缺席时长。两个门槛均为 false；未知内容不是负样本，也没有 FP/min 结论。
 原片段、既有标签与此前完整性声明均保留。此前停在第二份的事实核实，未开始训练。
 用户已暂停普通亡灵专项路线，本轮不继续此复核或要求补足 4 场／8 次。旧 validator
-保留原行为，只验证历史固定类别契约，不能当新多类别 readiness；新契约等待设计批准。
+保留原行为，只验证历史固定类别契约，不能当新多类别 readiness；新契约设计已接受，实施计划待批准。
 
 ## 项目事实源
 

@@ -1,7 +1,10 @@
 # Module 2B-2A — Multi-class Dataset & Taxonomy Design
 
-Status: **DRAFT — awaiting ChatGPT review and user approval** (2026-10-05).
-本文件是研究阶段的设计建议，不是已批准的新数据契约、训练计划或执行授权。
+Status: **ACCEPTED WITH AMENDMENT — design stage closed** (2026-10-05).
+用户报告 ChatGPT 对 `cec8abc35fce2438d149fe4b68b203650cb835e4` 的独立设计复核结论：
+`MODULE_2B2A_DESIGN_ACCEPTED_WITH_AMENDMENT`。本轮补入 Scale Coverage Gate；
+这记录用户交付的验收结论，不声称本轮重新取得 ChatGPT 的审查回复。
+本文件是已接受的设计要求；不是多类别代码已实现、数据已就绪、选型已实测或训练授权。
 事实与许可证依据见[公开资料审查](../../research/2026-10-05-multiclass-dataset-taxonomy-audit.md)。
 
 ## 1. Task Contract
@@ -35,9 +38,9 @@ PoC；保护现有数据；提交可交给 ChatGPT 的设计，随后停止。
 3. 从一开始做全类别／源卡恢复：召唤与变形、普通／觉醒、短时法术使目标过大。
    暂不采用；先证明多类单位能够跨自然比赛识别，再另行做部署与卡牌归因。
 
-模型建议是资格验证顺序，不是已接受选型。新方案不受历史 Faster R-CNN 决定约束。
+模型建议是资格验证顺序，不是已实测并锁定的选型。新方案不受历史 Faster R-CNN 决定约束。
 
-## 3. 统一视觉标签 Schema（提案，未实现）
+## 3. 统一视觉标签 Schema（已接受设计，未实现）
 
 新增独立 contract kind：`multiclass_visual_dataset`、schema_version=1。
 不要向旧固定字段 schema 塞新字段或重写旧锁；使用新的 validator／readiness／lock
@@ -45,7 +48,7 @@ PoC；保护现有数据；提交可交给 ChatGPT 的设计，随后停止。
 
 | 层 | 必需字段／语义 | 关键约束 |
 |---|---|---|
-| Taxonomy | taxonomy_id/version；visual_class_id；kind；definition；alias mapping | ID 稳定、有版本；与模型训练整数 ID 分离 |
+| Taxonomy | taxonomy_id/version；visual_class_id；kind；mobility；definition；alias mapping | ID 稳定、有版本；mobility=moving/static/unknown，与模型整数 ID 分离 |
 | Kind | unit / building / spell_effect / projectile / battlefield_object / ui | UI 可保留定位元数据，默认不是首轮检测目标 |
 | Observation GT | annotation_id、frame_id、visual_class_id、owner、observed_form、box、review_state | 一只可见实体一框；不自动推断出牌 |
 | Owner | own / opponent / neutral / unknown；perspective_ref | 不由上下半场或默认数值推断；参考视角变化需声明 |
@@ -104,7 +107,7 @@ upstream ROI 裁切坐标必须有完整 offset／scale／旋转才能回到原�
 旧 frame_id、证据、锁与失败结果不动。旧训练契约仍可验证历史材料，但不代表
 多类别 readiness；新契约不能通过改旧门槛“继承”Training Dataset Lock。
 
-## 4. 新最小 PoC（建议门槛，待复核）
+## 4. 新最小 PoC（已接受设计门槛，未执行）
 
 ### 4.1 问题与开发支持
 
@@ -113,6 +116,7 @@ upstream ROI 裁切坐标必须有完整 offset／scale／旋转才能回到原�
 
 - 首轮锁定 **3–5 个 visual classes**，至少两个移动单位类型，可加入一个建筑。
   从按原序复核的自然开发素材选择，不固定亡灵、不因测试表现挑类别。
+  必须通过下述 Scale Coverage Gate，不能全部选大而容易识别的目标。
 - 初始数据建议至少 **2 场独立开发自然比赛（总体）**。每个入选类至少两个独立
   appearance groups，且 train 与 development_validation 都有可确认的支持；
   每个启用的 `(class, owner)` joint label 在 **train 和 development_validation
@@ -127,11 +131,64 @@ upstream ROI 裁切坐标必须有完整 offset／scale／旋转才能回到原�
 这不是把 4 场／8 次换成全产品通用硬指标，而是首次多类别探索的最低支持建议。
 少量开发比赛不足以证明普适性；缺口按每类实际支持报告，不请求固定亡灵补录。
 
+### 4.1.1 Scale Coverage Gate — 固定尺度政策，随后选类
+
+首轮集合至少包含 **1 个相对小目标移动单位类 + 1 个中／大目标移动单位类**，
+与至少两个移动单位类型的既有要求同时满足；建筑可以补充，但不代替这两个移动代表。
+这里的相对尺度来自 Development 实测框，不是按卡名、主观印象、模型置信度或测试表现划分。
+
+固定政策 ID：`dev_moving_area_quantiles_v1`。政策算法在本设计中固定；执行时先冻结
+Development 候选全集、whole-match train/validation assignment 与统计快照，再最终选类。
+候选全集包括所有满足 4.1 基本独立组与两种归属 train/validation 支持条件的
+`kind=unit, mobility=moving, form=normal` 类，不能先选喜欢的 3–5 类再计算分位数。
+未合格／不能判定 mobility 的候选也要列出及说明缺口，不能静默删掉困难类。
+
+统计规则如下，均只读取 Development 的人工 GT：
+
+1. 使用旋转校正后的完整原图 `W,H` 与归一化实体框 `w,h`：
+   `width_px=w*W, height_px=h*H, short_side_px=min(width_px,height_px), area_norm=w*h`。
+   不使用 contact 缩略图、模型 resize、ROI 面积或增强后的尺寸替代原图统计。
+2. 框是可见范围。尺度代表框须人工 verified、class/own-or-opponent/normal 均明确，
+   并确认 `occlusion=none, truncation=none`，
+   避免把遮挡剩余碎片当小单位。每个支持组至少有一张这种明确框的不同真实帧；
+   不满足的基本合格候选记录 `scale_support_pending`。它们与所有困难框仍保留，
+   不变成 Negative；任何基本合格候选尚不能定尺度时，不冻结最终类别集合。
+   尺度代表资格不依赖最终入选类或 3.1 的整帧导出过滤，避免循环选择；
+   最终导出可用性及 train/validation 支持须另验，不能用未导出的支持补训练门槛。
+3. 同一类／同一组／同一真实帧多个单位的 `area_norm` 先取 median；
+   再按组对不同真实帧取 median，按真实比赛对组取 median，最后按类对比赛取 median，
+   得到 class score `S`。三只单位、重复导出或多抽同一组帧不会增加独立支持数，
+   类尺度不会因为某场或某组图片更多而在候选池中取得更多权重。
+   重复导出、裁切／增强不新增统计帧；同场重录与同一因果组不能换 ID 增权。
+4. 对全部可定尺度的基本合格移动类的 `S` 等权排序，计算 `Q25,Q75`。
+   分位数使用固定线性插值：`k=(N-1)*p, i=floor(k), f=k-i`，
+   `Q(p)=(1-f)*S[i]+f*S[min(i+1,N-1)]`，`p=1/4,3/4`。
+   用输入十进制值的精确有理数计算；比较前不四舍五入，显示值不作为校验输入。
+5. `Q25<Q75` 时，`S<=Q25` 为 `relative_small`；`Q25<S<Q75` 为 `medium`；
+   `S>=Q75` 为 `large`。若分位点因 ties 重合但 `min(S)<max(S)`，使用固定 fallback：
+   最小 score 为 `relative_small`、最大 score 为 `large`、其余为 `medium`。
+   同尺寸必须同组，不按 ID／卡名／名次拆分 ties；fallback 使用与否须写入统计快照。
+   `N<2`、全等尺度、尺度支持未完成或入选集合缺少任一必需尺度时，
+   Scale Coverage Gate 不通过，输出 **`SIZE_COVERAGE_INSUFFICIENT`**。
+
+报告所有候选及入选类的真实比赛／独立组／真实帧／实体框数量，以及原图分辨率分布、
+`width_px / height_px / short_side_px / area_norm` 的 min、P10、P50、P90、max。
+同时报告全部已复核框与清晰尺度代表框两套统计、排除原因与数量、class score、cutpoints
+和 scale group；清晰支持还按 match/group/owner 分解。最终训练导出另报实际可用尺度
+分布，不能反算改写冻结的候选尺度政策；不只报入选类，也不把归一化面积称为固定像素尺寸。
+这些是相对开发分布的尺度，不宣称满足 COCO 的绝对小目标定义或已有小目标识别性能。
+
+缺少合格小目标或其他尺度支持时，按原顺序增加／复核自然 Development 素材，
+不降低门槛、不恢复专项补亡灵、不移动未知／另一形态去凑负样本。所有历史素材保留。
+新素材或纠正统计需新的候选／尺度快照及 freeze version；不能覆盖旧版本。
+政策、候选全集、统计、分位边界、类别选择与 split 一起进入 Dataset Lock digest。
+未来测试无论 PASS／FAIL，都不能反向更改尺度分组、类集合或本轮门槛。
+
 ### 4.2 划分、冻结与未见自然比赛
 
 已留存四份素材都有历史像素／边界暴露，**只能 development/reference，不能 blind test**。
 当前 pending、截断疑点与 Unknown 保留；本轮不重看、不修标签、不追问旧专项缺口。
-以后采用哪种完整／局部训练素材规则仍需新设计批准；本提案只用已确认完整回放
+以后采用哪种局部训练素材规则仍需新设计批准；本设计只用已确认完整回放
 进入初始开发支持，不把不完整文件伪装整局。无结算 UI 合法，实际首末边界规则保留。
 
 建议先按 underlying match 冻结 train/development_validation。目标类别、整数映射、
@@ -182,37 +239,43 @@ COVERAGE_INSUFFICIENT，不把 0/0 算 100%。归属错判计入相应子组 FP/
 
 ## 5. 新 Dataset Lock 的实验语义
 
-建议 canonical SHA-256 覆盖：schema/taxonomy 版本与类别定义；owner/form/ignore
+canonical SHA-256 覆盖：schema/taxonomy 版本与类别定义；owner/form/ignore
 策略；backend label map；源身份与许可用途依据；原图／PTS／标注绑定；group／
-因果关系；coverage；whole-match split assignment；所有数据选择／排除及变换参数。
+因果关系；coverage；whole-match split assignment；所有数据选择／排除及变换参数；
+Scale Coverage 政策、候选全集／统计／cutpoints、入选类别与尺度 gate 结果。
 稳定排序和显式时间字段使同语义 digest deterministic；变更创建新 freeze version，
 exclusive creation，不覆盖任何旧锁。模型与测试 GT 分别锁定，GT 不储存 prediction。
 哈希不能证明人为 attestation、授权真实性或源视频从未被一致伪造。
 
 ## 6. 实施建议与授权停点
 
-以下是**复核后可拆分的工作建议**，不是本轮可运行的实施计划：
+以下是设计要求对应的授权分段；新[实施计划](../plans/2026-10-05-module-2b2b-multiclass-data-training-infrastructure.md)
+需要独立复核／批准，本轮不执行该计划：
 
-1. 批准 taxonomy／许可矩阵和 PoC 口径后，再写单独实施计划：新 closed schema、
-   独立 readiness、历史兼容、安全 importer 与纯合成测试；不安装模型。
+1. 新 closed schema、独立 readiness、Scale Coverage Gate、历史兼容与纯合成测试；
+   不安装模型，reference_only 素材不导入。
 2. 逐任务扩展现有标注／绑定工具与多类别导出；精确检验 unknown/background、
    source-card 多对多、组去重、backend IDs 和整场隔离；数据不足就停。
 3. 在明确素材用途后，按原顺序做人工多类别数据准备和不可覆盖的 Multi-class
    Dataset Lock；不覆盖旧 2A2 Development Lock，不重新跑 2B-1。
-4. **另行授权**框架与预训练权重：独立环境资格验证、权重许可证／SHA、4GB 显存
-   和小目标尺寸 smoke test。先 Nano，必要时比较 Tiny／Faster；不升级现有环境。
+4. **另行授权**模型环境资格验证：新隔离环境、框架／代码许可和实际 CUDA／4GB
+   合成 smoke test；无预训练权重、无真实训练。先 Nano，不能自动升级 Tiny／Faster。
+   预训练权重来源／许可证／SHA 审查和下载仍需下一次独立授权，不升级现有环境。
 5. **再另行授权**训练／开发评价、Model Lock、未见比赛 GT Lock 与首次盲测；
    ONNX/ncnn parity 是另一个验证步骤，手机部署留在后续模块。
 
-完成本研究后唯一下一步：**ChatGPT 独立复核本文与研究依据，用户确认修订后的
-设计后，才编写并批准新的实施计划**。不调用训练路线，不自动执行任何上述建议。
+本设计阶段在记录用户报告的独立验收、补充尺度要求并完成文档检查后收尾。
+下一步仅交付 Module 2B-2B 实施计划供复核；设计验收不自动授权数据准备、
+环境安装、训练、Model Lock、盲测或上述任何执行步骤。
 
 ## 7. 复核清单
 
 - 公开的 155 标签不等于 155 卡，过时／UI／派生对象明确；资料权利未被根 LICENSE 洗白。
 - 卡牌映射与事件身份可为空；召唤／变形不会被新 visual class 直接变成新出牌。
 - owner/form 独立，Unknown／其他 form 不作为普通类 Negative；后端 ignore 不可用时不偷删框。
-- 旧实现／锁／失败证据完整保留；新门槛只存在提案，不假称已实现多类别 validator。
+- 旧实现／锁／失败证据完整保留；新门槛是已接受设计，不假称已实现多类别 validator。
+- 尺度政策先固定、Development 候选全集先统计再选类；大小 ties 不按卡名拆分。
+- 至少一个相对小移动类和一个中／大移动类；不足报告 SIZE_COVERAGE_INSUFFICIENT。
 - split 以真实比赛隔离，旧四份不作盲测；两场 prospective cohort 不按结果替换。
 - 新门槛评估多类真实单位／owner，不继续专项亡灵补齐；稀疏帧不宣称 FP/min。
 - GPU／手机性能、训练与识别成功均未验证；所有实施与新模型素材仍受后续授权控制。

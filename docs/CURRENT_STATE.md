@@ -2,7 +2,7 @@
 
 Last verified: 2026-10-05.
 
-## Current authorized work — Module 2B-2A research/design only
+## Current authorized work — accepted 2B-2A amendment and 2B-2B plan only
 
 On 2026-10-05 the user paused the ordinary-Minions 4-match / 8-deployment
 specialist data route. The product targets multiple visual types dynamically
@@ -15,24 +15,37 @@ checkpoint `f0b424a0aa78079840ecc665e362023ee81042ce`. The old local feature bra
 is retained. Accepted main remains `8a03e288fb814d81b0a8e255b8004dbc4d0efb02`.
 No push/main integration is authorized.
 
-Authorized deliverables are public dataset/taxonomy, separate code/data/asset/
-weight license/provenance audit, a proposed visual schema, reopened model-route
-comparison and a small multiclass unseen-natural-match PoC design. Both pinned
-public-repository file structures and official model/deployment sources were
-read, not executed. Public media/weights were not downloaded or installed.
-Public game assets are reference_only pending usable rights/provenance evidence.
-The proposed Nano-first resource qualification and 3-5-class PoC are DRAFT,
-not accepted implementation, readiness, model or training decisions.
+The user reports ChatGPT independent design acceptance of review commit
+`cec8abc35fce2438d149fe4b68b203650cb835e4` on 2026-10-05:
+`MODULE_2B2A_DESIGN_ACCEPTED_WITH_AMENDMENT`. This is the supplied acceptance
+instruction, not a new ChatGPT retrieval or independent rerun in this session.
+Taxonomy/provenance/observation-event-card separation, unknown handling, match
+splits, model comparison and the PoC protocol are retained. Public game assets
+stay reference_only; Nano/Tiny/Faster are unqualified candidates, not a locked model.
+
+Scale Coverage Gate is now a design requirement: freeze the policy and all
+basically eligible mobile candidates' Development-only size statistics before
+class selection. The 3-5 classes must include one relative-small mobile class
+and one medium/large mobile class. Original bbox width/height/short-side pixels
+and normalized-area distributions, grouped class scores and cutpoints must be
+reported; ties cannot be split by card name. Missing support produces
+SIZE_COVERAGE_INSUFFICIENT and requires original-order Development material,
+not a lower standard or fixed-Minions expansion. This gate is not yet executable.
 
 See [research and primary sources](research/2026-10-05-multiclass-dataset-taxonomy-audit.md)
-and [design awaiting ChatGPT review](superpowers/specs/2026-10-05-module-2b2a-multiclass-design.md).
-Next: independent ChatGPT review, then user design approval before a new written
-implementation plan. No data preparation, model installation, weights, training,
-inference, Model Lock, Module 3, Android or live functionality in this stage.
+and [accepted amended design](superpowers/specs/2026-10-05-module-2b2a-multiclass-design.md).
+The 2B-2A design stage is closed with this amendment; no recognition success is claimed.
+Next: independent review/approval of the new
+[Module 2B-2B implementation plan](superpowers/plans/2026-10-05-module-2b2b-multiclass-data-training-infrastructure.md).
+It separates Phase A schema/readiness/data preparation and immutable dataset
+freeze from separately authorized Phase B model-environment qualification.
+Only documentation/planning is authorized now; neither phase has begun.
+No data preparation, installation, weights, training, inference, Model Lock,
+Module 3, Android or live functionality in this session.
 The historical Minions readiness checks still exist unchanged; do not use them
 as the new multiclass gate or bypass them by editing old locks.
 
-Fresh research-stage checks: all six changed files are Markdown; no source/test/
+Historical research-stage checks at cec8abc: all six changed files are Markdown; no source/test/
 configuration/private-data diff. Local documentation links checked (44, none
 broken); pip check exit 0, no broken requirements; diff check passed. Read-only
 before/after SHA-256 inventories agree for all 22,243 existing files in outputs/
@@ -40,8 +53,10 @@ and local_data/; all 22,243 remain ignored, zero private/media/weight files trac
 Local main, origin/main and a read-only remote-main query all retain the accepted
 baseline above. Full pytest was Not Run in this documentation-only stage; the
 680/2 result below belongs to the preceding implementation checkpoint. Model/GPU/
-mobile evaluation is Not Run. Final local documentation commit/status are reported
-from Git at handoff, not fabricated as a self-referential SHA in this file.
+mobile evaluation is Not Run. Fresh amendment/plan checks and their exact scope
+are in [design closeout verification](VERIFICATION_M2B2A.md); historical results
+are not presented as fresh runs. Local commit/status are reported from Git at
+handoff, not fabricated as a self-referential SHA in this file.
 
 ## Paused Module 2B-2 data preparation — inherited checkpoint
 
@@ -98,7 +113,8 @@ See [data verification](VERIFICATION_M2B2_DATA.md),
 [plan](superpowers/plans/2026-10-05-module-2b2-data-preparation.md).
 Those unfinished reviews and the completeness conflict remain recorded, but this
 research task does not continue them or ask for more Minions recordings. No claim
-is made that remaining sources lack targets. The new schema/PoC needs its own approval.
+is made that remaining sources lack targets. The new schema/PoC design is accepted;
+its implementation still requires approval of the new plan.
 
 ## Accepted Module 2B-1 baseline — historical closeout
 
@@ -123,7 +139,7 @@ The following 2A2 history describes its acceptance boundary, not a veto of the
 new scoped data-preparation authorization. At that closeout, independent testing,
 2B-2, Module 3, Android and live functionality were unapproved. Its ff-only main
 integration and push authorization applied only to that historical closeout;
-the paused 2B-2 slice and current 2B-2A research authorize neither publication nor training.
+the paused 2B-2 slice and current design closeout/planning authorize neither publication nor training.
 See [fixed 2B-1 protocol](MODULE_2B1_PROTOCOL.md).
 
 ## Current stage
@@ -153,7 +169,7 @@ See [fixed 2B-1 protocol](MODULE_2B1_PROTOCOL.md).
   One actual exclusive version-one Development Data Lock exists locally;
   readiness/freeze/lock validation exit 0 and digest reload/recomputation agree.
 - The 2B-1 authorization did not open another module. Subsequent 2B-2 data
-  preparation is now paused; current 2B-2A authorization is research/design only.
+  preparation is now paused; current authorization is design closeout and a new plan only.
   Independent testing, training, Module 3, Android, HUD and realtime remain closed.
 - Module 2B-1: formally accepted as insufficient at `585c3d9...`; the fixed
   experiment and review are complete, but neither fold passed. Acceptance of a

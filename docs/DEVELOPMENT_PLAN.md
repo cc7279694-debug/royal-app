@@ -171,7 +171,8 @@ and [blind-test protocol](MODULE_2A2_BLIND_TEST_PROTOCOL.md).
 Status: In Progress — 2B-1 is formally completed and accepted as an insufficient
 fixed lightweight template baseline, not successful single-card recognition.
 The later Module 2B-2 specialist data slice is paused. Current authorization is
-Module 2B-2A multiclass research/design only; its new PoC is not approved for execution.
+Module 2B-2A design closeout and Module 2B-2B implementation planning only;
+the amended multiclass design is accepted, but its PoC is not approved for execution.
 Training, independent blind testing and later modules remain Gated. Accepted 2A2
 Development Data remains DEV_LOCKED.
 
@@ -259,8 +260,10 @@ See [data verification](VERIFICATION_M2B2_DATA.md) for actual outcomes and limit
 
 ### Module 2B-2A — Multi-class Dataset & Taxonomy Audit
 
-Status: In Progress — research/design deliverables prepared, awaiting ChatGPT
-independent review. Implementation, new readiness rules and training are not authorized.
+Status: Completed — user reports independent ChatGPT design acceptance on
+2026-10-05 at `cec8abc35fce2438d149fe4b68b203650cb835e4`, with
+MODULE_2B2A_DESIGN_ACCEPTED_WITH_AMENDMENT. Scale Coverage Gate is documented;
+completion applies to the design phase, not implemented readiness or recognition.
 
 Goal: support a versioned multi-visual-class vocabulary and a dynamic per-match
 subset, not fixed ordinary Minions. Audit Dataset/KataCR classes, form/owner,
@@ -268,21 +271,48 @@ card-to-unit many-to-many, assets/weights and licenses; compare Faster R-CNN
 MobileNetV3-FPN with YOLOX Nano/Tiny for small objects, 4GB and mobile export.
 
 Deliverables: [pinned public-source audit](research/2026-10-05-multiclass-dataset-taxonomy-audit.md)
-and [proposed design](superpowers/specs/2026-10-05-module-2b2a-multiclass-design.md).
+and [accepted amended design](superpowers/specs/2026-10-05-module-2b2a-multiclass-design.md).
 Public assets with unclear rights stay reference_only. No formal data download.
 
-Proposed next PoC: 3-5 visual classes, at least two moving-unit types, grouped
-development support and prospective unseen-natural-match box/owner evaluation.
-These counts/metrics and Nano-first qualification are recommendations, not
-accepted gates or a model decision. Sampled boxes cannot certify FP/min time.
+Accepted next-PoC design: 3-5 visual classes, at least two moving-unit types,
+grouped development support and prospective unseen-natural-match box/owner evaluation.
+Development-only bbox statistics over all basically qualified mobile candidates
+precede final class selection. Require at least one relative-small mobile class
+and one medium/large mobile class; freeze the rule before choosing classes.
+SIZE_COVERAGE_INSUFFICIENT means add original-order Development material,
+not lower standards. Nano-first qualification is still an unmeasured candidate
+order, not a model decision. Sampled boxes cannot certify FP/min time.
 
 Verification: pinned source/category counts, primary-source citations, document
 consistency, diff/scope/privacy and read-only data protection. Model runtime,
 training, performance and mobile evaluation are Not Run. Old 2A2 lock, 2B-1
 failure, current data and all source/test/dependency files remain unchanged.
 
-Stop after design handoff. ChatGPT/user must review the spec before a new written
-implementation plan can be prepared and authorized. No auto-training or Module 3.
+The design stage is closed; [fresh closeout checks](VERIFICATION_M2B2A.md)
+record the user-supplied acceptance and documentation-only verification.
+Next is review of the new implementation plan, not automatic execution/publication.
+
+### Module 2B-2B — Multiclass PoC Data & Training Infrastructure
+
+Status: Planned — implementation plan written for independent review, not started.
+See [task-by-task plan](superpowers/plans/2026-10-05-module-2b2b-multiclass-data-training-infrastructure.md).
+
+Phase A: additive closed schema, independent readiness/Scale Coverage Gate,
+checked manual per-unit data preparation and whole-match splits; freeze the
+candidate/scale snapshot before selecting 3-5 classes, then create an exclusive
+versioned Multiclass Dataset Lock only when all support/rights gates pass.
+No old-lock conversion or ordinary-Minions four/eight requirement. Missing data
+reports class/owner/group/scale gaps and stops; unknown is not negative.
+
+Phase B: separately approved model-environment qualification in a new isolated
+environment, using synthetic CPU/CUDA/model-operation probes without pretrained
+weights, dataset training or model selection based on blind tests. GTX 1050 Ti
+4GB and export suitability must be measured, never assumed. The plan does not
+authorize installations now; Phase A acceptance does not automatically open B.
+
+Stop after each task's tests/review and at both phase gates. Real training,
+weights, threshold tuning, Model Lock, Test GT work, blind inference, Module 3,
+Android/live use and push/main integration all remain separately Gated.
 
 ## Module 3 — Deployment Event Tracking
 
