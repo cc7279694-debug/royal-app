@@ -1,5 +1,6 @@
 """Synthetic disk bindings and exclusive dataset versions; no gameplay data."""
 from copy import deepcopy
+from fractions import Fraction
 from hashlib import sha256
 from importlib import import_module
 import json
@@ -7,6 +8,7 @@ import os
 from pathlib import Path
 import subprocess
 
+import av
 import pytest
 from PIL import Image
 
@@ -125,6 +127,94 @@ def test_checked_payload_derives_readiness_and_fold_ownership_without_mutating_i
     assert len(payload["folds"]) == 4
     assert payload["folds"][0]["validation_match_ids"] == ["match_1"]
     assert disk[1] == before
+
+
+@pytest.mark.parametrize("last_tick,last_seconds,final_request", [
+    (5345, 178.16666666666666, 178.1),
+    (5348, 178.26666666666668, 178.2),
+], ids=["rounded_down", "rounded_up"])
+def test_checked_binding_accepts_native_30hz_final_export_with_nonzero_origin(
+        disk, last_tick, last_seconds, final_request):
+    root, draft, _, _ = disk
+    recording = draft["recordings"][0]
+    rid = recording["recording_id"]
+    source = root / "local_data/thirty.mp4"
+    with av.open(str(source), "w") as container:
+        stream = container.add_stream("libx264", rate=30)
+        stream.width, stream.height = 64, 48
+        stream.pix_fmt = "yuv420p"
+        stream.time_base = stream.codec_context.time_base = Fraction(1, 30)
+        stream.options = {"bf": "0", "crf": "0"}
+        for pts in (30, 336, 936, 30 + last_tick):
+            frame = av.VideoFrame.from_image(Image.new("RGB", (64, 48), "red"))
+            frame.pts, frame.time_base = pts, Fraction(1, 30)
+            for packet in stream.encode(frame):
+                container.mux(packet)
+        for packet in stream.encode():
+            container.mux(packet)
+    run = root / "outputs/thirty"
+    index = ep.prepare_evidence(source, run, recording_id=rid, times=[10.2, 30.2, final_request])
+    assert index["recording"]["last_frame_seconds"] == last_seconds
+    origin_base = index["recording"]["origin_time_base"]
+    assert index["recording"]["origin_pts"] * Fraction(
+        origin_base["numerator"], origin_base["denominator"]) == 1
+    final = index["frames"][-1]
+    assert final["status"] == "success"
+    assert final["timestamp_seconds"] == last_seconds
+    assert len(ep.load_indexes([run / "index.json"])[rid]["frames"]) == 3
+    recording["source_path"] = source.relative_to(root).as_posix()
+    for key in ("source_sha256", "width", "height", "rotation_degrees", "time_base",
+                "origin_pts", "origin_time_base", "last_frame_seconds"):
+        recording[key] = deepcopy(index["recording"][key])
+    recording["complete_segment"]["end_seconds"] = last_seconds
+    recording["exports"] = [{"export_id": "export_1", "index_path": "outputs/thirty/index.json",
+        "index_sha256": ep.file_hash(run / "index.json"),
+        "report_path": "outputs/thirty/exports/report.json",
+        "report_sha256": ep.file_hash(run / "exports/report.json")}]
+    for frame, checked in zip((f for f in draft["frames"] if f["recording_id"] == rid), index["frames"]):
+        old_id = frame["frame_id"]
+        for key in ("frame_id", "timestamp_seconds", "raw_pts", "time_base", "image_width", "image_height"):
+            frame[key] = deepcopy(checked[key])
+        frame["image_path"] = (run / checked["image_path"]).relative_to(root).as_posix()
+        frame["image_sha256"] = ep.file_hash(root / frame["image_path"])
+        for annotation in draft["unit_annotations"]:
+            if annotation["recording_id"] == rid and annotation["frame_id"] == old_id:
+                annotation["frame_id"] = frame["frame_id"]
+    annotation_path = root / draft["annotation_sources"][0]["path"]
+    write_json(annotation_path, sidecar(draft))
+    draft["annotation_sources"][0]["sha256"] = ep.file_hash(annotation_path)
+    payload = bound(disk)
+    images = payload["index_snapshot"][rid]["exports"][0]["images"]
+    assert images[-1]["frame_id"] == final["frame_id"]
+    assert images[-1]["timestamp_seconds"] == last_seconds
+    assert payload["derived"]["counts"]["confirmed_target_deployments"] == 8
+    api().make_dataset_lock(payload)
+
+
+def test_snapshot_rejects_one_pts_tick_beyond_last_without_millisecond_epsilon(disk):
+    payload = bound(disk)
+    recording = payload["draft"]["recordings"][0]
+    images = payload["index_snapshot"][recording["recording_id"]]["exports"][0]["images"]
+    beyond = deepcopy(images[0])
+    base = Fraction(beyond["time_base"]["numerator"], beyond["time_base"]["denominator"])
+    beyond["raw_pts"] = recording["origin_pts"] + int(Fraction(100) / base) + 1
+    beyond["frame_id"] = ep.frame_id(recording["recording_id"], beyond["raw_pts"], base)
+    beyond["timestamp_seconds"] = float(Fraction(100) + base)
+    images.append(beyond)
+    with pytest.raises(EvidenceError, match="Checked frame identity/time/geometry conflicts"):
+        api().make_dataset_lock(payload)
+
+
+def test_extreme_integer_snapshot_pts_rejects_with_path_free_evidence_error(disk):
+    payload = bound(disk)
+    recording = payload["draft"]["recordings"][0]
+    image = payload["index_snapshot"][recording["recording_id"]]["exports"][0]["images"][0]
+    image["raw_pts"] = 10 ** 400
+    base = Fraction(image["time_base"]["numerator"], image["time_base"]["denominator"])
+    image["frame_id"] = ep.frame_id(recording["recording_id"], image["raw_pts"], base)
+    with pytest.raises(EvidenceError) as caught:
+        api().make_dataset_lock(payload)
+    assert str(disk[0]) not in str(caught.value)
 
 
 def test_canonical_freeze_load_recomputes_digest_and_retains_old_lock(disk):

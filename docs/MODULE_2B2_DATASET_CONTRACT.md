@@ -173,6 +173,10 @@ Frame requires exactly these fields:
 
 PTS normalization is `raw_pts * time_base - origin_pts * origin_time_base`,
 within one microsecond of stored seconds and within the actual recording bounds.
+The upper endpoint compares `float(normalized PTS)` to the producer's serialized
+`last_frame_seconds`, matching the unchanged index loader for nonterminating
+rational final timestamps. The lower endpoint remains exactly zero; this adds no
+time epsilon and does not change export selection or its inclusive 100ms tolerance.
 Rotated dimensions must match the recording. Renamed copies of the same recording
 PTS cannot become extra frames. A complete frame has no uncertain potentially
 unlabelled minion-like content, has all identifiable units labelled, and has only

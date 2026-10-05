@@ -1,5 +1,6 @@
 """Behavioral contract checks using synthetic records, without a model runtime."""
 from copy import deepcopy
+from fractions import Fraction
 
 import pytest
 
@@ -8,6 +9,47 @@ from clash_tracker_video.training_dataset_contract import (
     dataset_readiness, grouped_folds, validate_dataset_shape,
 )
 from training_dataset_fixtures import add_reencoded_recording, dataset_fixture
+
+
+@pytest.mark.parametrize("last_tick,frame_tick,last_seconds,accepted", [
+    (5345, 5345, 178.16666666666666, True),
+    (5348, 5348, 178.26666666666668, True),
+    (5345, 5346, 178.16666666666666, False),
+], ids=["rounded_down", "rounded_up", "beyond_last"])
+def test_shape_final_frame_uses_producer_serialized_boundary(
+        last_tick, frame_tick, last_seconds, accepted):
+    draft = dataset_fixture()
+    recording = draft["recordings"][0]
+    base = {"numerator": 1, "denominator": 30}
+    recording.update(time_base=base, origin_pts=30, origin_time_base=base,
+                     last_frame_seconds=last_seconds)
+    recording["complete_segment"]["end_seconds"] = last_seconds
+    for frame in draft["frames"]:
+        if frame["recording_id"] == recording["recording_id"]:
+            frame.update(time_base=base, raw_pts=30 + round(frame["timestamp_seconds"] * 30))
+    final = deepcopy(draft["frames"][0])
+    final.update(frame_id="final_frame", raw_pts=30 + frame_tick,
+                 timestamp_seconds=float(Fraction(frame_tick, 30)),
+                 image_path="synthetic/final_frame.png", review_status="pending",
+                 minion_presence="unknown", all_identifiable_units_labelled=False,
+                 review_provenance={"method": "pending", "reviewed_by": None,
+                                    "notes": "Synthetic endpoint, no visual review"})
+    draft["frames"].append(final)
+    assert float(Fraction(last_tick, 30)) == last_seconds
+    if accepted:
+        validate_dataset_shape(draft)
+        assert dataset_readiness(draft)["counts"]["pending_frames"] == 1
+    else:
+        with pytest.raises(EvidenceError, match="Frame PTS/time mismatch"):
+            validate_dataset_shape(draft)
+
+
+def test_extreme_integer_frame_pts_rejects_as_invalid_readiness_without_overflow():
+    draft = dataset_fixture()
+    draft["frames"][0]["raw_pts"] = 10 ** 400
+    with pytest.raises(EvidenceError, match="Frame PTS/time mismatch"):
+        validate_dataset_shape(draft)
+    assert dataset_readiness(draft)["valid"] is False
 
 
 @pytest.mark.parametrize("plays,matches,events,ready", [

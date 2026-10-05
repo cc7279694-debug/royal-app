@@ -289,7 +289,7 @@ def _validate_snapshot(draft, snapshot):
                 size = (record["height"], record["width"]) if record["rotation_degrees"] in (90, 270) else (record["width"], record["height"])
                 if (image["frame_id"] in seen or image["frame_id"] != frame_id(record["recording_id"], image["raw_pts"], base)
                         or abs(normalized - seconds(image["timestamp_seconds"])) > seconds(0.000001)
-                        or not 0 <= normalized <= seconds(record["last_frame_seconds"])
+                        or normalized < 0 or float(normalized) > record["last_frame_seconds"]
                         or (image["image_width"], image["image_height"]) != size):
                     raise EvidenceError("Checked frame identity/time/geometry conflicts.")
                 seen.add(image["frame_id"])

@@ -219,7 +219,8 @@ def validate_dataset_shape(draft: dict) -> None:
         if not frame["export_ids"] or not set(frame["export_ids"]) <= {e["export_id"] for e in record["exports"]}:
             raise EvidenceError("Frame lacks declared export binding.")
         actual = frame["raw_pts"] * rational(frame["time_base"]) - record["origin_pts"] * rational(record["origin_time_base"])
-        if not 0 <= actual <= seconds(record["last_frame_seconds"]) or abs(actual - seconds(frame["timestamp_seconds"])) > Fraction(1, 1000000):
+        if (actual < 0 or abs(actual - seconds(frame["timestamp_seconds"])) > Fraction(1, 1000000)
+                or float(actual) > record["last_frame_seconds"]):
             raise EvidenceError("Frame PTS/time mismatch.")
         dimensions = (record["width"], record["height"])
         if record["rotation_degrees"] in {90, 270}:
