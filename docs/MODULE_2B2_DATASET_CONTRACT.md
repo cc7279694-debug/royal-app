@@ -339,3 +339,7 @@ units labelled (including own/other-source units) and verified rows. Unknown
 potentially unlabelled content remains pending. Semantic source/form uncertainty
 may be retained in a verified visible unit without becoming a confirmed target
 play. Complete review is a human attestation, not automatically proven by Tk.
+Before advancing, the tool applies the explicit current review and validates the
+whole updated draft. Contradictory review or invalid unit metadata keeps the same
+frame and editable units visible with an error. A structurally valid pending frame
+may advance; this check does not force completion or convert uncertainty to absence.

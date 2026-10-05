@@ -404,7 +404,12 @@ class _Annotator:
             self.status.set(str(exc) if isinstance(exc, EvidenceError) else "Cannot check local annotation revision.")
 
     def _next(self):
-        self._apply_review()
+        try:
+            self._apply_review()
+            validate_dataset_shape(self.draft)
+        except EvidenceError as exc:
+            self.status.set(str(exc))
+            return
         if self.frame_index + 1 == len(self.draft["frames"]):
             self.status.set("已到最后一帧；未保存的改动仍在草稿中。")
             return

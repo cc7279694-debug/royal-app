@@ -511,11 +511,15 @@ def test_isolated_tk_child_faults_fail_parent_and_retain_full_output(tmp_path, f
     else:
         program = {
             "nonzero": "import sys; print('full child stdout'); print('full child stderr',file=sys.stderr); sys.exit(7)",
-            "callback": "import sys; print('full child stdout'); print('Exception in Tkinter callback\\nTraceback (most recent call last):\\ncallback fault',file=sys.stderr)",
+            "callback": ("import sys; from pathlib import Path; "
+                         "Path(sys.argv[1]).write_text('<testsuites><testsuite tests=\"1\" failures=\"0\" errors=\"0\" skipped=\"0\"><testcase name=\"callback\" /></testsuite></testsuites>'); "
+                         "print('full child stdout'); print('Exception in Tkinter callback\\nTraceback (most recent call last):\\ncallback fault',file=sys.stderr)"),
             "timeout": "import time; time.sleep(30)",
         }[fault]
         command = [sys.executable, "-c", program]
-    with pytest.raises(pytest.fail.Exception):
+        if fault == "callback":
+            command.append(str(folder / "results.xml"))
+    with pytest.raises(pytest.fail.Exception) as failure:
         runner(command, folder, timeout=.1 if fault == "timeout" else 30)
     result = json.loads((folder / "result.json").read_text(encoding="utf-8"))
     assert (folder / "stdout.log").exists()
@@ -525,8 +529,14 @@ def test_isolated_tk_child_faults_fail_parent_and_retain_full_output(tmp_path, f
         assert (folder / "stdout.log").read_text() == "full child stdout\n"
         assert (folder / "stderr.log").read_text() == "full child stderr\n"
     if fault == "callback":
+        from xml.etree import ElementTree
         assert result["exit_code"] == 0
         assert "callback fault" in (folder / "stderr.log").read_text()
+        cases = ElementTree.parse(folder / "results.xml").findall(".//testcase")
+        assert len(cases) == 1
+        assert all(cases[0].find(tag) is None for tag in ("skipped", "failure", "error"))
+        assert "Isolated Tk child failed" in str(failure.value)
+        assert "callback fault" in str(failure.value)
     if fault == "timeout":
         assert result["timed_out"] is True
     if fault == "skip":
@@ -550,3 +560,58 @@ def test_tk_loader_error_reports_neutral_initialization_failure(checked_disk, mo
     assert "private_name" not in str(error.value)
     assert "display" not in str(error.value).lower()
     assert "unavailable" not in str(error.value).lower()
+
+
+@pytest.mark.parametrize("invalid", ["false_complete", "metadata"])
+def test_next_rejects_invalid_frame_draft_and_keeps_units_editable(checked_disk, window, invalid):
+    case = "test_next_rejects_invalid_frame_draft_and_keeps_units_editable[" + invalid + "]"
+    if _isolated_tk_case(case, checked_disk):
+        return
+    app = editor(checked_disk, window)
+    original_frame = app._frame()["frame_id"]
+    original_image = app.image
+    left, top, width, height = app.display_rect
+    app._drag_start(SimpleNamespace(x=left + width * .7, y=top + height * .5))
+    app._drag_end(SimpleNamespace(x=left + width * .8, y=top + height * .6))
+    row = app.draft["unit_annotations"][-1]
+    if invalid == "false_complete":
+        app.frame_review.set("complete")
+        app.full_review.set(True)
+    else:
+        app.source_card.set("")
+        app._apply_metadata()
+    previous_status = app.status.get()
+    app._next()
+    assert app.frame_index == 0
+    assert app._frame()["frame_id"] == original_frame
+    assert app.image is original_image
+    assert app.status.get() != previous_status
+    assert row in app._rows()
+    # Correct the retained selected unit; a valid pending frame may advance.
+    app.units.selection_clear(0, "end")
+    app.units.selection_set(len(app._rows()) - 1)
+    app.owner.set("own")
+    app.source_card.set("minion_horde")
+    app.form.set("unknown")
+    app.unit_review.set("pending")
+    app._apply_metadata()
+    app._next()
+    assert app.frame_index == 1
+    assert row["owner"] == "own"
+    assert row["source_card"] == "minion_horde"
+
+
+def test_next_allows_a_valid_pending_frame_without_forcing_complete_review(checked_disk, window):
+    if _isolated_tk_case("test_next_allows_a_valid_pending_frame_without_forcing_complete_review", checked_disk):
+        return
+    app = editor(checked_disk, window)
+    left, top, width, height = app.display_rect
+    app._drag_start(SimpleNamespace(x=left + width * .7, y=top + height * .5))
+    app._drag_end(SimpleNamespace(x=left + width * .8, y=top + height * .6))
+    from clash_tracker_video.training_dataset_contract import validate_dataset_shape
+    validate_dataset_shape(app.draft)
+    app._next()
+    assert app.frame_index == 1
+    assert app.draft["frames"][0]["review_status"] == "pending"
+    assert app.draft["frames"][0]["all_identifiable_units_labelled"] is False
+    assert app.draft["unit_annotations"][-1]["review_status"] == "pending"
