@@ -2,7 +2,66 @@
 
 Last verified: 2026-10-05.
 
-## Current authorized work — Module 2B-1 acceptance closeout
+## Current authorized work — Module 2B-2 data preparation only
+
+The user approved the 2026-10-05 data-preparation design and plan, with
+task-by-task implementation and separate review. Work is on
+`codex/module-2b2-data-preparation`, forked from accepted main
+`8a03e288fb814d81b0a8e255b8004dbc4d0efb02`. No push/main integration is authorized.
+
+- Tasks 1/2: closed multi-match individual-unit schema, independent readiness,
+  grouped LOMO ownership, checked media/label binding and exclusive dataset-lock
+  APIs implemented and separately reviewed. Latest Task 2 regression: 583 passed,
+  two Windows symlink-privilege skips; dependency/diff/protection checks passed.
+- Task 3: additive manual unit annotation tool verified, with runtime limitations. A full run
+  exposed an intermittent native Tk initialization error (629 passed, two skips,
+  one error). Its cause is unknown, not hidden by a skip or claimed repaired.
+  Fresh-process real-GUI scenarios now retain errors and original assertions;
+  focused tests: 52 passed, no skips. Full regression: 635 passed / two Windows
+  symlink skips, no GUI skips/errors. Protection passed. Separate review found a
+  forward-only navigation bug: invalid review could advance and strand saves.
+  Minimal fix at `6f34af3` passes 55 focused and 638 full tests / two permission
+  skips; scoped re-review approved and all protected files unchanged.
+- Task 4a: checked CLI committed at `a62bb72`, 34 focused tests passed; independent
+  review approved. Task 4b started, but initial binding rejected a legal rounded
+  final-frame timestamp before any real draft write. Same-cause new-layer repair
+  at `192d6ec` passes covering tests and 431 targeted regressions / two permission
+  skips; independent repair review approved. Old evidence is not changed.
+- Task 4b: all four sources fully decoded technically in original order. Actual
+  checked pending drafts are additive; latest CLI validation exits 3 (valid, not
+  ready). Eight first-source original representative frames are reused; 64 new
+  two-second locator frames for source 2 remain pending. No automatic GT/boxes.
+  Historical target confirmation: one match/two ordinary Minions deployments.
+  New training eligibility: zero matches/zero plays, because individual-unit
+  frames have not been exhaustively human-reviewed. Total pending frames 72,
+  unit boxes zero, unknown intervals six, certified absent duration zero.
+- Current stopping point: source 2 has a concrete completeness conflict (ongoing
+  battle at actual file end). Earlier user attestation and all original files
+  remain preserved; latest pending draft does not claim it complete. This is not
+  a new result-screen rule. One targeted question asks whether later footage is
+  missing. Source 3/4 target review remains pending in original order, not negative
+  and not a basis for choosing easier material. No Training Dataset Lock exists.
+- Stage-end maintained regression: 680 passed / two known Windows symlink
+  permission skips in 391.67s, exit 0; no GUI skips/errors. Fresh pip check exit 0,
+  no broken requirements. Detailed verification and remaining limitations are in
+  the stage verification document, not an assertion of dataset readiness.
+  Stage-end protection: all 16,745 originals unchanged; 22,239 private files
+  ignored, none tracked; baseline sources/tests/config unchanged; diff check 0.
+
+The hard training-data gate is >=4 independent target-positive natural matches
+AND >=8 confirmed independent opponent minions/normal deployments with reviewed
+unit evidence. Unknown/other-form content is not negative; sparse negative frames
+never certify FP/min time. Preserve the old Development Lock and accepted 2B-1
+FAIL byte-for-byte. No model dependencies/weights/training/inference/Model Lock,
+blind-test data, Module 3, Android or live functionality are authorized.
+See [data verification](VERIFICATION_M2B2_DATA.md),
+[unit dataset contract](MODULE_2B2_DATASET_CONTRACT.md), and the approved
+[plan](superpowers/plans/2026-10-05-module-2b2-data-preparation.md).
+The remaining task is completeness resolution, original-order target confirmation
+and individual-unit review, not model training. Do not assert the remaining
+recordings lack targets or request a fabricated number of new matches before review.
+
+## Accepted Module 2B-1 baseline — historical closeout
 
 On 2026-10-05 the user reports formal ChatGPT independent acceptance at
 `585c3d95c832a1a86fce28ca822bc69d3646430f`, with
@@ -14,7 +73,7 @@ Real result remains 2B1_BASELINE_INSUFFICIENT: both folds fail the fixed Top5/2s
 gate. A-to-B has no retained candidate; B-to-A retains one whose first support
 is 4.75s late. No Model Lock/final baseline was built and no tuning/rerun followed.
 The accepted minions/normal Development Lock and original failed evidence remain
-unchanged. The only current work is four-document acceptance recording, fresh full
+unchanged. That closeout covered four-document acceptance recording, fresh full
 regression/dependency/diff/privacy/protection checks, a documentation commit and
 ff-only main publication, retaining `feat/module-2b1-minions-visual-baseline`.
 Fresh maintained-suite regression: 474 passed/1 skipped in 55.48s; pip check passed.
@@ -22,9 +81,10 @@ Diff/privacy/ignore checks passed. All 10231 originally protected files plus 145
 saved experiment/Review Packet files (10376 total) remain byte-identical; original
 fold results and protocol bindings are unchanged. No source/test/config change.
 The following 2A2 history describes its acceptance boundary, not a veto of the
-new scoped 2B-1 authorization. Independent testing, 2B-2, Module 3, Android and
-live functionality remain unapproved. This closeout explicitly authorizes ff-only
-main integration and push, not new implementation, parameters, data or models.
+new scoped data-preparation authorization. At that closeout, independent testing,
+2B-2, Module 3, Android and live functionality were unapproved. Its ff-only main
+integration and push authorization applied only to that historical closeout;
+the current 2B-2 slice authorizes neither publication nor training.
 See [fixed 2B-1 protocol](MODULE_2B1_PROTOCOL.md).
 
 ## Current stage
@@ -41,8 +101,10 @@ See [fixed 2B-1 protocol](MODULE_2B1_PROTOCOL.md).
   That acceptance instruction authorized documentation, ff-only main
   integration and publication, not Module 2B. Formal acceptance is recorded from
   that user instruction; this session did not retrieve another ChatGPT response.
-- Real experiment: user reconfirms all four natural replay recordings cover full
-  matches and explicitly supersedes the result-screen completeness gate. Use
+- Historical 2A2 experiment: the user attested all four natural replay recordings
+  cover full matches and explicitly superseded the result-screen completeness gate.
+  Current 2B-2 source-2 completeness conflicts with that attestation and remains
+  unresolved as recorded above; the old attestation is preserved, not new proof. Use
   user_confirmed completion provenance and the actual file-end boundary; absence
   of victory/defeat UI is not incompleteness. The first original-order input was
   completed using its existing rough review. The user corrected two deployments to
@@ -51,8 +113,9 @@ See [fixed 2B-1 protocol](MODULE_2B1_PROTOCOL.md).
   All sources, prior exclusions and first survey/rough review are retained.
   One actual exclusive version-one Development Data Lock exists locally;
   readiness/freeze/lock validation exit 0 and digest reload/recomputation agree.
-- Subsequent authorization opens only the development-only Module 2B-1 above;
-  independent testing, 2B-2, Module 3, Android, HUD and realtime remain closed.
+- The 2B-1 authorization did not open another module. The subsequent 2B-2
+  authorization above opens data preparation only; independent testing, training,
+  Module 3, Android, HUD and realtime remain closed.
 - Module 2B-1: formally accepted as insufficient at `585c3d9...`; the fixed
   experiment and review are complete, but neither fold passed. Acceptance of a
   failed feasibility result does not open Model Lock or the next module.
@@ -195,7 +258,7 @@ Historical Inferno Dragon evidence is regression-only, not the first new target.
   approval. Passive capture/risk acceptance cannot substitute. Never promise
   zero ban risk.
 
-## Git and accepted stopping point
+## Historical 2B-1 Git and accepted stopping point
 
 Pre-2B-1 accepted main baseline: `48136affd470a39feb9815f19e1dbd207ffc14ca`.
 Frozen experiment code: `41d30c6893376b811c98d72442edfd52222f0733`.
@@ -203,12 +266,13 @@ Independently accepted review checkpoint: `585c3d95c832a1a86fce28ca822bc69d36464
 The documentation-only closing commit on `feat/module-2b1-minions-visual-baseline`
 is the publication checkpoint; exact commit and remote publication state are
 verified from Git refs and the local closeout receipts, not a self-referential
-SHA in this file. Main integration is ff-only. Retain the feature branch, the
-accepted 2A1/2A2 branches and every private evidence file; no PR, Release, force
-push, rebase, history rewrite or branch deletion is part of this closeout.
+SHA in this file. That main integration was ff-only. The feature branch, accepted
+2A1/2A2 branches and every private evidence file were retained; no PR, Release,
+force push, rebase, history rewrite or branch deletion was part of that closeout.
+These historical instructions do not authorize current 2B-2 main integration.
 
-Stop after acceptance publication. 2B-2 planning still requires new explicit
-authorization; do not automatically add data, tune or train. Module 2A2 remains
+That closeout stopped after acceptance publication. The new 2B-2 authorization
+opens only the data slice above; do not automatically tune or train. Module 2A2 remains
 accepted at
 DEV_LOCKED. Both folds failed, so Model Lock stays closed. No new source, Test GT Lock,
 independent test or later module begins without separate authorization.

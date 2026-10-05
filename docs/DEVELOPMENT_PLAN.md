@@ -170,8 +170,9 @@ and [blind-test protocol](MODULE_2A2_BLIND_TEST_PROTOCOL.md).
 
 Status: In Progress — 2B-1 is formally completed and accepted as an insufficient
 fixed lightweight template baseline, not successful single-card recognition.
-Further work is stopped pending separate authorization; independent blind testing
-and 2B-2 remain Gated. Accepted 2A2 Development Data remains DEV_LOCKED.
+The user subsequently approved only the Module 2B-2 data-preparation slice below.
+Training, independent blind testing and later modules remain Gated. Accepted 2A2
+Development Data remains DEV_LOCKED.
 
 ### Module 2B-1 — Minions Visual Baseline
 
@@ -182,9 +183,10 @@ at `585c3d95c832a1a86fce28ca822bc69d3646430f`, with
 Lock created. A-to-B retains zero candidates; B-to-A retains one 4.75s late.
 Fresh closeout maintained-suite regression: 474 passed/1 skipped; dependencies
 and diff/privacy/protection checks passed; 10376 protected files are unchanged.
-Only acceptance documentation, full checks, ff-only main integration/push
-and preserving the feature branch are authorized. No parameter change, real
-inference rerun, new data, independent testing, 2B-2 or later module is authorized.
+That historical closeout authorized only acceptance documentation, full checks,
+ff-only main integration/push and preserving the feature branch. It did not
+authorize parameter changes, real inference reruns, new data, independent testing,
+2B-2 or later modules. The subsequent data-only 2B-2 approval is recorded below.
 Original failure evidence remains private and preserved. Acceptance does not
 declare a working recognizer or unlock the still-failed Model Lock gate.
 
@@ -224,6 +226,36 @@ Verification:
 - prospective go/revise/stop rule in the 2A design; no training-only score claim.
 
 Minimum data permit an experiment only, not generalized reliability or live use.
+
+### Module 2B-2 — Learned Minion Detector, data-preparation slice
+
+Status: Waiting for human evidence resolution — separately user approved on
+2026-10-05. Execute the approved
+[design](superpowers/specs/2026-10-05-module-2b2-data-preparation-design.md) and
+[task plan](superpowers/plans/2026-10-05-module-2b2-data-preparation.md), one tested
+and independently reviewed task at a time. Tasks 1/2/3 and the Task 4 CLI are
+verified and separately reviewed. The new-layer serialized-frame-boundary repair
+is also reviewed. Final maintained regression: 680 passed / two known Windows
+symlink permission skips; dependency check passed. Original-order intake is valid
+but not ready (CLI exit 3). Historical target confirmation is one match/two plays;
+new unit-supported training eligibility remains zero matches/zero plays.
+The second source ends during active combat, conflicting with the prior full-match
+attestation; resolve that fact before proceeding through later sources. Missing
+result UI alone is still legal. Preserve all evidence; no Training Dataset Lock.
+
+Only schema/readiness, actual media bindings, per-unit manual annotation, grouped
+LOMO ownership and exclusive Training Dataset Lock APIs are in scope. Count at
+least four independent target-positive natural matches and eight confirmed
+ordinary opponent Minions deployments with reviewed unit evidence; report an
+honest gap if insufficient. No frame/box-count substitution, unknown-as-negative,
+or sparse-negative-as-time substitution. Preserve old locks, sources and failure.
+
+Stop at a verified Training Dataset Lock or a truthful data/verification blocker.
+No model install, weights, training, inference, threshold choice, Model Lock,
+blind-test data, Module 3, Android/HUD, push or main integration. GTX 1050 Ti 4GB
+is future environment information, not an architecture change. This slice does
+not change the retained Faster R-CNN/MobileNetV3-FPN direction or implement it.
+See [data verification](VERIFICATION_M2B2_DATA.md) for actual outcomes and limits.
 
 ## Module 3 — Deployment Event Tracking
 
