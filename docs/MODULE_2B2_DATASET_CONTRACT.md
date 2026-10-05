@@ -24,15 +24,40 @@ hex strings. `time_base` is exactly `{numerator, denominator}`, both positive
 integers. UTC is explicit ISO `YYYY-MM-DDTHH:MM:SS[.ffffff]Z`.
 
 All source, export, image and label paths use forward slashes and are relative to
-**one explicitly selected private data root** supplied by the checked disk-binding
-caller. That root must lie under ignored `outputs/` or `local_data/`; it is not
-implicitly the current directory, each export directory, or the lock directory.
+**one explicitly selected absolute data container** supplied by the checked
+disk-binding caller. The repository root may be that container so existing
+`local_data/` recordings and `outputs/` exports can be referenced together without
+duplicating media. Each resolved artifact must itself remain inside Git-ignored,
+untracked `outputs/` or `local_data/`. The container grants no access to other
+repository files and is not implicitly the current directory, each export
+directory, or the lock directory. Links and junctions in any ancestor reject.
 No absolute paths, drives, backslashes, empty path segments, `.` or `..` are
 allowed. PNG paths end in `.png`; annotation/report/index paths end in `.json`.
 Task 2 must resolve legacy index-relative PNG aliases to this root-relative form
 and check the actual files, hashes, metadata and containment, including links.
 Shape validation alone cannot certify on-disk integrity, source authenticity,
 human independence or complete labelling.
+
+Task 2 disk consumers use
+`load_dataset_indexes(draft, data_root, *, development_lock_path: Path) -> dict`
+with an explicit absolute Development Lock file. Its checked context carries
+paths outside JSON. `bind_dataset`, `freeze_dataset` and `load_dataset_lock`
+re-read the actual files; a plain snapshot dictionary is insufficient.
+`dataset_artifact_path(data_root, relative) -> Path` and
+`private_artifact_path(absolute_path) -> Path` check confinement and Git privacy
+without creating files and are shared by the later additive annotation writer.
+
+The separate closed annotation sidecar is exactly
+`{schema_version: 1, annotation_source_id, unit_annotations}`. Its ordered array
+contains full UnitAnnotation rows for that source only; no draft/sidecar digest
+field creates a self-hash cycle. `validate_annotation_source(document) -> None`
+checks this closed shape. Binding additionally requires exact semantic equality
+with the corresponding draft rows, including order. The canonical draft binds
+frame-review metadata. The separate `training_dataset` envelope binds `draft`,
+recomputed `derived` and `folds`, checked `index_snapshot`, and
+`development_lock_reference={path, file_sha256}`; the latter path is relative to
+the explicit container, never absolute. Pure lock validation checks the digest
+and declared contract; only checked disk consumers certify current file bindings.
 
 ## Root fields
 
