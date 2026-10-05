@@ -2,7 +2,7 @@
 
 The project advances one independently verifiable module at a time. A module may
 start only after the previous module has been reviewed and accepted. Statuses are
-`Completed`, `In Progress`, `Planned`, or `Gated`.
+`Completed`, `In Progress`, `Planned`, `Paused`, or `Gated`.
 
 ## Module 0 — Project Bootstrap
 
@@ -166,11 +166,12 @@ Building future contracts does not authorize actual model/test execution or 2B.
 See [implementation plan](superpowers/plans/2026-10-04-module-2a2-experiment-lock.md)
 and [blind-test protocol](MODULE_2A2_BLIND_TEST_PROTOCOL.md).
 
-## Module 2B — Single Card Detection Proof of Concept
+## Module 2B — Offline Visual Detection Proof of Concept
 
 Status: In Progress — 2B-1 is formally completed and accepted as an insufficient
 fixed lightweight template baseline, not successful single-card recognition.
-The user subsequently approved only the Module 2B-2 data-preparation slice below.
+The later Module 2B-2 specialist data slice is paused. Current authorization is
+Module 2B-2A multiclass research/design only; its new PoC is not approved for execution.
 Training, independent blind testing and later modules remain Gated. Accepted 2A2
 Development Data remains DEV_LOCKED.
 
@@ -197,10 +198,10 @@ PASS permits final six-reference detector/Model Lock; FAIL preserves evidence
 and stops without a Model Lock. [Protocol](MODULE_2B1_PROTOCOL.md) fixes settings
 and timing/merge semantics before any real experiment.
 
-Goal: detect exactly one evidence-selected card as timestamped visual Observations.
+Historical 2B-1 goal: detect one evidence-selected card as timestamped visual Observations.
 No OpponentCardPlayed, card cycle or elixir updates.
 
-Entry gates:
+Historical single-card entry gates (not the proposed multiclass protocol):
 
 - a new complete natural development match with >=2 clear independent known-form
   target plays and an accepted immutable Development Data Lock;
@@ -229,33 +230,59 @@ Minimum data permit an experiment only, not generalized reliability or live use.
 
 ### Module 2B-2 — Learned Minion Detector, data-preparation slice
 
-Status: Waiting for human evidence resolution — separately user approved on
-2026-10-05. Execute the approved
+Status: Paused by explicit user instruction on 2026-10-05. The earlier approved
 [design](superpowers/specs/2026-10-05-module-2b2-data-preparation-design.md) and
-[task plan](superpowers/plans/2026-10-05-module-2b2-data-preparation.md), one tested
-and independently reviewed task at a time. Tasks 1/2/3 and the Task 4 CLI are
+[task plan](superpowers/plans/2026-10-05-module-2b2-data-preparation.md) are historical,
+not current execution instructions. Tasks 1/2/3 and the Task 4 CLI are
 verified and separately reviewed. The new-layer serialized-frame-boundary repair
 is also reviewed. Final maintained regression: 680 passed / two known Windows
 symlink permission skips; dependency check passed. Original-order intake is valid
 but not ready (CLI exit 3). Historical target confirmation is one match/two plays;
 new unit-supported training eligibility remains zero matches/zero plays.
 The second source ends during active combat, conflicting with the prior full-match
-attestation; resolve that fact before proceeding through later sources. Missing
+attestation; this unresolved fact is preserved, not processed in the new research. Missing
 result UI alone is still legal. Preserve all evidence; no Training Dataset Lock.
 
-Only schema/readiness, actual media bindings, per-unit manual annotation, grouped
-LOMO ownership and exclusive Training Dataset Lock APIs are in scope. Count at
-least four independent target-positive natural matches and eight confirmed
-ordinary opponent Minions deployments with reviewed unit evidence; report an
-honest gap if insufficient. No frame/box-count substitution, unknown-as-negative,
-or sparse-negative-as-time substitution. Preserve old locks, sources and failure.
+Retain schema/readiness, actual media bindings, per-unit annotation, grouped LOMO
+ownership and exclusive Dataset Lock APIs. Their old four-match/eight-Minions-play
+gate remains implemented for historical contracts, but is no longer a product
+data objective or prerequisite for the new route. Do not continue specialist
+supplementation. No frame/box-count substitution, unknown-as-negative or sparse-
+negative-as-time substitution. Preserve old locks, sources and failure.
 
-Stop at a verified Training Dataset Lock or a truthful data/verification blocker.
-No model install, weights, training, inference, threshold choice, Model Lock,
+This slice has stopped without a Training Dataset Lock. No model install, weights,
+training, inference, threshold choice, Model Lock,
 blind-test data, Module 3, Android/HUD, push or main integration. GTX 1050 Ti 4GB
-is future environment information, not an architecture change. This slice does
-not change the retained Faster R-CNN/MobileNetV3-FPN direction or implement it.
+is future environment information. The subsequent research reopens the former
+Faster R-CNN/MobileNetV3-FPN preference; no detector is implemented here.
 See [data verification](VERIFICATION_M2B2_DATA.md) for actual outcomes and limits.
+
+### Module 2B-2A — Multi-class Dataset & Taxonomy Audit
+
+Status: In Progress — research/design deliverables prepared, awaiting ChatGPT
+independent review. Implementation, new readiness rules and training are not authorized.
+
+Goal: support a versioned multi-visual-class vocabulary and a dynamic per-match
+subset, not fixed ordinary Minions. Audit Dataset/KataCR classes, form/owner,
+card-to-unit many-to-many, assets/weights and licenses; compare Faster R-CNN
+MobileNetV3-FPN with YOLOX Nano/Tiny for small objects, 4GB and mobile export.
+
+Deliverables: [pinned public-source audit](research/2026-10-05-multiclass-dataset-taxonomy-audit.md)
+and [proposed design](superpowers/specs/2026-10-05-module-2b2a-multiclass-design.md).
+Public assets with unclear rights stay reference_only. No formal data download.
+
+Proposed next PoC: 3-5 visual classes, at least two moving-unit types, grouped
+development support and prospective unseen-natural-match box/owner evaluation.
+These counts/metrics and Nano-first qualification are recommendations, not
+accepted gates or a model decision. Sampled boxes cannot certify FP/min time.
+
+Verification: pinned source/category counts, primary-source citations, document
+consistency, diff/scope/privacy and read-only data protection. Model runtime,
+training, performance and mobile evaluation are Not Run. Old 2A2 lock, 2B-1
+failure, current data and all source/test/dependency files remain unchanged.
+
+Stop after design handoff. ChatGPT/user must review the spec before a new written
+implementation plan can be prepared and authorized. No auto-training or Module 3.
 
 ## Module 3 — Deployment Event Tracking
 

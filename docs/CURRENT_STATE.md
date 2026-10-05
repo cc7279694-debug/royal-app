@@ -2,12 +2,52 @@
 
 Last verified: 2026-10-05.
 
-## Current authorized work — Module 2B-2 data preparation only
+## Current authorized work — Module 2B-2A research/design only
 
-The user approved the 2026-10-05 data-preparation design and plan, with
-task-by-task implementation and separate review. Work is on
-`codex/module-2b2-data-preparation`, forked from accepted main
-`8a03e288fb814d81b0a8e255b8004dbc4d0efb02`. No push/main integration is authorized.
+On 2026-10-05 the user paused the ordinary-Minions 4-match / 8-deployment
+specialist data route. The product targets multiple visual types dynamically
+present in each match; Minions is historical evidence and one future class, not
+the fixed standard. Preserve the existing contracts, annotation/lock tools,
+private pending data, 2A2 Development Lock and accepted 2B-1 FAIL without edits.
+
+Current branch: `codex/module-2b2a-taxonomy-audit`, from the local data-preparation
+checkpoint `f0b424a0aa78079840ecc665e362023ee81042ce`. The old local feature branch
+is retained. Accepted main remains `8a03e288fb814d81b0a8e255b8004dbc4d0efb02`.
+No push/main integration is authorized.
+
+Authorized deliverables are public dataset/taxonomy, separate code/data/asset/
+weight license/provenance audit, a proposed visual schema, reopened model-route
+comparison and a small multiclass unseen-natural-match PoC design. Both pinned
+public-repository file structures and official model/deployment sources were
+read, not executed. Public media/weights were not downloaded or installed.
+Public game assets are reference_only pending usable rights/provenance evidence.
+The proposed Nano-first resource qualification and 3-5-class PoC are DRAFT,
+not accepted implementation, readiness, model or training decisions.
+
+See [research and primary sources](research/2026-10-05-multiclass-dataset-taxonomy-audit.md)
+and [design awaiting ChatGPT review](superpowers/specs/2026-10-05-module-2b2a-multiclass-design.md).
+Next: independent ChatGPT review, then user design approval before a new written
+implementation plan. No data preparation, model installation, weights, training,
+inference, Model Lock, Module 3, Android or live functionality in this stage.
+The historical Minions readiness checks still exist unchanged; do not use them
+as the new multiclass gate or bypass them by editing old locks.
+
+Fresh research-stage checks: all six changed files are Markdown; no source/test/
+configuration/private-data diff. Local documentation links checked (44, none
+broken); pip check exit 0, no broken requirements; diff check passed. Read-only
+before/after SHA-256 inventories agree for all 22,243 existing files in outputs/
+and local_data/; all 22,243 remain ignored, zero private/media/weight files tracked.
+Local main, origin/main and a read-only remote-main query all retain the accepted
+baseline above. Full pytest was Not Run in this documentation-only stage; the
+680/2 result below belongs to the preceding implementation checkpoint. Model/GPU/
+mobile evaluation is Not Run. Final local documentation commit/status are reported
+from Git at handoff, not fabricated as a self-referential SHA in this file.
+
+## Paused Module 2B-2 data preparation — inherited checkpoint
+
+The earlier approved data-preparation design/plan is retained as history.
+It is not the current continuation instruction. Its local branch is
+`codex/module-2b2-data-preparation`; no Training Dataset Lock was reached.
 
 - Tasks 1/2: closed multi-match individual-unit schema, independent readiness,
   grouped LOMO ownership, checked media/label binding and exclusive dataset-lock
@@ -35,7 +75,7 @@ task-by-task implementation and separate review. Work is on
   New training eligibility: zero matches/zero plays, because individual-unit
   frames have not been exhaustively human-reviewed. Total pending frames 72,
   unit boxes zero, unknown intervals six, certified absent duration zero.
-- Current stopping point: source 2 has a concrete completeness conflict (ongoing
+- Paused stopping point: source 2 has a concrete completeness conflict (ongoing
   battle at actual file end). Earlier user attestation and all original files
   remain preserved; latest pending draft does not claim it complete. This is not
   a new result-screen rule. One targeted question asks whether later footage is
@@ -48,18 +88,17 @@ task-by-task implementation and separate review. Work is on
   Stage-end protection: all 16,745 originals unchanged; 22,239 private files
   ignored, none tracked; baseline sources/tests/config unchanged; diff check 0.
 
-The hard training-data gate is >=4 independent target-positive natural matches
-AND >=8 confirmed independent opponent minions/normal deployments with reviewed
-unit evidence. Unknown/other-form content is not negative; sparse negative frames
-never certify FP/min time. Preserve the old Development Lock and accepted 2B-1
-FAIL byte-for-byte. No model dependencies/weights/training/inference/Model Lock,
-blind-test data, Module 3, Android or live functionality are authorized.
+The old implemented contract requires >=4 independent target-positive natural
+matches AND >=8 confirmed opponent minions/normal deployments with reviewed unit
+evidence. This is historical code behavior, not a continuing product data goal.
+Unknown/other-form content is not negative; sparse negative frames never certify
+FP/min time. Preserve the old Development Lock and accepted 2B-1 FAIL byte-for-byte.
 See [data verification](VERIFICATION_M2B2_DATA.md),
 [unit dataset contract](MODULE_2B2_DATASET_CONTRACT.md), and the approved
 [plan](superpowers/plans/2026-10-05-module-2b2-data-preparation.md).
-The remaining task is completeness resolution, original-order target confirmation
-and individual-unit review, not model training. Do not assert the remaining
-recordings lack targets or request a fabricated number of new matches before review.
+Those unfinished reviews and the completeness conflict remain recorded, but this
+research task does not continue them or ask for more Minions recordings. No claim
+is made that remaining sources lack targets. The new schema/PoC needs its own approval.
 
 ## Accepted Module 2B-1 baseline — historical closeout
 
@@ -84,7 +123,7 @@ The following 2A2 history describes its acceptance boundary, not a veto of the
 new scoped data-preparation authorization. At that closeout, independent testing,
 2B-2, Module 3, Android and live functionality were unapproved. Its ff-only main
 integration and push authorization applied only to that historical closeout;
-the current 2B-2 slice authorizes neither publication nor training.
+the paused 2B-2 slice and current 2B-2A research authorize neither publication nor training.
 See [fixed 2B-1 protocol](MODULE_2B1_PROTOCOL.md).
 
 ## Current stage
@@ -103,7 +142,7 @@ See [fixed 2B-1 protocol](MODULE_2B1_PROTOCOL.md).
   that user instruction; this session did not retrieve another ChatGPT response.
 - Historical 2A2 experiment: the user attested all four natural replay recordings
   cover full matches and explicitly superseded the result-screen completeness gate.
-  Current 2B-2 source-2 completeness conflicts with that attestation and remains
+  The paused 2B-2 source-2 completeness conflicts with that attestation and remains
   unresolved as recorded above; the old attestation is preserved, not new proof. Use
   user_confirmed completion provenance and the actual file-end boundary; absence
   of victory/defeat UI is not incompleteness. The first original-order input was
@@ -113,9 +152,9 @@ See [fixed 2B-1 protocol](MODULE_2B1_PROTOCOL.md).
   All sources, prior exclusions and first survey/rough review are retained.
   One actual exclusive version-one Development Data Lock exists locally;
   readiness/freeze/lock validation exit 0 and digest reload/recomputation agree.
-- The 2B-1 authorization did not open another module. The subsequent 2B-2
-  authorization above opens data preparation only; independent testing, training,
-  Module 3, Android, HUD and realtime remain closed.
+- The 2B-1 authorization did not open another module. Subsequent 2B-2 data
+  preparation is now paused; current 2B-2A authorization is research/design only.
+  Independent testing, training, Module 3, Android, HUD and realtime remain closed.
 - Module 2B-1: formally accepted as insufficient at `585c3d9...`; the fixed
   experiment and review are complete, but neither fold passed. Acceptance of a
   failed feasibility result does not open Model Lock or the next module.
@@ -271,8 +310,9 @@ SHA in this file. That main integration was ff-only. The feature branch, accepte
 force push, rebase, history rewrite or branch deletion was part of that closeout.
 These historical instructions do not authorize current 2B-2 main integration.
 
-That closeout stopped after acceptance publication. The new 2B-2 authorization
-opens only the data slice above; do not automatically tune or train. Module 2A2 remains
+That closeout stopped after acceptance publication. The later 2B-2 data-only
+authorization is now paused and superseded by the research-only scope above;
+do not automatically tune or train. Module 2A2 remains
 accepted at
 DEV_LOCKED. Both folds failed, so Model Lock stays closed. No new source, Test GT Lock,
 independent test or later module begins without separate authorization.

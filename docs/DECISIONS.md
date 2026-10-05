@@ -448,3 +448,48 @@ failure and leaves independent-match testing untouched.
   Detector JSON hashes are actual canonical file hashes, not imaginary model files.
 - Freeze code/settings before the first real scan. Preserve all original evidence.
   No independent test, 2B-2, Module 3, push or main integration is implied.
+
+## 2026-10-05 — Pause Fixed-Minions Expansion; Audit Multiclass Taxonomy
+
+### Decision
+
+The user explicitly pauses ordinary-Minions four-match/eight-deployment training
+data expansion. The product must recognize multiple visual types dynamically
+present in natural matches; Minions remains historical evidence and one later
+class, not a fixed standard. Retain existing dataset contracts, annotation/lock
+infrastructure, private data, 2A2 Development Lock and accepted 2B-1 failure.
+Authorize Module 2B-2A research/design only and reopen model selection rather
+than inheriting the Faster R-CNN preference as a binding constraint.
+
+### Context
+
+The prior data slice ended with working tools but unreviewed per-unit data and
+an unresolved recording completeness conflict. More specialist samples do not
+define a general card/unit taxonomy. Public repositories mix units, UI, spells,
+evolution variants and generated assets with different provenance obligations.
+
+### Alternatives
+
+- Continue supplementing a fixed ordinary-Minions dataset before any multiclass work.
+- Preserve that work and audit multiclass data/schema/model assumptions first.
+
+### Reason
+
+The second approach follows the clarified product objective without deleting
+useful infrastructure, mutating old evidence or treating visual units as cards.
+
+### Consequences
+
+- Old four/eight validator behavior is retained as historical code, not the new
+  data objective. No threshold patch, old-lock migration or data editing in this stage.
+- Research must separate code, data, third-party game assets and weight licenses;
+  unclear public material remains reference_only, with no training download.
+- Proposed taxonomy, 3-5-class PoC and Nano/Tiny/Faster comparison are DRAFT
+  recommendations in the new spec, not accepted implementation/model/gate decisions.
+- Unknown and other forms never become ordinary-target negatives; image/box counts
+  never replace independent matches/groups or certified absence-time coverage.
+- Preserve underlying-match isolation, immutable versions and separate GT/predictions.
+  Old exposed recordings are development/reference, not prospective blind tests.
+- Stop for ChatGPT independent review. New implementation planning/execution,
+  model installation, weights, training, inference, Model Lock, Module 3 and
+  Android/live functionality require later authority. No push/main integration.
