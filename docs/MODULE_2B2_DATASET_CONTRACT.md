@@ -282,3 +282,60 @@ copies, receive one ownership assignment; assignment does not make them training
 eligible. Later augmentations inherit this ownership. No frame-level random split
 or renamed/reencoded same-match leakage is allowed. For >4 matches all N LOMO
 folds are defined; later model stability/acceptance rules remain unapproved.
+
+## Task 3 manual annotation interoperability
+
+`canvas_box_to_normalized(box: tuple[float,float,float,float],
+image_size: tuple[int,int], display_rect: tuple[float,float,float,float])
+-> list[float]` takes canvas **endpoints** `(x0,y0,x1,y1)`, original rotated
+`(width,height)`, and displayed-image `(left,top,width,height)` excluding any
+letterbox. The display must preserve the original aspect ratio. Reverse dragging
+is accepted; outside endpoints and zero-area boxes reject rather than clip. The
+result is `[x,y,width,height]` in the original rotated full-image coordinate space,
+not resized bitmap pixels. Decimal rounding at the right/bottom edge is kept
+inside the normalized image; this is not clipping outside evidence.
+
+`save_annotation_revision(document: dict, output: Path) -> Path` accepts an
+**in-memory request**, exactly `{draft, data_root, annotation_source_id}`;
+`data_root` is an explicit absolute `Path` for the data container described above.
+This request is not the persisted sidecar schema. `output` is an absolute new
+draft `.json` path; its sibling `<output.stem>.units.json` is a new full ordered
+label snapshot with the closed sidecar fields described above. Both destinations
+must be private artifacts and must not already exist. The writer clones the
+draft, remaps only each row's `annotation_source_id` to the requested new identity,
+and replaces `annotation_sources` with that one sidecar's relative path and actual
+file SHA-256. All other row semantics, frame/deployment IDs, boxes, review states,
+array order and retained records are preserved. Changes to `created_at` or
+`freeze_version` must be explicit in the input; the writer never changes them.
+
+The complete new draft and sidecar are validated before any file creation.
+Exclusive binary writes use canonical JSON plus a newline, without overwriting
+originals. A partial failure removes only this operation's newly created pair;
+an inability to clean up is reported explicitly. This pure paired writer does not
+certify external files or readiness. The saved pair must subsequently pass Task 2
+checked loading/binding; a standalone sidecar check is insufficient.
+
+`launch_annotator(draft_path: Path, indexes: dict, output_directory: Path) -> None`
+requires the checked context from `load_dataset_indexes`, including its explicit
+root and immutable Development Lock file reference. It rechecks disk bindings
+before opening Tk and before saving, and checks the new pair after saving. Import
+does not create a GUI. The local Pillow/Tk canvas only draws manually requested
+visible unit boxes, edits selected per-unit metadata, deletes unsaved new boxes,
+records explicit frame review, saves additively, and advances in declared frame
+order. It never splits group boxes, guesses source/form, creates deployments, or
+freezes a dataset lock. Choosing an existing deployment merely fills its declared
+metadata for human review.
+
+One invocation owns one application lifetime. Repeated launches in a shared
+Python/Tcl interpreter are not validated. Automated Tk smoke uses a fresh child
+process per real application lifetime, not a dummy GUI or human visible-window
+review; initialization/callback errors, timeouts, nonzero exits and skipped GUI
+cases fail that verification. This does not claim a native Tk runtime repair.
+
+Editing a unit resets its frame to pending/non-exhaustive. Deleting boxes retains
+declared presence; it cannot create a negative or an absent interval. A complete
+positive frame requires explicit full-image review with all identifiable same-class
+units labelled (including own/other-source units) and verified rows. Unknown
+potentially unlabelled content remains pending. Semantic source/form uncertainty
+may be retained in a verified visible unit without becoming a confirmed target
+play. Complete review is a human attestation, not automatically proven by Tk.
