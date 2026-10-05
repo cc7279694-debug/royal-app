@@ -7,10 +7,12 @@ Last verified: 2026-10-05.
 The user separately authorized the supplied Minions Visual Baseline plan on
 2026-10-05. Work is on `feat/module-2b1-minions-visual-baseline` from verified
 main/origin/main `48136affd470a39feb9815f19e1dbd207ffc14ca`, in the same checkout.
-Only the existing minions/normal development lock is permitted. Fresh baseline
-406 passed/1 skipped; lock/disk snapshot recreation valid. Baseline and disk/CLI
-tests are implemented and reviewed; fresh repaired full regression is 474 passed/
-1 skipped. Real folds have not yet run at this pre-experiment checkpoint.
+Implementation and both fixed development folds are complete, awaiting independent
+acceptance. Real result: 2B1_BASELINE_INSUFFICIENT, both folds fail the fixed Top5/
+2s gate. A-to-B has no retained candidate; B-to-A retains one whose first support
+is 4.75s late. No Model Lock/final baseline was built and no tuning/rerun followed.
+The accepted minions/normal Development Lock and evidence remain unchanged.
+Final full regression: 474 passed/1 skipped; dependency/diff checks passed.
 The following 2A2 history describes its acceptance boundary, not a veto of the
 new scoped 2B-1 authorization. Independent testing, 2B-2, Module 3, Android and
 live functionality remain unapproved. No push or main merge is authorized.
@@ -166,7 +168,9 @@ Historical Inferno Dragon evidence is regression-only, not the first new target.
 - Six selected boxes describe the three-unit deployment group, not single-unit
   tracking; split-lane group rectangles include intervening space. This is a
   disclosed PoC data-design limitation, not recognition accuracy.
-- No dependency/database/cloud/model/runtime networking/Android/game-input change.
+- Module 2A2 itself made no dependency/database/cloud/model/runtime networking/
+  Android/game-input change. The separate 2B-1 adds only optional pinned OpenCV/
+  NumPy and development scanning; no database, cloud, neural model or game input.
   No automatic selection, evolution, cycle or elixir. Model runtime and project
   license remain undecided.
 - Live analysis/HUD require applicable explicit Supercell permission and separate
@@ -175,23 +179,23 @@ Historical Inferno Dragon evidence is regression-only, not the first new target.
 
 ## Git and next step
 
-Accepted feature: `feat/module-2a2-experiment-lock`, from
-`3ad657f2c9190f4e389ccd035682becd12d0c51c`; accepted code is
-`69162023b87b71209f8dec9ebc9af69d4bfda944`. The user explicitly authorized a
-documentation-only acceptance commit, feature publication and ff-only main
-integration/publication. Preserve this feature and the 2A1 branch; no PR, release,
-rebase, force push or deletion. Exact publication outcome/tip belongs to verified
-Git refs and the integration handoff, not an inference from acceptance status.
+Current feature: `feat/module-2b1-minions-visual-baseline`; frozen experiment code
+`41d30c6893376b811c98d72442edfd52222f0733`. Main/origin/main remain the accepted 2A2
+integration `48136affd470a39feb9815f19e1dbd207ffc14ca`. Local implementation and
+result-documentation commits only; no push, merge, PR, release or branch deletion.
+Preserve the accepted 2A1/2A2 feature branches and every private evidence file.
 
-Module 2A2 remains formally accepted at DEV_LOCKED. Separately authorized 2B-1
-may use only that frozen development data; a Model Lock is permitted only if
-both held-out folds pass the fixed protocol. No new source, Test GT Lock,
+Next: independent review of the 2B-1 implementation and truthful insufficient
+result. Only after acceptance and new explicit authorization may 2B-2 planning
+begin; do not automatically add data or train. Module 2A2 remains accepted at
+DEV_LOCKED. Both folds failed, so Model Lock stays closed. No new source, Test GT Lock,
 independent test or later module begins without separate authorization.
 Preserve every source, old rough
 review, prior exclusion and new lock; corrections use another freeze version.
 Do not turn full-match attestation or uncovered visibility into negative labels.
 
 See [2A2 verification](VERIFICATION_M2A2.md),
+[2B-1 verification](VERIFICATION_M2B1.md),
 [blind protocol](MODULE_2A2_BLIND_TEST_PROTOCOL.md),
 [contracts](MODULE_2A2_CONTRACTS.md), [roadmap](DEVELOPMENT_PLAN.md),
 [historical 2A1 verification](VERIFICATION_M2A1.md).

@@ -67,10 +67,50 @@ local arguments without echoing private values. Build refuses any failed fold.
 
 ## Real result
 
-Not Run at this pre-experiment checkpoint. No PASS, recognition accuracy,
-cross-match generalization, Model Lock or independent blind test is claimed.
-The next step is fresh-context code review, protection checks, local code commit,
-then the two fixed development folds. Do not tune after observing their results.
+Code was frozen and clean at `41d30c6893376b811c98d72442edfd52222f0733` before
+the first real scan. Both folds ran exactly once with unchanged a priori settings.
+The actual baseline CLI exited **3**, status **2B1_BASELINE_INSUFFICIENT**.
+
+- A-to-B: 713 coarse and 98 fine scored frames, 793 unique observations;
+  92 supported observations merged into one reference-overlap proposal, excluded.
+  Zero retained candidates/Top5 entries; hidden deployment rank/delay/valid-event
+  score are null, fold FAIL. Global maximum 0.971661 is a self-match, not success.
+- B-to-A: 713 coarse and 196 fine scored frames, 873 unique observations;
+  99 supported observations merged into two proposals, one reference-overlap
+  proposal excluded. One Top5 entry remains with peak score 0.602258, but its
+  first support is **4.75 seconds late**, exceeding the 2s gate. Valid hidden
+  rank/delay/score remain null, fold FAIL. Global maximum 0.984681 is not the
+  retained cross-deployment score and cannot substitute for held-out success.
+- Both rankings were persisted before evaluation; one private peak PNG retained.
+  A read-only audit reloaded the real Development Lock and frozen protocol,
+  rechecked ranking hashes, recomputed grouping/ranking/evaluation from recorded
+  observations and reproduced the receipt exactly, exit 0. No new inference.
+- No `build` invocation, detector artifact, final development rescan, Model Lock,
+  Test GT freeze or independent-match inference. No tuning, new footage or rerun.
+  Unknown intervals/other forms remain non-negative. A late temporal candidate
+  is not a confirmed new card-play event or a measured false-positive count.
+
+## Final checks and handoff
+
+- Full suite rerun on frozen code: `./.venv/Scripts/python.exe -m pytest -q
+  --tb=short`, **474 passed, 1 skipped in 60.90s**, exit 0.
+- Fresh pip check: no broken requirements, exit 0. Diff checks clean; legacy
+  Module 1/2A1 production files and existing tests are unchanged.
+- Final post-experiment protection check: **10231/10231 existing files unchanged**,
+  zero missing/not-ignored/tracked-private entries. Original MP4s, PNGs, reports,
+  indexes, labels and Development Lock are protected; new private experiment
+  receipts and the single candidate PNG remain ignored. Original exports were
+  not regenerated and manual evidence was not re-reviewed or edited.
+- Internal code-review repairs and public privacy/scope audit completed before
+  scanning. These do not replace ChatGPT independent acceptance.
+- All command stdout/stderr, protocol/ranking/scan receipts, peak PNG and source
+  protection inventory are retained locally under Git ignore, not published.
+- Main/origin/main remain `48136affd470a39feb9815f19e1dbd207ffc14ca`; focused
+  implementation plus result-documentation commits are local only. No push,
+  merge, PR, Release, 2B-2, Module 3, Android or training.
+
+Next is independent acceptance review of the code and insufficient result;
+2B-2 planning/data expansion requires another explicit authorization.
 
 ## Limits
 

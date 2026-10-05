@@ -174,6 +174,12 @@ independent blind testing and 2B-2 training remain separately Gated.
 
 ### Module 2B-1 — Minions Visual Baseline
 
+Status: Implementation/experiment complete, awaiting independent acceptance;
+2B1_BASELINE_INSUFFICIENT. Both folds fail; no PASS-only final detector or Model
+Lock created. A-to-B retains zero candidates; B-to-A retains one 4.75s late.
+474 passed/1 skipped, dependencies/diff clean. No tuning, independent testing,
+new data, 2B-2 or later module has begun. Failure evidence remains private.
+
 Two-fold same-match held-out deployment search using the frozen six crops;
 both hidden deployments must enter Top5 within 2s of onset. No hidden-GT tuning,
 unknown-as-negative, test footage, neural training or automatic next module.

@@ -8,7 +8,8 @@ Module 2A1 已于 2026-10-04 正式验收，验收基准为
 `98037ceba81683ad1a2c214bada30a10f2f3f69e`；并不代表可以开始训练模型。
 Module 2A2 已于 2026-10-04 由用户确认正式验收，基准为
 `69162023b87b71209f8dec9ebc9af69d4bfda944`；开发证据保持 DEV_LOCKED。
-2026-10-05 用户另行授权 2B-1 普通亡灵轻量视觉基线，目前正在实施与验证。
+2026-10-05 另行授权的 2B-1 已完成实施与两轮开发实验，结果为基线不足：
+两轮均未达到 Top5/2 秒门槛，未生成 Model Lock，已停止等待独立验收。
 工具在 Windows 电脑上运行，不需要 Android Studio；尚无已验收的自动识别能力。
 
 实时在线对局分析和 HUD 保持 Gated：须取得覆盖具体行为、版本、使用场景的
@@ -214,6 +215,23 @@ contact 缩略图或模型预测替代整局人工复核。
 参见 [盲测协议](docs/MODULE_2A2_BLIND_TEST_PROTOCOL.md)、
 [数据契约](docs/MODULE_2A2_CONTRACTS.md)、
 [本轮验证记录](docs/VERIFICATION_M2A2.md)。
+
+## Module 2B-1：普通亡灵轻量视觉基线
+
+只用现有冻结开发数据：一场对局、两次独立部署、六张组合框。多尺度模板匹配
+搜索完整战场，ORB 仅作诊断；先保存两轮排名，再检查隐藏部署，未调参重跑。
+A→B 排除参考部署后无候选；B→A 仅有一个候选，首次支持延迟 4.75 秒，超过
+原定 2 秒限制。相似度分数不是识别正确概率；这些结果不证明跨对局能力。
+
+独立入口为 `python -m clash_tracker_video.baseline_io`：`crossval` 成功退出 0，
+基线不足退出 3，参数或证据错误退出 2；`build` 仅允许两轮通过后执行；
+`validate-lock` 核对真实 detector JSON、原图裁切与 Model Lock 的完整处理参数。
+本次未执行 PASS-only build、测试标注或独立测试；未进入 2B-2，也未训练模型。
+Module 1 与 2A1 三条命令和 `experiment_gate=false` 语义不变。
+
+完整测试 474 项通过、1 项权限跳过，依赖和差异检查通过。配置及失败证据保留，
+不降低门槛或将未知区间当负样本。参见 [协议](docs/MODULE_2B1_PROTOCOL.md) 和
+[实际验证记录](docs/VERIFICATION_M2B1.md)。
 
 ## 项目事实源
 
