@@ -9,6 +9,27 @@ Only frozen minions/normal development data, two independent plays/six original
 boxes/three explicit unknown intervals/no verified negatives. No labels/Development
 Lock edits, independent test pixels, neural training, later modules or live input.
 
+## Formal independent acceptance — 2026-10-05
+
+The user reports that ChatGPT completed independent review and formally accepted
+the failed experiment at `585c3d95c832a1a86fce28ca822bc69d3646430f`, with
+`MODULE_2B1_INSUFFICIENT_ACCEPTED`. This acceptance record comes from the user's
+explicit instruction; this closeout did not obtain another ChatGPT verdict,
+re-watch private footage or invent findings from a missing full review report.
+
+The accepted conclusion is **insufficient fixed lightweight template baseline**,
+not successful model recognition. The original experiment status remains
+`2B1_BASELINE_INSUFFICIENT`: A-to-B and B-to-A both FAIL. All original scans,
+rankings, protocol, command receipts, private screenshot, Development Lock and
+Review Packet are retained unchanged. No parameters, implementation, tests or
+dependencies are changed; no real inference rerun seeks a PASS and no Model Lock
+is generated. Independent testing, 2B-2 and all later modules remain unapproved.
+
+Current authorization is limited to four-document acceptance recording, fresh
+full regression/dependency/diff/privacy/protection checks, a documentation commit,
+ff-only main integration/push and retaining the feature branch. The following
+pre-experiment and first-handoff sections remain historical execution evidence.
+
 ## Fresh checks before first real experiment
 
 - Full baseline: `./.venv/Scripts/python.exe -m pytest -q --tb=short`:
@@ -90,7 +111,7 @@ The actual baseline CLI exited **3**, status **2B1_BASELINE_INSUFFICIENT**.
   Unknown intervals/other forms remain non-negative. A late temporal candidate
   is not a confirmed new card-play event or a measured false-positive count.
 
-## Final checks and handoff
+## Historical final checks and first handoff — before independent acceptance
 
 - Full suite rerun on frozen code: `./.venv/Scripts/python.exe -m pytest -q
   --tb=short`, **474 passed, 1 skipped in 60.90s**, exit 0.
@@ -105,12 +126,45 @@ The actual baseline CLI exited **3**, status **2B1_BASELINE_INSUFFICIENT**.
   scanning. These do not replace ChatGPT independent acceptance.
 - All command stdout/stderr, protocol/ranking/scan receipts, peak PNG and source
   protection inventory are retained locally under Git ignore, not published.
-- Main/origin/main remain `48136affd470a39feb9815f19e1dbd207ffc14ca`; focused
+- At that pre-acceptance handoff, main/origin/main remained
+  `48136affd470a39feb9815f19e1dbd207ffc14ca`; focused
   implementation plus result-documentation commits are local only. No push,
   merge, PR, Release, 2B-2, Module 3, Android or training.
 
-Next is independent acceptance review of the code and insufficient result;
-2B-2 planning/data expansion requires another explicit authorization.
+The independent review requested at that handoff is now accepted as recorded
+above. 2B-2 planning/data expansion still requires another explicit authorization.
+
+## Fresh acceptance-closeout verification
+
+- Initial root discovery command `./.venv/Scripts/python.exe -m pytest -q
+  --tb=short` exited 2 with three collection/import-mismatch errors: it also
+  discovered copied tests inside the ignored Review Packet staging directory.
+  No baseline assertion failed. The error receipt is preserved; no package,
+  implementation, tests, cache, packet or private data were removed to hide it.
+- The README's explicit maintained test-directory invocation avoids packet copies
+  while running the complete project suite: `./.venv/Scripts/python.exe -m pytest
+  tools/offline_video/tests -q --tb=short`: **474 passed, 1 skipped in 55.48s**,
+  exit 0. All tracked tests are in that directory; no test deselection. The skip
+  is the existing Windows symbolic-link permission case, not a new exception.
+- Fresh `./.venv/Scripts/python.exe -m pip check`: **No broken requirements found**,
+  exit 0. No installation, dependency upgrade or environment replacement.
+- Pre-closeout byte protection confirms all **10231 original protected files**
+  unchanged. The inclusive closeout snapshot also protects **145 saved experiment
+  and Review Packet files**, **10376 files in total**. The private inventory stays
+  ignored and is not published. No real inference, extraction or manual review.
+- Post-document protection recheck: **10376/10376 unchanged**, including the
+  original 10231; zero changed/missing, not-ignored or tracked-private files.
+  Original fold rankings and pre-scan protocol still match their saved hashes;
+  failed gates and absence of a real Model Lock/final artifact are unchanged.
+- `git diff --check` exited 0. Exactly README, CURRENT_STATE, DEVELOPMENT_PLAN
+  and this verification document change; implementation, test, dependency and
+  frozen-protocol bytes remain unchanged from the accepted review checkpoint.
+  The closing diff scan found no private media/source paths, account identifiers
+  or high-confidence credential tokens. Actual output receipts remain ignored.
+
+The docs-only acceptance commit is the publication checkpoint; its exact SHA,
+ff-only merge and remote main/retained-feature refs are checked from Git and saved
+local receipts. No PR, Release, force push, rebase or branch deletion is authorized.
 
 ## Limits
 
@@ -121,4 +175,12 @@ The temporal held-out gate alone cannot certify spatial/card identity; private
 candidate screenshots support independent review. Unknowns are not negatives,
 so no calibrated confidence, recall/FP rate or generalization claim follows.
 Digest/snapshot consistency and manual attestations do not certify source truth.
-Android/live/independent blind inference Not Run; no push/merge is authorized.
+The adapter loads both development occurrences and all six reference crops
+before scanning; each scan/rank receives only the active reference/fixed settings,
+and both ranking files precede hidden scoring. This is function-input separation,
+not delayed hidden-metadata loading or process/session isolation. The Review
+Packet disclosed the protocol's stronger loading claim; this acceptance neither
+rewrites that historical protocol nor asserts independent-match blindness.
+File hashes and the saved execution ledger cannot prove absence of an unlogged
+external run or tampering. Android/live/independent blind inference Not Run;
+only acceptance-closeout ff-only integration/push is authorized, not 2B-2.

@@ -168,17 +168,25 @@ and [blind-test protocol](MODULE_2A2_BLIND_TEST_PROTOCOL.md).
 
 ## Module 2B — Single Card Detection Proof of Concept
 
-Status: In Progress — Module 2B-1 separately authorized 2026-10-05 on accepted
-2A2 DEV_LOCKED. Only the fixed development template baseline is approved;
-independent blind testing and 2B-2 training remain separately Gated.
+Status: In Progress — 2B-1 is formally completed and accepted as an insufficient
+fixed lightweight template baseline, not successful single-card recognition.
+Further work is stopped pending separate authorization; independent blind testing
+and 2B-2 remain Gated. Accepted 2A2 Development Data remains DEV_LOCKED.
 
 ### Module 2B-1 — Minions Visual Baseline
 
-Status: Implementation/experiment complete, awaiting independent acceptance;
+Status: Completed — on 2026-10-05 the user reports ChatGPT independent acceptance
+at `585c3d95c832a1a86fce28ca822bc69d3646430f`, with
+`MODULE_2B1_INSUFFICIENT_ACCEPTED`. Raw experiment status remains
 2B1_BASELINE_INSUFFICIENT. Both folds fail; no PASS-only final detector or Model
 Lock created. A-to-B retains zero candidates; B-to-A retains one 4.75s late.
-474 passed/1 skipped, dependencies/diff clean. No tuning, independent testing,
-new data, 2B-2 or later module has begun. Failure evidence remains private.
+Fresh closeout maintained-suite regression: 474 passed/1 skipped; dependencies
+and diff/privacy/protection checks passed; 10376 protected files are unchanged.
+Only acceptance documentation, full checks, ff-only main integration/push
+and preserving the feature branch are authorized. No parameter change, real
+inference rerun, new data, independent testing, 2B-2 or later module is authorized.
+Original failure evidence remains private and preserved. Acceptance does not
+declare a working recognizer or unlock the still-failed Model Lock gate.
 
 Two-fold same-match held-out deployment search using the frozen six crops;
 both hidden deployments must enter Top5 within 2s of onset. No hidden-GT tuning,

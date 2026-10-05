@@ -2,20 +2,29 @@
 
 Last verified: 2026-10-05.
 
-## Current authorized work — Module 2B-1
+## Current authorized work — Module 2B-1 acceptance closeout
 
-The user separately authorized the supplied Minions Visual Baseline plan on
-2026-10-05. Work is on `feat/module-2b1-minions-visual-baseline` from verified
-main/origin/main `48136affd470a39feb9815f19e1dbd207ffc14ca`, in the same checkout.
-Implementation and both fixed development folds are complete, awaiting independent
-acceptance. Real result: 2B1_BASELINE_INSUFFICIENT, both folds fail the fixed Top5/
-2s gate. A-to-B has no retained candidate; B-to-A retains one whose first support
+On 2026-10-05 the user reports formal ChatGPT independent acceptance at
+`585c3d95c832a1a86fce28ca822bc69d3646430f`, with
+`MODULE_2B1_INSUFFICIENT_ACCEPTED`. This records the user's acceptance instruction;
+the closeout session did not retrieve a new ChatGPT verdict or re-review private
+footage. The accepted conclusion is an insufficient fixed lightweight template
+baseline, not successful recognition or cross-match reliability.
+Real result remains 2B1_BASELINE_INSUFFICIENT: both folds fail the fixed Top5/2s
+gate. A-to-B has no retained candidate; B-to-A retains one whose first support
 is 4.75s late. No Model Lock/final baseline was built and no tuning/rerun followed.
-The accepted minions/normal Development Lock and evidence remain unchanged.
-Final full regression: 474 passed/1 skipped; dependency/diff checks passed.
+The accepted minions/normal Development Lock and original failed evidence remain
+unchanged. The only current work is four-document acceptance recording, fresh full
+regression/dependency/diff/privacy/protection checks, a documentation commit and
+ff-only main publication, retaining `feat/module-2b1-minions-visual-baseline`.
+Fresh maintained-suite regression: 474 passed/1 skipped in 55.48s; pip check passed.
+Diff/privacy/ignore checks passed. All 10231 originally protected files plus 145
+saved experiment/Review Packet files (10376 total) remain byte-identical; original
+fold results and protocol bindings are unchanged. No source/test/config change.
 The following 2A2 history describes its acceptance boundary, not a veto of the
 new scoped 2B-1 authorization. Independent testing, 2B-2, Module 3, Android and
-live functionality remain unapproved. No push or main merge is authorized.
+live functionality remain unapproved. This closeout explicitly authorizes ff-only
+main integration and push, not new implementation, parameters, data or models.
 See [fixed 2B-1 protocol](MODULE_2B1_PROTOCOL.md).
 
 ## Current stage
@@ -44,6 +53,9 @@ See [fixed 2B-1 protocol](MODULE_2B1_PROTOCOL.md).
   readiness/freeze/lock validation exit 0 and digest reload/recomputation agree.
 - Subsequent authorization opens only the development-only Module 2B-1 above;
   independent testing, 2B-2, Module 3, Android, HUD and realtime remain closed.
+- Module 2B-1: formally accepted as insufficient at `585c3d9...`; the fixed
+  experiment and review are complete, but neither fold passed. Acceptance of a
+  failed feasibility result does not open Model Lock or the next module.
 
 ## Inherited verified capabilities
 
@@ -168,6 +180,12 @@ Historical Inferno Dragon evidence is regression-only, not the first new target.
 - Six selected boxes describe the three-unit deployment group, not single-unit
   tracking; split-lane group rectangles include intervening space. This is a
   disclosed PoC data-design limitation, not recognition accuracy.
+- The 2B-1 adapter loads both development occurrences and reference crops before
+  scanning. Each scan/rank uses only its active reference and fixed settings;
+  hidden scoring follows both ranking writes. This is function-input separation,
+  not delayed hidden-metadata loading or OS/session isolation. The Review Packet
+  disclosed the stronger historical protocol wording; no protocol/code rewrite
+  or new experiment is part of accepting this insufficient result.
 - Module 2A2 itself made no dependency/database/cloud/model/runtime networking/
   Android/game-input change. The separate 2B-1 adds only optional pinned OpenCV/
   NumPy and development scanning; no database, cloud, neural model or game input.
@@ -177,17 +195,21 @@ Historical Inferno Dragon evidence is regression-only, not the first new target.
   approval. Passive capture/risk acceptance cannot substitute. Never promise
   zero ban risk.
 
-## Git and next step
+## Git and accepted stopping point
 
-Current feature: `feat/module-2b1-minions-visual-baseline`; frozen experiment code
-`41d30c6893376b811c98d72442edfd52222f0733`. Main/origin/main remain the accepted 2A2
-integration `48136affd470a39feb9815f19e1dbd207ffc14ca`. Local implementation and
-result-documentation commits only; no push, merge, PR, release or branch deletion.
-Preserve the accepted 2A1/2A2 feature branches and every private evidence file.
+Pre-2B-1 accepted main baseline: `48136affd470a39feb9815f19e1dbd207ffc14ca`.
+Frozen experiment code: `41d30c6893376b811c98d72442edfd52222f0733`.
+Independently accepted review checkpoint: `585c3d95c832a1a86fce28ca822bc69d3646430f`.
+The documentation-only closing commit on `feat/module-2b1-minions-visual-baseline`
+is the publication checkpoint; exact commit and remote publication state are
+verified from Git refs and the local closeout receipts, not a self-referential
+SHA in this file. Main integration is ff-only. Retain the feature branch, the
+accepted 2A1/2A2 branches and every private evidence file; no PR, Release, force
+push, rebase, history rewrite or branch deletion is part of this closeout.
 
-Next: independent review of the 2B-1 implementation and truthful insufficient
-result. Only after acceptance and new explicit authorization may 2B-2 planning
-begin; do not automatically add data or train. Module 2A2 remains accepted at
+Stop after acceptance publication. 2B-2 planning still requires new explicit
+authorization; do not automatically add data, tune or train. Module 2A2 remains
+accepted at
 DEV_LOCKED. Both folds failed, so Model Lock stays closed. No new source, Test GT Lock,
 independent test or later module begins without separate authorization.
 Preserve every source, old rough
