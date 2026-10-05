@@ -85,7 +85,12 @@ taxonomy 描述基类，form 正交储存。首轮只选人工能明确区分且
 
 为了首轮不添加自定义 owner head，建议将确认的 `(visual_class_id, owner)` 编码为
 后端 joint label，canonical 存储仍正交。3–5 基类 × own/opponent 最多 6–10 输出标签。
-两种归属都需要明确开发监督；缺少归属支持的类别不假称能识别 opponent。
+Owner Support Gate（2026-10-05 最终简化）：每个入选类的 opponent 在 TRAIN 与
+DEV_VAL 各至少一个确认独立 appearance group；整个集合至少一个入选类另有
+own 在这两个 split 各至少一个确认独立组，用于归属区分验证。
+其他类缺少完整 own 支持不阻止 opponent PoC，但 own 子组必须报告
+`not_qualified / not_evaluated`，不得宣称该类双向归属已经验证。
+Unknown owner 不能转换成 opponent 或 Negative。完整帧的我方标注要求不放宽。
 normal-only 首轮导出仅接受已确认普通形态；未知／其他形态保持 ignore/pending。
 Faster R-CNN 背景 ID 0 与 YOLOX 从 0 开始的前景 ID 使用独立、锁定的 backend map。
 
@@ -119,9 +124,11 @@ upstream ROI 裁切坐标必须有完整 offset／scale／旋转才能回到原�
   必须通过下述 Scale Coverage Gate，不能全部选大而容易识别的目标。
 - 初始数据建议至少 **2 场独立开发自然比赛（总体）**。每个入选类至少两个独立
   appearance groups，且 train 与 development_validation 都有可确认的支持；
-  每个启用的 `(class, owner)` joint label 在 **train 和 development_validation
-  各至少一个人工确认的独立组**，包括每类 own/opponent；仅在 validation 出现
-  不算训练支持。若两场无法覆盖，则增加开发素材或报告
+  每个入选类的 opponent 在 **train 和 development_validation 各至少一个人工确认
+  的独立组**；整个 3–5 类集合至少一个入选类的 own 在两个 split 都有独立支持。
+  其余类 own 缺口报告 `not_qualified / not_evaluated`，不据此否决 opponent 资格，
+  也不宣称双向区分已验证。仅在 validation 出现不算训练支持。若两场无法覆盖，
+  则增加开发素材或报告
   该集合未就绪，不用连续帧补独立组，也不查看未来测试来改集合。
 - 每组约 3–5 张有代表性的帧作为人工工作量起点，不是统计独立样本或成功保证。
   报告比赛／组／entity／帧／框五种数量、每类与归属分布、小目标像素尺寸与遮挡。
@@ -139,7 +146,7 @@ upstream ROI 裁切坐标必须有完整 offset／scale／旋转才能回到原�
 
 固定政策 ID：`dev_moving_area_quantiles_v1`。政策算法在本设计中固定；执行时先冻结
 Development 候选全集、whole-match train/validation assignment 与统计快照，再最终选类。
-候选全集包括所有满足 4.1 基本独立组与两种归属 train/validation 支持条件的
+候选全集包括所有满足 4.1 基本独立组与 opponent train/validation 支持条件的
 `kind=unit, mobility=moving, form=normal` 类，不能先选喜欢的 3–5 类再计算分位数。
 未合格／不能判定 mobility 的候选也要列出及说明缺口，不能静默删掉困难类。
 
@@ -250,7 +257,8 @@ exclusive creation，不覆盖任何旧锁。模型与测试 GT 分别锁定，G
 ## 6. 实施建议与授权停点
 
 以下是设计要求对应的授权分段；新[实施计划](../plans/2026-10-05-module-2b2b-multiclass-data-training-infrastructure.md)
-需要独立复核／批准，本轮不执行该计划：
+已由用户报告独立复核 `PHASE_A_AUTHORIZED_WITH_SIMPLIFICATION`，仅批准 Task 1–6，
+并以本文件 Owner Support Gate 为最终需求；Phase B 和训练仍不批准：
 
 1. 新 closed schema、独立 readiness、Scale Coverage Gate、历史兼容与纯合成测试；
    不安装模型，reference_only 素材不导入。
@@ -265,8 +273,8 @@ exclusive creation，不覆盖任何旧锁。模型与测试 GT 分别锁定，G
    ONNX/ncnn parity 是另一个验证步骤，手机部署留在后续模块。
 
 本设计阶段在记录用户报告的独立验收、补充尺度要求并完成文档检查后收尾。
-下一步仅交付 Module 2B-2B 实施计划供复核；设计验收不自动授权数据准备、
-环境安装、训练、Model Lock、盲测或上述任何执行步骤。
+当前仅执行已明确批准的 Module 2B-2B Phase A；设计验收与 Phase A 验收均不自动
+授权环境安装、训练、Model Lock、盲测或后续模块。
 
 ## 7. 复核清单
 

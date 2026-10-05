@@ -543,3 +543,41 @@ The exact fixed policy, grouped weighting and tie fallback are in the
 - Phase A data infrastructure/preparation and Phase B isolated model-environment
   qualification each need separate approval/acceptance. No weights/training,
   Model Lock, Test GT, blind test, later modules, push or main integration now.
+
+## 2026-10-05 — Authorize Phase A with Opponent-first Owner Support
+
+### Decision
+
+The user reports ChatGPT verdict PHASE_A_AUTHORIZED_WITH_SIMPLIFICATION and
+authorizes Module 2B-2B Tasks 1–6 only. Every selected visual class requires
+confirmed independent opponent support in both TRAIN and DEV_VAL. At least one
+selected class additionally requires own support in both splits. Other classes'
+unsupported own subgroups are not_qualified / not_evaluated, not a blocker to
+opponent detection and not evidence of validated bidirectional owner distinction.
+
+### Context
+
+The initial product prioritizes opponent visual units. Requiring full own support
+for every class overconstrains the first dataset; one supported owner-control
+class retains a meaningful owner-discrimination check.
+
+### Alternatives
+
+Require both owners for every class; or opponent support for every class with
+one fully supported own control. The user explicitly chooses the second.
+
+### Reason
+
+Simplify support without changing unknown handling, exhaustive frame annotation,
+whole-match isolation or Scale Coverage Gate. The full basic moving candidate
+pool uses opponent support rather than requiring own support for every class.
+
+### Consequences
+
+- Unknown owner is never opponent or Negative. Missing own qualification does
+  not excuse omitting own objects from exported complete-frame Ground Truth.
+- Keep 3–5 classes, at least two moving types, relative-small and medium/large
+  moving representatives, provenance gates and immutable dataset versions.
+- Preserve old locks, fixed-Minions tools and accepted 2B-1 failure byte-for-byte.
+- No Phase B, model installation, weights, training, blind-test work, Module 3,
+  push or main integration. Stop on data insufficiency or Dataset Lock for review.

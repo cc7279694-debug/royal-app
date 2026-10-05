@@ -10,14 +10,16 @@
 
 **Spec:** [已接受并补充尺度门槛的 2B-2A 设计](../specs/2026-10-05-module-2b2a-multiclass-design.md)；[固定来源／模型比较](../../research/2026-10-05-multiclass-dataset-taxonomy-audit.md)。
 
-Status: **PLAN READY FOR REVIEW — NOT EXECUTION AUTHORIZATION**，2026-10-05。
+Status: **PHASE_A_AUTHORIZED_WITH_SIMPLIFICATION — Task 1–6 only**，2026-10-05。
+用户报告 ChatGPT 独立复核并正式授权 Phase A；owner support 以以下最终规则为准。
+Task 7 / Phase B、依赖安装、权重下载、训练和推送／合并均不授权。
 规划基准：本地 `cec8abc35fce2438d149fe4b68b203650cb835e4` 加本轮文档修订。
 执行前必须重新核对批准后的 HEAD，而不是盲用此历史 SHA 或丢弃尚未进 main 的旧数据工具。
 
 ## Global Constraints
 
 - 首轮 3–5 个 visual classes，至少两个移动单位类；至少一个 relative_small 移动类与一个 medium/large 移动类。
-- 至少两场独立自然 Development 比赛；每个入选类的 own/opponent 在 TRAIN 与 DEV_VAL 各至少一个确认独立 appearance group；图片／实体数不代替组／比赛数。
+- 至少两场独立自然 Development 比赛；每个入选类的 opponent 在 TRAIN 与 DEV_VAL 各至少一个确认独立 appearance group；整个集合至少一个入选类另有 own 在两个 split 的独立支持。其余类 own 缺口报告 not_qualified / not_evaluated，不阻止 opponent PoC 或宣称双向区分。Unknown owner 不变为 opponent/Negative；图片／实体数不代替组／比赛数。
 - `dev_moving_area_quantiles_v1` 在选类前固定；全部基本合格移动候选的 Development GT 统计先冻结，不能按卡名或未来测试表现分组。
 - Unknown／另一形态不是 Negative；后端无可靠 ignore loss 时，存在入选未知对象的整帧 pending，不删框后当背景。尺度统计不依赖这个选类后的过滤。
 - 完整回放采用用户确认＋实际 `0..last_frame_seconds`，无结算 UI 合法；技术错误、明确截断／缺失或人工不完整仍拒绝。
@@ -39,7 +41,7 @@ Status: **PLAN READY FOR REVIEW — NOT EXECUTION AUTHORIZATION**，2026-10-05�
 
 ## 0. 执行合同与阶段门
 
-本轮只写计划。后续如用户批准 **Phase A**，沿用已选的分任务实施与独立复核方式：
+本轮用户已批准 **Phase A Task 1–6**，沿用已选的分任务实施与独立复核方式：
 每任务先失败测试→最小实现→对应测试／保护检查→实现与规格复核→局部提交，才继续。
 执行者先读 AGENTS/PROJECT/CURRENT_STATE/DECISIONS/此 spec/此 plan，检查 Git 与固定环境。
 从批准后的真实文档 HEAD 创建 `codex/module-2b2b-multiclass-infrastructure`；不直接从
@@ -89,7 +91,7 @@ Phase B 的 Task 7 需要另外授权；完成 ENV_QUALIFIED 或 ENV_INSUFFICIEN
 - `ScaleSnapshot`／`MulticlassLock`：闭合 envelope 的 kind/version/id/created_at/payload/digest。前者冻结未选类候选／split／统计，后者绑定前者、selected classes、backend maps、GT 与实际媒体；彼此独立，不引用旧单卡锁作资格证明。
 - `ExportManifest`：dataset_digest、backend、locked joint map、逐帧 transform／原图 hash／label hash、pending/excluded 原因与统计；不存在 prediction 字段。
 
-## Phase A — 数据基础设施、准备与冻结（待批准）
+## Phase A — 数据基础设施、准备与冻结（已批准 Task 1–6）
 
 ### Task 1: Closed taxonomy/GT 与真实比赛隔离
 
@@ -130,7 +132,7 @@ own/opponent 两种归属，YOLOX 前景从0、TorchVision前景从1，背景0�
   `test_selected_class_filter_cannot_change_scale_pool`: selection 改变不改变候选 stats/cutpoints。
 - [ ] 对新 test file 运行失败周期，记录 FAIL，不拿已通过的兼容测试造假。
 - [ ] 实现 spec §4.1.1 的精确有理数、去重与 frame→group→match→class medians、固定 Type7／tie fallback。基本候选从全部预选 GT 支持产生；不读取模型／Test／selection／最终导出过滤。统计所有 reviewed 框与 clean 代表框、owner/split/分辨率／未合格原因。
-- [ ] 最终 readiness 独立重算入选3–5类、≥2moving、双尺度与每joint标签 TRAIN/DEV_VAL可导出独立支持；若整帧 pending 清除了支持则不就绪，不能拿尺度统计中的未导出帧顶替。无 qualified small 必报 SIZE_COVERAGE_INSUFFICIENT；数据／来源同时不足列出全部原因，不用尺寸成功掩盖其他 gate。
+- [ ] 最终 readiness 独立重算入选3–5类、≥2moving、双尺度：每类 opponent 在 TRAIN/DEV_VAL 有可导出独立支持，集合至少一类 own 在两 split 同时有支持；其余 own 子组报告 not_qualified / not_evaluated。若整帧 pending 清除了必需支持则不就绪，不能拿尺度统计中的未导出帧顶替。无 qualified small 必报 SIZE_COVERAGE_INSUFFICIENT；数据／来源同时不足列出全部原因，不用尺寸成功掩盖其他 gate。补测 opponent-only 多数类可通过、有一类完整 own 通过、无任一完整 own 则不足、Unknown owner 永不补 opponent。
 - [ ] 新测试 PASS，并测重复导出不增样本、同场重录不增match、同因果链不增group、未确认 owner/form 排除且保留、prospective_test数据禁止参与尺度、width/height/P10/P50/P90精确示例、政策未知版本拒绝。`ready=true` 仅表示数据资格，旧 review 永远 experiment_gate=false。
 - [ ] 私人保护、旧 contract/readiness regression、独立复核 PASS 后提交 `feat(multiclass): enforce development scale coverage readiness`。
 
@@ -265,4 +267,4 @@ Phase A：schema/identity/Scale gate/annotation/export与旧兼容测试证据�
 §4.2/5比赛隔离和版本/digest由Task1/3/6；许可边界由Task3/6/7。§4.3模型评价、Model/Test GT
 Lock、未来盲测与移动部署明确不属于本基础设施计划，维持未来授权，不假称已实现。
 七个任务的types/signatures相互一致；Review Focus五条各有负责测试，无完整程序正文。
-沿用分任务实施与复核，**先审本计划并批准Phase A；本次文档交付不启动任何任务**。
+沿用分任务实施与复核，**仅执行已授权 Phase A Task 1–6，到锁定或具体缺口即停止**。
