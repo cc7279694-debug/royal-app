@@ -157,7 +157,8 @@ def _ratio(value):
 
 def _model(envelope, development):
     contract = envelope["payload"]
-    _object(contract, MODEL_FIELDS)
+    reference = set(contract) == MODEL_FIELDS | {"artifact_type", "baseline"}
+    _object(contract, MODEL_FIELDS | {"artifact_type", "baseline"} if reference else MODEL_FIELDS)
     _bound_common(envelope, contract)
     _version(contract["evaluation_protocol_version"])
     _after(envelope, development)
@@ -204,6 +205,47 @@ def _model(envelope, development):
     _text(contract["postprocess"]["version"])
     _bool(contract["postprocess"]["class_agnostic_nms"])
     _integer(contract["postprocess"]["max_detections"])
+    if reference:
+        _reference_baseline(contract, development)
+
+
+def _reference_baseline(contract, development):
+    """Additive closed detector-artifact variant; legacy v1 contracts unchanged."""
+    from .baseline import Config, reference_model_parameters
+    _choice(contract['artifact_type'], {'reference_template_matcher'})
+    baseline = contract['baseline']
+    _object(baseline, {'artifact_sha256','config','templates','score_method','event_merge',
+                      'threshold_derivation','opencv_version','evaluation_protocol_version'})
+    if baseline['artifact_sha256'] != contract['model_sha256']:
+        raise EvidenceError('Reference artifact hash conflicts with Model Lock.')
+    _choice(baseline['score_method'], {'RGB_TM_CCOEFF_NORMED'})
+    _choice(baseline['event_merge'], {'transitive_adjacent_support_gap'})
+    _choice(baseline['threshold_derivation'], {'min_two_held_out_true_event_peak_scores'})
+    _version(baseline['evaluation_protocol_version'])
+    _text(baseline['opencv_version'])
+    config = baseline['config']
+    _object(config, {'roi','scales','fps','fine_seconds','merge_seconds','working_scale',
+                     'proposal_floor','coarse_seeds','top_k'})
+    if type(config['roi']) is not list or len(config['roi']) != 4 or type(config['scales']) is not list:
+        raise EvidenceError('Invalid fixed reference geometry/scales.')
+    parsed = Config(**{**config,'roi':tuple(config['roi']),'scales':tuple(config['scales'])})
+    rid = development['payload']['draft']['identity']['recording_id']
+    recording = development['payload']['index_snapshot'][rid]['recording']
+    expected = reference_model_parameters(recording, parsed)
+    if any(contract[k] != value for k,value in expected.items()):
+        raise EvidenceError('Reference configuration conflicts with actual scanner parameters.')
+    templates = baseline['templates']
+    if type(templates) is not list or not templates:
+        raise EvidenceError('Reference template identities required.')
+    seen = set()
+    for template in templates:
+        _object(template, {'template_id','play_id','frame_id','width','height','crop_rgb_sha256'})
+        for field in ('template_id','play_id','frame_id'):
+            _text(template[field])
+        _integer(template['width']); _integer(template['height']); _hash(template['crop_rgb_sha256'])
+        if template['template_id'] in seen:
+            raise EvidenceError('Duplicate reference template identity.')
+        seen.add(template['template_id'])
 
 
 def _record(value, schema):

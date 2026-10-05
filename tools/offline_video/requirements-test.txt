@@ -8,3 +8,5 @@ packaging==26.3
 pluggy==1.6.0
 Pygments==2.21.0
 setuptools==84.0.0
+opencv-python-headless==4.13.0.92
+numpy==2.4.3

@@ -406,3 +406,45 @@ is an auditable declaration, not software-certified source authenticity.
 - No result-screen-driven re-recording is required for these four inputs. Do not
   filter or reorder them by card/difficulty/quality. Stop at a truthful Development
   Data Lock or unresolved evidence blocker; Module 2B remains separately gated.
+
+## 2026-10-05 — Development-only Reference Template Baseline
+
+### Decision
+
+The user separately authorizes Module 2B-1: fixed multiscale OpenCV template
+matching on the existing two ordinary Minions deployments. ORB is diagnostic,
+never a ranking/gate weight. Both held-out deployment folds must meet the fixed
+Top5/2s temporal search criterion before a real detector artifact/Model Lock may
+be created. Failure is a valid result and stops, not automatic training or tuning.
+
+### Context
+
+Two independent plays and six group-box frames are too little evidence to claim
+generalization. A simple reference baseline tests feasibility before a separately
+planned neural route. The full approved protocol and a priori settings are in
+[MODULE_2B1_PROTOCOL.md](MODULE_2B1_PROTOCOL.md).
+
+### Alternatives
+
+- Train a detector immediately on the six images.
+- Search for each deployment using only the other deployment's references.
+
+### Reason
+
+The second approach is transparent, preserves frozen evidence, exposes self-match
+failure and leaves independent-match testing untouched.
+
+### Consequences
+
+- Scanner/ranker do not receive hidden GT. Freeze both rankings before evaluation.
+- First support and highest peak are different fields. Continuous support uses
+  transitive event grouping; >2s gaps can still split one play, a disclosed limit.
+- Unknown intervals/forms never tune thresholds or establish false-positive rates.
+- A temporal match is a development proxy, not verified card identity/ownership,
+  OpponentCardPlayed, cross-match reliability or permission for live use.
+- Add only optional pinned headless OpenCV plus its NumPy dependency; no neural
+  weights/framework, database, cloud runtime or Android dependency.
+- An additive closed Model Lock artifact variant preserves legacy v1 contracts.
+  Detector JSON hashes are actual canonical file hashes, not imaginary model files.
+- Freeze code/settings before the first real scan. Preserve all original evidence.
+  No independent test, 2B-2, Module 3, push or main integration is implied.

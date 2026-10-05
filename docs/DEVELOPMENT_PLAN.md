@@ -136,8 +136,10 @@ freeze and lock validation all exit 0 with stable recomputed digest. Three expli
 unknown intervals and zero negatives remain; complete-file boundary is actual
 first-to-last PTS, not game-clock/result UI. User-confirmed segments must cover
 exactly 0..last_frame_seconds. The user authorizes only acceptance records,
-ff-only main integration and push, retaining the feature branch. No Module 2B,
-Model Lock or Test GT operation is authorized; no model success is claimed.
+ff-only main integration and push, retaining the feature branch. At that 2A2
+acceptance boundary no Module 2B, Model Lock or Test GT operation was authorized;
+the later scoped 2B-1 authorization is recorded below, not inherited from 2A2.
+No model success is claimed by 2A2.
 
 Owns a separate development readiness/freeze layer, declared underlying-match
 identity, manual candidate/form selection, evolution ground truth, canonical
@@ -166,8 +168,18 @@ and [blind-test protocol](MODULE_2A2_BLIND_TEST_PROTOCOL.md).
 
 ## Module 2B — Single Card Detection Proof of Concept
 
-Status: Gated — accepted Module 2A1, accepted 2A2 DEV_LOCKED and separate
-planning/authorization required. No training or inference has started.
+Status: In Progress — Module 2B-1 separately authorized 2026-10-05 on accepted
+2A2 DEV_LOCKED. Only the fixed development template baseline is approved;
+independent blind testing and 2B-2 training remain separately Gated.
+
+### Module 2B-1 — Minions Visual Baseline
+
+Two-fold same-match held-out deployment search using the frozen six crops;
+both hidden deployments must enter Top5 within 2s of onset. No hidden-GT tuning,
+unknown-as-negative, test footage, neural training or automatic next module.
+PASS permits final six-reference detector/Model Lock; FAIL preserves evidence
+and stops without a Model Lock. [Protocol](MODULE_2B1_PROTOCOL.md) fixes settings
+and timing/merge semantics before any real experiment.
 
 Goal: detect exactly one evidence-selected card as timestamped visual Observations.
 No OpponentCardPlayed, card cycle or elixir updates.

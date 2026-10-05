@@ -1,6 +1,20 @@
 # Current State
 
-Last verified: 2026-10-04.
+Last verified: 2026-10-05.
+
+## Current authorized work — Module 2B-1
+
+The user separately authorized the supplied Minions Visual Baseline plan on
+2026-10-05. Work is on `feat/module-2b1-minions-visual-baseline` from verified
+main/origin/main `48136affd470a39feb9815f19e1dbd207ffc14ca`, in the same checkout.
+Only the existing minions/normal development lock is permitted. Fresh baseline
+406 passed/1 skipped; lock/disk snapshot recreation valid. Baseline and disk/CLI
+tests are implemented and reviewed; fresh repaired full regression is 474 passed/
+1 skipped. Real folds have not yet run at this pre-experiment checkpoint.
+The following 2A2 history describes its acceptance boundary, not a veto of the
+new scoped 2B-1 authorization. Independent testing, 2B-2, Module 3, Android and
+live functionality remain unapproved. No push or main merge is authorized.
+See [fixed 2B-1 protocol](MODULE_2B1_PROTOCOL.md).
 
 ## Current stage
 
@@ -13,7 +27,7 @@ Last verified: 2026-10-04.
   Formally user accepted on 2026-10-04 at
   `69162023b87b71209f8dec9ebc9af69d4bfda944`, after the independent-review
   completion-boundary repair. First-source real evidence/lock remains DEV_LOCKED.
-  The current user instruction authorizes acceptance documentation, ff-only main
+  That acceptance instruction authorized documentation, ff-only main
   integration and publication, not Module 2B. Formal acceptance is recorded from
   that user instruction; this session did not retrieve another ChatGPT response.
 - Real experiment: user reconfirms all four natural replay recordings cover full
@@ -26,7 +40,8 @@ Last verified: 2026-10-04.
   All sources, prior exclusions and first survey/rough review are retained.
   One actual exclusive version-one Development Data Lock exists locally;
   readiness/freeze/lock validation exit 0 and digest reload/recomputation agree.
-- Module 2B, Module 3, Android, HUD and realtime remain closed and unstarted.
+- Subsequent authorization opens only the development-only Module 2B-1 above;
+  independent testing, 2B-2, Module 3, Android, HUD and realtime remain closed.
 
 ## Inherited verified capabilities
 
@@ -168,10 +183,11 @@ integration/publication. Preserve this feature and the 2A1 branch; no PR, releas
 rebase, force push or deletion. Exact publication outcome/tip belongs to verified
 Git refs and the integration handoff, not an inference from acceptance status.
 
-Stop at formally accepted DEV_LOCKED. Module 2B is the next planned module,
-but remains Gated until separate planning and explicit authorization.
-No new source, Model/Test GT Lock, model experiment or
-Module 2B begins without separate authorization. Preserve every source, old rough
+Module 2A2 remains formally accepted at DEV_LOCKED. Separately authorized 2B-1
+may use only that frozen development data; a Model Lock is permitted only if
+both held-out folds pass the fixed protocol. No new source, Test GT Lock,
+independent test or later module begins without separate authorization.
+Preserve every source, old rough
 review, prior exclusion and new lock; corrections use another freeze version.
 Do not turn full-match attestation or uncovered visibility into negative labels.
 
