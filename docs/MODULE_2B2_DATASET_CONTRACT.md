@@ -196,6 +196,10 @@ within their respective collections. Ranges are half-open, with exact last-frame
 membership permitted at the terminal recording end. Certified absence means no
 minion-like units, including own/other-source/evolved/unknown units. It may overlap
 neither unknown intervals, any possible deployment visibility, nor a boxed unit.
+It also rejects any overlapping frame declaring positive or unknown minion
+presence, even when that frame is pending/excluded, unboxed, or not linked to a
+deployment. Removing boxes or excluding a frame cannot turn uncertain content
+into certified absence.
 Unknown intervals force affected frames to remain pending/excluded.
 
 Sparse complete empty-box frames supply training examples only. They never

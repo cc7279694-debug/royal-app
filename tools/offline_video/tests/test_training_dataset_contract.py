@@ -362,3 +362,18 @@ def test_renamed_identical_source_cannot_claim_an_independent_match():
     draft["recordings"][1]["source_sha256"] = draft["recordings"][0]["source_sha256"]
     with pytest.raises(EvidenceError):
         validate_dataset_shape(draft)
+
+
+@pytest.mark.parametrize("presence", ["positive", "unknown"])
+def test_certified_absence_rejects_pending_unboxed_non_absent_frame(presence):
+    draft = dataset_fixture(absent=True)
+    frame = deepcopy(draft["frames"][0])
+    frame.update(frame_id="pending_unboxed_frame", timestamp_seconds=1, raw_pts=2000,
+                 image_path="synthetic/pending_unboxed.png", review_status="pending",
+                 minion_presence=presence, all_identifiable_units_labelled=False)
+    draft["frames"].append(frame)
+    with pytest.raises(EvidenceError):
+        validate_dataset_shape(draft)
+    report = dataset_readiness(draft)
+    assert report["valid"] is False
+    assert report["evaluation_ready"] is False

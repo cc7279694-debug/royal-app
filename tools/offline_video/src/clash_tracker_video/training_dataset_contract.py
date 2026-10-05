@@ -279,8 +279,11 @@ def validate_dataset_shape(draft: dict) -> None:
         unknown = any(_at(actual, interval, last) for interval in intervals["unknown_intervals"].get(rid, []))
         possible = any(d["recording_id"] == rid and seconds(d["visible_start_seconds"]) <= actual < seconds(d["visible_end_seconds"])
                        for d in deployments.values())
-        if annotations and (frame["minion_presence"] == "absent" or any(_at(actual, interval, last)
-                                          for interval in intervals["confirmed_absent_intervals"].get(rid, []))):
+        absent = any(_at(actual, interval, last)
+                     for interval in intervals["confirmed_absent_intervals"].get(rid, []))
+        if absent and frame["minion_presence"] != "absent":
+            raise EvidenceError("Certified absence conflicts with positive/unknown frame presence.")
+        if annotations and (frame["minion_presence"] == "absent" or absent):
             raise EvidenceError("Annotated visual units cannot be absent/background.")
         if frame["review_status"] == "complete":
             if (not frame["all_identifiable_units_labelled"] or frame["minion_presence"] == "unknown" or unknown
