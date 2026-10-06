@@ -209,12 +209,128 @@ bidirectional owner recognition. Exhaustive own-frame annotation is still requir
 The module defines closed TypedDicts for CandidateReport, ScaleReport,
 ReadinessReport, ScaleSnapshot, MulticlassLock and ExportManifest, with explicit
 support counts/IDs, rational statistics, reasons, media/label snapshots and transforms.
-These are typed interfaces, not implemented readiness/freeze/export behavior.
+Task 2 implements candidate, scale and prospective readiness reports below;
+freeze, checked disk binding and actual exports remain separate consumer tasks.
 Scale statistics carry exact `{numerator, denominator}` values and both all-reviewed
 and clean-representative distributions. All lock envelopes have exactly
 `kind/version/id/created_at/payload/digest`. No prediction fields are present.
 BoundMulticlass is only a typing Protocol in Task 1: Task 3 must implement the
 opaque, checked disk factory and reject ordinary caller-created dictionaries.
+
+## Task 2: pure qualification and fixed Development scale policy
+
+`multiclass_readiness.py` implements exactly:
+
+- `candidate_eligibility(draft: MulticlassDraft) -> CandidateReport`
+- `development_scale_report(draft: MulticlassDraft) -> ScaleReport`
+- `multiclass_readiness(draft: MulticlassDraft, scale_snapshot: ScaleSnapshot | None = None) -> ReadinessReport`
+
+These functions validate declarations and do not open files, create any lock,
+change GT, evaluate a detector or authorize training. `ready=true` means only
+prospective data qualification. A missing optional snapshot is not a data
+readiness blocker; Task 3 must require a valid checked snapshot when freezing.
+The old experiment/review gates are unchanged.
+
+Original intake order selects the first included Development recording of each
+underlying match. Pending/excluded intake and prospective-test recordings do not
+supply support. Later re-recordings and repeated export references add no counts
+or scale weight. A support annotation must be verified, normal, own/opponent and
+refer to a confirmed group declared in that same primary recording. Its actual
+causal root must be confirmed with `human_confirmed` independence. A confirmed
+derived group with an explicit parent/root may retain pending independence:
+it shares the root's single support, never creates an independent event. A
+pending/unconfirmed root cannot be repaired by a confirmed derived ID. Explicit
+`frame.review_state=excluded` supplies neither basic support nor scale statistics;
+a pending frame's class-verified observations may still supply pre-selection
+support, but cannot supply final export support.
+
+All normal support is aggregated once per
+`(underlying_match_id, causal_root_id, visual_class_id, owner)`. `counts.groups`
+counts those independent supports, not group rows, units, boxes or frames.
+`counts.matches/entities/frames/boxes` remain separate. Actual group/frame/annotation
+IDs are retained; entity counts use match-scoped known entity identities. Basic
+candidate qualification requires opponent support in both TRAIN and DEV_VAL,
+known mobility and first-PoC unit/building kind. Every taxonomy class is reported,
+including unqualified classes and reasons. Candidate owner/split cells describe
+local support, not final owner-joint qualification or measured recognition.
+
+The scale pool is **all** basically qualified normal moving-unit classes before
+selection and final whole-frame export filtering. Missing clean support is
+`scale_support_pending`, retained in that pool and blocks size coverage. Each
+independent support needs a verified, known-owner normal annotation with neither
+occlusion nor truncation. Unlike owner-split support cells, scale weighting groups
+all owners together by `(underlying_match_id, causal_root_id, visual_class_id)`.
+Median unit area per true frame is followed by median clean frames per unique
+cause, then median cause scores per match, then median match scores per class.
+An owner change cannot give the same cause another scale weight. A cause is
+scale-support-pending only if none of its owner branches has a clean observation;
+an unclear sibling branch does not invalidate another clean branch. Matches and
+classes have equal weight. An existing group with earliest `(start_seconds, appearance_group_id)`
+is only a report representative; that ID never changes weights or eligibility.
+`ScaleGroupSupport` retains descriptive owner-branch scores and true clean member
+IDs; these owner branches are not independently weighted cause scores. Candidate
+support retains all actual appearance-group members.
+
+Decimal values use exact `Fraction(str(value))`. Pixels use the original rotated
+image dimensions: width=`box.width*W`, height=`box.height*H`, short side their
+minimum, area=`box.width*box.height`. All reviewed and clean-representative
+distributions report exact count/min/P10/P50/P90/max. Type 7 quantiles use
+`h=(n-1)*p` with exact linear interpolation; no epsilon, rounding or ID-based rank
+breaks. Q25/Q75 use one class score per full-pool class. If Q25<Q75, <=Q25 is
+`relative_small`, >=Q75 is `large`, the interior is `medium`. If cutpoints collapse
+but min<max, min is small, max large and the rest medium. All equal scores, fewer
+than two clean moving candidates or any pending moving candidate yield
+`SIZE_COVERAGE_INSUFFICIENT`; no scale group is invented to satisfy the gate.
+Buildings retain descriptive statistics without contributing scale cutpoints.
+
+Final export support is recomputed independently. A whole frame must be complete,
+have complete exhaustive coverage for every selected class and exact union of
+reviewed rectangles covering the entire normalized image. An explicit full-image
+rectangle or overlapping/tiled exact coverage is accepted; even a tiny gap is not.
+Selected pending/unknown-owner/neutral/other-form observations, relevant unknown
+intervals and selected ignore regions block the entire frame because there is no
+reliable ignore-loss mask. Generic ignore reasons and class-unspecified ignore
+regions/intervals are conservatively relevant to all selected classes. Unknown
+intervals are half-open except that an interval ending at the recording boundary
+includes the actual terminal frame. Clearing annotations does not manufacture
+coverage or certify an empty negative. Non-export reasons are retained in final
+owner/split support; `frame_export_reasons(draft, frame_id) -> list[str]` exposes
+the same whole-frame gate to Task 5, including empty frames.
+
+Final readiness requires 3–5 selected classes, at least two moving units, a
+selected qualified relative-small moving class and a selected medium/large one.
+Each selected class needs independent **exportable** opponent support in both
+splits. At least one selected class needs exportable own support in both. Other
+own joint subgroups have both cells `not_qualified/not_evaluated` with
+`own_control_incomplete`, preserving any real partial counts and IDs. Even complete
+own controls remain `not_evaluated`: no model evaluation occurred. Used primary
+recording sources require non-null license evidence and `development_training`
+scope; unrelated unused reference-only rows do not block. This validates explicit
+provenance declarations, not the truth of a legal rights assertion.
+
+All blockers are reported together. Status precedence is INVALID_DATASET, then
+PROVENANCE_INSUFFICIENT, then SIZE_COVERAGE_INSUFFICIENT, then DATA_INSUFFICIENT;
+only no blockers yields MULTICLASS_DATASET_READY. Malformed input produces
+`candidate_report=null`, `scale_report=null`, `export_support=[]` and no fabricated
+digests. Null reports are allowed only with INVALID_DATASET. Direct candidate and
+scale APIs raise sanitized EvidenceError for invalid shape/canonical serialization.
+Readiness catches those EvidenceErrors during report construction, returning the
+same null-report INVALID_DATASET boundary even for non-UTF-8-serializable Unicode
+declarations; unrelated programming errors are not swallowed.
+
+The shared consumer helpers `scale_basis(draft) -> MulticlassDraft` and
+`scale_basis_sha256(draft) -> str` validate and copy the closed draft, remove only
+selection/backend maps and canonicalize set-like collection order. All remaining
+GT, inventory, metadata, split and provenance fields are committed, including
+retained pending/prospective-test inventory; none of that inventory supplies scale
+support. Original intake and its history order remain significant. The split hash
+commits the canonical whole-match assignment separately. A supplied ScaleSnapshot
+must satisfy closed types, canonical envelope SHA excluding `digest`, unselected
+payload draft/basis hash and exact recomputed candidate/scale reports. Its basis
+must equal the current full pre-selection basis, and any current selection digest
+must refer to it. Re-signing fabricated statistics or changing GT/splits does not
+make a snapshot current. Backend maps/selection never change that statistical
+basis. These shared helpers do not replace Task 3's checked disk binding.
 
 The accepted design and task boundaries remain in the
 [amended spec](superpowers/specs/2026-10-05-module-2b2a-multiclass-design.md) and

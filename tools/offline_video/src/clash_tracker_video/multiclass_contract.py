@@ -423,8 +423,8 @@ class ReadinessReport(TypedDict):
     status: Literal["MULTICLASS_DATASET_READY", "DATA_INSUFFICIENT", "SIZE_COVERAGE_INSUFFICIENT", "PROVENANCE_INSUFFICIENT", "INVALID_DATASET"]
     ready: bool
     blocking_reasons: list[Id]
-    candidate_report: CandidateReport
-    scale_report: ScaleReport
+    candidate_report: CandidateReport | None
+    scale_report: ScaleReport | None
     export_support: list[JointExportSupport]
 
 
@@ -568,6 +568,9 @@ def _validate_types(value, schema):
             _fail()
         for key, item_schema in fields.items():
             _validate_types(value[key], item_schema)
+        if schema is ReadinessReport and value["status"] != "INVALID_DATASET" and (
+                value["candidate_report"] is None or value["scale_report"] is None):
+            _fail("Only invalid datasets may omit independently computed reports.")
     elif origin is list:
         if type(value) is not list:
             _fail()

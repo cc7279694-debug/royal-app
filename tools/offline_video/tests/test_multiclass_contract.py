@@ -501,3 +501,13 @@ def test_rounded_timestamp_cannot_fake_actual_terminal_group_boundary():
             group["start_seconds"] = 0.3333332
     with pytest.raises(EvidenceError):
         validate(draft)
+
+
+def test_invalid_readiness_allows_null_reports_but_noninvalid_requires_reports():
+    from clash_tracker_video.multiclass_contract import ReadinessReport, _validate_types
+    report = {"status": "INVALID_DATASET", "ready": False, "blocking_reasons": ["invalid_multiclass_shape"],
+              "candidate_report": None, "scale_report": None, "export_support": []}
+    _validate_types(report, ReadinessReport)
+    report["status"] = "DATA_INSUFFICIENT"
+    with pytest.raises(EvidenceError):
+        _validate_types(report, ReadinessReport)
