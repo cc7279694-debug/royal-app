@@ -471,3 +471,60 @@ canvas and edits. Unsaved navigation/close requires a save/keep-or-discard/cance
 choice. Import creates no GUI; native initialization/callback failures propagate
 as local errors, not skips or successful review. Synthetic GUI tests execute real
 Tk in fresh processes and reject child skips, native callback errors and timeouts.
+
+## Task 5 — checked metadata exports and independent CLI
+
+`export_multiclass_dataset(lock_path, *, data_root, backend, output_directory)`
+requires a freshly reloaded qualified immutable multiclass Dataset Lock. Backends
+are only `yolox` and `torchvision`; `build_backend_label_map` delegates to the
+Task 1 joint mapping, sorted by `(visual_class_id, owner)`. YOLOX foreground IDs
+start at 0; TorchVision IDs start at 1, with implicit background 0, not a visual
+class. Unqualified own subgroups remain unvalidated, even when they have a frozen
+label ID. No model/framework is imported and no prediction or image is generated.
+
+Exports contain only `labels.json` and `manifest.json`, in an exclusive new
+ignored directory inside the explicit data container. Original PNG references
+are relative to `data_root`; manifest `label_path` is relative to the export
+directory. Geometry is identity in already-rotated full-image PNG coordinates:
+rotation 0, offsets 0, scale 1, original dimensions unchanged. No guessed ROI,
+resize, augmentation, model input size or NMS parameter is frozen here. COCO-style
+YOLOX labels use pixel xywh; TorchVision generic labels use pixel xyxy. Both retain
+match/frame/annotation/group/cause/entity metadata. Nullable identity does not
+invent a deployment. The counts separately identify exported underlying matches,
+causal roots, known entities, frames and boxes, never a reliability or FP/min score.
+
+The shared Task 2 exhaustive whole-frame gate is applied without dropping unsafe
+selected rows. Relevant Unknown intervals/ignore regions, unknown or neutral
+owner, evolved/unknown form, pending selected boxes, incomplete review or excluded
+frames remain pending/excluded with reasons and no image/label export. They cannot
+silently become background. Prospective-test recordings reject the entire export
+before creating an output directory; Phase A does not consume Blind Test material.
+The manifest is written last, after labels and a second checked input-lock reload.
+Failed writes remove only new files owned by that invocation, never old evidence.
+
+`python -m clash_tracker_video.multiclass_cli` exposes `validate-dataset`,
+`scale-report`, `freeze-scale`, `freeze-dataset`, `validate-dataset-lock`,
+`annotate` and `export`. Inputs and outputs must be private, untracked, Git-ignored
+container paths. `validate-dataset`/`scale-report` return 0 for prospective dataset
+readiness, 3 for valid insufficient data and 2 for malformed/stale inputs; a
+prospective report is not a checked Scale Snapshot or Dataset Lock. Optional
+`--scale-snapshot` checks an existing snapshot. `freeze-scale` is a separate
+preselection gate; `freeze-dataset` requires `--scale-snapshot`, with no synthetic
+substitute. Bad/insufficient freeze or export returns 2 and publishes no successful
+lock/manifest. Local errors and argument failures are path-sanitized. Help and
+read-only paths never import Tk; `annotate` alone explicitly launches the separately
+verified manual tool. Existing prepare/validate/review/extractor and their gates
+are unchanged. A Dataset Lock does not grant Phase B, training or Model Lock permission.
+
+Actual command forms (each variable must identify an explicit absolute private
+path; the fixed local interpreter may replace `python`):
+
+```powershell
+python -m clash_tracker_video.multiclass_cli validate-dataset "$multiclassDraft" --data-root "$multiclassRoot"
+python -m clash_tracker_video.multiclass_cli scale-report "$multiclassDraft" --data-root "$multiclassRoot"
+python -m clash_tracker_video.multiclass_cli freeze-scale "$multiclassDraft" --data-root "$multiclassRoot" --output "$newScaleDirectory"
+python -m clash_tracker_video.multiclass_cli freeze-dataset "$selectedDraft" --data-root "$multiclassRoot" --scale-snapshot "$scaleSnapshot" --output "$newLockDirectory"
+python -m clash_tracker_video.multiclass_cli validate-dataset-lock "$datasetLock" --data-root "$multiclassRoot"
+python -m clash_tracker_video.multiclass_cli annotate "$multiclassDraft" --data-root "$multiclassRoot" --output "$newRevisionDirectory"
+python -m clash_tracker_video.multiclass_cli export "$datasetLock" --data-root "$multiclassRoot" --backend yolox --output "$newExportDirectory"
+```
