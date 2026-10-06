@@ -1,8 +1,76 @@
 # Current State
 
-Last verified: 2026-10-05.
+Last verified: 2026-10-06.
 
-## Current authorized work — accepted 2B-2A amendment and 2B-2B plan only
+## Current authorized work — Module 2B-2B Phase A Task 1–6
+
+Current checkpoint: **data infrastructure verified; real data insufficient**.
+Final maintained suite: **908 passed / 3 Windows symlink-permission skips**,
+exit 0; JUnit 911 total, zero failures/errors, no GUI errors/skips. No real
+multiclass Dataset Lock. Stop at the approved unified data-gap boundary and
+await completed human/source qualification, not Phase B or a new design stage.
+
+The user reports independent plan review PHASE_A_AUTHORIZED_WITH_SIMPLIFICATION
+and authorizes Phase A only. Current branch:
+`codex/module-2b2b-multiclass-infrastructure`, starting at local documentation
+HEAD `d8a34a127e1507998fa0528d7d18bf244bb9001d` (not old main). The existing
+directory and fixed environment are retained. No push or main integration.
+
+Final owner gate: every selected class needs independently confirmed opponent
+support in TRAIN and DEV_VAL; the entire 3–5-class collection needs at least one
+selected class with additional own support in both splits. Other own subgroups
+remain not_qualified / not_evaluated, without claims of bidirectional validation.
+Unknown owner cannot become opponent or Negative. Scale Coverage Gate,
+whole-match splits, provenance and immutable versions are unchanged.
+
+Task 1 closed multiclass contract and terminal-frame compatibility repairs are
+verified and independently reviewed. Final maintained regression: 778 passed /
+two known Windows symlink-permission skips, exit 0, no GUI errors or skips.
+Pip/diff checks passed; 22,939 originals unchanged and all private files ignored.
+Task 2 candidate/scale/readiness is verified and locally committed at
+`f72420e1b6578a161fef622d764b2ee71c6b2a6d`. On the user's explicit continuation,
+the unchanged complete suite ran with a process-bound temporary system-awake
+request: **822 passed / 2 existing Windows symlink-permission skips**, exit 0;
+JUnit confirms zero failures/errors. The sleep request was released, with no
+permanent power-policy change or display-awake requirement. Fresh pip and
+working/staged diff checks pass; **22,939 original private files unchanged,
+27,028 current private files ignored**, legacy source/tests/config unchanged.
+The earlier child-process timeout and subsequent sleep-interrupted run remain
+separate historical receipts, not erased or retrospectively called passing.
+No legacy test, timeout, plugin or dependency was changed to obtain the fresh pass.
+Task 3 checked binding and immutable locks are verified and locally committed at
+`48452bf2c8fa91a4a2c5dafce25cd78dcb844ccb`: 315 compatibility tests passed /
+3 Windows symlink-permission skips; independent re-review approved. Fresh
+protection confirms 22,939 unchanged originals and 27,070 private files ignored.
+Task 4 manual multiclass annotation is verified and locally committed at
+`d70c0afe1b364484b4eb877ab6c2f7de48a07c5c`: 83 new/inherited GUI tests pass,
+zero skips/errors; independent frozen review approved the repaired state/input
+guards. Protection confirms 22,939 unchanged originals, 27,112 private files
+ignored and legacy unchanged. Task 5 checked export/separate CLI is verified and
+locally committed at `377831aedde90db23879911535f7391f2f505b42`: 115 new/inherited
+CLI tests pass, zero failures/errors/skips, original protection passes and frozen
+code reviews approved. Only an EOF blank-line cleanup followed that focused run;
+the final combined maintained suite passes on the committed clean snapshot.
+Task 6 new ignored handoff retains four original-order recordings, 75 reused
+frames, two historical Minions groups and eight individual boxes all pending.
+Checked binding covers 302 references; zero multiclass candidates qualify.
+Actual `validate-dataset` and `scale-report` return native exit 3: valid but
+PROVENANCE_INSUFFICIENT / SIZE_COVERAGE_INSUFFICIENT with owner/data reasons.
+The six new handoff files stayed unchanged across both read-only commands.
+No real Scale Snapshot/Dataset Lock/export is attempted on this insufficient
+data. Final protection passes: **22,939 original files unchanged, 28,450 current
+private files Git-ignored**, legacy source/tests/config unchanged; source videos,
+old 2A2 lock and 2B-1 FAIL remain protected. Fresh pip passes. Record the local
+report checkpoint and stop; no push, merge or Phase B.
+Fresh baseline: 680 passed / two known Windows symlink-permission skips, exit 0;
+pip check passed. All 22,939 pre-existing files under outputs/local_data have a
+protected SHA-256 inventory; initial Git privacy check passed. These are baseline
+checks, not proof that the new implementation is complete or data is ready.
+See [Phase A verification](VERIFICATION_M2B2B.md) for task evidence as it becomes
+verified. Phase B, torch/torchvision/YOLOX installation, weights, training, Model
+Lock, blind-test work, Module 3 and Android/live functions remain prohibited.
+
+## Inherited accepted 2B-2A design and planning checkpoint
 
 On 2026-10-05 the user paused the ordinary-Minions 4-match / 8-deployment
 specialist data route. The product targets multiple visual types dynamically
@@ -10,7 +78,7 @@ present in each match; Minions is historical evidence and one future class, not
 the fixed standard. Preserve the existing contracts, annotation/lock tools,
 private pending data, 2A2 Development Lock and accepted 2B-1 FAIL without edits.
 
-Current branch: `codex/module-2b2a-taxonomy-audit`, from the local data-preparation
+Historical design branch: `codex/module-2b2a-taxonomy-audit`, from the local data-preparation
 checkpoint `f0b424a0aa78079840ecc665e362023ee81042ce`. The old local feature branch
 is retained. Accepted main remains `8a03e288fb814d81b0a8e255b8004dbc4d0efb02`.
 No push/main integration is authorized.
@@ -30,18 +98,19 @@ and one medium/large mobile class. Original bbox width/height/short-side pixels
 and normalized-area distributions, grouped class scores and cutpoints must be
 reported; ties cannot be split by card name. Missing support produces
 SIZE_COVERAGE_INSUFFICIENT and requires original-order Development material,
-not a lower standard or fixed-Minions expansion. This gate is not yet executable.
+not a lower standard or fixed-Minions expansion. Its new pure validator is
+implemented; real data qualification and checked freeze remain pending.
 
 See [research and primary sources](research/2026-10-05-multiclass-dataset-taxonomy-audit.md)
 and [accepted amended design](superpowers/specs/2026-10-05-module-2b2a-multiclass-design.md).
 The 2B-2A design stage is closed with this amendment; no recognition success is claimed.
-Next: independent review/approval of the new
+The independently reviewed and now Phase-A-approved
 [Module 2B-2B implementation plan](superpowers/plans/2026-10-05-module-2b2b-multiclass-data-training-infrastructure.md).
 It separates Phase A schema/readiness/data preparation and immutable dataset
 freeze from separately authorized Phase B model-environment qualification.
-Only documentation/planning is authorized now; neither phase has begun.
-No data preparation, installation, weights, training, inference, Model Lock,
-Module 3, Android or live functionality in this session.
+Phase A has now begun under the new explicit authorization above; Phase B has not.
+The preceding documentation-only stage did not prepare data, install models,
+download weights, train, infer or create Model Locks/Android/live functionality.
 The historical Minions readiness checks still exist unchanged; do not use them
 as the new multiclass gate or bypass them by editing old locks.
 
@@ -93,8 +162,9 @@ It is not the current continuation instruction. Its local branch is
 - Paused stopping point: source 2 has a concrete completeness conflict (ongoing
   battle at actual file end). Earlier user attestation and all original files
   remain preserved; latest pending draft does not claim it complete. This is not
-  a new result-screen rule. One targeted question asks whether later footage is
-  missing. Source 3/4 target review remains pending in original order, not negative
+  a new result-screen rule. The user has now confirmed that no subsequent footage
+  exists and instructed retaining source 2 as pending. Source 3/4 target review
+  remains pending in original order, not negative
   and not a basis for choosing easier material. No Training Dataset Lock exists.
 - Stage-end maintained regression: 680 passed / two known Windows symlink
   permission skips in 391.67s, exit 0; no GUI skips/errors. Fresh pip check exit 0,
@@ -114,7 +184,7 @@ See [data verification](VERIFICATION_M2B2_DATA.md),
 Those unfinished reviews and the completeness conflict remain recorded, but this
 research task does not continue them or ask for more Minions recordings. No claim
 is made that remaining sources lack targets. The new schema/PoC design is accepted;
-its implementation still requires approval of the new plan.
+its implementation now proceeds only within the approved new Phase A tasks.
 
 ## Accepted Module 2B-1 baseline — historical closeout
 
@@ -168,9 +238,15 @@ See [fixed 2B-1 protocol](MODULE_2B1_PROTOCOL.md).
   All sources, prior exclusions and first survey/rough review are retained.
   One actual exclusive version-one Development Data Lock exists locally;
   readiness/freeze/lock validation exit 0 and digest reload/recomputation agree.
-- The 2B-1 authorization did not open another module. Subsequent 2B-2 data
-  preparation is now paused; current authorization is design closeout and a new plan only.
-  Independent testing, training, Module 3, Android, HUD and realtime remain closed.
+- The 2B-1 acceptance did not itself open another module. The former Minions-only
+  2B-2 preparation route remains paused. Its later design-closeout-only boundary
+  is historical, superseded by the explicit multiclass Phase A Tasks 1–6
+  authorization above. The historical Task 2 regression stop was superseded by
+  the user's stable continuation: Tasks 2 and 3 are now locally committed;
+  Tasks 4/5 are committed; Task 6 read-only checks show insufficient data,
+  and the final combined maintained regression passes (908/3).
+  Independent blind testing, training, Module 3, Android, HUD and realtime
+  remain closed.
 - Module 2B-1: formally accepted as insufficient at `585c3d9...`; the fixed
   experiment and review are complete, but neither fold passed. Acceptance of a
   failed feasibility result does not open Model Lock or the next module.

@@ -248,14 +248,16 @@ pip check预期exit0/No broken requirements，diff check预期无输出/exit0。
 冻结CLI范例仅在Task5真实实现并用`--help`核实后运行，所有目录全新：
 
 ```powershell
-.\.venv\Scripts\python.exe -m clash_tracker_video.multiclass_cli validate-dataset --draft <draft> --data-root <explicit-root>
-.\.venv\Scripts\python.exe -m clash_tracker_video.multiclass_cli freeze-scale --draft <draft> --data-root <explicit-root> --output <new-scale-dir>
-.\.venv\Scripts\python.exe -m clash_tracker_video.multiclass_cli freeze-dataset --draft <selected-draft> --scale-lock <scale-lock> --data-root <explicit-root> --output <new-lock-dir>
-.\.venv\Scripts\python.exe -m clash_tracker_video.multiclass_cli validate-dataset-lock --lock <new-lock> --data-root <explicit-root>
+.\.venv\Scripts\python.exe -m clash_tracker_video.multiclass_cli validate-dataset <draft> --data-root <explicit-root>
+.\.venv\Scripts\python.exe -m clash_tracker_video.multiclass_cli freeze-scale <draft> --data-root <explicit-root> --output <new-scale-dir>
+.\.venv\Scripts\python.exe -m clash_tracker_video.multiclass_cli freeze-dataset <selected-draft> --scale-snapshot <scale-lock> --data-root <explicit-root> --output <new-lock-dir>
+.\.venv\Scripts\python.exe -m clash_tracker_video.multiclass_cli validate-dataset-lock <new-lock> --data-root <explicit-root>
 ```
 
 尖括号是执行时从明确本地文件清单取值的参数说明，不是现在可以复制执行的命令，
 不得猜私人路径。freeze前没有最终selection时validate可合法exit3；选类后最终validate应exit0。
+Task 5 实现后的 `--help` 已核对：输入文件是位置参数，尺度锁选项为
+`--scale-snapshot`；以上示例仅同步已实现的参数名，不改变阶段或冻结门槛。
 
 ## 3. 完成／停点与计划自检
 
