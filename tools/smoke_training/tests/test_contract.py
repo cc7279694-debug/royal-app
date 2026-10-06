@@ -255,3 +255,14 @@ def test_protection_includes_tracked_legacy_code_without_treating_it_as_private(
     assert verify_artifacts.check_inventory(root,inventory)==1
     path.write_text('# changed\n',encoding='utf-8')
     with pytest.raises(ValueError):verify_artifacts.check_inventory(root,inventory)
+
+
+def test_only_approved_editable_checkout_commit_can_differ_not_package_version():
+    import verify_artifacts
+    before={'pip_check_exit':0,'pip_check_output':'ok','packages':['numpy==2.2.6',
+            '-e git+https://github.com/cc7279694-debug/royal-app.git@'+'a'*40+'#egg=clash_tracker_video&subdirectory=tools%5Coffline_video']}
+    after=json.loads(json.dumps(before));after['packages'][1]=after['packages'][1].replace('a'*40,'b'*40)
+    assert verify_artifacts.same_environment(before,after,{'a'*40,'b'*40})
+    assert not verify_artifacts.same_environment(before,after,{'a'*40})
+    after['packages'][0]='numpy==2.3.0'
+    assert not verify_artifacts.same_environment(before,after,{'a'*40,'b'*40})

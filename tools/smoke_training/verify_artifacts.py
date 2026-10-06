@@ -1,6 +1,7 @@
 """Read-only checks of original artifacts/environments; write new receipts only."""
 import argparse
 from pathlib import Path
+import re
 import subprocess
 
 from smoke_data import DATASET_SHA, GT_SHA, file_sha, private_path, require, strict_json, write_json
@@ -40,6 +41,20 @@ def check_inventory(root, inventory):
     return len(paths)
 
 
+def same_environment(before,after,allowed_git_refs):
+    """pip freeze embeds editable checkout HEAD; it is not a package upgrade."""
+    pattern=re.compile(r'^(-e git\+https://github\.com/cc7279694-debug/royal-app\.git@)([0-9a-f]{40})(#egg=clash_tracker_video&subdirectory=tools(?:\\|%5[Cc])offline_video)$')
+    def normalized(value):
+        result=dict(value);lines=[]
+        for line in value['packages']:
+            match=pattern.fullmatch(line)
+            if match and match.group(2) in allowed_git_refs:
+                line=match.group(1)+'<approved-local-checkout-commit>'+match.group(3)
+            lines.append(line)
+        result['packages']=sorted(lines);return result
+    return normalized(before)==normalized(after)
+
+
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--root',type=Path,required=True);parser.add_argument('--run',type=Path,required=True)
@@ -59,9 +74,14 @@ def main():
             'model_environment':packages(args.model_python)}
     if args.stage=='after':
         before=strict_json(run/'protection-before.json')
-        require(before['offline_environment']==result['offline_environment']
+        refs=set(subprocess.check_output(['git','rev-list','b75819db3bc2c542eede1b28ac854049f7ba3acc..HEAD'],
+                                         cwd=root).decode('utf-8').splitlines())
+        refs.add('b75819db3bc2c542eede1b28ac854049f7ba3acc')
+        require(same_environment(before['offline_environment'],result['offline_environment'],refs)
                 and before['model_environment']==result['model_environment'],'Environment changed')
         result['environment_packages_unchanged']=True
+        result['editable_checkout_commit_reference_changed_only']=before['offline_environment']!=result['offline_environment']
+        result['approved_local_commit_refs']=sorted(refs)
         prepared=strict_json(run/'preparation-result.json')
         require(file_sha(run/'dataset/manifest.json')==prepared['exported_dataset_manifest_sha256'],
                 'Export manifest changed')
