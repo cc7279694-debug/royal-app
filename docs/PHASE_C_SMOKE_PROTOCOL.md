@@ -42,6 +42,8 @@ Witch-spawned Skeleton remains a visual unit, not a Skeleton-card deployment.
   as well as retained candidates; these values are not tuned on DEV_VAL.
 - Visualizations show GT plus up to 30 highest-scoring retained detections,
   using a fixed display limit, not a newly selected presentation threshold.
+  Padding-only boxes remain in the saved prediction audit, but zero-area boxes
+  after original-image clipping are explicitly outside-image, not image FP.
 
 ## Unknown and evaluation boundaries
 
