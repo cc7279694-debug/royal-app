@@ -1,9 +1,21 @@
 # Module 2B-2 Data Preparation — Verification Checkpoint
 
-Date: 2026-10-05. Status: **Waiting for human evidence resolution, not accepted or dataset-locked**.
-Scope: user-approved first data-only slice, not the learned detector or training.
+Historical checkpoint date: 2026-10-05. Status at that checkpoint:
+**Waiting for human evidence resolution, not accepted or dataset-locked**.
+Scope: the former user-approved specialist data-only slice, now paused and
+superseded as a product route; its evidence and original validator behavior remain.
 Accepted main baseline: `8a03e288fb814d81b0a8e255b8004dbc4d0efb02`.
 Branch: `codex/module-2b2-data-preparation`; local only, no push/main integration.
+
+Completed 2026-10-06 data authorization is the separate private local **2-Class
+Training Dataset Lock v1** preparation/verification on the two-class smoke route in
+[Module 2B-2B verification](VERIFICATION_M2B2B.md). This document retains the
+old specialist checkpoint and target-recheck results as **superseded / historical**.
+The old four-match/eight-play shortfall is not a current task or a smoke-lock
+precondition; no old result, source, pending revision or lock is overwritten.
+The current separate Phase C authority is described in
+[the fixed smoke protocol](PHASE_C_SMOKE_PROTOCOL.md); this document does not
+restore the obsolete specialist route or provide a training gate.
 
 ## Verified task gates
 
@@ -201,3 +213,137 @@ Schema and hashes cannot establish unobserved card absence, source authenticity,
 human match independence or complete human labelling. Independent task reviews
 supplement, not replace, later user/ChatGPT acceptance. No publication is authorized;
 all commits remain on the local feature branch and main stays at the baseline.
+
+## 2026-10-06 — superseded historical retained-source target recount
+
+This was the bounded user-authorized ordinary-Minions evidence recount,
+not a reversal of the subsequent multiclass direction or permission to train.
+The user confirms source 02 has no later footage. Its retained actual EOF shows
+**0:52 remaining with active combat**. New private draft revision v4 marks that
+intake **excluded: mid-match truncation, not suitable for Training Dataset use**.
+Its file, source hash, old indexes/images, annotations and prior attestations are
+retained; no negative interval is created. Missing result UI alone remains legal.
+Historical global completeness notes are explicitly labelled historical in v4,
+with the source-02 claim superseded, not silently reapplied to all four matches.
+Original v1-v3 drafts and old locked evidence are not edited.
+
+Existing source 03 material is reviewed first, then source 04. Read-only visual
+subtasks inspect all 18/12 contact sheets containing 159/107 unique sampled
+frames and nine/seven unannotated original images respectively. Root spot-checks
+also inspect the source-02 EOF, source-03 ground-unit confusion at 54s, and
+source-04 small flying-group confusions at 14/128s. No detector or top-hand UI is
+used to label targets. No new ordinary-Minions deployment is confirmed in either
+sampled set; repeated survivors cannot supply a new independent deployment.
+These are Codex visual-review observations, not fabricated ChatGPT confirmation,
+new definitive GT or complete continuous-video playback. Two-second samples and
+boundary frames cannot prove full-timeline absence. Unobserved, occluded and
+ambiguous regions remain Unknown and never become Negative.
+
+| Distinct fact at the historical recount | Count |
+| --- | ---: |
+| Retained sources / underlying matches | 4 / 4 |
+| Confirmed mid-match-truncated source excluded | 1 |
+| Source 03/04 sampled frames visually reviewed | 159 / 107 |
+| Source 03/04 contact sheets visually reviewed | 18 / 12 |
+| New confirmed ordinary target deployments from 03/04 | 0 / 0 |
+| Historical confirmed target matches / independent plays | 1 / 2 |
+| Historical gap against that request's four-match/eight-play confirmation | 3 / 6 |
+| Historical single-unit boxes accepted in user-relayed ChatGPT review | 6 |
+| Imported exhaustive unit boxes in the old native training draft | 0 |
+| Native training-eligible target matches / deployments | 0 / 0 |
+| Existing draft frames / Unknown intervals / certified absent seconds | 72 / 6 / 0 |
+| Training Dataset Locks / Model Locks created by that recount | 0 / 0 |
+
+Historical plays are ordinary opponent Minions at accepted onset 12/116s;
+17/118s box observations are not new onset times or additional events. The six
+accepted per-unit provisional boxes remain an explicitly attributed human-return
+handoff, not automatic exhaustive-frame GT import. The 266 sampled review frames
+are separate from the preserved 72-frame legacy draft; neither sampling volume
+nor a box count substitutes for independent deployment count. At that checkpoint
+material had at most three nonexcluded distinct matches. A continuation of that
+old four-match contract would have required another complete target-positive
+natural match; the current user instruction supersedes that route. This document
+does not request new recordings or apply the old quota to the two-class smoke lock.
+
+Fresh `validate-dataset` using actual private v4, the explicit local data root
+and unchanged old Development Lock exits **3**, stderr empty. Actual checked
+binding gives `valid=true`, `training_data_ready=false`, `evaluation_ready=false`,
+native eligible counts 0/0. An in-memory-only contradictory copy that includes
+the truncated source is rejected by the existing validator. No producer,
+readiness gate, extractor, historical annotation, dependency or lock implementation
+is changed to obtain these results.
+
+Fresh related maintained tests (original offline environment; cwd
+`tools/offline_video`):
+
+```text
+python -m pytest -q --tb=short -rs tests/test_training_dataset_contract.py tests/test_training_dataset.py tests/test_training_dataset_cli.py
+151 passed, 1 skipped in 231.33s
+```
+
+Exit 0; the skip is the existing Windows symlink privilege case at
+`test_training_dataset.py:464`. Fresh `pip check` exits 0, no broken requirements;
+the original offline environment's package freeze equals its pre-existing
+snapshot. **Full maintained regression: Not Run in this recount**, because no
+production source/test/config/dependency is changed; preceding 908/3 runs are not
+reported as current results. Full continuous video playback, new real extraction,
+GT/absence certification, model installation/execution, training and model locking
+are Not Run or prohibited in this round.
+
+Fresh scoped hash protection confirms **1,448 existing files unchanged**, zero
+changed/missing, including the four source MP4s, existing contact-sheet bundles,
+drafts, source/index/report bindings, 2A2/2B-1 results, Smoke GT and offline code.
+New receipts/drafts are additive ignored artifacts. No old file deletion or
+overwrite. A separate read-only reviewer additionally checks 193 related old
+JSON artifacts and the source-02 media hash. Initial one-off privacy checking
+misclassifies the three prior-approved exact quoted repository model-interpreter
+references and URI-scheme substrings in three official HTTPS links. Failed receipts
+remain. The internal ignored checker is corrected narrowly: only the exact
+quoted approved interpreter is distinguished; a drive token must not occur
+inside an alphanumeric URI scheme. Private absolute paths, near-matching
+interpreter paths, account IDs and secret patterns remain checked. No production
+privacy policy or source evidence is weakened. Final privacy/link/diff receipts
+and actual checked inventory counts are retained locally.
+
+This round changes only CURRENT_STATE, DEVELOPMENT_PLAN and this verification
+document, plus private additive v4/review/report/check receipts. Five prior dirty
+documentation changes from Smoke GT/Phase B are preserved, not discarded or
+committed. No SQLite/storage migration, production feature, new weights, threshold
+choice or Model Lock. Branch remains `codex/module-2b2b-multiclass-infrastructure`,
+HEAD `76400f5e532e8acd579806e0205584e57a4ff02a`, main
+`8a03e288fb814d81b0a8e255b8004dbc4d0efb02`; no staging, commit, push or merge.
+The earlier separately qualified model environment is preserved, not installed
+or exercised again there. Training-use qualification stayed false within that
+recount. Its gap report and four/eight validator remain historical evidence,
+not the current continuation instruction or a smoke qualification precondition.
+
+## 2026-10-06 — superseding private local Smoke data-lock authorization
+
+The current user authorizes a separate **2-Class Training Dataset Lock v1**
+(`two_class_training_dataset_lock`) for the unchanged parent
+`two_class_smoke_gt_lock` v1: 11 confirmed boxes, Witch/Skeleton, match 01 / TRAIN and
+match 04 / DEV_VAL. Provenance is `source_type=user_recorded_gameplay`,
+`intended_use=private_local_research_poc`, `user_training_authorized=true`,
+`external_upload=false`, `redistribution=false`, and
+`rights_clearance=unverified`. The new scope's `training_qualified` is an
+internal private local PoC gate, not legal clearance or official permission.
+Old schemas/locks/readiness and every target-recheck artifact remain preserved;
+the original 3–5-class gate is not weakened or retrospectively passed.
+
+The separate smoke snapshot preserves 11 boxes/four frames. Default complete
+selected-class supervision uses only three frames/10 boxes; the 72s Witch
+positive is `positive_only_requires_unknown_safe_consumer`, with standard
+full-frame loss/metrics prohibited by default and Unknown regions never background.
+
+Status: **TWO_CLASS_TRAINING_DATASET_LOCKED; data-stage verification completed**.
+The separately checked freeze receipt confirms exclusive v1 creation, dedicated
+readiness/readback exit 0, scoped internal `training_qualified=true`, original
+GT v1 unchanged and **1,462 protected existing files unchanged**. It does not
+qualify a production training pipeline. Fresh joint private tests pass **65**
+(40 new training-adapter + 25 original GT), no skips; full maintained regression
+passes **908 / 3 existing Windows permission skips**, exit 0, 1052.47s, with
+zero failures/errors. Pip and scoped documentation diff checks pass. Private
+hashes remain in local receipts. Stop at the completed data-lock boundary.
+The main evidence owner is
+[VERIFICATION_M2B2B.md](VERIFICATION_M2B2B.md). No real training, weights download,
+Phase C, Model Lock, blind testing, Android/live use or Git publication this round.

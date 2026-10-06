@@ -1,5 +1,11 @@
 # Clash Tracker
 
+当前已明确授权 **Phase C — 2-Class Learned Detector Smoke Training**：
+固定 Nano 416 / batch 1 / FP32 / 100 optimizer steps，训练后仅一次 DEV_VAL
+评估。先建立干净的本地 Git 基线；不 push、不合并 main，不根据结果追加训练。
+尚未开始真实训练。详见[固定训练协议](docs/PHASE_C_SMOKE_PROTOCOL.md)。
+下文原阶段的“不训练”边界属于历史，不撤销本次新授权。
+
 本项目从用户主动提供的本地 MP4 开始，研究离线画面分析。
 现有 **Module 1 离线录像读取工具**、**Module 2A1 证据准备工具**，以及
 **Module 2A2 开发证据与实验锁工具**：
@@ -18,23 +24,66 @@ Module 2A2 已于 2026-10-04 由用户确认正式验收，基准为
 独立复核通过，结论为 `MODULE_2B2A_DESIGN_ACCEPTED_WITH_AMENDMENT`，
 审查提交为 `cec8abc35fce2438d149fe4b68b203650cb835e4`；本轮补入 Scale Coverage Gate 并收尾设计阶段。
 产品目标是每局动态出现的多种视觉单位，普通亡灵仅为历史样本和未来类别之一。
-旧 pending 数据、录像完整性疑点、2A2 锁与 2B-1 失败结果保留，不在本轮修改或补录。
-多类别设计已接受，**Module 2B-2B Phase A 数据工具已验证，真实数据不足，停在复核门槛**；闭合
+旧 pending 数据、录像完整性证据、2A2 锁与 2B-1 失败结果保留。
+当前两类 smoke 分支已有 **2-Class Smoke GT Lock v1**：用户转交 ChatGPT 的精确人审确认，
+11 个正例框（Witch 4 / Skeleton 7）、1 个拒绝项、4 个 appearance group；bbox 未改。
+前三帧是所选两类的穷尽复核，72 秒帧仍有 Unknown；拒绝项不是 Negative。
+此前 GT-only 阶段仅完成**人工 GT 冻结**，当时 `training_qualified=false`，
+未创建 Training Dataset Lock；这段历史不是模型识别成功。
+Witch/Skeleton 的 form=unknown 保留，spawned Skeleton 不解释为 Skeleton 卡牌部署。
+
+已完成的数据阶段授权（2026-10-06）：只为上述 **Smoke GT Lock v1 的 11 个确认框**
+准备并验证独立的 **2-Class Training Dataset Lock v1**，固定 match 01 / TRAIN、
+match 04 / DEV_VAL、`unit.witch` / `unit.skeleton`，
+`intended_use=private_local_research_poc`。
+来源记录为 `source_type=user_recorded_gameplay`、`user_training_authorized=true`、
+`external_upload=false`、`redistribution=false`、`rights_clearance=unverified`。
+此处 `training_qualified` 只表示本项目内部的私人本地 PoC 门槛通过，不表示法律
+clearance、Supercell 官方许可、商业用途或外部分发权利。当前已实际达到
+`TWO_CLASS_TRAINING_DATASET_LOCKED`：独占 v1 创建、专用 readiness 与锁回读均退出 0，
+新锁的 `training_qualified=true` 仅适用于上述内部范围；旧 GT-only v1 的 false 未回写。
+1,462 个受保护既有文件哈希不变；此次新授权允许公开 GT／Dataset Lock 的
+SHA，已记录于固定协议。素材哈希与私人文件仍只保留在本地。
+本轮新增训练锁与原 GT 锁联合测试 **65 passed**（40 新增／25 原 GT），完整 maintained
+回归 **908 passed / 3 既有 Windows 符号链接权限 skipped**，均退出 0，无失败／错误。
+监督策略保留全部 11 框／4 帧，但默认完整所选类别监督
+仅使用 3 帧／10 框；72 秒的第 11 个 Witch 正例标记为
+`positive_only_requires_unknown_safe_consumer`，默认禁止普通全帧 loss／metrics，
+不能把其 Unknown 区域当背景。
+该数据锁阶段未训练、未下载权重、未进入 Phase C；本次训练的新授权见上方。
+旧普通亡灵 target-recheck 产物保留为 **superseded / historical**；其 4 场／8 次
+门槛不再是当前路线或 smoke 训练锁的前置条件。旧 2A2、2B-1、3–5 类 schema、
+readiness 和锁继续保留原行为，不将新范围的资格写回旧锁。
+
+2026-10-06 用户另行授权 **Phase B 模型环境资格验证**，现已达到
+`MODEL_ENVIRONMENT_QUALIFIED`。独立环境使用 PyTorch 2.7.1+cu118、TorchVision
+0.22.1+cu118、CUDA runtime 11.8，以及固定官方 YOLOX 0.3.0 源码
+`6ddff4824372906469a7fae2dc3206c7aa4bbaee`。GTX 1050 Ti 4GB 实际执行 Nano
+416 / batch 1 的三次合成 CUDA step，Tiny batch 1 和可选 Nano batch 2 也通过。
+前向、loss/backward、非零参数更新、checkpoint 恢复、推理及 CUDA NMS 均成功，
+没有 CPU assignment fallback。仅使用内存中的匿名随机张量，不读取真实 GT/图像训练，
+不下载预训练权重。**环境可运行不等于检测成功或训练素材具备资格**。
+该环境阶段未改变素材的 `training_qualified=false`；完整官方 Trainer、实际数据加载、长程训练、
+ONNX/ncnn/移动部署均未验证。现有 `.venv` 与离线工具依赖不变。
+
+原 3–5 类契约保持不变：**Module 2B-2B Phase A 数据工具已验证，原真实数据检查不足**；闭合
 schema、独立 readiness、尺度政策、受检数据锁、人工标注、后端导出与独立命令入口
 已通过各任务测试和本地代码复核。现有数据只读检查为有效但不足：四份录像、
 75 张复用画面、8 个待确认单体框、0 个合格多类别候选；尚缺人工穷尽复核、
 跨 TRAIN/DEV_VAL 支持、敌我对照、尺度覆盖及训练用途来源依据。
-最终完整回归：**908 passed / 3 Windows 权限类 skipped**，退出 0；无 GUI 错误或跳过。
+历史完整回归：**908 passed / 3 Windows 权限类 skipped**，退出 0；无 GUI 错误或跳过。
+上一 GT-only 步骤检查 25 项通过，其完整回归为 908 passed / 3 既有权限 skipped。
+已完成 Phase B 的完整回归 **908 passed / 3 skipped**，另有 16 项合成探针契约检查通过。
 这不代表真实 Dataset Lock 或模型识别成功。类别从按原序复核的
 Development 数据动态选择；先固定尺度政策、统计全部合格移动候选，再选至少一个
 相对小移动类和一个中／大移动类。报告原图框像素尺寸及归一化面积分布；不足输出
 `SIZE_COVERAGE_INSUFFICIENT` 并补 Development 素材，不恢复专项亡灵路线或降低门槛。
-Nano/Tiny/Faster 仍是候选比较，不是已验证的模型选型。公开素材权利未明确，当前 reference_only。
-**Module 2B-2B — Multiclass PoC Data & Training Infrastructure** 的授权仅覆盖 Phase A Task 1–6。
-数据 schema/readiness/准备与锁定先独立验收；Phase B 模型环境资格仍需另行授权。
-本轮可本地提交代码与测试、只读复用既有私人数据，但不安装模型、不下载权重、不训练，
-不 push/merge；旧 2A2 锁和 2B-1 失败结果不变。当前实际验证见
-[Phase A 验证记录](docs/VERIFICATION_M2B2B.md)。
+Nano/Tiny 仅完成合成运行资格，不以此比较真实检测效果；不恢复 Faster R-CNN 路线。
+公开素材权利未明确，当前 reference_only。Phase A Task 1–6 与已完成的 Phase B
+资格验证均保留各自证据；独立数据锁创建与验证已完成。本次用户另行授权
+固定预算 Phase C；允许本地基线提交，仍不 push/merge。
+旧 2A2 锁和 2B-1 失败结果不变。当前实际验证见
+[阶段验证记录](docs/VERIFICATION_M2B2B.md)。
 参见[研究审查](docs/research/2026-10-05-multiclass-dataset-taxonomy-audit.md)与
 [已接受设计](docs/superpowers/specs/2026-10-05-module-2b2a-multiclass-design.md)、
 [设计收尾检查](docs/VERIFICATION_M2B2A.md)与
@@ -180,7 +229,7 @@ insufficient。这是已验收的人工证据，不是模型识别结果；未�
 2A1 已完成验收记录及快进整合；其历史 `main` 基线为 `3ad657f…`，原功能分支保留。
 用户于 2026-10-04 另行正式授权 Module 2A2 实施。当时 2B 尚未批准；
 2026-10-05 当时的另行授权仅打开 2B-1；随后 2B-2 专项数据准备现已暂停，
-当前 2B-2B Phase A 数据基础设施授权见本文开头。
+当前两类 smoke 训练数据锁授权见本文开头。
 Module 3、Android 和实时 HUD 仍未批准，
 2A1 review 仍不代表新实验就绪。
 参见 [Module 2A1 验证记录](docs/VERIFICATION_M2A1.md)。
@@ -219,8 +268,8 @@ readiness / freeze-development / validate-lock 均退出 0，2A2 验收停点为
 普通、觉醒和未知形态分开；未知区间及另一形态不能作为负样本。
 
 开发数据锁定与 2A2 验收已完成；当时另行授权仅覆盖 2B-1 开发基线，
-随后 2B-2 专项数据准备曾获批准，现已暂停；当前为多类别 Phase A 数据基础设施，
-不包含训练或盲测。
+随后 2B-2 专项数据准备曾获批准，现已暂停；两类 smoke 数据锁已创建验证。
+当前已单独授权上方固定预算 Phase C，不包含盲测。
 后续顺序为：开发锁 → 模型锁 → 独立
 测试录像及新会话人工标注 → 测试标注锁 → 首次整场模型推理；不得先看预测再改
 标签。同一真实比赛即使重录或换文件，也不能跨开发/测试。
@@ -288,7 +337,9 @@ Module 1 与 2A1 三条命令和 `experiment_gate=false` 语义不变。
 标注窗口关闭的 0 仅表示会话结束，不代表已保存、审核或冻结。
 真实 pending 草稿通过加载，返回 3；72 张待审核图片、零单位框、零训练支持、
 零认证缺席时长。两个门槛均为 false；未知内容不是负样本，也没有 FP/min 结论。
-原片段、既有标签与此前完整性声明均保留。此前停在第二份的事实核实，未开始训练。
+原片段、既有标签与此前完整性声明均保留。后续 bounded target-recheck 已确认第二份
+中途截断且没有后续片段，并在新的私有修订中排除其训练用途；第三／四份采样复核
+未新增确认的普通亡灵部署。这些产物保留为 superseded / historical，不证明整局无目标。
 用户已暂停普通亡灵专项路线，本轮不继续此复核或要求补足 4 场／8 次。旧 validator
 保留原行为，只验证历史固定类别契约，不能当新多类别 readiness；新多类别 Phase A
 另有独立契约与工具，不复用旧门槛。

@@ -4,6 +4,21 @@ The project advances one independently verifiable module at a time. A module may
 start only after the previous module has been reviewed and accepted. Statuses are
 `Completed`, `In Progress`, `Planned`, `Paused`, or `Gated`.
 
+## Current separately authorized Phase C smoke experiment
+
+Status: In Progress — explicitly authorized 2026-10-06; no training performed
+at the initial clean local checkpoint. The completed Phase A/B/GT/data-lock
+records below retain their original historical boundaries. The obsolete
+ordinary-Minions specialist quota is not reinstated.
+
+Execute only [the fixed two-class smoke protocol](PHASE_C_SMOKE_PROTOCOL.md):
+validate unchanged locks, official COCO Nano weight provenance, deterministic
+two-TRAIN/two-DEV_VAL export, exactly 100 FP32 optimizer steps on Nano 416/b1,
+checkpoint round-trip, then one fixed DEV_VAL evaluation and local review ZIP.
+No DEV_VAL training or result-guided retries/tuning. Unknown remains unjudged,
+especially the partial 72s frame. No push, main merge, Tiny run, Blind Test,
+production Model Lock, new data, Module 3 or mobile/live development.
+
 ## Module 0 — Project Bootstrap
 
 Status: Completed
@@ -170,12 +185,28 @@ and [blind-test protocol](MODULE_2A2_BLIND_TEST_PROTOCOL.md).
 
 Status: In Progress — 2B-1 is formally completed and accepted as an insufficient
 fixed lightweight template baseline, not successful single-card recognition.
-The later Module 2B-2 specialist data slice is paused. Current authorization is
-Module 2B-2B Phase A Tasks 1–6, following accepted amended multiclass design and
-PHASE_A_AUTHORIZED_WITH_SIMPLIFICATION. Data infrastructure/preparation is
-authorized; model-environment qualification and training are not.
-Training, independent blind testing and later modules remain Gated. Accepted 2A2
+The later Module 2B-2 specialist data slice is paused. Module 2B-2B Phase A Tasks
+1–6 followed PHASE_A_AUTHORIZED_WITH_SIMPLIFICATION. The subsequent separate
+Phase B authorization now qualifies isolated Nano/Tiny CUDA operations using
+synthetic data only. Environment qualification passes; its stage did not authorize
+real training. The new Phase C authority is recorded above; independent blind
+testing and later modules remain Gated. Accepted 2A2
 Development Data remains DEV_LOCKED.
+
+Completed separately authorized data request (2026-10-06): prepare and verify a private
+local **2-Class Training Dataset Lock v1** from the existing Smoke GT Lock v1
+and its 11 confirmed Witch/Skeleton boxes, match 01 / TRAIN and match 04 / DEV_VAL.
+Status: **TWO_CLASS_TRAINING_DATASET_LOCKED**; actual exclusive v1 creation and
+dedicated readiness/readback exit 0. Internal private local PoC qualification
+passes. Fresh joint private lock tests: 65 passed; full maintained regression:
+908 passed / 3 existing Windows permission skips, exit 0. Data-lock preparation
+and verification are completed; that stage stopped before Phase C. GT/data-lock
+identities may now be published by explicit user request; source-media hashes
+remain private. New Phase C authority is recorded above.
+The ordinary-Minions four/eight target-recheck outputs are superseded / historical,
+not the active route or a prerequisite. That completed data scope did not
+authorize training/weights; the new smoke scope does. Model Lock, blind testing
+and later modules remain unapproved.
 
 ### Module 2B-1 — Minions Visual Baseline
 
@@ -241,9 +272,14 @@ is also reviewed. Final maintained regression: 680 passed / two known Windows
 symlink permission skips; dependency check passed. Original-order intake is valid
 but not ready (CLI exit 3). Historical target confirmation is one match/two plays;
 new unit-supported training eligibility remains zero matches/zero plays.
-The second source ends during active combat, conflicting with the prior full-match
-attestation; this unresolved fact is preserved, not processed in the new research. Missing
-result UI alone is still legal. Preserve all evidence; no Training Dataset Lock.
+The historical explicit user confirmation resolves the second source as mid-match
+truncation with no later clip: excluded from Training Dataset use, but the file
+and evidence remain preserved and never Negative. Missing result UI alone is
+still legal. Source 03/04 existing sampled target review adds zero confirmed
+ordinary deployments; it does not certify full-video absence. That request's
+confirmation gap was three matches/six plays; native training eligibility was
+zero/zero pending exhaustive unit GT. No Training Dataset Lock was made by this
+route. Its target-recheck artifacts are retained as superseded / historical.
 
 Retain schema/readiness, actual media bindings, per-unit annotation, grouped LOMO
 ownership and exclusive Dataset Lock APIs. Their old four-match/eight-Minions-play
@@ -296,14 +332,53 @@ acceptance does not authorize model execution or publication.
 
 ### Module 2B-2B — Multiclass PoC Data & Training Infrastructure
 
-Status: Phase A infrastructure verified; stopped at consolidated real-data gaps.
+Completed smoke data work: **2-Class Training Dataset Lock v1**
+(`two_class_training_dataset_lock`): **TWO_CLASS_TRAINING_DATASET_LOCKED;
+data-stage verification completed**, separately authorized for the existing 11-box
+**2-Class Smoke GT Lock v1**. Fixed scope: `unit.witch` / `unit.skeleton`,
+match 01 / TRAIN and match 04 / DEV_VAL. Record
+`source_type=user_recorded_gameplay`, `intended_use=private_local_research_poc`,
+`user_training_authorized=true`, `external_upload=false`, `redistribution=false`,
+and `rights_clearance=unverified`. The separate `training_qualified` result is
+an internal private local PoC gate only, not legal clearance, Supercell permission,
+commercial-use approval or redistribution rights. Exclusive v1 creation and
+dedicated readiness/readback exit 0; new internal `training_qualified=true`
+does not change the old GT-only v1's false. The actual freeze receipt confirms
+1,462 protected files unchanged and no legacy source/test/dependency changes.
+Fresh joint private tests pass **65** (40 new training-adapter + 25 original GT)
+with no skips; full maintained regression passes **908 / 3 existing Windows
+permission skips**, exit 0, 1052.47s, with zero failures/errors. Private hashes
+are retained in local receipts. Full production training pipeline is not qualified.
+Freeze all 11 boxes/four frames; default complete selected-class supervision
+uses only three frames/10 boxes. The 72s Witch positive is
+`positive_only_requires_unknown_safe_consumer`, with standard full-frame
+loss/metrics prohibited by default and Unknown regions never treated as background.
+No real training or weights download occurred in that data stage. The current
+Phase C scope is above; it still forbids Model Lock and later modules.
+The old GT lock and old 2A2/2B-1/3–5-class schemas and readiness remain unchanged;
+the four/eight specialist route is superseded, not a prerequisite.
+
+Preserved completed smoke checkpoint: **2-Class Smoke GT Lock v1 created** after
+user-relayed ChatGPT final review of Witch/Skeleton, match 01 / TRAIN and
+match 04 / DEV_VAL. Eleven positive boxes, one rejected ambiguous proposal,
+four appearance groups; two independent Witch groups and zero Skeleton card
+deployments. Unknown forms and the fourth frame's partial/Unknown coverage are
+preserved. This private GT-only snapshot is not native training readiness:
+`training_qualified=false` in that GT-only snapshot, no Training Dataset Lock or
+real training at that stage. The completed Phase B qualified only the synthetic
+model environment. Current private local training-use authorization is separate,
+with its own checked snapshot. The original 3–5-class implementation/locks below
+remain unchanged; that general-purpose insufficiency is not rewritten as a pass.
+
+Historical 3–5-class status: Phase A infrastructure verified; consolidated data gaps.
 Tasks 1–5 are locally verified/reviewed/committed. Final maintained regression:
 908 passed / 3 Windows permission skips, exit 0. Task 6 read-only
 checks of the original-order pending handoff return native exit 3: zero qualified
 classes, PROVENANCE_INSUFFICIENT and SIZE_COVERAGE_INSUFFICIENT, with separate
-whole-match/owner/GT gaps. No real Multiclass Dataset Lock is claimed. Keep the
-unified gap report and await existing human/source qualification at this approved
-insufficient-data boundary without opening Phase B or starting new design work.
+whole-match/owner/GT gaps. No real Multiclass Dataset Lock is claimed. That Phase A
+stage stopped at the consolidated insufficient-data boundary. Retain its unified
+gap report; the later completed Phase B and current two-class smoke authorization
+do not retroactively qualify the original 3–5-class dataset.
 See [task-by-task plan](superpowers/plans/2026-10-05-module-2b2b-multiclass-data-training-infrastructure.md).
 
 Phase A: additive closed schema, independent readiness/Scale Coverage Gate,
@@ -313,17 +388,22 @@ versioned Multiclass Dataset Lock only when all support/rights gates pass.
 No old-lock conversion or ordinary-Minions four/eight requirement. Missing data
 reports class/owner/group/scale gaps and stops; unknown is not negative.
 
-Phase B: separately approved model-environment qualification in a new isolated
-environment, using synthetic CPU/CUDA/model-operation probes without pretrained
-weights, dataset training or model selection based on blind tests. GTX 1050 Ti
-4GB and export suitability must be measured, never assumed. The plan does not
-authorize installations now; Phase A acceptance does not automatically open B.
+Phase B: **MODEL_ENVIRONMENT_QUALIFIED**, separately authorized 2026-10-06 in
+an isolated environment. Nano precedes Tiny. PyTorch 2.7.1+cu118 / TorchVision
+0.22.1+cu118 / runtime CUDA 11.8 and pinned official YOLOX 0.3.0 source pass
+actual GTX 1050 Ti CUDA forward/loss/backward/nonzero optimizer/checkpoint/
+inference/NMS probes. Nano 416 FP32 batch 1 passes three steps; Tiny batch 1 and
+optional Nano batch 2 also pass minimal steps. Only anonymous synthetic data,
+no pretrained weights or real GT. The latest user authorization supersedes old
+Task 7's no-optimizer/checkpoint and Nano-only limits; no other gate is relaxed.
+Full Trainer, real data pipeline, long training and export/mobile suitability
+remain untested. Original offline environment and all locks/results stay unchanged.
 
 Each task receives corresponding tests/protection and independent code review;
 the user authorized continuous Tasks 3–6 without per-task human pauses, with a
 consolidated final full regression and gap/completion report. Stop at the phase
 gate or consolidated real data gaps. Real training,
-weights, threshold tuning, Model Lock, Test GT work, blind inference, Module 3,
+pretrained weights, threshold tuning, Model Lock, Test GT work, blind inference, Module 3,
 Android/live use and push/main integration all remain separately Gated.
 
 ## Module 3 — Deployment Event Tracking

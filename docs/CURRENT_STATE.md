@@ -2,13 +2,235 @@
 
 Last verified: 2026-10-06.
 
-## Current authorized work — Module 2B-2B Phase A Task 1–6
+## Current authorization — Phase C two-class learned smoke training
 
-Current checkpoint: **data infrastructure verified; real data insufficient**.
-Final maintained suite: **908 passed / 3 Windows symlink-permission skips**,
-exit 0; JUnit 911 total, zero failures/errors, no GUI errors/skips. No real
-multiclass Dataset Lock. Stop at the approved unified data-gap boundary and
-await completed human/source qualification, not Phase B or a new design stage.
+The user now explicitly authorizes one YOLOX-Nano 416 / batch 1 / FP32 run
+on the qualified GTX 1050 Ti environment, with fixed seed and 100 optimizer
+steps, followed by one DEV_VAL evaluation. Start from a clean local committed
+Phase A/B/GT/data-lock checkpoint; no push or main integration. Historical
+prohibitions below describe their stage boundaries, not this new authorization.
+No real training has started at this checkpoint.
+
+Public artifact identities, explicitly authorized for publication now:
+
+- Smoke GT Lock v1 file SHA-256:
+  `f48b401136e3285700d5000d73fed4c6381131cfabcbf956c2f3ee96804d97f1`.
+- Training Dataset Lock v1 file SHA-256:
+  `582dc30d3e418aebf09adfed931742627c29a1f3da1a19ae24c165621cc58e39`.
+
+Artifacts, original frames, annotations and dataset exports remain ignored and
+private. Their historical authorization flags remain unchanged; a separate
+Phase C run contract carries the current training/official-weight authority.
+Only official YOLOX COCO Nano release weights may be downloaded after recording
+provenance. No third-party Clash Royale data/weights, Tiny experiment, new GT,
+Blind Test, production Model Lock, Module 3 or Android/live feature is allowed.
+See [fixed smoke protocol](PHASE_C_SMOKE_PROTOCOL.md).
+
+## Completed data checkpoint — private local 2-Class Training Dataset Lock v1
+
+Status: **TWO_CLASS_TRAINING_DATASET_LOCKED — exclusive v1 creation/readback
+and dataset-stage verification completed; stop before Phase C**. The current request
+uses only the existing **2-Class
+Smoke GT Lock v1**, its **11 confirmed boxes (four Witch / seven Skeleton)**,
+`unit.witch` / `unit.skeleton`, match 01 / TRAIN and match 04 / DEV_VAL.
+The separate private local **2-Class Training Dataset Lock v1**
+(`two_class_training_dataset_lock`) has been exclusively created, referencing
+the unchanged parent `two_class_smoke_gt_lock`.
+Actual dedicated readiness and validate-lock/readback both exit 0; the retained
+receipt records `TWO_CLASS_TRAINING_READY` and `training_qualified=true` only
+within the approved internal scope. Protection confirms **1,462 existing files
+unchanged**, the original GT v1 unchanged, and legacy source/tests/dependencies
+unchanged. Lock, canonical digests and source hashes remain in private receipts.
+Fresh joint private training-lock/original-GT tests: **65 passed** (40 new
+training-adapter tests + 25 original GT tests), exit 0, 14.66s. Fresh full
+maintained regression: **908 passed / 3 existing Windows symlink-permission
+skips**, exit 0, 1052.47s; JUnit confirms zero failures/errors and no GUI skips.
+Pip check and the scoped documentation diff check pass. This completed data
+snapshot does not qualify a full production training pipeline or model accuracy.
+
+Training-use provenance must record `source_type=user_recorded_gameplay`,
+`intended_use=private_local_research_poc`, `user_training_authorized=true`,
+`external_upload=false`, `redistribution=false`, and
+`rights_clearance=unverified`. In this scope `training_qualified` means only
+that the project's internal private local research PoC gate has passed. It is
+not legal clearance, Supercell permission, commercial-use approval or a grant
+of external upload/redistribution rights. The frozen GT-only v1 retains its
+original `training_qualified=false`; passed qualification belongs only to the
+new separate training snapshot after checked media binding/readiness.
+
+Preserve owner/form/origin, the spawned-from relationships, group counts and
+Unknown/rejection semantics. Freeze all 11 boxes/four frames, with default
+complete selected-class supervision restricted to three frames/10 boxes. The
+72s Witch positive remains `positive_only_requires_unknown_safe_consumer`:
+standard full-frame loss/metrics are prohibited by default, and Unknown regions
+cannot become background. Sampled GT cannot certify full-timeline absence or
+FP/min. This round does not train, download weights, run real detector
+inference, create a Model Lock or enter Phase C/later modules. No production
+schema, 2A2/2B-1 contract, original 3–5-class gate, split or old lock is changed.
+No staging, commit, push or merge is authorized.
+
+The ordinary-Minions four-match/eight-play target-recheck route and its outputs
+are **superseded / historical**, retained as evidence. Their shortfall is not
+the current product goal or a prerequisite for this two-class smoke snapshot.
+See [current scope verification](VERIFICATION_M2B2B.md) and the
+[historical target recount](VERIFICATION_M2B2_DATA.md).
+
+## Superseded historical work — ordered retained-recording target recount
+
+That bounded user instruction resolves source 02: there is no later clip, and actual
+EOF still shows 0:52 with active battle. A new private pending-dataset revision
+marks it **excluded: mid-match truncation, not usable in Training Dataset**.
+Its recording, images, labels and earlier attestations remain preserved; it is
+not Negative. This is not a requirement for a victory/defeat result screen.
+
+Source 03 then source 04 receive bounded ordinary-Minions evidence review in
+original intake order, using existing material only: **159 / 107 sampled frames,
+18 / 12 contact sheets**, plus nine/seven original-image checks. Neither adds a
+confirmed ordinary Minions deployment. This is sampled visual review by Codex,
+not new ChatGPT GT, full-video playback or proof of full-timeline absence.
+Unobserved/occluded regions remain Unknown; no frame or box adds an event.
+
+Historical confirmed target support stays **one match / two independent plays**;
+the historical confirmation gap against that request's four/eight gate is **three
+matches / six plays**. Six historical individual boxes were accepted in a
+ChatGPT review relayed by the user; no exhaustive per-frame unit GT has been
+imported into the old specialist contract. Its checked native readiness remains
+**zero eligible matches / zero eligible plays**, `valid=true`,
+`training_data_ready=false`, CLI exit 3. No Training Dataset Lock was created
+by that historical recount.
+This bounded recount does not restore Minions as a fixed product standard or
+roll back the multiclass route, Smoke GT Lock, old 2A2 lock or accepted 2B-1 FAIL.
+No new extraction, model install/execution, training or Model Lock in that recount.
+See [ordered-recount verification](VERIFICATION_M2B2_DATA.md).
+
+## Preserved completed Phase B Model Environment Qualification
+
+Completed environment checkpoint: **MODEL_ENVIRONMENT_QUALIFIED;
+TWO_CLASS_SMOKE_GT_LOCKED; training_qualified=false at that stage; no Training
+Dataset Lock or formal training in that stage**. Current data-lock authorization
+is recorded above and does not retroactively change the environment result.
+The user's separate Phase B authorization permits isolated installation and
+synthetic optimizer/checkpoint probes, not real gameplay training. Windows 11
+build 26200 / Python 3.12.4 / GTX 1050 Ti 4096 MiB / driver 582.28 / capability 6.1
+actually execute CUDA, rather than relying on the driver name. PyTorch
+2.7.1+cu118, TorchVision 0.22.1+cu118, runtime CUDA 11.8, cuDNN 90100 and
+unmodified official YOLOX source 0.3.0 at
+`6ddff4824372906469a7fae2dc3206c7aa4bbaee` are isolated under ignored outputs.
+
+Nano 416 / batch 1 / FP32 passes three real synthetic loss/backward/optimizer
+steps; Tiny batch 1 and optional Nano batch 2 each pass one step, after Nano's
+baseline. All pass strict model/optimizer checkpoint round-trip (output difference
+0), inference, CUDA NMS, finite gradients and nonzero parameter updates. No CPU
+assignment fallback. Peak PyTorch allocator allocated/reserved MiB:
+Nano b1 **122.31 / 134**, Tiny b1 **147.93 / 182**, Nano b2 **219.25 / 234**.
+These exclude CUDA context, driver/WDDM and other applications; not whole-card
+peak measurements or a real-dataset memory guarantee. No real GT/pixels or
+pretrained weights are used; anonymous toy tensors only.
+
+Fresh Phase B maintained regression: **908 passed / 3 existing Windows permission
+skips**, exit 0, 1179.22 seconds. Private probe contract tests: **16 passed**.
+Both environments' pip checks pass; all 22 model distributions have pinned
+versions and recorded source/license metadata. YOLOX is source-path integration,
+not a pip distribution with rewritten dependencies. Its required model-operation
+imports are tested; the full official Trainer/real COCO pipeline/export/mobile
+stack is not installed or qualified. Original `.venv` freeze is identical.
+Scoped protection: **1,398 existing files unchanged**, including source/tests,
+recordings, GT lock and old 2A2/2B-1 artifacts. Python audit counters show zero
+network attempts or forbidden repository opens during model probes; they do not
+provide OS/native-code sandbox isolation.
+
+Recommended later baseline, once training gates and authorization pass: Nano
+416 / batch 1 / FP32. Optional batch 2 passes this synthetic check but must be
+remeasured with the actual data pipeline. That stage stopped for acceptance; environment success
+does not authorize dataset training, weights download or the next module.
+
+## Preserved 2-Class Smoke confirmed GT freeze
+
+The prior user authorization established a separate Witch + Skeleton smoke milestone, with match
+01 / TRAIN and match 04 / DEV_VAL. Owner remains GT metadata, not a detector
+class; no own-support or owner-discrimination success is claimed. Witch form
+may remain unknown when its visual identity is confirmed separately. Spawned
+Skeletons are visual units, not Skeleton card deployments. Existing 3–5-class
+schemas, readiness gates, splits and locks are unchanged.
+
+The user relays ChatGPT verdict **TWO_CLASS_SMOKE_HUMAN_REVIEW_CONFIRMED** for
+the exact small review ZIP. Objects 01–11 are confirmed, object 12 is rejected
+as too ambiguous, and original bbox coordinates are unchanged. A new ignored
+human-return/CSV presentation revision records **11 positive boxes (four Witch,
+seven Skeleton), one rejection, four accepted appearance groups and four frames**.
+Match 01 uses 163/164s; match 04 uses 68/72s. Witch form remains unknown, as do
+the Skeleton forms. Confirmation attribution is ChatGPT review explicitly relayed
+by the user, not a new independently retrieved reply or fabricated review time.
+
+Each match has one human-confirmed independent Witch deployment group; repeated
+frames do not add events. Both Skeleton groups have confirmed spawned-from-Witch
+relationships and zero independent Skeleton card deployments. Individual
+entity/source-card/causal-root IDs are not inferred. The 163/164/68-second frames
+are reported exhaustive only for the two selected classes. The 72-second frame
+remains partial/Unknown; its Witch positive is retained, rejected Skeleton12 is
+not a negative, and the frame is not complete-supervision background. Sampled
+GT does not establish full-timeline absence or a false-positive time denominator.
+
+The separate **2-Class Smoke GT Lock v1** now freezes this reviewed Development
+GT. It is an exclusive private `two_class_smoke_gt_lock` snapshot, verified by
+a scoped one-off structure/relationship/media binder, not the old native training
+readiness or blind Test GT Lock. Canonical semantic and envelope SHA-256 digests,
+version identity, source PTS/PNG/report/index hashes and final-review attribution
+are retained. No prior lock is overwritten. At that GT-only stage a Training
+Dataset Lock still required separate training-use qualification; the frozen
+`training_qualified=false` could not create a ready-for-training lock. The current
+user authorization defines the separate private local PoC scope above, without
+promoting the old GT lock or making a legal authorization conclusion.
+
+Fresh private GT/immutability/presentation tests: **25 passed**, exit 0. GT
+readback, final CSV/human-return consistency and **1,303 protected existing files
+unchanged** are verified. The original reviewed ZIP and pending draft remain
+unchanged; the final presentation supersedes display-only remnants without
+altering locked GT. Visibility/occlusion are user-authorized local quality metadata,
+not values invented as separately supplied by ChatGPT. Fresh pip check passes.
+Fresh full maintained regression: **908 passed / 3 existing Windows permission
+skips**, exit 0, 1289.98 seconds; no failures or GUI errors. The initial root-level
+collection attempt included archived test copies and exited 2; rerunning the
+unchanged official suite with its package configuration resolves that command-scope
+issue without deleting packets or modifying tests. No production source/test/dependency change,
+re-extraction, model use, weights, training or Phase B during that GT-only step.
+
+The GT-only snapshot stays unchanged. Training-use provenance and Training Dataset
+Lock now follow the separate current authorization above; the completed Phase B
+only qualified the synthetic environment described above. The GT freeze itself
+is not detector success or training permission. See
+[latest verification](VERIFICATION_M2B2B.md). No commit, push or main integration.
+
+## Preserved earlier human review material
+
+That earlier authorized step was human review preparation only, with no new production
+features. The user's returned review of matches 01/02 is retained separately as
+a non-GT handoff: six historical Minion boxes are reported accepted, Witch form
+remains unknown, summoned Skeleton observations are not direct-card deployments,
+and match 02 is now excluded for confirmed mid-match truncation, with its
+concrete EOF evidence retained. Time-separated
+Witch sightings are not automatically promoted to independent deployments.
+The existing pending draft (75 frames / eight boxes), old review bundle, 2A2
+Lock and accepted 2B-1 FAIL remain byte-unchanged.
+
+In original source order, a new ignored standalone review bundle now prepares
+match 03 / TRAIN: **159 frames, 18 contact sheets**, then match 04 / DEV_VAL:
+**107 frames, 12 contact sheets**. Total: **266 unique PTS frames / 30 review
+contact sheets**, comprising 242 newly extracted fixed two-second samples and
+24 reused unique technical boundary frames. No content-based frame selection,
+class guessing, prelabels or new confirmed groups. Every human object field is
+blank; existing completion attestations are retained, not newly qualified.
+Sampling and absent boxes do not prove absence or full-timeline GT coverage.
+The new ZIP and review index are verified; 645 relevant protected originals
+remain unchanged. This run does not repeat the historical full regression suite.
+
+The user reports having returned match 03/04 review and authorizes the separate
+two-class smoke scope above; that high-level handoff does not confirm the new
+precise boxes/groups. The historical zero-qualified result under the unchanged
+3–5-class gates is not rewritten as a pass. Original material is retained.
+See the latest [review-preparation verification](VERIFICATION_M2B2B.md).
+
+## Historical Phase A implementation and unchanged 3–5-class rules
 
 The user reports independent plan review PHASE_A_AUTHORIZED_WITH_SIMPLIFICATION
 and authorizes Phase A only. Current branch:
@@ -108,7 +330,8 @@ The independently reviewed and now Phase-A-approved
 [Module 2B-2B implementation plan](superpowers/plans/2026-10-05-module-2b2b-multiclass-data-training-infrastructure.md).
 It separates Phase A schema/readiness/data preparation and immutable dataset
 freeze from separately authorized Phase B model-environment qualification.
-Phase A has now begun under the new explicit authorization above; Phase B has not.
+At that design checkpoint Phase A was authorized and Phase B had not begun.
+The separately completed Phase B and current smoke lock scope are recorded above.
 The preceding documentation-only stage did not prepare data, install models,
 download weights, train, infer or create Model Locks/Android/live functionality.
 The historical Minions readiness checks still exist unchanged; do not use them
@@ -159,13 +382,14 @@ It is not the current continuation instruction. Its local branch is
   New training eligibility: zero matches/zero plays, because individual-unit
   frames have not been exhaustively human-reviewed. Total pending frames 72,
   unit boxes zero, unknown intervals six, certified absent duration zero.
-- Paused stopping point: source 2 has a concrete completeness conflict (ongoing
-  battle at actual file end). Earlier user attestation and all original files
-  remain preserved; latest pending draft does not claim it complete. This is not
-  a new result-screen rule. The user has now confirmed that no subsequent footage
-  exists and instructed retaining source 2 as pending. Source 3/4 target review
-  remains pending in original order, not negative
-  and not a basis for choosing easier material. No Training Dataset Lock exists.
+- Historical bounded recount resolves the earlier stopping point: source 2 is
+  **excluded for mid-match truncation** after explicit user confirmation that
+  no later clip exists. Earlier attestation and original files are preserved;
+  no result-screen rule is introduced. Source 3/4 sampled target review is
+  completed in original order with zero newly confirmed ordinary deployments,
+  not proof of absence or exhaustive GT. Both stay pending for native training
+  qualification, never Negative. That specialist route produced no Training
+  Dataset Lock; its outputs are superseded / historical.
 - Stage-end maintained regression: 680 passed / two known Windows symlink
   permission skips in 391.67s, exit 0; no GUI skips/errors. Fresh pip check exit 0,
   no broken requirements. Detailed verification and remaining limitations are in
@@ -181,10 +405,10 @@ FP/min time. Preserve the old Development Lock and accepted 2B-1 FAIL byte-for-b
 See [data verification](VERIFICATION_M2B2_DATA.md),
 [unit dataset contract](MODULE_2B2_DATASET_CONTRACT.md), and the approved
 [plan](superpowers/plans/2026-10-05-module-2b2-data-preparation.md).
-Those unfinished reviews and the completeness conflict remain recorded, but this
-research task does not continue them or ask for more Minions recordings. No claim
+Those unfinished reviews and the former completeness conflict remain recorded;
+the current smoke task does not continue them or ask for more Minions recordings. No claim
 is made that remaining sources lack targets. The new schema/PoC design is accepted;
-its implementation now proceeds only within the approved new Phase A tasks.
+its Phase A implementation and later qualification retain their separate evidence above.
 
 ## Accepted Module 2B-1 baseline — historical closeout
 
@@ -228,8 +452,9 @@ See [fixed 2B-1 protocol](MODULE_2B1_PROTOCOL.md).
   that user instruction; this session did not retrieve another ChatGPT response.
 - Historical 2A2 experiment: the user attested all four natural replay recordings
   cover full matches and explicitly superseded the result-screen completeness gate.
-  The paused 2B-2 source-2 completeness conflicts with that attestation and remains
-  unresolved as recorded above; the old attestation is preserved, not new proof. Use
+  Source 2's conflicting completeness is now resolved as mid-match truncation
+  with no later clip; it is excluded from training use. The old attestation is
+  preserved historically, not new proof. Use
   user_confirmed completion provenance and the actual file-end boundary; absence
   of victory/defeat UI is not incompleteness. The first original-order input was
   completed using its existing rough review. The user corrected two deployments to
@@ -250,6 +475,15 @@ See [fixed 2B-1 protocol](MODULE_2B1_PROTOCOL.md).
 - Module 2B-1: formally accepted as insufficient at `585c3d9...`; the fixed
   experiment and review are complete, but neither fold passed. Acceptance of a
   failed feasibility result does not open Model Lock or the next module.
+- Completed two-class data-lock step: explicit private local research PoC training-use
+  authorization for the frozen 11-box GT; separate Training Dataset Lock is
+  exclusively created, dedicated readiness/readback exit 0 and internal
+  `training_qualified=true`. Fresh joint private tests pass 65/0 skips and the
+  full maintained regression passes 908/3 existing permission skips, exit 0.
+  That step performed no real training or weights download. The new Phase C
+  authorization is recorded at the top; implementation is not yet started.
+  Historical 4/8 and original 3–5-class readiness results
+  are retained in their original scopes, not applied to this smoke snapshot.
 
 ## Inherited verified capabilities
 
@@ -298,7 +532,7 @@ play) -> new annotation session -> Test GT Lock before any inference.
 Underlying match, not recording filename/hash, is the split identity.
 Historical Inferno Dragon evidence is regression-only, not the first new target.
 
-## Current recording intake
+## Historical recording intake and accepted 2A2 boundary
 
 - User confirms four distinct new natural whole-match replays, normal speed,
   unedited, not the historical Inferno Dragon match; the current statement resolves
@@ -402,8 +636,9 @@ SHA in this file. That main integration was ff-only. The feature branch, accepte
 force push, rebase, history rewrite or branch deletion was part of that closeout.
 These historical instructions do not authorize current 2B-2 main integration.
 
-That closeout stopped after acceptance publication. The later 2B-2 data-only
-authorization is now paused and superseded by the research-only scope above;
+That closeout stopped after acceptance publication. The later specialist 2B-2
+data-only authorization remains paused; its route is historical and superseded
+by the current separately authorized two-class smoke scope above;
 do not automatically tune or train. Module 2A2 remains
 accepted at
 DEV_LOCKED. Both folds failed, so Model Lock stays closed. No new source, Test GT Lock,

@@ -1,5 +1,36 @@
 # Decisions
 
+## 2026-10-06 — Authorize one fixed-budget two-class smoke training run
+
+### Decision
+
+The user's explicit Phase C instruction authorizes official COCO YOLOX-Nano
+transfer learning using only the locked Witch/Skeleton TRAIN split, 416 input,
+batch 1, FP32, fixed seed and exactly 100 optimizer steps. Commit a clean local
+historical-data/environment baseline first; no push or main integration.
+The experiment may fail visually without being invalid; do not tune or retry
+based on DEV_VAL. Record separate current run authority instead of altering
+immutable locks' older authorization flags.
+
+### Reason
+
+Exercise the first real GT-to-detector chain while preserving match isolation,
+the original 11 accepted boxes and the actual limits of two training frames.
+Owner/form/origin remain metadata; spawned Skeleton is not a card-play event.
+Local training-use qualification is not legal clearance.
+
+### Consequences
+
+Public docs may now record the exact GT/data-lock SHA-256 identities. Media,
+annotations, weights, checkpoints, predictions and exports stay private and
+ignored. Use only the official Nano release asset with recorded code license,
+COCO provenance and unverified dataset/asset rights caveat. Train only complete
+TRAIN frames; the partial DEV_VAL frame yields positive matches and Unknown
+unmatched detections, not full-frame negatives/FP. One post-training evaluation,
+fixed confidence/NMS/IoU settings before training, and no quality PASS threshold.
+No Tiny, extra data, Blind Test, production Model Lock or later module.
+
+
 This document records durable product and architecture decisions. New entries
 must describe accepted reality rather than speculative preferences.
 
@@ -581,3 +612,205 @@ pool uses opponent support rather than requiring own support for every class.
 - Preserve old locks, fixed-Minions tools and accepted 2B-1 failure byte-for-byte.
 - No Phase B, model installation, weights, training, blind-test work, Module 3,
   push or main integration. Stop on data insufficiency or Dataset Lock for review.
+
+## 2026-10-06 — Separate Smoke GT Freeze from Training Qualification
+
+### Decision
+
+The user authorizes a separate two-class learned-detector smoke milestone:
+`unit.witch` and `unit.skeleton`, match 01 / TRAIN and match 04 / DEV_VAL.
+The existing 3–5-class schema, validators and locks remain unchanged. The
+normal-Minions specialist route is not resumed. Owner is annotation metadata,
+not a detector class; missing own support does not block this smoke scope and
+does not establish owner discrimination. Witch visual identity can be confirmed
+with form unknown. Spawned Skeletons retain their proposed source relationship,
+without becoming Skeleton-card deployment evidence.
+
+### Context
+
+High-level returned human review identifies these two visual candidates across
+the two Development matches, but precise boxes, continuity and sources still
+need independent confirmation. Provenance facts alone are not a training-use
+legal authorization or a passed readiness gate.
+
+### Alternatives
+
+Relax the existing general-purpose training lock; conflate GT freeze with training
+qualification; or keep an additive smoke GT boundary separate from training
+eligibility. The user explicitly chooses the third.
+
+### Reason
+
+Freeze reproducible human annotation without falsely representing pending
+training provenance as qualified. Preserve the general-purpose contract and
+historical experiments instead of rewriting their results.
+
+### Consequences
+
+- A future **2-Class Smoke GT Lock** requires confirmed visual class, bbox,
+  appearance/deployment semantics and owner/form/origin metadata. Training
+  qualification may still be pending; the lock must not imply ready for training.
+- A **Training Dataset Lock** requires frozen GT and passed training-use
+  provenance/readiness. It is forbidden when `training_qualified=false`.
+- This turn prepares private, non-exhaustive `draft / pending_human_review`
+  proposals only. No precise ChatGPT confirmation, independent deployment count,
+  causal root, negative background or exhaustive frame coverage is fabricated.
+- This decision does not implement new production schemas/locks, change old
+  2A2 locks or 2B-1 FAIL, or authorize Phase B, installation, weights or training.
+- Stop with the minimal Human Review Bundle for final human correction. Do not
+  request more recordings merely to satisfy the superseded first-milestone
+  3–5-class target; its existing validator remains intact for its original scope.
+
+## 2026-10-06 — Freeze Confirmed Development GT without Training Qualification
+
+### Decision
+
+The user explicitly relays TWO_CLASS_SMOKE_HUMAN_REVIEW_CONFIRMED: objects 01–11
+confirmed, 12 rejected, original bboxes accepted unchanged. Four groups are
+accepted; each match's Witch group represents one confirmed independent
+deployment, while both spawned Skeleton groups remain non-card deployments.
+Only the Development **2-Class Smoke GT Lock** is authorized.
+
+### Context
+
+The exact four-frame packet has now been reviewed. Three frames are declared
+exhaustive for Witch/Skeleton only; match 04 at 72s retains an ambiguous small
+unit and is not exhaustive. Unknown form is allowed. The user permits recording
+moderate/low visibility metadata locally without changing confirmation decisions.
+
+### Reason
+
+Freeze the supplied human conclusions and their original media coordinates,
+without requiring or falsely granting training provenance. Keep a rejected
+visual hypothesis distinct from a negative and retain sampled-frame coverage.
+
+### Consequences
+
+- The private dedicated `two_class_smoke_gt_lock` v1 uses canonical digests,
+  strict source binding and exclusive versioned creation. One-off validation
+  supports this reviewed snapshot; it does not relax old training/scale schemas,
+  impersonate a Model-linked blind Test GT Lock or certify video authenticity.
+- Owner/form/origin and confirmed spawned-from relationships are frozen; no
+  per-frame deployment multiplication, entity tracking, source-card ID or
+  exact spawn timestamp is inferred from these selected frame times.
+- Preserve the original ZIP/draft. Append a confirmed return and an explicit
+  final presentation; historical candidate fields are marked draft-only.
+- Partial 72s GT retains its Witch box, not complete-supervision background.
+  Unknown/rejected objects are not Negative; sampled images are not FP/min time.
+- `training_qualified=false`; Training Dataset Lock and Phase B remain closed.
+  Rights provenance is factual only. Stop after verification and reporting.
+
+## 2026-10-06 — Separately Qualify YOLOX CUDA Environment without Real Training
+
+### Decision
+
+The user's explicit Phase B authorization permits a separate model environment,
+compatible dependency installation, then Nano and Tiny synthetic CUDA probes.
+It supersedes the earlier Task 7 no-optimizer/checkpoint and Nano-only restrictions
+for this environment test. `training_qualified=false` remains unchanged.
+
+### Context
+
+GT is frozen but training provenance/readiness is not qualified. Hardware is GTX
+1050 Ti 4GB, capability 6.1, Windows 11 / Python 3.12.4. Driver-reported maximum
+CUDA version is not proof that a chosen wheel supports Pascal or executes kernels.
+
+### Alternatives
+
+Pollute the established offline environment or install all optional legacy YOLOX
+export/trainer dependencies; instead use an isolated, pinned minimum model-operation
+closure and unmodified official source integration, then verify actual operations.
+
+### Reason
+
+Separate environment feasibility from data/weight rights and detection quality.
+Match official Torch 2.7.1 and Vision 0.22.1 CUDA 11.8 Windows wheels; their actual
+GTX 1050 Ti execution is the acceptance evidence, not a theoretical compatibility
+claim. Preserve all old datasets, locks and accepted failures.
+
+### Consequences
+
+- The environment qualifies Nano 416 / FP32 / batch 1, followed by Tiny batch 1
+  and optional Nano batch 2. Verify real GPU loss/gradients, nonzero parameter
+  updates, strict model/optimizer checkpoint recovery, inference and CUDA NMS;
+  CPU assignment fallback cannot qualify the required CUDA chain.
+- YOLOX source version 0.3.0 is pinned to official commit
+  `6ddff4824372906469a7fae2dc3206c7aa4bbaee` with Apache-2.0 license retained.
+  Do not alter dependency metadata to fake `pip check` success. Installed
+  distributions and source import closure are audited separately. Full official
+  Trainer, real COCO pipeline and ONNX/ncnn/mobile paths remain unqualified.
+- Only anonymous in-memory random tensors/toy annotations may exercise this
+  chain. Synthetic checkpoints are local probe artifacts, not Model Locks or
+  downloaded pretrained weights. Python audit guards are not OS sandbox proof.
+- Official future weight identifiers `YOLOX/0.1.1rc0/yolox_nano.pth` and
+  `YOLOX/0.1.1rc0/yolox_tiny.pth` are recorded only; no weights are downloaded.
+  Code license does not qualify weights or gameplay training provenance.
+- Neither Training Dataset Lock nor real training is authorized. Environment
+  qualification is not detector success, owner discrimination, training permission,
+  full-epoch stability or mobile feasibility. Stop for review; no commit/push/merge.
+
+## 2026-10-06 — Authorize Private Local Smoke Training Qualification Separately
+
+### Decision
+
+The user explicitly authorizes training-use qualification and a separate
+**2-Class Training Dataset Lock v1** (`two_class_training_dataset_lock`)
+for the existing Smoke GT Lock v1's
+11 confirmed boxes only: `unit.witch` / `unit.skeleton`, match 01 / TRAIN and
+match 04 / DEV_VAL. Intended use is `private_local_research_poc`. This supersedes
+the earlier smoke-stage prohibition on creating a training snapshot within
+this exact scope, without changing the immutable GT-only lock or old schemas.
+
+### Context
+
+GT and synthetic model-environment qualification have separate retained evidence.
+The ordinary-Minions four-match/eight-play target-recheck is a preserved historical
+route, not the current product direction or a prerequisite for this smoke dataset.
+User authorization for a private local research PoC is now explicit, while
+third-party game-asset rights remain unverified.
+
+### Alternatives
+
+Keep waiting for the historical specialist quota; treat user authorization as
+general legal clearance; or record the bounded private local authorization and
+verify a separate smoke training snapshot. The user chooses the third scope.
+
+### Reason
+
+Make the authorized local research step reproducible while distinguishing the
+project's internal readiness decision from rights clearance, detector quality
+and permission to perform the later training stage.
+
+### Consequences
+
+- Record `source_type=user_recorded_gameplay`,
+  `intended_use=private_local_research_poc`, `user_training_authorized=true`,
+  `external_upload=false`, `redistribution=false`, and
+  `rights_clearance=unverified`. `training_qualified` is only the internal
+  private local PoC gate; it is not legal clearance, official Supercell permission,
+  commercial-use approval or external upload/redistribution rights.
+- New qualification must be checked and bound to a separate immutable version;
+  never set the old GT-only v1's `training_qualified=false` to true in place.
+  Preserve original bboxes, owner/form/origin, spawned-from relations, underlying
+  matches/splits, rejection and Unknown coverage. Freeze 11 boxes/four frames,
+  with default complete selected-class supervision limited to three frames/10
+  boxes. The 72s Witch positive is
+  `positive_only_requires_unknown_safe_consumer`; standard full-frame
+  loss/metrics are prohibited by default and Unknown regions never become
+  background. Sampled images do not certify FP/min time.
+- Existing target-recheck files remain superseded / historical without deletion,
+  overwrite or retrospective success. No specialist supplementation is requested.
+  Old 2A2/2B-1 and 3–5-class schemas, validators, gates and locks stay unchanged;
+  their insufficiency is not rewritten as a qualified multiclass dataset.
+- This authorization covers data-lock preparation and verification only. It
+  does not permit actual training, pretrained-weight download, Phase C, real
+  detector inference, threshold tuning, Model/Test GT Lock, later modules,
+  Android/live use, staging, commit, push or merge.
+- Fresh checked freeze evidence records **TWO_CLASS_TRAINING_DATASET_LOCKED**:
+  exclusive v1 creation, dedicated readiness and lock validation/readback exit 0,
+  new internal `training_qualified=true`, old GT-only snapshot unchanged and
+  1,462 protected files unchanged. Private hashes stay in ignored local receipts.
+  Fresh joint private lock tests pass 65 (40 new + 25 original GT); full
+  maintained regression passes 908 / 3 existing Windows permission skips,
+  exit 0. The data-lock stage stops here. Full production training pipeline
+  remains unqualified; Phase C and actual training still require separate authority.
