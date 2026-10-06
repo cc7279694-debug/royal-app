@@ -430,3 +430,44 @@ exclusive creation also ensures one winner for concurrent same-version writers.
 Failed partial writes remove only the regular file inode created by that
 operation, not an existing lock or another writer's replacement. Locks, old
 sources and old single-card behavior are never overwritten or migrated.
+
+## Task 4 — manual multiclass annotation revisions
+
+`launch_multiclass_annotator(draft_path, *, data_root, output_directory)` rebinds
+strict local media and labels before importing/creating Tk. The independent
+manual canvas uses rotated original PNG coordinates and aspect-preserving display
+through the unchanged public `canvas_box_to_normalized` helper. Navigation follows
+original recording intake, then actual relative frame time, not hashed frame IDs.
+Class, owner, form, visibility and existing appearance group are independent
+controls. New boxes start pending with unknown owner/form and nullable group/entity;
+the editor never creates causal groups, deployments or source-card mappings.
+Objects without a known taxonomy class are explicit global ignore regions, not
+guessed classes or background. Complete class/full-image review needs an explicit
+reviewer. Relevant unresolved unknown/ignore content keeps the frame and coverage
+pending. Resolving such content is a separate explicit human attestation, never
+automatic inference. Sparse complete screenshots do not certify FP/min time.
+
+`save_multiclass_revision(draft, *, data_root, output)` publishes a new, exclusive
+`<stem>.labels.json` plus `<stem>.json` draft. A new full sidecar is written and
+fsynced, the candidate is rebound, and the draft is written last as the pair's
+publication point; the pair is not an atomic multi-file OS transaction. All old
+declared media and label bytes are checked before/after publication. Edited rows
+are not incorrectly compared with old sidecar content: the new complete sidecar
+receives a new source identity and hash, and saved selection/backend maps clear.
+The first GUI box may use an in-memory `pending_labels`/zero-hash reference only
+at the missing `pending.labels.json` in its output directory; an existing file
+never receives that exception. The published revision always has real checked
+label bytes/hashes, including explicitly reviewed first boxes. A failed write
+cleans only regular new-file inodes owned by that call, never an old revision.
+
+Box edits/removals invalidate current exhaustive coverage and old selection.
+Unapplied selected-box controls reject save/navigation without clearing dirty
+state. Switching to another box restores the active selection and unapplied fields
+until explicit Apply; removing a box clears that active identity. New Box mode
+requires applied controls before allowing another class and resets independent
+metadata to unknown/null instead of copying the preceding unit. Failed
+validation or failed next-image loading retains the current frame,
+canvas and edits. Unsaved navigation/close requires a save/keep-or-discard/cancel
+choice. Import creates no GUI; native initialization/callback failures propagate
+as local errors, not skips or successful review. Synthetic GUI tests execute real
+Tk in fresh processes and reject child skips, native callback errors and timeouts.
