@@ -121,3 +121,57 @@ def add_rerecording(draft, recording_id="recording_1"):
                             "recording_id": record["recording_id"], "status": "included",
                             "reason": "Same synthetic underlying match", "history": []})
     return record
+
+
+def write_multiclass_sidecars(root, draft):
+    """Materialize additive synthetic label rows, never alter pure fixture logic."""
+    from clash_tracker_video.evidence_prepare import file_hash
+    from clash_tracker_video.experiment_lock import canonical_bytes
+    for source in draft["annotation_sources"]:
+        path = root / source["path"]
+        path.parent.mkdir(parents=True, exist_ok=True)
+        document = {"schema_version": 1, "annotation_source_id": source["annotation_source_id"],
+                    "annotations": [deepcopy(r) for r in draft["annotations"]
+                                    if r["annotation_source_id"] == source["annotation_source_id"]]}
+        path.write_bytes(canonical_bytes(document) + b"\n")
+        source["sha256"] = file_hash(path)
+
+
+def multiclass_disk_fixture(root, *, draft=None, rotation=0):
+    """Real synthetic MP4 producer exports, with no gameplay or fabricated report."""
+    from conftest import make_video
+    from clash_tracker_video import evidence_prepare as ep
+    current = deepcopy(draft) if draft is not None else multiclass_fixture()
+    for number, record in enumerate(current["recordings"], 1):
+        rid = record["recording_id"]
+        frames = sorted([f for f in current["frames"] if f["recording_id"] == rid],
+                        key=lambda f: f["timestamp_seconds"])
+        times = [f["timestamp_seconds"] for f in frames]
+        source = make_video(root / f"local_data/{rid}.mp4",
+                            pts=[number * 1000, *[number * 1000 + int(t * 1000) for t in times],
+                                 number * 1000 + 100000], rotation=rotation)
+        run = root / f"outputs/{rid}"
+        index = ep.prepare_evidence(source, run, recording_id=rid, times=times)
+        record["source_path"] = source.relative_to(root).as_posix()
+        for key in ("source_sha256", "width", "height", "rotation_degrees", "time_base",
+                    "origin_pts", "origin_time_base", "last_frame_seconds"):
+            record[key] = deepcopy(index["recording"][key])
+        record["match_segment"]["end_seconds"] = record["last_frame_seconds"]
+        record["exports"] = [{"export_id": "export_1", "index_path": f"outputs/{rid}/index.json",
+                              "report_path": f"outputs/{rid}/exports/report.json",
+                              "index_sha256": ep.file_hash(run / "index.json"),
+                              "report_sha256": ep.file_hash(run / "exports/report.json")}]
+        for frame, actual in zip(frames, index["frames"]):
+            old_id = frame["frame_id"]
+            for key in ("frame_id", "timestamp_seconds", "raw_pts", "time_base", "image_width", "image_height"):
+                frame[key] = deepcopy(actual[key])
+            frame["origin"] = {"raw_pts": record["origin_pts"], "time_base": deepcopy(record["origin_time_base"])}
+            frame["image_path"] = (run / actual["image_path"]).relative_to(root).as_posix()
+            frame["image_sha256"] = ep.file_hash(root / frame["image_path"])
+            for row in [*current["annotations"], *current["coverage"]]:
+                if row["frame_id"] == old_id:
+                    row["frame_id"] = frame["frame_id"]
+    for source in current["annotation_sources"]:
+        source["path"] = f"outputs/labels/{source['annotation_source_id']}.json"
+    write_multiclass_sidecars(root, current)
+    return current

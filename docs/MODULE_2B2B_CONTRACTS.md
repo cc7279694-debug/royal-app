@@ -210,12 +210,13 @@ The module defines closed TypedDicts for CandidateReport, ScaleReport,
 ReadinessReport, ScaleSnapshot, MulticlassLock and ExportManifest, with explicit
 support counts/IDs, rational statistics, reasons, media/label snapshots and transforms.
 Task 2 implements candidate, scale and prospective readiness reports below;
-freeze, checked disk binding and actual exports remain separate consumer tasks.
+Task 3 implements checked disk binding and separate freezes below. Annotation
+editing and actual exports remain separate consumer tasks.
 Scale statistics carry exact `{numerator, denominator}` values and both all-reviewed
 and clean-representative distributions. All lock envelopes have exactly
 `kind/version/id/created_at/payload/digest`. No prediction fields are present.
-BoundMulticlass is only a typing Protocol in Task 1: Task 3 must implement the
-opaque, checked disk factory and reject ordinary caller-created dictionaries.
+BoundMulticlass remains a typing Protocol in the contract module; Task 3 supplies
+the private checked disk factory and rejects ordinary caller-created dictionaries.
 
 ## Task 2: pure qualification and fixed Development scale policy
 
@@ -335,3 +336,97 @@ basis. These shared helpers do not replace Task 3's checked disk binding.
 The accepted design and task boundaries remain in the
 [amended spec](superpowers/specs/2026-10-05-module-2b2a-multiclass-design.md) and
 [Phase A plan](superpowers/plans/2026-10-05-module-2b2b-multiclass-data-training-infrastructure.md).
+
+## Task 3: checked artifacts and separate immutable freezes
+
+`multiclass_dataset.py` exposes:
+
+- `bind_multiclass(draft: MulticlassDraft, data_root: Path) -> BoundMulticlass`
+- `freeze_scale_snapshot(bound: BoundMulticlass, directory: Path) -> ScaleSnapshot`
+- `load_scale_snapshot(path: Path, data_root: Path) -> ScaleSnapshot`
+- `freeze_multiclass_dataset(bound: BoundMulticlass, scale_snapshot: ScaleSnapshot, directory: Path) -> MulticlassLock`
+- `load_multiclass_dataset_lock(path: Path, data_root: Path) -> MulticlassLock`
+
+The explicit absolute `data_root` is a repository-local container (the repository
+itself may be used). Every container-relative source, report, index, image and
+label artifact must stay inside that container and ignored, untracked repository
+`outputs/` or `local_data/`. Lock output/read paths are explicit absolute private
+paths. URLs, UNC, drives in relative paths, traversal, symlinks and junctions
+(including ancestors) are rejected before resolving references. Public legacy
+`dataset_artifact_path`/`private_artifact_path` are reused without changing old
+contracts or lock factories. The legacy private `_disk_operation` decorator is
+reused only for identical-path Git privacy checks within a single top-level disk
+operation: no content/hash/containment caching or cross-operation authority.
+
+A new multiclass label sidecar has exactly `{schema_version: 1,
+annotation_source_id, annotations}`. `annotations` contains the full closed
+AnnotationRow set for that source, including retained pending and non-target
+metadata. Its source ID agrees with every row. Sidecar raw SHA is declared in
+the draft; no self-hash is embedded in the sidecar. Set ordering is semantically
+canonical, but the raw byte SHA is still exact. This is not the old
+`unit_annotations` sidecar schema and uses no old deployment defaults.
+
+Binding loads each declared export through unchanged strict `load_indexes`,
+with its own report/image/contact-page path base, then merges all exports to
+reject conflicting duplicate pixels. A declared frame must occur with its
+actual PTS/time base/timestamp/dimensions in every listed export and its image
+path must be a real alias. Source SHA, original rotated geometry, origin, terminal
+metadata and report/index pairing must agree. At bind, all declared source bytes, raw
+JSON, successful export images and contact pages are hashed and rechecked;
+sidecars must correspond exactly to the full draft labels. No caller-provided
+snapshot replaces these disk reads. Binding may retain valid pending inventory;
+binding alone establishes neither readiness nor a lock.
+
+This does **not** decode original MP4s again. Source hash plus producer reports
+and indexes bind existing metadata; they cannot independently certify source
+first/last PTS, completeness, natural match identity, human exhaustive review or
+rights assertions. Digests are consistency checks, not signatures, authenticity
+proof or protection against a caller with write access. No extra epsilon changes
+the original 100ms export tolerance or producer-compatible terminal boundary.
+
+The closed draft persists hashes for MP4s, indexes, reports, declared frames and
+label sidecars. Reload checks those historical declared hashes. Additional
+successful export PNGs and contact pages not listed as draft frames are re-read
+through the current strict loader and safe reference checks, but have no
+persisted historical-byte hash in this schema. Bind-to-freeze compares their
+in-memory hashes too; later lock reload cannot certify their historical bytes.
+They supply no GT, scale or export support. This is not a requirement to turn
+every locator export into a reviewed draft frame. The separate phase protection
+inventory safeguards all pre-existing private bytes without changing this schema.
+
+The bound implementation is private and freeze requires its checked context.
+Each freeze rebinds all dependencies and rejects changes since bind, including
+raw-byte changes with unchanged JSON meaning. A frozen/loaded ScaleSnapshot is
+a checked dict subclass carrying its path/container/raw file SHA **only in
+memory**; these are not extra envelope fields. `dict(snapshot)` is the closed
+JSON value for pure readiness/serialization consumers. Ordinary dictionaries,
+including re-signed valid-looking snapshots, cannot authorize dataset freeze.
+The prior checked snapshot is reloaded and its file bytes compared at freeze.
+
+Scale freeze requires a complete qualifying full moving-candidate scale pool
+and qualified used-source provenance, before selection. The public freeze API
+rejects an input with non-null selection, even if its statistics are valid; it
+does not erase a final selection to manufacture prior scale evidence. Its draft is the shared
+`scale_basis`: no selection, empty backend maps, all retained inventory/GT/splits
+committed. It is not MULTICLASS_DATASET_LOCKED or training permission. Dataset
+freeze separately requires checked prior scale evidence plus selected-data
+readiness. Only selection and deterministic backend maps may differ from the
+prior basis; changing GT, inventory, split, metadata, policy, created time or
+freeze version needs a new snapshot/version, never an edited old lock.
+
+Both envelopes retain exactly the Task 1 fields. Their `id`/`created_at` equal
+the payload draft's dataset ID/time; envelope `version=1` is format version,
+while `draft.freeze_version` is immutable data revision. Dataset load validates
+and rederives its embedded full scale evidence and all current external data.
+The closed dataset JSON embeds the scale value, not its original disk path;
+reload checks that embedded evidence rather than claiming independent proof of
+the historical existence/chronology of the external scale file.
+
+Set-like collections sort deterministically; intake and its history remain in
+original order. Raw file hashes and semantic draft/envelope digests are distinct.
+New files use a SHA-256 ID namespace plus kind/revision, never arbitrary IDs as
+paths. The directory rejects an existing same-kind/ID/revision even after rename;
+exclusive creation also ensures one winner for concurrent same-version writers.
+Failed partial writes remove only the regular file inode created by that
+operation, not an existing lock or another writer's replacement. Locks, old
+sources and old single-card behavior are never overwritten or migrated.
