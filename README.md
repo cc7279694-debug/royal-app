@@ -1,9 +1,12 @@
 # Clash Tracker
 
-当前已明确授权 **Phase C — 2-Class Learned Detector Smoke Training**：
-固定 Nano 416 / batch 1 / FP32 / 100 optimizer steps，训练后仅一次 DEV_VAL
-评估。先建立干净的本地 Git 基线；不 push、不合并 main，不根据结果追加训练。
-尚未开始真实训练。详见[固定训练协议](docs/PHASE_C_SMOKE_PROTOCOL.md)。
+**Phase C — 2-Class Learned Detector Smoke Training 已完成首次真实实验**：
+Nano 416 / batch 1 / FP32 恰好 100 optimizer steps，之后仅一次两帧 DEV_VAL
+评估。真实 GT → 导出 → CUDA 训练 → checkpoint 恢复链路成功；训练 loss 下降。
+固定 IoU 0.5 下仅匹配 1/5 个 DEV_VAL GT，且该 Witch 分数极低；Skeleton 未匹配。
+这是有效但检测能力明显不足的 smoke 结果，不是准确率验收通过。
+保留首次结果，不调参、不重跑；本地提交，不 push、不合并 main，等待独立审查。
+详见[固定协议](docs/PHASE_C_SMOKE_PROTOCOL.md)与[实际验证](docs/VERIFICATION_PHASE_C.md)。
 下文原阶段的“不训练”边界属于历史，不撤销本次新授权。
 
 本项目从用户主动提供的本地 MP4 开始，研究离线画面分析。

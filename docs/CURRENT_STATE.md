@@ -2,14 +2,24 @@
 
 Last verified: 2026-10-06.
 
-## Current authorization — Phase C two-class learned smoke training
+## Current checkpoint — Phase C real two-class smoke experiment completed
 
-The user now explicitly authorizes one YOLOX-Nano 416 / batch 1 / FP32 run
-on the qualified GTX 1050 Ti environment, with fixed seed and 100 optimizer
-steps, followed by one DEV_VAL evaluation. Start from a clean local committed
-Phase A/B/GT/data-lock checkpoint; no push or main integration. Historical
-prohibitions below describe their stage boundaries, not this new authorization.
-No real training has started at this checkpoint.
+The authorized YOLOX-Nano 416 / batch 1 / FP32 run completed exactly 100
+optimizer steps on the GTX 1050 Ti, followed by one two-frame DEV_VAL evaluation.
+Clean historical baseline: `b75819db3bc2c542eede1b28ac854049f7ba3acc`;
+actual frozen run code: `bfc834dfc197d21528cf410591a41f53ab844fc3`.
+Training took 40.20s; first/last ten-step mean losses 11.925852 / 2.136085;
+100 CUDA assignments, zero CPU fallback, 320 parameter tensors changed.
+Strict model/optimizer checkpoint reload passed. Peak allocated VRAM 117.61 MiB.
+DEV_VAL fixed-IoU matches: **1/5**, one Witch at IoU 0.644608 but confidence
+0.001066; all three Skeleton positives and the other Witch missed. This is a
+weak low-score localization response, not reliable detection or generalization.
+Complete 68s frame: 77 sampled-frame FP at the pre-fixed low confidence gate;
+partial 72s: 30 unmatched unjudged, one outside-image padding candidate, no FP
+claim. No threshold selection, second evaluation or additional training occurred.
+See [Phase C verification](VERIFICATION_PHASE_C.md). Stop for ChatGPT review;
+no next module, push or main integration. Historical prohibitions below apply
+to their earlier stage, not retrospectively to this authorized experiment.
 
 Public artifact identities, explicitly authorized for publication now:
 

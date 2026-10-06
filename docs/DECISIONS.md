@@ -1,5 +1,27 @@
 # Decisions
 
+## 2026-10-06 — Preserve the first fixed-budget real smoke result
+
+### Decision
+
+Retain the one 100-step Nano checkpoint and its first DEV_VAL predictions without
+tuning, retries or retroactive success. The real training chain and numerical
+learning are verified, but 1/5 matched GT at IoU 0.5 with a very low-score Witch
+response is not reliable two-class detection. No Model Lock or next module.
+
+### Reason
+
+Two TRAIN images cannot justify accuracy or generalization claims. The fixed low
+confidence output includes many false detections in the complete frame. Partial
+DEV_VAL unmatched predictions remain unjudged Unknown, never negative evidence.
+The review ZIP is created locally only; no automatic upload or redistribution.
+
+### Consequences
+
+Freeze the first result for independent review. Further experiments need new
+authorization. The unmodified old locks, 2B-1 FAIL and historical validators
+remain valid history; no restored specialist Minions quota.
+
 ## 2026-10-06 — Authorize one fixed-budget two-class smoke training run
 
 ### Decision

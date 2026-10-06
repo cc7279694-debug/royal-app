@@ -6,8 +6,12 @@ start only after the previous module has been reviewed and accepted. Statuses ar
 
 ## Current separately authorized Phase C smoke experiment
 
-Status: In Progress — explicitly authorized 2026-10-06; no training performed
-at the initial clean local checkpoint. The completed Phase A/B/GT/data-lock
+Status: Completed execution, pending independent acceptance — one fixed real
+100-step Nano run and one two-frame DEV_VAL evaluation; matched 1/5 GT at fixed
+IoU 0.5, very low-confidence Witch response and no matched Skeleton. No claim
+of detector accuracy acceptance. See [actual verification](VERIFICATION_PHASE_C.md).
+Stop; further tuning/training/data or blind testing requires separate authority.
+The completed Phase A/B/GT/data-lock
 records below retain their original historical boundaries. The obsolete
 ordinary-Minions specialist quota is not reinstated.
 

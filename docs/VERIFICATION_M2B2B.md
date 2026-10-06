@@ -1,6 +1,7 @@
 # Module 2B-2B Verification
 
-Current authorization is Phase C fixed-budget two-class smoke training; see
+The separately authorized Phase C real fixed-budget run is now complete; see
+[actual Phase C verification](VERIFICATION_PHASE_C.md) and
 [the protocol](PHASE_C_SMOKE_PROTOCOL.md). The following Phase A/B/GT/data-lock
 sections are historical results, not a veto of that separate current authority.
 The initial Phase C checkpoint validates the unchanged training lock with exit 0,
