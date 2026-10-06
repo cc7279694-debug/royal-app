@@ -233,3 +233,25 @@ def test_gpu_monitor_failure_is_recorded_not_silently_lost(tmp_path,monkeypatch)
     errors=[]
     train_smoke.telemetry(threading.Event(),tmp_path/'telemetry.csv',errors)
     assert errors
+
+
+def test_batch_protection_keeps_per_file_hash_and_ignored_path_checks(locked):
+    import verify_artifacts
+    m=api();root,p=locked
+    inventory={f['source_image_relative_to_repo']:f['image_sha256'] for f in p['gt_snapshot']['frames']}
+    assert verify_artifacts.check_inventory(root,inventory)==4
+    (root/'outputs/synthetic_0.png').write_bytes(b'changed')
+    with pytest.raises(ValueError):verify_artifacts.check_inventory(root,inventory)
+    with pytest.raises(ValueError):verify_artifacts.check_inventory(root,{'../outside':'x'})
+
+
+def test_protection_includes_tracked_legacy_code_without_treating_it_as_private(locked):
+    import verify_artifacts
+    m=api();root,_=locked
+    path=root/'tools/offline_video/src/legacy.py';path.parent.mkdir(parents=True)
+    path.write_text('# preserved historical source\n',encoding='utf-8')
+    subprocess.run(['git','add','tools/offline_video/src/legacy.py'],cwd=root,check=True)
+    inventory={'tools/offline_video/src/legacy.py':m.file_sha(path)}
+    assert verify_artifacts.check_inventory(root,inventory)==1
+    path.write_text('# changed\n',encoding='utf-8')
+    with pytest.raises(ValueError):verify_artifacts.check_inventory(root,inventory)

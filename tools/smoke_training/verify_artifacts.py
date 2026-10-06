@@ -14,6 +14,32 @@ def packages(interpreter):
             'packages':sorted(freeze.decode('utf-8').splitlines())}
 
 
+def check_inventory(root, inventory):
+    """Batch Git hygiene checks, retaining every hash and link/path check."""
+    root=Path(root).resolve();paths={};private=set();public=set()
+    for rel,digest in inventory.items():
+        relative=Path(rel)
+        require(not relative.is_absolute() and '..' not in relative.parts
+                and (relative.parts[0] in ('outputs','local_data') or relative.as_posix().startswith('tools/offline_video/')),
+                'Invalid protected inventory path')
+        path=root/relative
+        for ancestor in [path,*path.parents]:
+            require(not ancestor.is_symlink() and not ancestor.is_junction(),'Linked protected path')
+            if ancestor==root:break
+        paths[relative.as_posix()]=(path,digest)
+        (private if relative.parts[0] in ('outputs','local_data') else public).add(relative.as_posix())
+    if private:
+        ignored=subprocess.run(['git','check-ignore','--stdin'],cwd=root,
+                               input=('\n'.join(sorted(private))+'\n').encode('utf-8'),capture_output=True)
+        require(ignored.returncode==0 and set(ignored.stdout.decode('utf-8').splitlines())==private,
+                'Every private protected artifact must remain ignored')
+    tracked=subprocess.check_output(['git','ls-files'],cwd=root).decode('utf-8').splitlines()
+    require(not ({p.casefold() for p in private}&{p.casefold() for p in tracked}),'Private protected artifact tracked')
+    require({p.casefold() for p in public}<={p.casefold() for p in tracked},'Legacy source no longer tracked')
+    require(all(file_sha(path)==digest for path,digest in paths.values()),'Historical evidence protection failed')
+    return len(paths)
+
+
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--root',type=Path,required=True);parser.add_argument('--run',type=Path,required=True)
@@ -22,12 +48,11 @@ def main():
     parser.add_argument('--stage',choices=['before','after'],required=True)
     args=parser.parse_args();root=args.root.resolve();run=private_path(root,args.run)
     old=strict_json(private_path(root,args.inventory))['sha256_before']
-    conflicts=[rel for rel,digest in old.items() if file_sha(private_path(root,rel))!=digest]
-    require(not conflicts,'Historical evidence protection failed')
+    checked=check_inventory(root,old)
     lock=private_path(root,args.lock);require(file_sha(lock)==DATASET_SHA,'Dataset Lock changed')
     parent=private_path(root,strict_json(lock)['payload']['smoke_gt_lock_reference']['path'])
     require(file_sha(parent)==GT_SHA,'Parent GT changed')
-    result={'stage':args.stage,'historical_files_checked':len(old),'historical_files_unchanged':not conflicts,
+    result={'stage':args.stage,'historical_files_checked':checked,'historical_files_unchanged':True,
             'gt_lock_sha256':file_sha(parent),'dataset_lock_sha256':file_sha(lock),
             'original_media_unchanged':True,
             'offline_environment':packages(root/'.venv/Scripts/python.exe'),
