@@ -1,22 +1,25 @@
-# Module 3A — manual deployment-event review preparation
+# Module 3A — manual deployment-event review and attested GT
 
-This small presentation packager receives **explicitly curator-selected** visual
+The unchanged `bundle.py` presentation packager receives **explicitly curator-selected** visual
 anchors and context media. It does not select events, track entities, resolve
 card semantics, run a detector, import human returns or create an Event GT Lock.
-Module 1's extractor and the existing visual-review tools remain unchanged.
+The separate `event_gt.py` now validates explicitly user-attested decisions and
+freezes an annotation-only v1 lock. It is not a tracker or detector. Module 1's
+extractor and the existing visual-review tools remain unchanged.
 
 ## Current task contract
 
-- Goal: provide a local ZIP with video context, exact-PTS source frames, contact
-  sheets, visual-GT references and a blank human return for about10–20 candidate
-  windows. Candidate windows are not a count of independent deployments.
+- Goal: preserve the original pending context ZIP and bind a separate explicit
+  user return to a new immutable Event GT Lock. Candidate windows and visual
+  objects are not a count of independent deployments.
 - Scope: presentation/validation code, synthetic tests, new ignored output and
   current-state documentation. Existing media, locks, environments and App stay
   immutable. No database or migration is needed.
-- Stop: ready for human review; no confirmed `OpponentCardPlayed` or Event GT Lock
-  until context is reviewed and the user explicitly attests the returned result.
-- Verify: pending-only and boundary tests, repository-owned regressions, exact
-  source PTS, ZIP/member checks, old-data SHA/membership and privacy checks.
+- Stop: after validating the newly authorized Event GT Lock. Never enter Module
+  3B automatically; original pending source files are not rewritten as GT.
+- Verify: pending-only and human-return boundary tests, repository-owned
+  regressions, source bindings, lock readback/overwrite refusal, old-data
+  SHA/membership and privacy checks.
 
 ## Usage
 
@@ -43,7 +46,7 @@ pending card/owner hints. All candidates are `pending_human_review`,
 anchor, not an inferred spawn. Clip playback is presentation-only; source
 PTS/time_base minus source origin is the timing authority.
 
-## Human return and future event truth
+## Human review and separate event truth
 
 Open `index.html`, watch each context MP4, inspect full-size source frames and
 fill `event-review.csv` or `human-return.template.json`. Supported manual choices:
@@ -52,14 +55,42 @@ owner, form or timestamp. Record last-absent/first-visible bounds, uncertainty
 and notes. When the deployment is outside a window, request wider context rather
 than guessing or using first observation as the play time.
 
-Human-return fields are a **draft interchange template**, not a GT validator or
-freeze contract. This milestone deliberately provides no import/freeze command.
-A later explicitly authorized return-validation step must verify corrections,
-attestation, merges, evidence and new-deployment semantics before producing:
-`event_gt_id`, underlying match/recording, approximate timestamp, owner, card,
-form, visual classes/frame IDs, direct/grouped/uncertain type, evaluable,
-human_confirmed/uncertain confidence and notes. Source visual groups, spawned
-relationships and uncertainty reasons are preserved where available.
+The original bundle's `human-return.template.json` remains a **pending draft
+interchange template**, not confirmed truth, and is never overwritten. After
+explicit user authorization, `event_gt.py` accepts a separate
+`deployment_event_human_return_v1` with the entire pending source plan bound by
+canonical digest and its supplied file SHA. The caller must check the raw source
+file SHA separately; the embedded snapshot cannot authenticate source bytes.
+
+Each of the original candidates must have exactly one explicit decision:
+`confirm`, `uncertain`, `continuity` or `merge_duplicate`. Confirmation requires
+opponent evidence, supported visual/card mapping, form, direct/grouped type,
+human-confirmed confidence and an approximate time inside the reviewed window.
+Continuity may refer to an earlier unresolved candidate without resolving its
+deployment onset. A duplicate must refer to an earlier confirmed event in the
+same underlying match. Neither decision adds a new event or Negative evidence.
+The locked human return carries `reviewer=user`, explicit human confirmation and
+attestation, `review_basis=chatgpt_visual_review` and
+`confirmation_source=user_attestation_based_on_chatgpt_visual_review`.
+
+```python
+from pathlib import Path
+from tools.deployment_review.event_gt import build_lock, freeze_lock, load_lock
+
+# Read/check the original source and separate explicit user return first.
+lock = build_lock(plan, human_return)
+path = freeze_lock(lock, Path("outputs/new-event-gt/deployment_event_gt.lock.v1.json").resolve())
+assert load_lock(path) == lock
+```
+
+The explicit parent directory must already exist. Freeze uses exclusive creation,
+rejects symlink/junction paths and refuses an existing sibling lock with the same
+source/freeze-version identity, even if renamed. Loading uses bounded strict JSON
+and recomputes both digest and derived event/continuity/unresolved semantics.
+Only v1 is currently implemented; a future revision needs separate authorization.
+This is manual annotation/file consistency, not an automatic tracker, source
+authenticity proof, detector performance or full-match event coverage. It does
+not invent exact onset intervals from approximate human times.
 
 Persistent/reappearing units need one event, not one per frame. Minion/Royal Hog
 units are not individually card plays; grouped card identity needs context.

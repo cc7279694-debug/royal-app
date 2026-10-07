@@ -2,42 +2,53 @@
 
 Last verified: 2026-10-07.
 
-## Current checkpoint — Module 3A manual candidate review ready
+## Current checkpoint — Module 3A user-attested Event GT locked
 
-The user's2026-10-07 request authorizes only Deployment Event GT preparation
-through the Human Review Bundle, then a stop. Baseline
-`cba41106a711405e9e0e8bd6bf08cd450259b878`; branch
+The user's latest2026-10-07 request explicitly attests the returned ChatGPT
+context-review decisions and authorizes a new Deployment Event GT Lock v1.
+This return-validation checkpoint starts at
+`5179569bef0773379715b4c2b0c191ce08ba64f0`; branch
 `codex/module3a-deployment-event-gt` in the existing checkout.
 
-The new ignored package contains12 pending windows:10 from natural_match_01,
-then2 from natural_match_04 (recording alias development_expansion_04). Original
-01→02→03→04 inventory is retained. Match02 remains mid-match truncated/training
-excluded; the consulted confirmed visual locks supply no selected-class anchors
-for02/03. This is a source-evidence gap, not a difficulty selection or absence
-claim. Match04 remains development-exposed DEV_TUNE, not blind test data.
+New private artifacts: `outputs/module3a/event-gt-lock-v1/human-return.v1.json`
+and `deployment_event_gt.lock.v1.json` in the same directory. The exclusive v1
+lock was read back and revalidated, exit0; overwrite refusal was also verified.
+Lock file SHA256:
+`abd434cb5a8aba399295a87e0ad49a2997cf2304c2afff4792e16d991d8e03cb`.
+Canonical lock digest:
+`f7709ba45189546df5a74991ce88c8d1911eec337640d68623f651377540eacd`.
 
-Card hints: Witch, Golden Knight, Flying Machine, Minions, Royal Hogs.
-6 direct /3 grouped /3 uncertain;3 windows deliberately test possible duplicate
-or persistent appearances. These are12 candidate windows, not12 independent
-card plays. All remain pending_human_review, confidence=uncertain,
-evaluable=false, form=unknown. Visual anchors must not become spawn timestamps.
-Own Mortar/Skeleton Barrel, null-mapped Cannon/Barbarian Barrel and Witch-spawned
-Skeleton are not promoted to opponent card plays.
+The12 original candidates now have a separate complete user-attested partition:
+5 confirmed card plays (3 direct /2 grouped),3 continuity/dedupe outcomes,
+4 unresolved/non-evaluable candidates,0 Negative. Confirmed02 Witch31.5s,
+05 Royal Hogs75.5s,06 Flying Machine78s,07 Golden Knight102.5s,08 Minions116s:
+all opponent, form=unknown, human_confirmed and evaluable=true. Timestamps are
+approximate human annotations, not fabricated exact deployment bounds.
 
-New outputs: `outputs/module3a/deployment-event-human-review-v1/` and
-`outputs/module3a/Module_3A_Deployment_Event_Human_Review_v1.zip`.
-12 context MP4s,12 contact sheets,143 unique exact-PTS PNGs (156 references),
-20 accepted visual-object references, blank CSV/JSON return,173 ZIP members.
-ZIP SHA256 `b56efe6ccb8757faa647250af2010212e63587a5a79f4c9f5372521f43f0462e`.
-The helper packages manual windows only; it has no tracker, detector call,
-human-return importer, GT-freeze command or state-machine connection.
+04 is continuity with unresolved03;12 is continuity with unresolved11. Neither
+resolves onset or mints an event.09 merges into confirmed08.01/03/10/11 keep
+`deployment_onset_outside_review_window`, never no-play Negative. The lock records
+actual_human_confirmation=true, human_review_attested=true, reviewer=user,
+review_basis=chatgpt_visual_review and
+confirmation_source=user_attestation_based_on_chatgpt_visual_review.
+ChatGPT is not the human reviewer.
 
-Confirmed OpponentCardPlayed remains0; no Event GT Lock exists. Existing83-box/
-9-class visual GT, old locks, model results/environments and simulated APK remain
-protected. [Actual verification](VERIFICATION_MODULE3A.md) records checks/limits.
-Next: user/ChatGPT watches context and returns decisions with explicit user
-attestation. Do not freeze events before that confirmation or enter Module3B,
-training, App/game integration, capture, overlay, main merge or push.
+Confirmed events cover only natural_match_01. Reviewed windows also included04,
+but its onset remains unresolved; no cross-match event validation, detector
+performance, full-match event coverage,8-card/cycle/elixir completion is claimed.
+Own/unknown-owner, null card mappings and Witch-spawned Skeleton do not become
+opponent card-play GT. The original pending plan/blank template,89MB context
+bundle, lightweight supplement and all existing visual locks remain unchanged.
+The original01→02→03→04 inventory is preserved;02 remains truncated/training
+excluded,03 has no selected confirmed anchor,04 remains DEV_TUNE/not blind.
+
+The new tool is manual annotation validation/freeze only; bundle.py, Module1/2A1
+extractor/prepare/validate/review, detector/training environments and App remain
+unchanged. Existing83-box/9-class visual GT is retained separately, not rewritten
+as event GT. [Actual verification](VERIFICATION_MODULE3A.md) records fresh tests,
+private-source checks and preservation. Stop here for acceptance; Module3B needs
+separate authorization. No training, App/game integration, capture, overlay,
+main merge or push.
 
 ## Preserved checkpoint — Milestone 2 closed within the authorized scope
 

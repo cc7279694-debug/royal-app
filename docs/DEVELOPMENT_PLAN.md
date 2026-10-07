@@ -4,24 +4,31 @@ The project advances one independently verifiable module at a time. A module may
 start only after the previous module has been reviewed and accepted. Statuses are
 `Completed`, `In Progress`, `Planned`, `Paused`, or `Gated`.
 
-## Current authorized stage — Module 3A Deployment Event GT preparation
+## Current authorized stage — Module 3A user-attested Deployment Event GT
 
-Status: In Progress; **candidate Human Review Bundle prepared**, not Event GT
-completed. User authorizes this offline stage on2026-10-07 from local Milestone2
-checkpoint `cba41106a711405e9e0e8bd6bf08cd450259b878`.
+Status: Completed within the latest explicit return/freeze scope; Event GT v1
+locked and validated, awaiting acceptance and separate Module3B authorization.
+The2026-10-07 user confirms ChatGPT's context-review results as their own human
+attestation. Current checkpoint starts at
+`5179569bef0773379715b4c2b0c191ce08ba64f0` on the existing3A feature branch.
 
 1. Inspect unchanged visual locks/appearance evidence and protect history.
 2. Manually locate about10–20 pending windows in original recording order.
 3. Prepare±3s video, exact-PTS frames/contact sheets, visual references and
    confirm/reject/correct/uncertain/merge-duplicate return fields.
-4. Verify package, old-data protection, regression and privacy; **stop now**.
-5. Only after returned context review and explicit user attestation, validate
-   new-deployment semantics and freeze a new non-overwritable Event GT Lock.
+4. Preserve original pending package/supplement and visual locks unchanged.
+5. Validate separate user return and freeze/read back a new non-overwritable
+   Deployment Event GT Lock v1. Verify regressions, source binding, preservation
+   and privacy, then **stop**; do not automatically implement Module3B.
 
-Current package:12 windows across matches01/04;6 direct,3 grouped,3 uncertain.
-These include duplicate challenges, not12 independent events. Existing confirmed
-card plays remain0. First observation is not automatically deployment onset;
-missing onset outside a window stays uncertain pending wider context.
+Original package:12 windows across matches01/04; its pending6 direct/3 grouped/
+3 uncertain metadata remains historical, not rewritten. New attested lock:
+5 confirmed events,3 direct/2 grouped, only match01;3 continuity/dedupe outcomes;
+4 unresolved/non-evaluable;0 Negative. Continuity04→03 and12→11 does not resolve
+their earlier unknown onsets;09 merges into08. All five timestamps remain
+approximate. Confirmed events from one match are not cross-match validation,
+detector performance or complete-match coverage. About10–20 was a preparation
+aim, not a requirement to invent events after explicit user confirmation.
 Own/unknown-owner and null card mappings cannot become opponent event GT;
 spawned Skeleton is not a Skeletons card; grouped units represent one play;
 rejected/unreviewed/uncertain evidence never becomes Negative.
@@ -587,7 +594,8 @@ Android/live use and push/main integration all remain separately Gated.
 
 ## Module 3 — Deployment Event Tracking
 
-Status: Module3A manual-GT preparation In Progress (review bundle ready);
+Status: Module3A user-attested GT v1 locked and validated (5 confirmed events,
+3 continuity/dedupe,4 unresolved; confirmed events only match01);
 Module3B automatic event engine Planned and not authorized.
 
 Goal: promote repeated visual observations into one confirmed

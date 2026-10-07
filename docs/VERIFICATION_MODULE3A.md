@@ -1,4 +1,140 @@
-# Module 3A — Deployment Event Human Review preparation
+# Module 3A — Deployment Event GT verification
+
+## Current checkpoint: explicit user return and Event GT Lock v1
+
+Date:2026-10-07. The latest user request authorizes only recording the supplied
+human-attested outcomes, creating a new Deployment Event GT Lock v1, validating
+it and stopping. Public baseline:
+`5179569bef0773379715b4c2b0c191ce08ba64f0`; branch
+`codex/module3a-deployment-event-gt`. No automatic tracker/event engine, model,
+App/game integration, push or main merge is authorized.
+
+### Actual frozen result
+
+| Candidate | Attested result | Approximate time | Type / relationship |
+| --- | --- | --- | --- |
+| 02 | opponent Witch | 31.5s | direct |
+| 05 | opponent Royal Hogs | 75.5s | grouped, one event |
+| 06 | opponent Flying Machine | 78.0s | direct |
+| 07 | opponent Golden Knight | 102.5s | direct |
+| 08 | opponent Minions | 116.0s | grouped, one event |
+| 04 | no new play, continuity | not a new onset | continuity with unresolved03 |
+| 09 | no new play, duplicate | not a new onset | merges into confirmed08 |
+| 12 | no new play, continuity | not a new onset | continuity with unresolved11 |
+| 01/03/10/11 | unresolved / non-evaluable | not confirmed | deployment_onset_outside_review_window |
+
+Totals:5 confirmed events (3 direct /2 grouped),3 continuity/dedupe outcomes
+(2 continuity /1 merge),4 unresolved,0 Negative. All five events have
+owner=opponent, form=unknown, evaluable=true and confidence=human_confirmed.
+Confirmed events cover **only natural_match_01**; reviewed windows also cover04
+but do not confirm its onset. Continuity03/11 does not resolve their onset or
+mint an event. Unresolved outcomes are not no-play or detection Negative.
+
+The lock's embedded human return explicitly records reviewer=user,
+actual_human_confirmation=true, human_review_attested=true,
+review_basis=chatgpt_visual_review and
+confirmation_source=user_attestation_based_on_chatgpt_visual_review.
+ChatGPT is the review basis, not the human reviewer. These are authoritative
+user-returned annotations; this run does not re-judge the visual review.
+
+New ignored path:
+`outputs/module3a/event-gt-lock-v1/deployment_event_gt.lock.v1.json`.
+File SHA256:
+`abd434cb5a8aba399295a87e0ad49a2997cf2304c2afff4792e16d991d8e03cb`.
+Canonical lock digest (excluding its own digest field):
+`f7709ba45189546df5a74991ce88c8d1911eec337640d68623f651377540eacd`.
+Separate new `human-return.v1.json` SHA256:
+`ec9600df9bd669d656f5c383e42767c929a40ef5e3dae299c5b5f798c32cd0fd`.
+Original source-plan byte SHA:
+`f62813c54765e0f506a64654544c9d8efa501fc2aeacfc6507d0f47195ed20cc`;
+semantic source-plan digest:
+`87dfad2a5d7d6ee1ff20ee20445649d3c9b83832124bb91df7e92a77781b5aff`.
+
+Fresh source-check, exclusive freeze/readback and separate revalidation all
+exit0. A second same-path freeze raises FileExistsError; file SHA stays unchanged.
+Caller checks all six referenced visual-GT/lock file SHAs against the original
+plan, plus the plan byte SHA and semantic digest. All five user-corrected times
+fall inside their original contexts and each has an existing exact-PTS context
+frame. This is alignment of **approximate annotations**, not a fabricated
+last-absent/first-visible deployment interval. No video is re-decoded or re-extracted.
+Receipts: `outputs/module3a/event-gt-lock-verification-v1/`.
+
+### New manual utility and fresh checks
+
+Only `event_gt.py` and its tests are new code. `bundle.py` and the original blank
+template remain pending-only and unchanged. The new validator requires a complete
+one-decision-per-candidate partition, exact user attestation, supported opponent
+mapping and explicit confirmed fields; continuity may point at an earlier
+unresolved candidate, but duplicate merge requires an earlier confirmed event
+in the same underlying match. Derived events/outcomes, limitations and digest
+are rebuilt on validation. Exclusive creation also rejects a renamed sibling
+with the same source/version identity; JSON size/duplicate-key/non-finite and
+symlink/junction/path boundaries are checked. This is an annotation-only v1 API,
+not a tracker, detector, input-control mechanism or production Model Lock.
+
+TDD missing-feature RED was observed before code (84 failures/1 skip), then
+GREEN. Source-boundary, official Mortar-class and canonical hyphen-name issues
+were each reproduced before their small new-tool fixes. The first real source
+check rejected underscore canonical names used by the new validator; this was
+fixed to match frozen `unit.golden-knight`, `unit.flying-machine`,
+`unit.royal-hog`, `unit.skeleton-barrel`, without editing evidence. Four positive
+regressions were observed failing before that fix. Initial joint collection
+without importlib stopped on existing duplicate `test_bundle.py` basenames;
+the scoped run below uses importlib and changed no legacy tests or packages.
+These earlier failures are preserved, not presented as passing checks.
+
+Fresh root-run commands and actual results:
+
+| Command (existing `.venv` unless noted) | Result |
+| --- | --- |
+| `python -m pytest tools/deployment_review/tests tools/preannotation/tests -q --import-mode=importlib --tb=short -rs` | 178passed /1skipped, exit0 |
+| `python -m pytest tools/smoke_training/tests -q --tb=short` | 26passed, exit0 |
+| `python -m pytest tools/smoke_training_attempt02/tests -q --tb=short` | 174passed, exit0 |
+| `node --test tools/preannotation/tests/reviewer.test.cjs tools/preannotation/tests/review-ui.test.cjs` | 8passed /0failed, exit0 |
+| `npm.cmd test -- --run`, cwd `app` | 43passed across3files, exit0 |
+| `python -m pip check`; `git diff --check` | both exit0 |
+
+Totals:378 maintained Python tests passed/1 Windows symlink-creation permission
+skip;51 JavaScript tests passed. These smoke-training suites are contract
+regressions, not new real training or inference runs. Actual outputs/commands are
+under `event-gt-lock-verification-v1/final-checks-v1/`; TDD evidence is in
+`code-checks-event-gt-tdd.md`. The independent Codex read-only code/source review
+found no remaining Critical/Important blocker to this authorized local freeze;
+it is not ChatGPT independent visual review or detector performance acceptance.
+
+Not Run this checkpoint: the approximately28-minute maintained offline-video
+full suite (previous execution below is historical, not a fresh result), model
+training/inference, Android build/device retest, broader cross-match/real-game
+validation. Module1/2A1 production code, extractor, prepare/validate/review,
+dependencies, environments and App are not changed by this separate utility.
+
+### Preservation and limits
+
+Fresh bounded before/after preservation PASS, exit0:1786 existing files retain
+identical hashes (1397 previously fixed files plus389 retained3A artifacts).
+This includes all four original MP4s, old visual/experiment locks, Attempt01/02,
+benchmark assets, original review ZIP and lightweight supplement. Old3A directory
+membership is identical;1806 combined private paths are Git ignored at the AFTER
+check and tracked private files0. New outputs/receipts remain ignored; no existing
+Evidence or original blank return is rewritten. No SQLite, migration, cloud,
+model/package installation or runtime permission change.
+
+Final scoped document/privacy audit: exactly7 public files,91 local links with
+0broken,0credential-pattern hits,412 current3A private files ignored at that
+check,0tracked private files. Old bundle/offline-video/App diffs are empty and
+main remains unchanged. Later new private completion receipts are also checked
+for ignore status before stopping.
+
+The digest checks consistency, not independently authenticating raw source
+assets or proving human identity. Supplied source byte SHA must be verified by
+the caller, as done here. Exclusive/path safeguards are local application checks,
+not an OS-level concurrency/isolation or tamper-proof guarantee.
+No cross-match event validation, detector accuracy, full-match event coverage,
+8-card/cycle/evolution/elixir completion is claimed. About10–20 candidate/event
+ambition cannot justify inventing events beyond the explicit5-event return.
+Stop after this checkpoint; do not automatically enter Module3B.
+
+## Preserved historical preparation verification (before user confirmation)
 
 Date:2026-10-07. Scope: current user's candidate-bundle stop, not event-engine
 implementation or completed Event GT. Baseline

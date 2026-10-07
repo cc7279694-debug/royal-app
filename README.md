@@ -1,13 +1,18 @@
 # Clash Tracker
 
-**当前：Module 3A 的出牌事件候选人工审核包已准备，等待人工确认。**
-12 个待审上下文窗口覆盖第1、4场，候选为女巫、黄金骑士、飞行器、亡灵和皇家野猪。
-6 direct /3 grouped /3 uncertain 是待审类型，不是已确认事件数；其中3个窗口专门
-检查持续存在／重复观察。每个窗口有前后各3秒视频、原始PTS图片、联系表、旧视觉
-GT引用和空白回填表。视觉锚点不是出牌时间，不按框数或帧数计算独立部署。
-确认出牌数仍0；未创建 Deployment Event GT Lock，不写 tracker/event engine，
-不训练、不改旧锁／App、不进入3B／真实游戏HUD，不推送或合并main。
-见[3A准备与验证](docs/VERIFICATION_MODULE3A.md)及[人工审核操作](tools/deployment_review/README.md)。
+**当前：Module 3A 的用户确认回填已冻结为 Deployment Event GT Lock v1。**
+5 个确认事件：女巫31.5s、皇家野猪75.5s、飞行器78s、黄金骑士102.5s、亡灵116s；
+3 direct /2 grouped，全部 opponent、form=unknown，时间为人工确认的近似值。
+另保留3个连续／去重结论、4个 unresolved/non-evaluable 候选、0 Negative。
+04→03和12→11只确认连续性，03/11仍未解决；09合并到08，不产生新事件。
+reviewer=user，ChatGPT仅是视觉审核依据，人工确认与attestation均为true。
+原12窗口审核包及全部旧视觉锁不改写；新锁仍Git ignored：
+`outputs/module3a/event-gt-lock-v1/deployment_event_gt.lock.v1.json`，文件SHA256
+`abd434cb5a8aba399295a87e0ad49a2997cf2304c2afff4792e16d991d8e03cb`。
+确认事件仅来自`natural_match_01`，不是跨场事件验证或detector性能结论，
+也不表示8卡／卡序／圣水完成。不训练、不写自动事件引擎、不改App，
+不进入3B／真实游戏HUD，不推送或合并main。
+见[3A回填与验证](docs/VERIFICATION_MODULE3A.md)及[人工审核操作](tools/deployment_review/README.md)。
 
 **保留的已完成 checkpoint：Milestone 2 的 GT 回填与模拟 App 真机状态记录。**
 第二批用户明确确认 24 张审核帧中的 39 框，剩余 452 项仍 pending/unknown，
