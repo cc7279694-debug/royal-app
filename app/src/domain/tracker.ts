@@ -1,10 +1,10 @@
-/** Timestamp is seconds on the mock timeline, not a wall-clock or hidden game state. */
+/** Timestamp is seconds on an offline/mock timeline, not hidden game state. */
 export interface OpponentCardPlayed {
   readonly eventId: string;
   readonly cardId: string;
   readonly timestamp: number;
-  readonly confidence: number;
-  readonly source: 'mock';
+  readonly confidence: number | null;
+  readonly source: 'mock' | 'recorded_oracle';
 }
 
 export interface TrackerError {
@@ -44,10 +44,10 @@ function validateEvent(payload: unknown): EventValidation {
   }
 
   const record = payload as Record<string, unknown>;
-  if (record.source !== 'mock') {
+  if (record.source !== 'mock' && record.source !== 'recorded_oracle') {
     return {
       ok: false,
-      error: { code: 'unsupported-source', message: '此演示只接受模拟事件。' },
+      error: { code: 'unsupported-source', message: '此演示只接受模拟或离线 Oracle 事件。' },
     };
   }
 
@@ -62,15 +62,18 @@ function validateEvent(payload: unknown): EventValidation {
     typeof cardId !== 'string' || !cardIdPattern.test(cardId) ||
     typeof timestamp !== 'number' || !Number.isFinite(timestamp) ||
     timestamp < 0 || timestamp > Number.MAX_SAFE_INTEGER ||
-    typeof confidence !== 'number' || !Number.isFinite(confidence) ||
-    confidence < 0 || confidence > 1
+    (record.source === 'mock'
+      ? typeof confidence !== 'number' || !Number.isFinite(confidence) || confidence < 0 || confidence > 1
+      : confidence !== null)
   ) {
     return invalid;
   }
 
   return {
     ok: true,
-    event: Object.freeze({ eventId, cardId, timestamp, confidence, source: 'mock' }),
+    event: Object.freeze({ eventId, cardId, timestamp,
+      confidence: typeof confidence === 'number' ? confidence : null,
+      source: record.source }),
   };
 }
 

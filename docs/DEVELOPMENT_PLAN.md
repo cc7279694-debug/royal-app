@@ -4,10 +4,28 @@ The project advances one independently verifiable module at a time. A module may
 start only after the previous module has been reviewed and accepted. Statuses are
 `Completed`, `In Progress`, `Planned`, `Paused`, or `Gated`.
 
-## Current authorized stage — Module 3A user-attested Deployment Event GT
+## Current authorized stage — Module 3B Oracle Event Engine
 
-Status: Completed within the latest explicit return/freeze scope; Event GT v1
-locked and validated, awaiting acceptance and separate Module3B authorization.
+Status: implementation, fixed replay and fresh regression/protection verified;
+acceptance gate FAIL, local-only checkpoint awaits independent review. User
+accepts3A and authorizes the
+existing [3B contract](plans/MODULE3B_ORACLE_IMPLEMENTATION.md), no new architecture.
+No detector, training, App UI/game integration, main merge/push or Module4.
+
+Read-only Human visual stream → deterministic tracks/groups → five versioned
+rules → STRONG events; Event GT is used only by post-replay grading. Fixed result:
+five positives each hit once, but candidate09 continuation emits a new127s
+Minions event. Dedupe04/09/12 counts0/1/0. Preserve both versioned outputs and all
+old locks/experiments; no tuning or forced merge based on GT. Offline timestamp
+is first appearance, not proven onset/real-time confirmation. Stop for independent
+review of `MODULE_3B_ORACLE_ENGINE_FAIL`. Verified1356 Python passes/4 skips,
+59 JavaScript passes;1814 existing material hashes unchanged. No automatic repair.
+
+## Preserved accepted stage — Module 3A user-attested Deployment Event GT
+
+Status: Completed and subsequently accepted by the user. At this preserved
+return/freeze checkpoint, Event GT v1 was locked and validated, then stopped for
+acceptance and separate Module3B authorization. The current3B scope is above.
 The2026-10-07 user confirms ChatGPT's context-review results as their own human
 attestation. Current checkpoint starts at
 `5179569bef0773379715b4c2b0c191ce08ba64f0` on the existing3A feature branch.
@@ -596,7 +614,8 @@ Android/live use and push/main integration all remain separately Gated.
 
 Status: Module3A user-attested GT v1 locked and validated (5 confirmed events,
 3 continuity/dedupe,4 unresolved; confirmed events only match01);
-Module3B automatic event engine Planned and not authorized.
+Module3B Oracle-only engine authorized/implemented; fixed acceptance gate FAIL
+(5/5 positives, candidate09 new-event error). Detector mode remains unauthorized.
 
 Goal: promote repeated visual observations into one confirmed
 `OpponentCardPlayed` event per real deployment.

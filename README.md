@@ -1,6 +1,15 @@
 # Clash Tracker
 
-**当前：Module 3A 的用户确认回填已冻结为 Deployment Event GT Lock v1。**
+**当前：Module 3B Oracle 事件引擎已实现，固定回放结果为 FAIL。**
+5/5 个确认事件各命中一次，但127秒的亡灵持续画面被错当成第二次出牌；
+三个连续／去重窗口结果为0/1/0，所以不能宣布自动记牌已通过验收。
+输入只来自既有人工作为依据确认的视觉 GT，Event GT 只用于事后评分；
+没有接 detector、训练、改 GT 或为了通过调整参数。Unknown 不当 Negative。
+离线 JSON 已可由 RecordedEventSource 读取，但未接入 App 界面或手机 APK。
+不进入真实游戏 HUD、后续模块，不推送或合并 main。
+见[实际验证与限制](docs/VERIFICATION_MODULE3B.md)和[Oracle 操作](tools/event_engine/README.md)。
+
+**保留的已验收 checkpoint：Module 3A 回填已冻结为 Deployment Event GT Lock v1。**
 5 个确认事件：女巫31.5s、皇家野猪75.5s、飞行器78s、黄金骑士102.5s、亡灵116s；
 3 direct /2 grouped，全部 opponent、form=unknown，时间为人工确认的近似值。
 另保留3个连续／去重结论、4个 unresolved/non-evaluable 候选、0 Negative。
@@ -10,8 +19,9 @@ reviewer=user，ChatGPT仅是视觉审核依据，人工确认与attestation均�
 `outputs/module3a/event-gt-lock-v1/deployment_event_gt.lock.v1.json`，文件SHA256
 `abd434cb5a8aba399295a87e0ad49a2997cf2304c2afff4792e16d991d8e03cb`。
 确认事件仅来自`natural_match_01`，不是跨场事件验证或detector性能结论，
-也不表示8卡／卡序／圣水完成。不训练、不写自动事件引擎、不改App，
-不进入3B／真实游戏HUD，不推送或合并main。
+也不表示8卡／卡序／圣水完成。该前序 checkpoint 当时不训练、不写自动
+事件引擎、不改App、不进入3B／真实游戏HUD、不推送或合并main；
+后续单独授权的3B当前结果与停止点见上方。
 见[3A回填与验证](docs/VERIFICATION_MODULE3A.md)及[人工审核操作](tools/deployment_review/README.md)。
 
 **保留的已完成 checkpoint：Milestone 2 的 GT 回填与模拟 App 真机状态记录。**

@@ -1,5 +1,36 @@
 # Decisions
 
+## 2026-10-07 — Human-only Oracle event logic; no answer leakage
+
+### Decision
+
+The user's new complete3B brief supersedes the earlier3B authorization gate only
+for Oracle implementation. Replay accepted human visual inputs, never detector
+predictions or Event GT answers. Grade sealed events separately against unchanged
+Event GT. Five rules only; no live game, training, next module or App UI change.
+
+### Context and Reason
+
+Visual boxes and even a human appearance group do not independently prove an
+onset/card play. The first iteration deliberately separates logic errors from
+detector errors. Observation-only proposal tokens cannot provide entity identity.
+Sparse observations need deterministic one-to-one association and explicit
+continuity metadata, not a cooldown or fabricated event IDs from the answers.
+
+### Consequences
+
+Human identity is match-scoped and emits at most once; grouped strong evidence
+requires distinct same-frame new tracks, not a broken singleton counted twice.
+Unknown, own, spawned/secondary and unmapped visuals cannot be confirmed plays.
+First appearance is an offline event timestamp; confirmed_at is separately
+reported, not concealed as a realtime latency. Recorded-App projection uses
+source=recorded_oracle/confidence=null, no invented probability and no UI hookup.
+All83 current multiclass observations plus all11 separately declared legacy
+visual objects are read unchanged; legacy deployment counts are not imported.
+Both fixed versions retain the real127s Minions dedupe error. FAIL is legitimate;
+do not change GT or parameters to manufacture PASS. This is not detector,
+cross-match, 8-card/cycle/elixir or live-use validation.
+
 ## 2026-10-07 — Module 3A visual anchors are pending event-review windows
 
 ### Decision

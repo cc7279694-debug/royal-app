@@ -2,7 +2,44 @@
 
 Last verified: 2026-10-07.
 
-## Current checkpoint — Module 3A user-attested Event GT locked
+## Current checkpoint — Module 3B Oracle engine implemented; fixed replay FAIL
+
+Latest2026-10-07 authorization accepts3A and explicitly permits only the3B
+detector-independent Oracle engine. Baseline
+`d4c5b94625dda49dfb1af2c1b5c8d4851751650a`; branch
+`codex/module3b-oracle-event-engine`, same checkout. Event GT byteSHA remains
+`abd434cb5a8aba399295a87e0ad49a2997cf2304c2afff4792e16d991d8e03cb`,
+fresh load_lock exit0. All old visual/event locks and experiments are preserved.
+
+Pure deterministic tracking/grouping and five versioned card rules are present.
+Human visual adapter and Event GT scorer are separate: replay uses all83 accepted
+multiclass boxes/48 frames plus a separately declared legacy11-object/4-frame
+visual continuity regression. Event GT never selects or corrects engine inputs.
+Unresolved observation tokens are not entity IDs; old spawned Skeleton stays a
+visual unit and cannot emit a Skeleton card play.
+
+Fixed replay/evaluation exits0/3:5/5 positive hits, but explicit no-new windows
+04/09/12 produce0/1/0. The127s Minions continuation incorrectly becomes a new
+group/event, so status is `MODULE_3B_ORACLE_ENGINE_FAIL`, **not** Module3B accepted.
+Eleven total outputs include five unscored observations in unknown/unreviewed
+time; no false-positive negatives or full-match rate are fabricated.
+
+First appearance and confirmed_at are recorded separately: Witch32s/34.5s versus
+GT31.5s. Offline retrospective hit is not <=2.5s real-time confirmation. Genuine
+human continuity overrides gaps; geometric continuity remains insufficient on
+this sparse input. No real-result-based parameter tuning or GT changes.
+
+Offline recorded JSON adapter works without fake probabilities (confidence=null).
+The App UI/mock buttons and installed APK remain unchanged/unwired. No detector,
+training, fresh frames/annotations, 8-card/cycle/elixir, capture, overlay, live
+game, push/main merge or next module. Fresh checks:1356 Python passes/4 skips,
+59 JavaScript passes, App TypeScript/build and dependency check exit0;1814 old
+material hashes unchanged, privacy/diff/link checks passed. Local-only checkpoint
+and final Git receipt are recorded in the private completion report; see
+[actual3B evidence](VERIFICATION_MODULE3B.md). Stop for
+ChatGPT/user review of FAIL; do not automatically repair using Event GT answers.
+
+## Preserved accepted checkpoint — Module 3A user-attested Event GT locked
 
 The user's latest2026-10-07 request explicitly attests the returned ChatGPT
 context-review decisions and authorizes a new Deployment Event GT Lock v1.
