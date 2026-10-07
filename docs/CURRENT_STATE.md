@@ -2,7 +2,44 @@
 
 Last verified: 2026-10-07.
 
-## Current checkpoint — Milestone 2 closed within the authorized scope
+## Current checkpoint — Module 3A manual candidate review ready
+
+The user's2026-10-07 request authorizes only Deployment Event GT preparation
+through the Human Review Bundle, then a stop. Baseline
+`cba41106a711405e9e0e8bd6bf08cd450259b878`; branch
+`codex/module3a-deployment-event-gt` in the existing checkout.
+
+The new ignored package contains12 pending windows:10 from natural_match_01,
+then2 from natural_match_04 (recording alias development_expansion_04). Original
+01→02→03→04 inventory is retained. Match02 remains mid-match truncated/training
+excluded; the consulted confirmed visual locks supply no selected-class anchors
+for02/03. This is a source-evidence gap, not a difficulty selection or absence
+claim. Match04 remains development-exposed DEV_TUNE, not blind test data.
+
+Card hints: Witch, Golden Knight, Flying Machine, Minions, Royal Hogs.
+6 direct /3 grouped /3 uncertain;3 windows deliberately test possible duplicate
+or persistent appearances. These are12 candidate windows, not12 independent
+card plays. All remain pending_human_review, confidence=uncertain,
+evaluable=false, form=unknown. Visual anchors must not become spawn timestamps.
+Own Mortar/Skeleton Barrel, null-mapped Cannon/Barbarian Barrel and Witch-spawned
+Skeleton are not promoted to opponent card plays.
+
+New outputs: `outputs/module3a/deployment-event-human-review-v1/` and
+`outputs/module3a/Module_3A_Deployment_Event_Human_Review_v1.zip`.
+12 context MP4s,12 contact sheets,143 unique exact-PTS PNGs (156 references),
+20 accepted visual-object references, blank CSV/JSON return,173 ZIP members.
+ZIP SHA256 `b56efe6ccb8757faa647250af2010212e63587a5a79f4c9f5372521f43f0462e`.
+The helper packages manual windows only; it has no tracker, detector call,
+human-return importer, GT-freeze command or state-machine connection.
+
+Confirmed OpponentCardPlayed remains0; no Event GT Lock exists. Existing83-box/
+9-class visual GT, old locks, model results/environments and simulated APK remain
+protected. [Actual verification](VERIFICATION_MODULE3A.md) records checks/limits.
+Next: user/ChatGPT watches context and returns decisions with explicit user
+attestation. Do not freeze events before that confirmation or enter Module3B,
+training, App/game integration, capture, overlay, main merge or push.
+
+## Preserved checkpoint — Milestone 2 closed within the authorized scope
 
 On2026-10-07 the user explicitly confirms batch02's ChatGPT visual-review
 suggestions and reports the six physical-phone mock smoke checks passed.

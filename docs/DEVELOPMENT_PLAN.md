@@ -4,7 +4,33 @@ The project advances one independently verifiable module at a time. A module may
 start only after the previous module has been reviewed and accepted. Statuses are
 `Completed`, `In Progress`, `Planned`, `Paused`, or `Gated`.
 
-## Current checkpoint — Milestone 2 complete; next work not authorized
+## Current authorized stage — Module 3A Deployment Event GT preparation
+
+Status: In Progress; **candidate Human Review Bundle prepared**, not Event GT
+completed. User authorizes this offline stage on2026-10-07 from local Milestone2
+checkpoint `cba41106a711405e9e0e8bd6bf08cd450259b878`.
+
+1. Inspect unchanged visual locks/appearance evidence and protect history.
+2. Manually locate about10–20 pending windows in original recording order.
+3. Prepare±3s video, exact-PTS frames/contact sheets, visual references and
+   confirm/reject/correct/uncertain/merge-duplicate return fields.
+4. Verify package, old-data protection, regression and privacy; **stop now**.
+5. Only after returned context review and explicit user attestation, validate
+   new-deployment semantics and freeze a new non-overwritable Event GT Lock.
+
+Current package:12 windows across matches01/04;6 direct,3 grouped,3 uncertain.
+These include duplicate challenges, not12 independent events. Existing confirmed
+card plays remain0. First observation is not automatically deployment onset;
+missing onset outside a window stays uncertain pending wider context.
+Own/unknown-owner and null card mappings cannot become opponent event GT;
+spawned Skeleton is not a Skeletons card; grouped units represent one play;
+rejected/unreviewed/uncertain evidence never becomes Negative.
+
+No automatic tracker/event engine, model training, old visual-lock changes,
+8-card/cycle/evolution/elixir logic, App connection, real HUD or Module3B.
+No push/main merge. See [3A evidence](VERIFICATION_MODULE3A.md).
+
+## Preserved checkpoint — Milestone 2 complete; next work then unauthorized
 
 Status: Completed within the user's2026-10-07 closeout scope, from
 `cbc6dd7872d05bef48e2a157c5a1a2e608564584` on the existing
@@ -561,7 +587,8 @@ Android/live use and push/main integration all remain separately Gated.
 
 ## Module 3 — Deployment Event Tracking
 
-Status: Planned
+Status: Module3A manual-GT preparation In Progress (review bundle ready);
+Module3B automatic event engine Planned and not authorized.
 
 Goal: promote repeated visual observations into one confirmed
 `OpponentCardPlayed` event per real deployment.

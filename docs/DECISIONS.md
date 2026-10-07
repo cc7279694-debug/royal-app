@@ -1,5 +1,33 @@
 # Decisions
 
+## 2026-10-07 — Module 3A visual anchors are pending event-review windows
+
+### Decision
+
+Separately authorize offline Deployment Event GT preparation, stopping at the
+Human Review Bundle. Use existing accepted visual evidence as manual location
+references, not automatic card-play truth. This supersedes the prior checkpoint's
+blanket "Module3 not authorized" only for3A preparation;3B remains unauthorized.
+
+### Context and Reason
+
+Milestone2 has83 confirmed boxes/9 visual classes but0 confirmed card-play events.
+Persistent/reappearing entities and grouped/spawned units make box counts and
+first-observation times insufficient to establish unique opponent deployments.
+An explicit context review must precede any event lock or automatic event engine.
+
+### Consequences
+
+Keep candidate hints pending/uncertain/non-evaluable. Provide video context,
+exact source-PTS images, old visual references and manual corrections/merges.
+Duplicate-review windows do not increase deployment count. If spawn is outside
+the supplied window, preserve uncertainty and request wider context, not a guess.
+Own objects, unknown owner, null source-card mapping and spawned Skeleton cannot
+become opponent plays. Unknown/reject/omissions are not Negative. New exclusive
+review outputs do not overwrite existing locks/results; no Event GT Lock before
+human return and explicit user attestation. ChatGPT suggestions are not human
+reviewer identity. Model/runtime, App and live online-game safety gates unchanged.
+
 ## 2026-10-07 — User-attested multiclass visual GT, annotation-only freeze
 
 ### Decision

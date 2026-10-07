@@ -1,6 +1,15 @@
 # Clash Tracker
 
-**当前：Milestone 2 已完成本轮授权的 GT 回填与模拟 App 真机状态记录。**
+**当前：Module 3A 的出牌事件候选人工审核包已准备，等待人工确认。**
+12 个待审上下文窗口覆盖第1、4场，候选为女巫、黄金骑士、飞行器、亡灵和皇家野猪。
+6 direct /3 grouped /3 uncertain 是待审类型，不是已确认事件数；其中3个窗口专门
+检查持续存在／重复观察。每个窗口有前后各3秒视频、原始PTS图片、联系表、旧视觉
+GT引用和空白回填表。视觉锚点不是出牌时间，不按框数或帧数计算独立部署。
+确认出牌数仍0；未创建 Deployment Event GT Lock，不写 tracker/event engine，
+不训练、不改旧锁／App、不进入3B／真实游戏HUD，不推送或合并main。
+见[3A准备与验证](docs/VERIFICATION_MODULE3A.md)及[人工审核操作](tools/deployment_review/README.md)。
+
+**保留的已完成 checkpoint：Milestone 2 的 GT 回填与模拟 App 真机状态记录。**
 第二批用户明确确认 24 张审核帧中的 39 框，剩余 452 项仍 pending/unknown，
 本批 0 拒绝、0 Negative、0 出牌事件；新增皇家野猪、飞行器、野蛮人滚桶视觉类。
 两批累计 48 张审核帧、83 个确认框、9 个视觉类别、7 个非空 canonical mappings，
