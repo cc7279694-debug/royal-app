@@ -2,14 +2,64 @@
 
 Last verified: 2026-10-07.
 
-## Current work — local pre-annotation correction + simulated App
+## Current work — Milestone 2: first Debug APK and first GT review batch
+
+On2026-10-07 the user accepts Milestone1 and authorizes only two bounded tasks:
+build the unchanged mock App into a Debug APK using minimum official Android
+tooling, and prepare the first small chronological multiclass review batch.
+No new product design, training, real-game connection/HUD, main merge or push.
+
+TaskB1: inspect/install isolated necessary JDK/SDK/platform/build/platform-tools,
+keep Gradle managed by the existing wrapper, sync/build Debug, inspect package
+permissions/signature/SHA, and perform minimal startup on an available test target.
+Do not silently treat static package checks or host Web preview as device launch.
+No release signing or capture/overlay/Accessibility/game automation is authorized.
+
+TaskA1: reuse existing proposal/correction tooling; first24 fixed-stride frames
+from original match01. Five corrections, selected-class exhaustive review,
+Unknown/reject protection and spawned/secondary semantics remain unchanged.
+The user chose ChatGPT independent review packet followed by returned decisions;
+until actual confirmed return, boxes/classes remain pending, not human GT or
+training-qualified material. Source02 remains truncated/training-excluded.
+
+Branch `codex/milestone2-apk-and-first-gt`, baseline
+`97d87d875e97b847e79fd00433a79d779e9abd1c`.
+
+TaskB1 is verified complete: unchanged mock App Debug APK, SHA256
+`774ed13e2ac69690330cf126084aee15b19ecf676e579a1872eaa7e37ea6bb0d`,
+at ignored `outputs/milestone2/clash-tracker-simulated-debug.apk`.
+Official isolated Temurin21.0.12.1+1 / SDK36 rev2 / build-tools35.0.0 /
+platform-tools37.0.1 / Gradle8.14.3 built successfully. Existing API37 emulator
+installed/launched the APK and exercised 0/8→1/8→2/8→Reset0/8→replay1/8;
+no physical-phone test or performance qualification is claimed. Merged APK has
+only AndroidX's own signature receiver permission, no capture/overlay/Internet/
+Accessibility permission. The pre-existing unrelated App was restored, not
+modified or cleared. No public App source/dependency change was needed.
+
+TaskA1 preparation is complete, but actual GT review/import is pending:
+24 chronological first-match frames / 526 pending teacher proposals / 39
+UNVERIFIED raw labels. Confirmed boxes/classes/primary/secondary classes,
+rejections, corrections and added missing boxes remain0; this is not a completed
+human-GT batch. The packet contains original review images and may show player
+UI; it is a user-controlled private handoff, never a public repository asset.
+Next action: user submits the packet to ChatGPT, relays/actually confirms the
+decisions, then imports a truthful confirmed return into a new exclusive revision.
+No new training, dataset lock or next milestone is implied.
+Fresh commands, artifacts, limitations and checks are in
+[Milestone2 verification](VERIFICATION_MILESTONE2.md).
+
+Old locks, Attempts01/02, benchmark, Milestone1 bundles and Python environments
+must stay unchanged. No automatic later module or model training.
+
+## Accepted Milestone 1 checkpoint — local correction and simulated App
 
 The user explicitly authorizes these two independent tasks on 2026-10-07:
 KataCR predictions as pending local proposals with separate human correction,
 and a React/TypeScript/Capacitor mock-event App with an App-internal HUD.
-Both scoped implementations and verification are complete; user acceptance is
-pending. This is tool/mock-UI completion, not detector accuracy, reviewed real GT,
-training readiness or a device-tested Android APK.
+Both scoped implementations and verification are complete; user acceptance was
+explicitly relayed2026-10-07. At that checkpoint this was tool/mock-UI completion,
+not detector accuracy, reviewed real GT, training readiness or a device-tested
+Android APK. The later bounded APK build is recorded above.
 See the [bounded design](superpowers/specs/2026-10-07-preannotation-and-simulated-app-design.md)
 and [implementation plan](superpowers/plans/2026-10-07-preannotation-and-simulated-app.md).
 
@@ -37,17 +87,16 @@ Verified deliverables:
   Frame loading/failure guards and one-read return snapshot binding were repaired
   and approved in scoped code re-review.
 - Mock App: play/reset/replay, 0/8→1/8→2/8, mobile/desktop screenshots, strict
-  mock-only event boundary. Web build and Capacitor Android sync pass; no APK
-  build because JDK21 and required SDK platform/build tools are absent.
+  mock-only event boundary. Web build and Capacitor Android sync passed; at that
+  checkpoint no APK build ran because the required toolchain was absent.
 - Fresh maintained offline regression: 908 passed / 3 existing permission skips;
   new review-tool Python 51 passed / Node8 passed; App43 tests, strict TypeScript,
   production build and npm audit0. All32,217 historical files,160 old YOLOX source
   files and all three existing Python package inventories unchanged.
 
-See [completion/verification](VERIFICATION_MILESTONE1.md). Stop for acceptance
-and actual human correction of the first pending bundle; expand in original
-recording order only under the approved data workflow. No automatic training,
-next module, Android toolchain installation, push or merge.
+See [completion/verification](VERIFICATION_MILESTONE1.md). Its prior stopping
+point is preserved; the newly authorized minimum Android tooling and small GT
+review batch are described above. No automatic training, push or merge.
 
 ## Preserved checkpoint — existing detector fixed benchmark executed; visual review pending
 

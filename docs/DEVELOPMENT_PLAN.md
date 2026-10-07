@@ -4,9 +4,35 @@ The project advances one independently verifiable module at a time. A module may
 start only after the previous module has been reviewed and accepted. Statuses are
 `Completed`, `In Progress`, `Planned`, `Paused`, or `Gated`.
 
-## Current authorization — local pre-annotation and simulated App
+## Current authorization — Milestone 2: APK build and first human-GT batch
 
-Status: Completed implementation/verification, pending user acceptance;
+Status: TaskB1 verified complete; TaskA1 packet prepared, actual human-GT return
+pending. User authorizes both on2026-10-07 after accepting Milestone1.
+Do not expand design/product scope or add features.
+
+- TaskB1: install only needed official JDK/SDK/build/platform-tools components,
+  Capacitor sync, unchanged mock-only Debug APK, actual startup evidence and
+  version/permission/signature/hash report. Existing wrapper manages Gradle.
+- TaskA1: first24 chronological representative match01 frames through the current
+  local proposal/correction tool; prepare a ChatGPT independent review packet.
+  The user's selected confirmation path needs returned decisions before any
+  confirmed GT counts. All five corrections and explicit selected-class coverage
+  stay available. No raw proposal becomes GT/Negative automatically.
+
+Debug APK built with the unchanged App/wrapper; existing API37 emulator startup,
+mock 2/8, Reset and replay passed. Actual physical-phone installation is Not Run.
+First packet has24 first-match frames/526 pending proposals; confirmed GT/classes
+remain0 until explicit review return. Next step is that review/confirmation,
+not training or more design. See [fresh evidence](VERIFICATION_MILESTONE2.md).
+
+The tasks have disjoint paths and can be verified separately. Preserve old
+locks/results/bundles/environments, keep match02 excluded, no class-count quota,
+training, new model weights, real-game HUD, main merge or push. Stop for milestone
+acceptance; human return remains a distinct data step, not new planning.
+
+## Accepted Milestone 1 — local pre-annotation and simulated App
+
+Status: Completed implementation/verification and user accepted2026-10-07;
 explicitly authorized 2026-10-07. Execution followed the
 [two-task implementation plan](superpowers/plans/2026-10-07-preannotation-and-simulated-app.md)
 under its [bounded design](superpowers/specs/2026-10-07-preannotation-and-simulated-app-design.md).
@@ -26,8 +52,9 @@ Stop after verified tools/demo, UI screenshots and accurate Android build status
 No training, new weights, Module3, real-game HUD, push or main integration.
 This stop has been reached: a first-match pending bundle and synthetic correction
 round-trip are available, the mock App runs locally, and Android source sync is
-verified. APK compilation/device execution is Not Run because the toolchain is
-incomplete; no global installation is implied. Real proposals still await human
+verified. At that checkpoint APK compilation/device execution was Not Run because
+the toolchain was incomplete; Milestone2's later isolated build is recorded above.
+Real proposals still await human
 review; the target10–20 classes is not claimed achieved. See
 [verification](VERIFICATION_MILESTONE1.md).
 

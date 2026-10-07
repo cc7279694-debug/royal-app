@@ -57,9 +57,16 @@ Accessibility, input-control or Internet permission is declared. Unused template
 file-provider plumbing is removed because this prototype uses no shared files.
 
 Android build requires a local JDK and an Android SDK containing the generated
-project's platform and build tools. Generating/syncing the source is not evidence
-of a built or tested APK. This task does not install system tools or publish an
-App. Native capture or inference would require a separate approved module.
+project's platform and build tools. Generating/syncing the source alone is not
+evidence of a built or tested APK. The separately authorized Milestone2 now has
+a Debug APK and an actual API37 emulator launch/play/reset check, using ignored
+project-local Temurin21.0.12.1+1, Android36 rev2, build-tools35.0.0 and Gradle8.14.3.
+There was no App source change, global environment change or release signing.
+See [build evidence and commands](../docs/VERIFICATION_MILESTONE2.md).
+The merged APK adds only AndroidX's own signature receiver permission; the
+absence of capture/overlay/Accessibility/Internet permissions remains verified.
+Physical-phone installation is not yet tested. Native capture or inference still
+requires a separate approved module.
 
 ## Dependency provenance
 

@@ -1,6 +1,12 @@
 # Clash Tracker
 
-**当前已实现并验证：本地预标注／人工纠错工具 + 纯模拟 App 原型，等待用户验收。**
+**当前：首个模拟 App Debug APK 已构建并在 Android 模拟器验证；首批 24 帧等待 ChatGPT 复核。**
+模拟功能不变，不接真实游戏、不训练。APK 声明最低 Android 7.0 / API24；
+模拟器启动、模拟 2/8、Reset 已验证，实体手机安装尚未验证。
+首批 526 个候选仍待审，已确认 GT / 类别均为 0；按用户选择先交 ChatGPT，
+收到明确确认结果后再回填，不把待审预测算作 GT。见[Milestone 2 验证](docs/VERIFICATION_MILESTONE2.md)。
+
+**已实现并验证：本地预标注／人工纠错工具 + 纯模拟 App 原型。**
 KataCR 只提供待审核候选，不直接成为人工 GT 或最终 App 识别核心。
 支持接受／拒绝／改类／改框／补框及逐类穷尽复核；Unknown、拒绝与未标区域
 不自动成为 Negative。严格按原录像顺序，第二场中途截断，仍不具备训练资格。
@@ -13,9 +19,10 @@ HUD 只在 App 内，不接游戏、detector、实时录屏或跨应用悬浮窗
 预标注页面已准备第一场的 12 张原图和 272 个待审候选，尚不是已确认 GT；
 五种纠错操作与独立回传导入已用合成演示实际走通。
 见[预标注操作](tools/preannotation/README.md)和[模拟 App 操作](app/README.md)。
-模拟 App 已通过测试、Web 构建和 Capacitor Android 同步；当前缺少 JDK 21
-及 Android SDK 平台／构建工具，尚未构建或在手机验证 APK。
-完整检查与限制见[本轮验证记录](docs/VERIFICATION_MILESTONE1.md)。
+模拟 App 已通过测试、Web 构建、Capacitor Android 同步和 Debug 编译。
+本轮 JDK / SDK 使用项目内独立忽略目录，没有改全局环境或原模型环境。
+合并后的 APK 只有 AndroidX 自有 signature 权限，没有 Internet、录屏、
+跨应用悬浮或 Accessibility 权限。旧阶段检查见[Milestone 1 验证记录](docs/VERIFICATION_MILESTONE1.md)。
 
 下面的 benchmark 与训练内容是保留的历史实验事实，不代表已认可模型可用。
 
