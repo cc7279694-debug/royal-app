@@ -1,22 +1,26 @@
 # Clash Tracker
 
-**当前：Milestone 2 第二批审核包已准备；实体 Android 手机测试等待用户。**
-严格续接首批结束位置：第一场 72–129.5 秒，每 2.5 秒一帧，24 张原图、
-491 个待审候选、4 张 contact sheets。48 个原始 teacher labels 含 UI／噪声，
-不是确认类别；本批新增 confirmed GT=0。ChatGPT 建议仍须用户明确确认后才能回填。
-本次只对这 24 帧生成新 proposals；旧 benchmark、首批 GT、旧实验与模型环境不变，
-没有训练或自动 Negative。一次 NMS 超时警告及原日志已保留，不调参重跑。
-审核 ZIP 在私有忽略目录 `outputs/milestone2/second-gt-and-real-device/`，
-原图可能含玩家 UI，仅供用户控制的私人审核交接，不是公开素材或法律 clearance。
-当前设备查询仅有模拟器，没有真实手机；`REAL_DEVICE_TEST_PENDING_USER`。
-现有 APK 不重建、不改功能；安装命令、手动安装和触屏／真正冷启动清单在同目录
-`b2/INSTALL_AND_CHECKLIST.md`。真机安装、启动、2/8、Reset 与布局均未冒充通过。
+**当前：Milestone 2 已完成本轮授权的 GT 回填与模拟 App 真机状态记录。**
+第二批用户明确确认 24 张审核帧中的 39 框，剩余 452 项仍 pending/unknown，
+本批 0 拒绝、0 Negative、0 出牌事件；新增皇家野猪、飞行器、野蛮人滚桶视觉类。
+两批累计 48 张审核帧、83 个确认框、9 个视觉类别、7 个非空 canonical mappings，
+932 项 pending 和历史 2 项拒绝。两批均来自第一场，不是跨比赛泛化证据。
+第二批新 annotation-only snapshot/lock 引用第一批锁，不覆盖旧数据；
+仍 `training_qualified=false`，没有新 Training Dataset Lock 或训练导出。
+reviewer=user，依据是用户确认的 ChatGPT 视觉审核建议；ChatGPT 不是人类 reviewer。
+Cannon 与 Barbarian Barrel 的 canonical mapping 保持 null，观察不等于出牌。
+
+`REAL_DEVICE_SMOKE_TEST_PASSED` 依据用户反馈：安装、启动、Witch/Balloon mock、
+显示 2/8、Reset 到 0/8。未冒充 Codex 本轮重测；手机型号、系统版本、布局、
+真正冷启动和性能未另行报告。现有 APK 不重建、不改功能，仅模拟，不接游戏。
+私人原图、GT、锁和回填报告仍 Git ignored；旧审核包、benchmark、两次训练结果保留。
 不训练、不进入 Module 3／真实游戏 HUD，不 push／合并 main。
-见[本阶段实际证据](docs/VERIFICATION_MILESTONE2.md)。
+见[本阶段实际证据与锁 SHA](docs/VERIFICATION_MILESTONE2.md)。
 
 **已完成的前序 checkpoint：首个模拟 App Debug APK；用户确认的首批视觉 GT。**
 模拟功能不变，不接真实游戏、不训练。APK 声明最低 Android 7.0 / API24；
-模拟器启动、模拟 2/8、Reset 已验证，实体手机安装尚未验证。
+模拟器启动、模拟 2/8、Reset 已验证；该前序 checkpoint 尚未验证实体手机，
+后续用户反馈的真机 Smoke PASS 见上方当前状态。
 首批 526 个候选中，44 框接受、2 项拒绝、480 项仍 pending/unknown；确认 6 个
 visual classes、5 个非空 canonical mappings。reviewer=user，依据为 ChatGPT
 视觉审核建议，不把 ChatGPT 写成人类审核者。本批 0 Negative、0 confirmed card plays，

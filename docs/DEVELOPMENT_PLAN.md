@@ -4,34 +4,33 @@ The project advances one independently verifiable module at a time. A module may
 start only after the previous module has been reviewed and accepted. Statuses are
 `Completed`, `In Progress`, `Planned`, `Paused`, or `Gated`.
 
-## Current authorization — Milestone 2: TaskA2 and TaskB2
+## Current checkpoint — Milestone 2 complete; next work not authorized
 
-Status: TaskA2 candidate/review-packet preparation complete, human confirmation
-pending; TaskB2 `REAL_DEVICE_TEST_PENDING_USER`. Authorized2026-10-07; same branch,
-start `fc0df2137e048640f200e5a412f9ddad81a42b90`. No new architecture or features.
+Status: Completed within the user's2026-10-07 closeout scope, from
+`cbc6dd7872d05bef48e2a157c5a1a2e608564584` on the existing
+`codex/milestone2-apk-and-first-gt` branch. No new architecture or features.
 
-- TaskA2: fixed next24 first-recording frames72..129.5s after previous69.5s,
- 2.5s stride. Existing benchmark had no saved predictions beyond71.75s; new
- proposal generation is limited to those24 frames using identical pinned
- inference parameters. Prepared24 original PNGs/491 pending proposals/4contact
- sheets, strict blank return, reviewer and ChatGPT instructions.48 raw labels
- are unverified, not confirmed classes. All five correction actions and
- per-class exhaustive coverage remain; source/canonical mapping unknown=null,
- secondary/spawned evidence never becomes an automatic card play. No auto GT,
- Negative, source-card inference, new lock/export or training. First-batch
- 44 confirmed boxes/6 classes stay frozen and separate. NMS warning retained;
- no parameter tuning or rerun to improve output.
-- TaskB2: reuse exact existing Debug APK, no App change/rebuild. Fresh device
- listing has0physical/1emulator. Prepare both USB/ADB and manual-local-transfer
- installation, then require actual manual Witch→Balloon2/8,Reset,touch/layout,
- resume and cold-start results. Emulator/static/source evidence is not phone
- success. ADB may install,launch own-App and read scoped logs only; no
- automated input,force-stop,screenshot,settings or game interaction.
+- TaskA2: user-confirmed batch02 returned through the existing strict validator/
+  importer and frozen in a new exclusive annotation-only snapshot.24 inspected
+  chronological match01 frames,39 accepted boxes,7 classes (3 new),452 pending,
+ 0 rejects/negatives/card plays. Cumulative two batches:48 inspected frames,
+ 83 boxes,9 classes,7 non-null mappings,932 pending and2 old rejects. Null
+ mappings/Unknown/identity limits preserved; no invented primary/spawned role,
+ Negative, source card or event. First lock/source images/predictions remain
+ immutable. No new Training Dataset Lock or ordinary training export.
+- TaskB2: user now reports installation, launch, Witch/Balloon mock,2/8 and
+  Reset0/8 PASS: `REAL_DEVICE_SMOKE_TEST_PASSED`. This is a user-reported
+  physical-phone mock smoke, not a new agent-run device test. Phone/system
+  version, detailed layout, cold-start/restart and performance are unreported.
+  Exact existing Debug APK/permissions unchanged; historical pending report
+  retained. No App change/rebuild, game connection or true game HUD.
 
-Stop at the second private review ZIP and honest device-pending report. User
-review/confirmation and physical-device feedback are next, not more development.
-Do not train, use truncated match02 as training/Negative, create a new split,
-enter Module3/real HUD, merge or push main. See [actual checks](VERIFICATION_MILESTONE2.md).
+Fresh59 Python and8 Node tests, CLI validation/import/overwrite protection and
+lock readback are recorded in [actual checks](VERIFICATION_MILESTONE2.md).
+Stop with Milestone2 Completion Report. The suggested offline
+visual-observation→card-play bridge is **not implementation authority**.
+Do not train, reuse truncated match02 as training/Negative, enter Module3,
+add capture/overlay/Accessibility permissions, use real HUD, merge or push main.
 
 ## Preserved authorization — Milestone 2: APK build and first human-GT batch
 

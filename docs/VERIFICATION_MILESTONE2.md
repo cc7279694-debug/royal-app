@@ -1,13 +1,166 @@
 # Milestone 2 — Debug APK, multiclass review batches and phone-test boundary
 
-Original APK/review-packet checkpoint verified locally on2026-10-07; its record
-below is retained with its original pending-GT boundary. The later user-attested
-first-batch confirmation/import and annotation-only freeze are recorded in the
-follow-up section below. Neither checkpoint is detector accuracy, training
-readiness or real-game HUD acceptance. ChatGPT is the visual-review basis, not a
-human reviewer; the user supplied the explicit human attestation.
+Milestone2 closeout is recorded first; the original APK/pending-review checkpoints
+and first-batch freeze below remain historical evidence. They are not detector
+accuracy, training readiness or real-game HUD acceptance. ChatGPT is the visual-
+review basis, not a human reviewer; the user supplied the human attestation.
 
-## Scope and baseline
+## Final closeout — second user-attested GT and user-reported phone smoke
+
+Verified2026-10-07; start `cbc6dd7872d05bef48e2a157c5a1a2e608564584`, branch
+`codex/milestone2-apk-and-first-gt`. Authorized only: transcribe the user's exact
+batch02 decisions through existing tooling, freeze a new annotation-only lock,
+record the user's six phone checks, update public status and hand off. No public
+implementation/schema/dependency/App change, decode, extraction, visual relabeling,
+inference, training, device operation, environment installation, merge or push.
+
+Private operation/evidence directory:
+`outputs/milestone2/second-gt-confirmation-v1/`.
+Source user-authorization attachment SHA256:
+`93092a05b31a558aa1e058fb5453abbc354e8e6dac8b2065e3bb09a6f06dbed6`.
+Structured decisions, strict return, identity/coverage supplement, command logs,
+JUnit outputs, B2 attestation and Completion Report stay local/Git-ignored.
+
+### Actual batch02 freeze and readback
+
+Revision: `outputs/milestone1/milestone2-second-multiclass-human-gt-v1/`.
+Lock: `second_multiclass_human_gt.snapshot_lock.v1.json`.
+File SHA256: `4a2bf638855d18b6d00ddc35738c3b4f2cdc5a460837364989e552d169d986f8`.
+Canonical lock digest:
+`3d2434359155d7fc8ce35ffa530e4be8950250beb2f43bd6557b88c375868195`.
+Nine SHA-bound members plus lock: original strict human-return, imported GT and
+receipt, exact user attestation, identity/coverage supplement, first-lock reference,
+review summary, object-review CSV and frame-review CSV. No copied original PNGs,
+modified source proposals, frozen first-lock members or new training dataset.
+First lock file SHA remains
+`7d4a9a7fafd627f1fbf82f73db3d66232163e5aac14dbdc8f5996c2c0b3a9dae`.
+
+| Confirmed batch02 visual class | Boxes | Owner | Canonical mapping |
+|---|---:|---|---|
+| `visual.unit.minion` |13|opponent|`unit.minion`|
+| `visual.unit.flying_machine` |8|opponent|`unit.flying-machine`|
+| `visual.unit.royal_hog` |5|opponent|`unit.royal-hog`|
+| `visual.unit.golden_knight` |5|opponent|`unit.golden-knight`|
+| `visual.structure.mortar` |4|own|`building.mortar`|
+| `visual.structure.cannon` |3|opponent|null|
+| `visual.effect.barbarian_barrel` |1|opponent|null|
+
+24 inspected frames,39 accepted original boxes on21 frames,0 rejects,452 remaining
+pending/unknown. New classes: Flying Machine, Royal Hog, Barbarian Barrel visual.
+All form/origin fields unknown; no class/bbox change or missing box addition.
+Four accepted objects override raw teacher owner=own to human owner=opponent;
+raw teacher fields/file bytes remain unchanged. This is a metadata correction,
+not teacher mutation. Exact source PTS/manifest/predictions/config/packet are bound.
+
+Reviewer=user; actual_human_confirmation=true, human_review_attested=true,
+review_basis=chatgpt_visual_review,
+confirmation_source=user_attestation_based_on_chatgpt_visual_review.
+Strict schema unchanged; additional facts live in separately SHA-bound files.
+The five explicit appearance groups are retained.18 Minion/Royal Hog tokens are
+observation-only, identity-unresolved, not18 new entities/independent deployments;
+no cross-batch identity is inferred. Length of appearance_groups is not event count.
+Primary/spawned roles are not newly inferred from labels or mappings.
+
+Only9 explicit frame/class coverage rows are emitted: Minion117/119.5/122s
+exhaustive positive; Royal Hog77/79.5/82s and Minion84.5/124.5/127s unresolved/
+positive-only. Positive acceptance elsewhere is not an exhaustive absence claim.
+No unlisted teacher proposal, reject, missing region or Unknown is background or
+Negative. Class-specific negatives and independent card plays remain0.
+
+Cumulative two separate snapshots:48 chronological inspected frames,83 accepted
+boxes on44 frames,9 classes,7 unique non-null mappings,932 pending and2 historical
+rejects, one underlying match only. Minion28, Mortar14, Flying Machine8, Cannon8,
+Golden Knight7, Witch6, Skeleton Barrel6, Royal Hog5, Barbarian Barrel1.
+This is not a merged Training Dataset or cross-match model-quality evidence.
+training_qualified=false; ordinary_training_export_allowed=false; rights remain
+unverified. Match02 remains mid-match truncated/training-excluded, not Negative.
+
+### Actual commands and scoped checks
+
+```powershell
+.\.venv\Scripts\python.exe -B -m pytest tools/preannotation/tests outputs/milestone2/second-gt-confirmation-v1/test_transcription_contract.py -q --tb=short --junitxml=outputs/milestone2/second-gt-confirmation-v1/final-regression.xml
+node --test tools/preannotation/tests/reviewer.test.cjs tools/preannotation/tests/review-ui.test.cjs
+.\.venv\Scripts\python.exe -B outputs/milestone2/second-gt-confirmation-v1/transcribe_and_seal.py prepare
+.\.venv\Scripts\python.exe -B outputs/milestone2/second-gt-confirmation-v1/transcribe_and_seal.py validate-cli
+.\.venv\Scripts\python.exe -B outputs/milestone2/second-gt-confirmation-v1/transcribe_and_seal.py import-cli
+.\.venv\Scripts\python.exe -B outputs/milestone2/second-gt-confirmation-v1/transcribe_and_seal.py seal
+.\.venv\Scripts\python.exe -B outputs/milestone2/second-gt-confirmation-v1/transcribe_and_seal.py refuse-overwrite
+.\.venv\Scripts\python.exe -B outputs/milestone2/second-gt-confirmation-v1/transcribe_and_seal.py verify
+```
+
+Actual final regression: **59 passed in8.68s** (51 existing preannotation tests +
+8 private transcription/logging checks); Node **8 passed,0 failed/skipped**.
+Existing strict CLI validate/import exit0; actual second import to the existing
+revision exit2 and full10-file SHA set unchanged. New lock canonical/member,
+return/GT/receipt/summary/first-reference/CSV readback passes.
+
+The initial forbidden-overwrite log capture failed because the child emitted a
+Chinese Windows file-exists error in CP936 while the private helper assumed
+UTF-8. The already completed import/lock was not damaged. A real-child regression
+reproduced the decoding failure; only the new ignored helper's output capture
+was changed to preserve bytes. Fresh59-test run and byte-safe overwrite recheck
+pass. Initial empty/failed logs and failing JUnit record remain, not replaced;
+recheck files have new names. Public CLI, data and locks were not patched.
+No training, inference, screenshot generation or failed-experiment rerun occurred.
+
+Full historical offline-video suite, TypeScript/App tests/build, Capacitor sync,
+APK rebuild and agent phone test are **Not Run this closeout**, because public
+code/dependencies/App are unchanged. Prior passing totals above/below are historical,
+not claimed as fresh results. The new private GT is verified by the actual existing
+CLI plus scoped tests, exclusive-lock/CSV/source-hash readback and protection audit.
+
+### Fresh closeout protection / dependency / privacy evidence
+
+The before/after audit uses the same fixed1,360-file map: historical1,280-file
+union plus all34 original second-bundle files and46 original second-stage files.
+All hashes and directory memberships are unchanged, including first GT9 files,
+complete Attempt01(43) and Attempt02(92),four MP4s,teacher/pinned source code,
+weights/settings/review packets and existing APK. No old audit helper/receipt
+was rerun or overwritten. Shared observed-map canonical SHA:
+`7f22d48714646cf33e0e4db1823a580991b124eda36996e51379fe4f3c52ab87`.
+
+New immutable private receipts under `second-gt-confirmation-v1/protection/`:
+before SHA `8714bdbcb4cfa26614aa2fc7ab1c14da04bad8ff6cdc465f6ee9300fcdc90fcc`;
+after SHA `00a93fd029a2394b25789b5c43e6c415c80ac7dc7a11e05d2182c7a3a286d788`.
+Both PASS,errors0; raw three-environment inventories before→after equal at fixed
+HEADcbc6dd:offline13,YOLOX22,benchmark41. Fresh `pip check` exit0 in all three,
+"No broken requirements found." No environment change/install. The offline
+editable checkout reference may advance only with the later docs-only commit;
+that is Git metadata, not a package update. Pinned KataCR36ceb9f remains clean.
+
+After audit checked1,397 protected/new/reserved private paths,all Git ignored;
+tracked private/media0. New GT/return/CSV/logs/receipts remain ignored; public
+diff is exactly four documentation files. No SQLite/config/dependency/App code,
+private recording/PNG/index/report/weights/credential/signing material is staged.
+The fixed audit is deliberately bounded, not a claim of hashing every venv/cache
+file. Final checks:87 relative Markdown links exist;added public text secret/
+private-path pattern scan PASS;all37 new private files ignored;tracked private/
+media/weights/signing files0;`git diff --check` exit0. Public diff remains exactly
+four documentation files. Only a local checkpoint follows;no push/main merge.
+
+### TaskB2 — user-reported physical-phone result, not an agent retest
+
+Status: `REAL_DEVICE_SMOKE_TEST_PASSED`, evidence_type=user_reported_physical_
+android_device_smoke. User confirms APK install, App launch, Witch mock, Balloon
+mock,2/8 and Reset0/8. Recorded in the new private
+`b2-user-attestation.v1.json` and `B2_USER_REPORTED_SMOKE.md`; historical pending
+reports remain unchanged. The unchanged local APK SHA is
+`774ed13e2ac69690330cf126084aee15b19ecf676e579a1872eaa7e37ea6bb0d`.
+Phone-installed checksum was not independently collected. No phone model/Android
+version, detailed layout/gesture, cold-start/restart or performance report exists;
+do not fill these as tested. No new ADB listing/install/launch/log collection,
+App code change/rebuild or phone automation was performed this closeout.
+The six reported passes establish mock-only smoke, not real-game integration,
+live detector, true HUD, offline-network qualification or device performance.
+
+The original permission inspection remains applicable to the same unchanged APK:
+only AndroidX's own signature receiver permission, no Internet/capture/cross-app
+overlay/Accessibility/game-input ability. No new permission or Module3 is enabled.
+
+Stop with Milestone2 Completion Report. A future observation→confirmed card-play
+bridge requires separate authorization; this closeout does not implement it.
+
+## Historical original scope and baseline
 
 - Branch: `codex/milestone2-apk-and-first-gt`.
 - Start: `97d87d875e97b847e79fd00433a79d779e9abd1c`, accepted Milestone1.
