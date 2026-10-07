@@ -4,7 +4,34 @@ The project advances one independently verifiable module at a time. A module may
 start only after the previous module has been reviewed and accepted. Statuses are
 `Completed`, `In Progress`, `Planned`, `Paused`, or `Gated`.
 
-## Current authorization — Existing Multiclass Detector Local Benchmark
+## Current authorization — local pre-annotation and simulated App
+
+Status: Completed implementation/verification, pending user acceptance;
+explicitly authorized 2026-10-07. Execution followed the
+[two-task implementation plan](superpowers/plans/2026-10-07-preannotation-and-simulated-app.md)
+under its [bounded design](superpowers/specs/2026-10-07-preannotation-and-simulated-app-design.md).
+
+Task A adds a local prediction→pending proposal→human correction workflow,
+including all five correction operations and per-class exhaustive review. Reuse
+the immutable first-match benchmark first, expand in original recording order,
+and keep truncated match02 excluded. No prediction is GT; Unknown/reject/unmarked
+regions cannot supply automatic background. 10–20 classes is only a target.
+
+Task B is a React/TypeScript/Capacitor simulated prototype with Witch/Balloon
+mock events and a small HUD inside the App. No capture, detector connection,
+cross-app overlay permission, game interaction or cycle/evolution/elixir state
+machine. Future native inference remains a separately authorized option.
+
+Stop after verified tools/demo, UI screenshots and accurate Android build status.
+No training, new weights, Module3, real-game HUD, push or main integration.
+This stop has been reached: a first-match pending bundle and synthetic correction
+round-trip are available, the mock App runs locally, and Android source sync is
+verified. APK compilation/device execution is Not Run because the toolchain is
+incomplete; no global installation is implied. Real proposals still await human
+review; the target10–20 classes is not claimed achieved. See
+[verification](VERIFICATION_MILESTONE1.md).
+
+## Historical authorization — Existing Multiclass Detector Local Benchmark
 
 Status: fixed benchmark execution Completed; independent manual visual review
 Pending. This is not detector accuracy acceptance or automatic model adoption.

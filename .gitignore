@@ -9,3 +9,9 @@ build/
 dist/
 .coverage
 htmlcov/
+/.superpowers/
+.playwright-cli/
+node_modules/
+.capacitor/
+.gradle/
+local.properties

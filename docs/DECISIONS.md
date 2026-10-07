@@ -1,5 +1,44 @@
 # Decisions
 
+## 2026-10-07 — Proposal-only KataCR and mock-only Capacitor prototype
+
+### Decision
+
+Use retained KataCR predictions only to accelerate local human annotation.
+Keep raw predictions immutable and human corrections separate, explicitly
+pending until an actual reviewer acts. Support accept/reject/relabel/bbox edit
+and missing objects, with class-specific exhaustive coverage and preserved
+appearance identity. Unknown/rejected/unmarked areas never automatically become
+Negative. Expand recordings in original order; match02 remains truncated and
+training-ineligible. 10–20 classes is an aspiration, not a mandatory quota.
+
+Build a React/TypeScript/Vite/Capacitor mock App in parallel. A decoupled typed
+event consumer accepts mock Witch/Balloon events; a small App-internal HUD shows
+discovered 2/8. No persistent user data exists in this prototype, so in-memory
+state is sufficient; do not add SQLite or localStorage without a real need.
+
+### Context
+
+Attempt02 is valid but data limited, not a usable detector. The fixed KataCR
+benchmark produces many noisy proposals and does not justify final App adoption.
+Existing predictions can reduce manual drawing effort without treating teacher
+output as ground truth, while mock events make the product boundary visible.
+
+### Alternatives and Reason
+
+Do not run Attempt03, adopt KataCR as the production detector, or wait for full
+recognition before prototyping UI. The additive tools and mock-only UI test the
+desired interaction without changing old experiment results or game behavior.
+
+### Consequences
+
+No training or new lock is authorized. Third-party code/weights/game rights are
+not cleared by this research use. Do not redistribute private assets or weights.
+Capacitor is the prototype UI choice, not a constraint on future native inference.
+No MediaProjection, detector bridge, SYSTEM_ALERT_WINDOW, Accessibility/input
+control, cycle/evolution/elixir logic, push or main merge. Live game HUD still
+requires the original explicit applicable Supercell permission gate.
+
 ## 2026-10-07 — Accept data-limited Attempt02; pause fine-tuning for existing-detector benchmark
 
 ### Decision

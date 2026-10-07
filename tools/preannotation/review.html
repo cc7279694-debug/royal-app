@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>本地视觉标注审核</title><link rel="stylesheet" href="review.css"></head>
+<body>
+<header><div><span class="eyebrow">OFFLINE / HUMAN REVIEW</span><h1>逐帧核对，保留不确定性</h1>
+<p>模型框仅为待审建议。此页面不运行模型，也不推断出牌。</p></div><div id="summary"></div></header>
+<div class="notice">源图与原始预测不可修改。尚未审核的区域、拒绝和 Unknown 都不是负样本；类别完整性需要单独确认。</div>
+<main>
+<section class="image-panel"><div class="frame-nav"><button id="previous">上一帧</button><label>帧 <select id="frame-select"></select></label><button id="next">下一帧</button></div>
+<div id="frame-meta"></div><p id="image-status" role="status" aria-live="polite"></p><div class="canvas-wrap"><canvas id="image" aria-label="原始完整图和待审框"></canvas></div>
+<p class="muted">选择框后可修正坐标；“补漏框”模式下在图上拖动。显示比例不改变原图坐标。</p></section>
+<section class="review-panel"><h2>框建议</h2><div id="proposal-list" class="proposal-list"></div>
+<form id="edit-form"><h2 id="edit-title">选择一个建议框</h2>
+<p id="raw-teacher" class="muted"></p>
+<label>人审视觉类别 <input id="visual-class" placeholder="visual.unit.witch" required></label>
+<label>规范类别映射（可空） <input id="canonical" placeholder="unit.witch"></label>
+<div class="coords"><label>x1<input id="x1" type="number" step="any" required></label><label>y1<input id="y1" type="number" step="any" required></label><label>x2<input id="x2" type="number" step="any" required></label><label>y2<input id="y2" type="number" step="any" required></label></div>
+<div class="fields"><label>归属<select id="owner"><option>unknown</option><option>opponent</option><option>own</option><option>neutral</option></select></label>
+<label>形态<select id="form"><option>unknown</option><option>normal</option><option>evolved</option><option>other</option></select></label>
+<label>来源<select id="origin"><option>unknown</option><option>independent</option><option>spawned</option><option>clone</option><option>transformed</option></select></label>
+<label>可见性<select id="visibility"><option>visible</option><option>occluded</option><option>unknown</option></select></label>
+<label>不确定性<select id="uncertainty"><option>unknown</option><option>uncertain</option><option>none</option></select></label></div>
+<label>外观身份（跨帧沿用同一 ID）<input id="appearance" placeholder="witch-a" required></label>
+<label>备注<input id="note" placeholder="确认依据 / 不确定原因"></label>
+<div class="actions"><button type="submit" data-action="accept">接受</button><button type="submit" data-action="reject" formnovalidate>拒绝</button><button type="submit" data-action="relabel">改类别</button><button type="submit" data-action="bbox-correct">修正框</button><button type="button" id="missing">补漏框</button><button type="submit" data-action="missing-box" id="save-missing" hidden>保存补漏框</button></div></form>
+<section class="coverage"><h2>类别完整性 · 独立确认</h2><p class="muted">只适用于当前帧中明确写出的类别。保留未审区域，不能导出整帧背景训练。</p>
+<label>类别<input id="coverage-class" placeholder="visual.unit.witch"></label>
+<label class="check"><input id="exhaustive" type="checkbox">我已检查整张原图中此类别的所有实例</label>
+<label class="check"><input id="unresolved" type="checkbox" checked>此类别仍有不确定 / 未审核区域</label>
+<button id="save-coverage">记录类别完整性</button><div id="coverage-list"></div></section>
+</section></main>
+<footer><label>实际审核者<input id="reviewer" placeholder="姓名 / 本地标识"></label><label class="check"><input id="attested" type="checkbox">我是实际人审者，以上决定由我检查原图后作出</label>
+<button id="download">下载独立审核回传 JSON</button><p>页面内编辑暂存于内存。离开前下载文件；使用 CLI 验证后保存新版本。历史输出始终保留。</p><div id="status" role="status" aria-live="polite"></div></footer>
+<script src="review-data.js"></script><script src="reviewer.js"></script><script src="review-ui.js"></script>
+</body></html>

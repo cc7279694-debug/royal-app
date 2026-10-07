@@ -1,6 +1,25 @@
 # Clash Tracker
 
-**当前：现成多类别 detector 固定本地 benchmark 已执行，等待 ChatGPT 视觉复核；自研微调暂停。**
+**当前已实现并验证：本地预标注／人工纠错工具 + 纯模拟 App 原型，等待用户验收。**
+KataCR 只提供待审核候选，不直接成为人工 GT 或最终 App 识别核心。
+支持接受／拒绝／改类／改框／补框及逐类穷尽复核；Unknown、拒绝与未标区域
+不自动成为 Negative。严格按原录像顺序，第二场中途截断，仍不具备训练资格。
+10–20 类只是目标；当前不训练、不改旧锁或实验结果。
+React + TypeScript + Capacitor 原型只用女巫／气球兵模拟事件展示已发现 2/8；
+HUD 只在 App 内，不接游戏、detector、实时录屏或跨应用悬浮窗。
+不实现卡序／觉醒／圣水；真实游戏 HUD 保持关闭。
+见[当前两任务设计与边界](docs/superpowers/specs/2026-10-07-preannotation-and-simulated-app-design.md)。
+
+预标注页面已准备第一场的 12 张原图和 272 个待审候选，尚不是已确认 GT；
+五种纠错操作与独立回传导入已用合成演示实际走通。
+见[预标注操作](tools/preannotation/README.md)和[模拟 App 操作](app/README.md)。
+模拟 App 已通过测试、Web 构建和 Capacitor Android 同步；当前缺少 JDK 21
+及 Android SDK 平台／构建工具，尚未构建或在手机验证 APK。
+完整检查与限制见[本轮验证记录](docs/VERIFICATION_MILESTONE1.md)。
+
+下面的 benchmark 与训练内容是保留的历史实验事实，不代表已认可模型可用。
+
+**历史：现成多类别 detector 固定本地 benchmark 已执行；自研微调暂停。**
 用户转交 ChatGPT 的正式结论为 `ATTEMPT02_VALID_BUT_DATA_LIMITED`。
 本次 ZIP 读取环境异常，结论仅基于统计报告，不表示已经完成独立逐图或代码复审，
 也不是可用 detector／泛化能力验收。ROI、数据、input 与训练预算同时改变，
@@ -22,8 +41,10 @@ Witch，也不能直接产生 `OpponentCardPlayed`。历史 spawned Skeleton 仍
 不等于 Skeleton 卡牌部署。候选权重权利仍为 `unverified`，私人本地 benchmark
 不代表法律 clearance、素材／模型再分发或发布许可。
 不执行 Attempt 03，不调整 confidence threshold／optimizer steps，不追加 Skeleton 标注，
-不恢复普通亡灵专项门槛，不自动采用模型，不进入 Module 3、Android 或实时 HUD。
-当前分支 `codex/existing-multiclass-local-benchmark`；未 push／合并 main。
+不恢复普通亡灵专项门槛，不自动采用模型。该 benchmark 当时未进入 Module 3、Android 或实时 HUD；
+当前另行授权的纯模拟 App 不包含真实游戏能力。
+历史 benchmark 分支 `codex/existing-multiclass-local-benchmark`；当前分支
+`codex/milestone1-data-and-simulated-app`，未 push／合并 main。
 
 **已保留的历史：Attempt 02 唯一一次固定训练与 DEV_TUNE 评估。**
 用户转交 ChatGPT 的 Attempt 01 独立结论为
@@ -277,7 +298,7 @@ insufficient。这是已验收的人工证据，不是模型识别结果；未�
 用户于 2026-10-04 另行正式授权 Module 2A2 实施。当时 2B 尚未批准；
 2026-10-05 当时的另行授权仅打开 2B-1；随后 2B-2 专项数据准备现已暂停，
 当前两类 smoke 训练数据锁授权见本文开头。
-Module 3、Android 和实时 HUD 仍未批准，
+Module 3 和真实游戏 HUD 仍未批准；当前 Android 仅允许上述纯模拟原型，
 2A1 review 仍不代表新实验就绪。
 参见 [Module 2A1 验证记录](docs/VERIFICATION_M2A1.md)。
 

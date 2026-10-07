@@ -28,7 +28,8 @@ on-screen unit across multiple frames.
 - Account safety takes priority over feature scope.
 - Begin with user-provided recordings and test footage.
 - Keep core processing local and functional without a cloud service.
-- Prove recognition reliability before building a complete app or polished UI.
+- Prove recognition reliability before connecting game input to a complete App.
+  A separately authorized mock-only App prototype may develop in parallel.
 - Report uncertainty honestly; estimates must not be presented as exact facts.
 - Prefer simple, testable modules over premature abstraction.
 
@@ -108,12 +109,18 @@ Verified constraints:
 
 Candidate technologies, not yet selected:
 
-- Kotlin and Jetpack Compose for a future Android application;
+- Native Android plugins for separately approved capture/local inference;
 - MediaProjection for a future, separately approved capture experiment;
 - YOLO with ONNX Runtime, TensorFlow Lite, or another suitable on-device runtime.
 
 The offline proof of concept will determine the model format and Android runtime.
 No inference framework is currently an accepted dependency.
+
+The authorized simulated UI/App prototype uses React, TypeScript, Vite and
+Capacitor, with bundled offline assets and in-memory mock events only. Its small
+HUD is inside its own Activity, not a game overlay. This selection does not
+require future screen capture or inference to run in Web; those may use native
+Android plugins after separate authorization and the existing safety gate.
 
 ## Open-Source References
 

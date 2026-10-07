@@ -2,7 +2,54 @@
 
 Last verified: 2026-10-07.
 
-## Current checkpoint — existing detector fixed benchmark executed; visual review pending
+## Current work — local pre-annotation correction + simulated App
+
+The user explicitly authorizes these two independent tasks on 2026-10-07:
+KataCR predictions as pending local proposals with separate human correction,
+and a React/TypeScript/Capacitor mock-event App with an App-internal HUD.
+Both scoped implementations and verification are complete; user acceptance is
+pending. This is tool/mock-UI completion, not detector accuracy, reviewed real GT,
+training readiness or a device-tested Android APK.
+See the [bounded design](superpowers/specs/2026-10-07-preannotation-and-simulated-app-design.md)
+and [implementation plan](superpowers/plans/2026-10-07-preannotation-and-simulated-app.md).
+
+Use original recording order; match02 stays mid-match truncated and training
+ineligible. Accept/reject/relabel/bbox correction/manual missing objects must
+remain separate from teacher predictions. Per-class exhaustive coverage requires
+human attestation; Unknown/rejected/unmarked areas do not become Negative.
+10–20 classes is a goal, not a quota or an automatic training-readiness gate.
+No new training or Dataset Lock. Mock Witch/Balloon events alone drive discovery
+2/8; no detector, capture, game connection, cross-app permission, card-cycle,
+evolution or elixir implementation. Live gameplay and HUD stay Gated.
+
+Branch: `codex/milestone1-data-and-simulated-app`, initial baseline
+`17242b717de91a69b1a6d65511c10c0857337b1b`; no push/main merge authorized.
+Old locks, fine-tuning attempts, benchmark and environments remain protected.
+
+Verified deliverables:
+
+- Additive `tools/preannotation/`: separate immutable predictions, human return
+  and exclusive revision; accept/reject/relabel/correct/add, class-specific
+  coverage and continuity metadata. Real match01 demonstration: 12 exact-PTS
+  source frames / 272 pending proposals; no real human GT was imported.
+- Synthetic browser demonstration exercised all five actions, download,
+  validate/import exit0, four simulated positives, no negatives and no card plays.
+  Frame loading/failure guards and one-read return snapshot binding were repaired
+  and approved in scoped code re-review.
+- Mock App: play/reset/replay, 0/8→1/8→2/8, mobile/desktop screenshots, strict
+  mock-only event boundary. Web build and Capacitor Android sync pass; no APK
+  build because JDK21 and required SDK platform/build tools are absent.
+- Fresh maintained offline regression: 908 passed / 3 existing permission skips;
+  new review-tool Python 51 passed / Node8 passed; App43 tests, strict TypeScript,
+  production build and npm audit0. All32,217 historical files,160 old YOLOX source
+  files and all three existing Python package inventories unchanged.
+
+See [completion/verification](VERIFICATION_MILESTONE1.md). Stop for acceptance
+and actual human correction of the first pending bundle; expand in original
+recording order only under the approved data workflow. No automatic training,
+next module, Android toolchain installation, push or merge.
+
+## Preserved checkpoint — existing detector fixed benchmark executed; visual review pending
 
 The user relayed ChatGPT's formal acceptance
 `ATTEMPT02_VALID_BUT_DATA_LIMITED`. Self-trained two-class fine-tuning is paused;
@@ -41,10 +88,11 @@ uses CUBIC; the upstream positional resize actually uses LINEAR, so preprocessin
 is not claimed byte-identical. Both limitations are disclosed, not patched by
 rerunning the fixed benchmark. See [benchmark verification](VERIFICATION_EXISTING_MULTICLASS_BENCHMARK.md).
 
-Current branch: `codex/existing-multiclass-local-benchmark`. Main remains
+Historical benchmark branch: `codex/existing-multiclass-local-benchmark`. Main remains
 `8a03e288fb814d81b0a8e255b8004dbc4d0efb02`; no push or merge. Next: manual
 visual review of the preserved outputs, not automatic model adoption or a new
-module. No training, Module3, Android or live-game feature is authorized.
+module. At that checkpoint no training, Module3, Android or live-game feature
+was authorized; the current mock-only App authorization is stated above.
 
 Primary/secondary refer to future visual-observation semantic responsibilities,
 not directly to card events. A Witch detection still requires a separate,
