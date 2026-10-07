@@ -1,5 +1,33 @@
 # Decisions
 
+## 2026-10-06 — Accept Attempt01 insufficiency; authorize bounded Attempt02
+
+### Decision
+
+The user's explicit relay of ChatGPT's independent visual review accepts
+Attempt01 as valid but insufficient. Preserve its exact predictions/checkpoint
+and no threshold-based repair claim. Attempt02 keeps Nano, uses match01-only
+TRAIN expansion and a TRAIN-defined fixed battlefield crop, increases input to
+640 and fixes 300 optimizer steps before any new training. Match04 is now
+DEV_TUNE, not a blind/independent test; old immutable split fields remain history.
+
+### Reason
+
+One very-low-score Witch match and no Skeleton matches do not establish a usable
+detector. Data/UI/small-target issues are hypotheses, not proven causal facts.
+Adding representative positives and explicitly reviewed negatives may improve
+the development experiment, but fresh drafts cannot masquerade as human GT.
+
+### Consequences
+
+New objects, appearance continuity and zero-label frames require exact human
+review. Unknown is never background. Keep the continuous Witch identity and
+spawned Skeleton relationships; do not count new frames as new deployments.
+Freeze expanded confirmed data separately from v1, then one fixed run and one
+DEV_TUNE evaluation, even if it fails. Changing ROI/data/input/budget together
+does not isolate their individual effects. No model change, extra recording,
+automatic Attempt03, Blind Test, Module3, push or merge.
+
 ## 2026-10-06 — Preserve the first fixed-budget real smoke result
 
 ### Decision

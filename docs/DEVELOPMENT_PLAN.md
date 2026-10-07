@@ -4,18 +4,35 @@ The project advances one independently verifiable module at a time. A module may
 start only after the previous module has been reviewed and accepted. Statuses are
 `Completed`, `In Progress`, `Planned`, `Paused`, or `Gated`.
 
-## Current separately authorized Phase C smoke experiment
+## Current separately authorized Attempt02
 
-Status: Completed execution, pending independent acceptance — one fixed real
+Status: In Progress — exact human review confirmed, expanded snapshot/export
+and final regression/protection validation in progress; no Attempt02 training yet.
+The user accepted Attempt01 as valid but insufficient and authorized Nano640,
+batch1, FP32, fixed seed, 300 optimizer steps and exactly one DEV_TUNE evaluation.
+Use only match01 TRAIN and match04 DEV_TUNE, never train on match04. Existing
+GT/dataset v1 and Attempt01 records stay immutable. The 16-frame reviewed snapshot
+qualifies only 14 standard frames / 15 boxes (8 exhaustive negatives, 6 positives).
+162s/165s remain partial; four rejected proposals never become Negative.
+Freeze/validate a new exclusive expanded v2 and inspect exact ROI/class exports
+before the single run. Do not interpret unannotated/Unknown pixels as background.
+See [Attempt02 protocol](PHASE_C_ATTEMPT02_PROTOCOL.md) and
+[verified preparation boundary](VERIFICATION_ATTEMPT02_PREPARATION.md).
+No Attempt03, Blind Test, Model Lock, Module3, push or main merge.
+
+## Historical Attempt01 — completed, valid but insufficient accepted
+
+Status: Completed execution, independent insufficient-result acceptance relayed
+by the user — one fixed real
 100-step Nano run and one two-frame DEV_VAL evaluation; matched 1/5 GT at fixed
 IoU 0.5, very low-confidence Witch response and no matched Skeleton. No claim
 of detector accuracy acceptance. See [actual verification](VERIFICATION_PHASE_C.md).
-Stop; further tuning/training/data or blind testing requires separate authority.
+The separately authorized Attempt02 above is the only current continuation.
 The completed Phase A/B/GT/data-lock
 records below retain their original historical boundaries. The obsolete
 ordinary-Minions specialist quota is not reinstated.
 
-Execute only [the fixed two-class smoke protocol](PHASE_C_SMOKE_PROTOCOL.md):
+The preserved historical [two-class smoke protocol](PHASE_C_SMOKE_PROTOCOL.md) was:
 validate unchanged locks, official COCO Nano weight provenance, deterministic
 two-TRAIN/two-DEV_VAL export, exactly 100 FP32 optimizer steps on Nano 416/b1,
 checkpoint round-trip, then one fixed DEV_VAL evaluation and local review ZIP.

@@ -1,11 +1,24 @@
 # Clash Tracker
 
-**Phase C — 2-Class Learned Detector Smoke Training 已完成首次真实实验**：
+**当前：Attempt 02 TRAIN 人工复核已确认，正在准备唯一一次固定预算训练。**
+用户转交 ChatGPT 的 Attempt 01 独立结论为
+`TWO_CLASS_SMOKE_ATTEMPT01_VALID_BUT_INSUFFICIENT`，保留原失败结果。
+Attempt 02 固定 Nano 640 / batch 1 / FP32 / 300 steps；第一场仍为 TRAIN，
+第四场现在只称 DEV_TUNE，不称盲测或独立测试。原两帧六个 TRAIN 框已核对，
+本次新增 11 框确认、4 框拒绝。标准 TRAIN 为 14 帧（8 负／6 正）、15 框；
+162s／165s partial 保留但不参与普通 loss，拒绝区域不作为 Negative。
+旧锁不覆盖，新 expanded GT v2 与 ROI 导出均验证通过，训练框可视化已检查；
+扩充帧不增加独立部署数。完整回归仍在运行，尚未进行本轮真实模型训练。
+详见[Attempt 02 固定协议](docs/PHASE_C_ATTEMPT02_PROTOCOL.md)与
+[当前准备记录](docs/VERIFICATION_ATTEMPT02_PREPARATION.md)。不 push、不合并 main。
+人工确认后新锁和实际运行记录见[Attempt02 验证](docs/VERIFICATION_ATTEMPT02.md)。
+
+**已保留的历史：Phase C 首次真实实验（Attempt 01）**：
 Nano 416 / batch 1 / FP32 恰好 100 optimizer steps，之后仅一次两帧 DEV_VAL
 评估。真实 GT → 导出 → CUDA 训练 → checkpoint 恢复链路成功；训练 loss 下降。
 固定 IoU 0.5 下仅匹配 1/5 个 DEV_VAL GT，且该 Witch 分数极低；Skeleton 未匹配。
 这是有效但检测能力明显不足的 smoke 结果，不是准确率验收通过。
-保留首次结果，不调参、不重跑；本地提交，不 push、不合并 main，等待独立审查。
+保留首次结果，不调参、不重跑；其有效但不足结论已由用户转交的独立复核接受。
 详见[固定协议](docs/PHASE_C_SMOKE_PROTOCOL.md)与[实际验证](docs/VERIFICATION_PHASE_C.md)。
 下文原阶段的“不训练”边界属于历史，不撤销本次新授权。
 

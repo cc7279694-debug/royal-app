@@ -1,8 +1,47 @@
 # Current State
 
-Last verified: 2026-10-06.
+Last verified: 2026-10-07.
 
-## Current checkpoint — Phase C real two-class smoke experiment completed
+## Current checkpoint — Attempt02 human review confirmed; fixed run preparation
+
+The user relayed ChatGPT acceptance of Attempt01 as
+`TWO_CLASS_SMOKE_ATTEMPT01_VALID_BUT_INSUFFICIENT`, and explicitly authorized
+one new Nano 640 / batch1 / FP32 / 300-step Attempt02. No Attempt02 training or
+DEV evaluation has occurred. `natural_match_01` remains TRAIN;
+`natural_match_04` is now DEV_TUNE, not blind or independent testing. Do not
+retroactively edit the historical locked DEV_VAL fields or Attempt01 outputs.
+
+Original TRAIN sanity passed: two PNGs and all six boxes match the frozen v1
+and actual Attempt01 export, Skeleton=0/Witch=1. Fixed ROI `[0,120,432,744]`
+is identical for TRAIN/DEV_TUNE. On 2026-10-07 the user relayed ChatGPT's
+`ATTEMPT02_TRAIN_HUMAN_REVIEW_CONFIRMED`: 11 new confirmed objects, four
+rejected; all original bboxes accepted. Standard TRAIN is 14 frames / 15 boxes:
+eight exhaustive negatives and six exhaustive positives (Witch 6, Skeleton 9).
+The two partial 162s/165s frames and their confirmed Witch boxes stay archived
+in the new 16-frame / 17-object snapshot but cannot enter ordinary loss.
+Rejected objects/Unknown are not Negative. Old episode and source relationships
+are retained; expanding frames does not create independent deployments.
+
+The unchanged strict loader has validated eight existing report/index sets,
+195 original requests. Expanded v2 snapshot SHA is
+`f25c54e6dfc578a6d9edd69c2adfa712fb79fa5c924b25a7ad6999951707c1c2`;
+lock and exact ROI export validate exit0. TRAIN overlays inspected, no class swap.
+Fresh helper regression: 200 passed. Before-run protection confirms 32,217 old
+hashes unchanged, 32,143 private paths ignored, both pip checks exit0 and no
+environment/source change. Complete maintained regression is still running.
+No Attempt02 model
+execution/training yet. Public code/doc changes remain local on the existing
+feature branch; before training they must form a clean local committed baseline.
+
+Next task: finish the complete regression and clean local public baseline, then
+execute the already-authorized
+300-step protocol and one DEV_TUNE evaluation. Do not request new recordings,
+reset old locks, train drafts, retune from DEV, retry Attempt03 or enter Module3.
+See [protocol](PHASE_C_ATTEMPT02_PROTOCOL.md) and
+[preparation verification](VERIFICATION_ATTEMPT02_PREPARATION.md).
+Actual confirmed-data/run evidence: [Attempt02 verification](VERIFICATION_ATTEMPT02.md).
+
+## Preserved historical checkpoint — Attempt01 completed and accepted insufficient
 
 The authorized YOLOX-Nano 416 / batch 1 / FP32 run completed exactly 100
 optimizer steps on the GTX 1050 Ti, followed by one two-frame DEV_VAL evaluation.
@@ -17,8 +56,9 @@ weak low-score localization response, not reliable detection or generalization.
 Complete 68s frame: 77 sampled-frame FP at the pre-fixed low confidence gate;
 partial 72s: 30 unmatched unjudged, one outside-image padding candidate, no FP
 claim. No threshold selection, second evaluation or additional training occurred.
-See [Phase C verification](VERIFICATION_PHASE_C.md). Stop for ChatGPT review;
-no next module, push or main integration. Historical prohibitions below apply
+See [Phase C verification](VERIFICATION_PHASE_C.md). The user's newly relayed
+ChatGPT review accepted the insufficient result; no push or main integration.
+Historical prohibitions below apply
 to their earlier stage, not retrospectively to this authorized experiment.
 
 Public artifact identities, explicitly authorized for publication now:
@@ -31,10 +71,11 @@ Public artifact identities, explicitly authorized for publication now:
 Artifacts, original frames, annotations and dataset exports remain ignored and
 private. Their historical authorization flags remain unchanged; a separate
 Phase C run contract carries the current training/official-weight authority.
-Only official YOLOX COCO Nano release weights may be downloaded after recording
-provenance. No third-party Clash Royale data/weights, Tiny experiment, new GT,
+Only official YOLOX COCO Nano release weights were used after recording
+provenance. No third-party Clash Royale data/weights, Tiny experiment,
 Blind Test, production Model Lock, Module 3 or Android/live feature is allowed.
-See [fixed smoke protocol](PHASE_C_SMOKE_PROTOCOL.md).
+New TRAIN GT drafts are separately authorized for Attempt02 review only; do not
+alter this old v1 snapshot. See [old fixed smoke protocol](PHASE_C_SMOKE_PROTOCOL.md).
 
 ## Completed data checkpoint — private local 2-Class Training Dataset Lock v1
 
@@ -77,7 +118,9 @@ cannot become background. Sampled GT cannot certify full-timeline absence or
 FP/min. This round does not train, download weights, run real detector
 inference, create a Model Lock or enter Phase C/later modules. No production
 schema, 2A2/2B-1 contract, original 3–5-class gate, split or old lock is changed.
-No staging, commit, push or merge is authorized.
+At that historical GT-return checkpoint, staging, commit, push or merge was
+not authorized. Later phase authorizations and current Git boundaries are
+recorded separately above; this sentence is not the active phase gate.
 
 The ordinary-Minions four-match/eight-play target-recheck route and its outputs
 are **superseded / historical**, retained as evidence. Their shortfall is not
@@ -491,7 +534,9 @@ See [fixed 2B-1 protocol](MODULE_2B1_PROTOCOL.md).
   `training_qualified=true`. Fresh joint private tests pass 65/0 skips and the
   full maintained regression passes 908/3 existing permission skips, exit 0.
   That step performed no real training or weights download. The new Phase C
-  authorization is recorded at the top; implementation is not yet started.
+  authorization led to the completed Attempt01 training chain, independently
+  accepted as valid but insufficient. The active Attempt02 preparation and
+  pending human-review boundary are recorded at the top.
   Historical 4/8 and original 3–5-class readiness results
   are retained in their original scopes, not applied to this smoke snapshot.
 
