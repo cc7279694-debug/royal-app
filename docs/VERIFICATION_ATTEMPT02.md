@@ -1,7 +1,11 @@
 # Attempt02 — confirmed expanded TRAIN and fixed Nano640 experiment
 
 Date: 2026-10-07. Current boundary: **one fixed training and DEV_TUNE run
-completed; independent visual acceptance pending**. User-relayed human verdict:
+completed; accepted as valid but data limited, fine-tuning paused**.
+Result acceptance: `ATTEMPT02_VALID_BUT_DATA_LIMITED`. This is the user-relayed
+ChatGPT conclusion based on the statistics report; its ZIP extraction
+environment failed. It is not a completed independent per-image or code review
+and does not establish a usable detector. Historical TRAIN human-GT verdict:
 `ATTEMPT02_TRAIN_HUMAN_REVIEW_CONFIRMED`.
 Follow the unchanged [fixed protocol](PHASE_C_ATTEMPT02_PROTOCOL.md).
 
@@ -181,5 +185,25 @@ Public run code is frozen at361a2e4 above; only the four current README/state/
 roadmap/verification documents changed after execution to record real results.
 Local feature-branch commits only; main remains
 `8a03e288fb814d81b0a8e255b8004dbc4d0efb02`. No push, merge or Model Lock.
-Independent ChatGPT visual result acceptance remains pending. Stop here;
-no Attempt03, Blind Test, Module3, Android or live-game development.
+The former independent-result-review waiting boundary is superseded by the
+user's statistics-based `ATTEMPT02_VALID_BUT_DATA_LIMITED` acceptance. No claim
+that ChatGPT completed independent visualization/code review. The original
+results and all numbers above remain unchanged. Self-trained fine-tuning is
+paused: no Attempt03, confidence/step changes or additional Skeleton annotation.
+
+The separately authorized Existing Multiclass Detector Local Benchmark has
+completed one fixed confidence0.1 dual CUDA run after source/independent-runtime
+qualification:240 PTS frames from the original first retained match01,
+12..72s exclusive at4FPS, not blind. This does not change any Attempt01/02 data,
+metrics or acceptance above. The84 proposal labels include towers/UI/noise and
+are not84 confirmed classes/cards. Stop at ChatGPT manual visual review, with no
+tuning/repeat, training, tracker/card event or automatic model adoption.
+Source, latency, proposal counts, fresh checks and the detector1-name/CUBIC-vs-
+LINEAR caveats are recorded in [benchmark verification](VERIFICATION_EXISTING_MULTICLASS_BENCHMARK.md),
+not substituted for this historical experiment's verification. Candidate weight
+rights remain unverified; root MIT does not override modified Ultralytics AGPL
+or game-asset rights. Local authority does not establish legal clearance,
+release or redistribution permission. No Blind Test, production Model Lock, Module3,
+Android or live-game development. Primary/secondary visual semantic roles do
+not bypass deployment/event confirmation; Witch detection alone cannot emit
+`OpponentCardPlayed`, and spawned Skeleton remains a visual-unit observation.

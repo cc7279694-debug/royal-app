@@ -2,7 +2,56 @@
 
 Last verified: 2026-10-07.
 
-## Current checkpoint — Attempt02 fixed run completed; independent review pending
+## Current checkpoint — existing detector fixed benchmark executed; visual review pending
+
+The user relayed ChatGPT's formal acceptance
+`ATTEMPT02_VALID_BUT_DATA_LIMITED`. Self-trained two-class fine-tuning is paused;
+no Attempt03, confidence-threshold/optimizer-step change or additional Skeleton
+annotation is authorized. Keep the exact Attempt01/02 results, snapshots, locks,
+spawned-unit relationships and historical specialist validators unchanged.
+
+The result ZIP could not be read in ChatGPT's extraction environment. This
+acceptance is based on the reported statistics, not a completed independent
+per-image or code review, and does not qualify a usable detector. ROI, training
+data, input size and optimizer budget changed together, so the comparison cannot
+establish an isolated causal explanation.
+
+The authorized **Existing Multiclass Detector Local Benchmark** completed its
+one fixed confidence0.1 dual-detector CUDA run in a separate environment. Input
+is the original first retained `natural_match_01`, not blind: 240 frames at
+4FPS, PTS12..71.75s in the half-open12..72s range. Dual inference median310.05ms,
+P95 332.99ms, wall97.88s; Torch peak allocated553.83MiB. These offline local
+measurements do not qualify real-time or mobile execution.
+
+Raw9287 proposals became5404 combined;86 fixed-UI proposals were removed,
+leaving5318. The84 proposal labels include towers/UI/noise, not84 verified
+visual classes or cards. Outputs await independent ChatGPT manual visual review;
+no verified detection accuracy, generalization or model adoption is claimed.
+No confidence tuning, repeat, tracking, card event or training occurred.
+
+Fresh historical helper regression:200passed/0failed,316.18s; the maintained
+908-test suite was NOT rerun for this benchmark. All32,217 protected historical
+files and160 original YOLOX source files remain unchanged. Both original
+environment pip checks exit0 and package inventories are unchanged.
+Root MIT does not override modified Ultralytics AGPL obligations. Weight/game
+asset rights remain `unverified`; private local authority is not legal
+clearance, redistribution or release permission. The published detector1
+v0.7.13 filename contains internal train name v0.7.12. This wrapper explicitly
+uses CUBIC; the upstream positional resize actually uses LINEAR, so preprocessing
+is not claimed byte-identical. Both limitations are disclosed, not patched by
+rerunning the fixed benchmark. See [benchmark verification](VERIFICATION_EXISTING_MULTICLASS_BENCHMARK.md).
+
+Current branch: `codex/existing-multiclass-local-benchmark`. Main remains
+`8a03e288fb814d81b0a8e255b8004dbc4d0efb02`; no push or merge. Next: manual
+visual review of the preserved outputs, not automatic model adoption or a new
+module. No training, Module3, Android or live-game feature is authorized.
+
+Primary/secondary refer to future visual-observation semantic responsibilities,
+not directly to card events. A Witch detection still requires a separate,
+confirmed deployment/event boundary before `OpponentCardPlayed`; spawned
+Skeleton stays a visual unit and cannot imply a Skeleton card deployment.
+
+## Preserved Attempt02 checkpoint — fixed run completed; valid but data limited
 
 The user relayed ChatGPT acceptance of Attempt01 as
 `TWO_CLASS_SMOKE_ATTEMPT01_VALID_BUT_INSUFFICIENT`, and explicitly authorized
@@ -42,9 +91,11 @@ is still extremely low. Complete68s has15FP; partial72s has4unjudged, notFP.
 This is a valid bounded experiment with insufficient usable detection, not
 accuracy acceptance. No result-driven parameter change, rerun or Attempt03.
 
-Next task: await ChatGPT independent review of the completed local results ZIP
-(931274bytes,8members,CRC/manifest/hashes checked). Do not request new recordings,
-reset old locks, train drafts, retune from DEV, retry Attempt03 or enter Module3.
+The completed local results ZIP (931274bytes,8members,CRC/manifest/hashes checked)
+and all original results remain preserved. Its former result-review waiting
+boundary is superseded by the user's statistics-based acceptance above; do not
+claim independent visual/code review. Do not request new recordings, reset old
+locks, train drafts, retune from DEV, retry Attempt03 or enter Module3.
 See [protocol](PHASE_C_ATTEMPT02_PROTOCOL.md) and
 [preparation verification](VERIFICATION_ATTEMPT02_PREPARATION.md).
 Actual confirmed-data/run evidence: [Attempt02 verification](VERIFICATION_ATTEMPT02.md).
@@ -543,8 +594,10 @@ See [fixed 2B-1 protocol](MODULE_2B1_PROTOCOL.md).
   full maintained regression passes 908/3 existing permission skips, exit 0.
   That step performed no real training or weights download. The new Phase C
   authorization led to the completed Attempt01 training chain, independently
-  accepted as valid but insufficient. The active Attempt02 preparation and
-  pending human-review boundary are recorded at the top.
+  accepted as valid but insufficient. Attempt02 also completed and is now
+  accepted as valid but data limited, based on statistics rather than completed
+  independent image/code review. Fine-tuning is paused; the active bounded
+  existing-detector benchmark execution/visual-review boundary is recorded at the top.
   Historical 4/8 and original 3–5-class readiness results
   are retained in their original scopes, not applied to this smoke snapshot.
 
@@ -701,7 +754,8 @@ These historical instructions do not authorize current 2B-2 main integration.
 
 That closeout stopped after acceptance publication. The later specialist 2B-2
 data-only authorization remains paused; its route is historical and superseded
-by the current separately authorized two-class smoke scope above;
+by the preserved two-class smoke experiments and the current separately
+authorized existing-detector benchmark above;
 do not automatically tune or train. Module 2A2 remains
 accepted at
 DEV_LOCKED. Both folds failed, so Model Lock stays closed. No new source, Test GT Lock,

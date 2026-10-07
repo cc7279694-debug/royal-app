@@ -1,5 +1,45 @@
 # Decisions
 
+## 2026-10-07 — Accept data-limited Attempt02; pause fine-tuning for existing-detector benchmark
+
+### Decision
+
+The user relays `ATTEMPT02_VALID_BUT_DATA_LIMITED` and pauses self-trained
+fine-tuning. Preserve both fixed experiments and their data, locks, metadata and
+results; no Attempt03, confidence/step changes or additional Skeleton labeling.
+Separately authorize the Existing Multiclass Detector Local Benchmark, with
+explicit upstream-source/provenance and an independent runtime qualification.
+The one fixed confidence0.1 dual CUDA run is now executed on240 PTS frames from
+the original first retained match01 (12..72s exclusive,4FPS), not blind. Preserve
+all outputs and stop for ChatGPT manual visual review; no tuning/repeat or
+automatic model adoption. Proposal labels are not verified card/classes.
+
+### Context and Reason
+
+ChatGPT's ZIP extraction environment failed. The acceptance uses statistics,
+not a completed independent per-image or source-code review. The fixed run is
+valid but does not establish a usable two-class detector. ROI, data, input size
+and budget changed simultaneously; no single factor's causal effect is proven.
+Checking an existing multiclass detector is a new bounded local benchmark, not
+a result-guided retry of the completed fine-tuning experiment.
+
+### Consequences
+
+Weight provenance/rights remain unverified where not independently established;
+local research permission is not legal clearance, redistribution or release
+permission. Do not upload private source media or turn benchmark output into
+confirmed events. Primary/secondary describe future visual semantic duties:
+Witch observations require separate deployment/event confirmation before
+`OpponentCardPlayed`; spawned Skeleton does not imply a Skeleton card play.
+Root MIT does not override modified Ultralytics AGPL obligations or rights in
+weights/game assets. The detector1 public v0.7.13 filename/internal v0.7.12 name
+mismatch and CUBIC-wrapper versus actual LINEAR-upstream preprocessing are
+disclosed limitations, not grounds for silent modification/rerunning outputs.
+Do not claim a byte-identical upstream reproduction or independently confirmed
+accuracy. See [actual benchmark verification](VERIFICATION_EXISTING_MULTICLASS_BENCHMARK.md).
+Old locks and specialist validators retain historical meaning. No Module3,
+production Model Lock, Android/live capability, push or main integration.
+
 ## 2026-10-06 — Accept Attempt01 insufficiency; authorize bounded Attempt02
 
 ### Decision

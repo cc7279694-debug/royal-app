@@ -1,6 +1,31 @@
 # Clash Tracker
 
-**当前：Attempt 02 唯一一次固定训练与 DEV_TUNE 评估已完成，等待独立复审。**
+**当前：现成多类别 detector 固定本地 benchmark 已执行，等待 ChatGPT 视觉复核；自研微调暂停。**
+用户转交 ChatGPT 的正式结论为 `ATTEMPT02_VALID_BUT_DATA_LIMITED`。
+本次 ZIP 读取环境异常，结论仅基于统计报告，不表示已经完成独立逐图或代码复审，
+也不是可用 detector／泛化能力验收。ROI、数据、input 与训练预算同时改变，
+不能把差异归因于某一个因素。
+
+**Existing Multiclass Detector Local Benchmark** 已在独立环境执行唯一一次固定
+confidence=0.1 的双 detector CUDA 推理：原顺序第一场 `natural_match_01`，
+PTS 12..72s（不含 72s），4 FPS、240 帧；不是盲测。双模型延迟中位数
+310.05ms、P95 332.99ms，实际运行 97.88s；这些是本机离线性能，不是实时资格。
+原始 9,287 proposal → 合并 5,404 → 排除 86 个固定 UI proposal → 保留 5,318。
+84 个 proposal labels 含塔、UI 和噪声，不是 84 个已确认 visual classes／卡牌；
+输出尚待人工视觉复核，不能宣称识别可靠、泛化通过或直接采用该模型。
+根仓库 MIT 不覆盖修改版 Ultralytics 的 AGPL 义务或权重／游戏素材权利。
+公开 detector1 v0.7.13 文件的内部训练名为 v0.7.12；本 wrapper 明确使用
+CUBIC，而上游位置参数实际为 LINEAR，因此不声称预处理字节级一致。保留本次结果，不重跑。
+实际来源、环境和结果见[现成 detector benchmark 验证](docs/VERIFICATION_EXISTING_MULTICLASS_BENCHMARK.md)。
+后续 primary／secondary 是视觉观察的语义职责，不是直接认定出牌；即使检测到
+Witch，也不能直接产生 `OpponentCardPlayed`。历史 spawned Skeleton 仍只是视觉单位，
+不等于 Skeleton 卡牌部署。候选权重权利仍为 `unverified`，私人本地 benchmark
+不代表法律 clearance、素材／模型再分发或发布许可。
+不执行 Attempt 03，不调整 confidence threshold／optimizer steps，不追加 Skeleton 标注，
+不恢复普通亡灵专项门槛，不自动采用模型，不进入 Module 3、Android 或实时 HUD。
+当前分支 `codex/existing-multiclass-local-benchmark`；未 push／合并 main。
+
+**已保留的历史：Attempt 02 唯一一次固定训练与 DEV_TUNE 评估。**
 用户转交 ChatGPT 的 Attempt 01 独立结论为
 `TWO_CLASS_SMOKE_ATTEMPT01_VALID_BUT_INSUFFICIENT`，保留原失败结果。
 Attempt 02 固定 Nano 640 / batch 1 / FP32 / 300 steps；第一场仍为 TRAIN，
@@ -12,9 +37,9 @@ Attempt 02 固定 Nano 640 / batch 1 / FP32 / 300 steps；第一场仍为 TRAIN�
 固定诊断门槛下命中 2/5：Witch 2/2（分数仍极低），Skeleton 0/3。
 68s 有 15 个采样帧误报；72s partial 的 4 个未匹配结果仍为 unjudged。
 这是局部改善、仍不足以宣称可用的两类检测结果，不是识别能力验收通过；没有调参或重跑。
-本轮完整回归 908 passed / 3 既有权限 skipped，辅助检查 200 passed；
+Attempt 02 训练轮的完整回归 908 passed / 3 既有权限 skipped，辅助检查 200 passed；
 训练后的 32,217 个历史文件哈希、新快照和导出均保护通过，两个环境 pip check 通过。
-本地结果 ZIP 已生成并校验；不会自动进入 Attempt 03 或下一模块。
+本地结果 ZIP 已生成并校验；原结果保持不变，不进入 Attempt 03。
 详见[Attempt 02 固定协议](docs/PHASE_C_ATTEMPT02_PROTOCOL.md)与
 [当前准备记录](docs/VERIFICATION_ATTEMPT02_PREPARATION.md)。不 push、不合并 main。
 人工确认后新锁和实际运行记录见[Attempt02 验证](docs/VERIFICATION_ATTEMPT02.md)。

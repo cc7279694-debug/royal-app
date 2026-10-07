@@ -4,17 +4,53 @@ The project advances one independently verifiable module at a time. A module may
 start only after the previous module has been reviewed and accepted. Statuses are
 `Completed`, `In Progress`, `Planned`, `Paused`, or `Gated`.
 
-## Current separately authorized Attempt02
+## Current authorization — Existing Multiclass Detector Local Benchmark
 
-Status: fixed execution Completed; independent visual acceptance Pending.
+Status: fixed benchmark execution Completed; independent manual visual review
+Pending. This is not detector accuracy acceptance or automatic model adoption.
+
+The user accepts Attempt02 as `ATTEMPT02_VALID_BUT_DATA_LIMITED` and pauses
+self-trained fine-tuning. The ChatGPT ZIP extraction failure means this result
+acceptance rests on statistics, not completed independent image/code review.
+Preserve the old data/weights/results; no Attempt03, threshold/step tuning or
+additional Skeleton labeling. No ordinary-Minions quota is reinstated.
+
+The separately authorized existing-detector path completed one confidence0.1
+dual CUDA run after explicit-source/provenance and isolated-runtime checks.
+Only the original first retained match01 was used:240 PTS frames from12 through
+71.75s at4FPS, not a blind test. Median310.05ms/P95 332.99ms, wall97.88s;
+Torch peak allocation553.83MiB. Raw9287 → combined5404 → remove86 fixed UI →
+5318 final proposals. The84 proposal labels include tower/UI/noise, not84
+verified classes/cards. Stop for visual review; no tuning, rerun, training,
+tracker, events or next module. Fresh helper regression200passed/0failed;
+the maintained908 suite was not rerun. Historical files/environments are unchanged.
+See [benchmark verification](VERIFICATION_EXISTING_MULTICLASS_BENCHMARK.md).
+Preserve the detector1 filename/internal-name mismatch and disclosed
+CUBIC-wrapper versus actual LINEAR-upstream preprocessing difference; no
+byte-identical reproduction claim or result-driven rerun.
+Weight rights remain
+unverified; no legal-clearance, redistribution/release, usable-detector or
+generalization claim. Root MIT does not override modified Ultralytics AGPL.
+Primary/secondary are future visual semantic roles, not
+automatically confirmed card plays. Preserve spawned Skeleton semantics and the
+observation → confirmed deployment → `OpponentCardPlayed` boundary.
+No Module3, Android/live analysis, training, push or main integration. Work stays
+on `codex/existing-multiclass-local-benchmark`; await ChatGPT review before any
+separately authorized adoption or next stage.
+
+## Historical separately authorized Attempt02 — accepted valid but data limited
+
+Status: fixed execution Completed; user-relayed statistics-based acceptance
+`ATTEMPT02_VALID_BUT_DATA_LIMITED`. Independent per-image/code review not completed.
 Exact human review and expanded v2/ROI export passed; the single300-step Nano640
 GPU run and single two-forward DEV_TUNE evaluation completed. Matched2/5:
 Witch2/2 at extremely low scores, Skeleton0/3; not a usable two-class detector.
 Fresh full regression908passed/3existing permission skips; helper200passed.
 After-run protection passed:32,217 old hashes unchanged,32,143private paths
 ignored, old locks/results and new snapshot/export/config unchanged; both pip
-checks pass. The local visualization/results ZIP is verified and ready for
-ChatGPT independent review. Stop; do not start a new run.
+checks pass. The local visualization/results ZIP is verified and preserved.
+Its extraction failed in ChatGPT's environment; numerical acceptance is not
+visual/code review or detector-performance acceptance. Do not start a new run.
 The user accepted Attempt01 as valid but insufficient and authorized Nano640,
 batch1, FP32, fixed seed, 300 optimizer steps and exactly one DEV_TUNE evaluation.
 Use only match01 TRAIN and match04 DEV_TUNE, never train on match04. Existing
@@ -34,7 +70,8 @@ by the user — one fixed real
 100-step Nano run and one two-frame DEV_VAL evaluation; matched 1/5 GT at fixed
 IoU 0.5, very low-confidence Witch response and no matched Skeleton. No claim
 of detector accuracy acceptance. See [actual verification](VERIFICATION_PHASE_C.md).
-The separately authorized Attempt02 above is the only current continuation.
+The separately authorized Attempt02 above is preserved history; its fine-tuning
+route is now paused in favor of the bounded existing-detector benchmark.
 The completed Phase A/B/GT/data-lock
 records below retain their original historical boundaries. The obsolete
 ordinary-Minions specialist quota is not reinstated.
@@ -381,8 +418,9 @@ Freeze all 11 boxes/four frames; default complete selected-class supervision
 uses only three frames/10 boxes. The 72s Witch positive is
 `positive_only_requires_unknown_safe_consumer`, with standard full-frame
 loss/metrics prohibited by default and Unknown regions never treated as background.
-No real training or weights download occurred in that data stage. The current
-Phase C scope is above; it still forbids Model Lock and later modules.
+No real training or weights download occurred in that data stage. The completed
+Phase C experiments are preserved above; Model Lock and later modules remain
+closed during the current separately authorized existing-detector benchmark.
 The old GT lock and old 2A2/2B-1/3–5-class schemas and readiness remain unchanged;
 the four/eight specialist route is superseded, not a prerequisite.
 
