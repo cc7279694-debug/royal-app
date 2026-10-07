@@ -2,12 +2,12 @@
 
 Last verified: 2026-10-07.
 
-## Current checkpoint — Attempt02 human review confirmed; fixed run preparation
+## Current checkpoint — Attempt02 fixed run completed; independent review pending
 
 The user relayed ChatGPT acceptance of Attempt01 as
 `TWO_CLASS_SMOKE_ATTEMPT01_VALID_BUT_INSUFFICIENT`, and explicitly authorized
-one new Nano 640 / batch1 / FP32 / 300-step Attempt02. No Attempt02 training or
-DEV evaluation has occurred. `natural_match_01` remains TRAIN;
+one new Nano 640 / batch1 / FP32 / 300-step Attempt02. Its single real run and
+single two-frame DEV_TUNE evaluation have now completed. `natural_match_01` remains TRAIN;
 `natural_match_04` is now DEV_TUNE, not blind or independent testing. Do not
 retroactively edit the historical locked DEV_VAL fields or Attempt01 outputs.
 
@@ -26,16 +26,24 @@ The unchanged strict loader has validated eight existing report/index sets,
 195 original requests. Expanded v2 snapshot SHA is
 `f25c54e6dfc578a6d9edd69c2adfa712fb79fa5c924b25a7ad6999951707c1c2`;
 lock and exact ROI export validate exit0. TRAIN overlays inspected, no class swap.
-Fresh helper regression: 200 passed. Before-run protection confirms 32,217 old
+Fresh helper regression: 200 passed; full maintained regression908passed/3
+existing Windows symlink-permission skips, exit0 (2079.70s). Before-run protection confirms 32,217 old
 hashes unchanged, 32,143 private paths ignored, both pip checks exit0 and no
-environment/source change. Complete maintained regression is still running.
-No Attempt02 model
-execution/training yet. Public code/doc changes remain local on the existing
-feature branch; before training they must form a clean local committed baseline.
+environment/source change. Fresh after-run check again confirms32,217 historical
+files unchanged/32,143private paths ignored, all160YOLOX source files unchanged,
+both pip checks exit0, and new GT/export/config unchanged and valid.
+The real run froze clean local commit `361a2e4c074195ebc3c42e1b5a1e951884cd82b8`;
+exactly300CUDA steps,126positive GPU assignments/174negative steps, zero CPU
+fallback, checkpoint strict round-trip passed. Training184.20s, first/last14-step
+mean loss11.571084/1.910648, peak Torch allocation322.22MiB. Final checkpoint SHA
+`8423fbe8be74302b65b163ec6701d69bde865df950b20eb469597e6de7b67811`.
+DEV_TUNE matches2/5 (Witch2/2, Skeleton0/3); Witch confidence0.001086/0.004371
+is still extremely low. Complete68s has15FP; partial72s has4unjudged, notFP.
+This is a valid bounded experiment with insufficient usable detection, not
+accuracy acceptance. No result-driven parameter change, rerun or Attempt03.
 
-Next task: finish the complete regression and clean local public baseline, then
-execute the already-authorized
-300-step protocol and one DEV_TUNE evaluation. Do not request new recordings,
+Next task: await ChatGPT independent review of the completed local results ZIP
+(931274bytes,8members,CRC/manifest/hashes checked). Do not request new recordings,
 reset old locks, train drafts, retune from DEV, retry Attempt03 or enter Module3.
 See [protocol](PHASE_C_ATTEMPT02_PROTOCOL.md) and
 [preparation verification](VERIFICATION_ATTEMPT02_PREPARATION.md).

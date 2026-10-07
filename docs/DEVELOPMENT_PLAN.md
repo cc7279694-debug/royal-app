@@ -6,16 +6,23 @@ start only after the previous module has been reviewed and accepted. Statuses ar
 
 ## Current separately authorized Attempt02
 
-Status: In Progress — exact human review confirmed, expanded snapshot/export
-and final regression/protection validation in progress; no Attempt02 training yet.
+Status: fixed execution Completed; independent visual acceptance Pending.
+Exact human review and expanded v2/ROI export passed; the single300-step Nano640
+GPU run and single two-forward DEV_TUNE evaluation completed. Matched2/5:
+Witch2/2 at extremely low scores, Skeleton0/3; not a usable two-class detector.
+Fresh full regression908passed/3existing permission skips; helper200passed.
+After-run protection passed:32,217 old hashes unchanged,32,143private paths
+ignored, old locks/results and new snapshot/export/config unchanged; both pip
+checks pass. The local visualization/results ZIP is verified and ready for
+ChatGPT independent review. Stop; do not start a new run.
 The user accepted Attempt01 as valid but insufficient and authorized Nano640,
 batch1, FP32, fixed seed, 300 optimizer steps and exactly one DEV_TUNE evaluation.
 Use only match01 TRAIN and match04 DEV_TUNE, never train on match04. Existing
 GT/dataset v1 and Attempt01 records stay immutable. The 16-frame reviewed snapshot
 qualifies only 14 standard frames / 15 boxes (8 exhaustive negatives, 6 positives).
 162s/165s remain partial; four rejected proposals never become Negative.
-Freeze/validate a new exclusive expanded v2 and inspect exact ROI/class exports
-before the single run. Do not interpret unannotated/Unknown pixels as background.
+The new exclusive expanded v2 and exact ROI/class exports were validated and
+inspected before the single run. Unannotated/Unknown pixels are not background.
 See [Attempt02 protocol](PHASE_C_ATTEMPT02_PROTOCOL.md) and
 [verified preparation boundary](VERIFICATION_ATTEMPT02_PREPARATION.md).
 No Attempt03, Blind Test, Model Lock, Module3, push or main merge.

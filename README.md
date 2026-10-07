@@ -1,6 +1,6 @@
 # Clash Tracker
 
-**当前：Attempt 02 TRAIN 人工复核已确认，正在准备唯一一次固定预算训练。**
+**当前：Attempt 02 唯一一次固定训练与 DEV_TUNE 评估已完成，等待独立复审。**
 用户转交 ChatGPT 的 Attempt 01 独立结论为
 `TWO_CLASS_SMOKE_ATTEMPT01_VALID_BUT_INSUFFICIENT`，保留原失败结果。
 Attempt 02 固定 Nano 640 / batch 1 / FP32 / 300 steps；第一场仍为 TRAIN，
@@ -8,7 +8,13 @@ Attempt 02 固定 Nano 640 / batch 1 / FP32 / 300 steps；第一场仍为 TRAIN�
 本次新增 11 框确认、4 框拒绝。标准 TRAIN 为 14 帧（8 负／6 正）、15 框；
 162s／165s partial 保留但不参与普通 loss，拒绝区域不作为 Negative。
 旧锁不覆盖，新 expanded GT v2 与 ROI 导出均验证通过，训练框可视化已检查；
-扩充帧不增加独立部署数。完整回归仍在运行，尚未进行本轮真实模型训练。
+扩充帧不增加独立部署数。真实 GPU 完成恰好 300 步，checkpoint 回读成功。
+固定诊断门槛下命中 2/5：Witch 2/2（分数仍极低），Skeleton 0/3。
+68s 有 15 个采样帧误报；72s partial 的 4 个未匹配结果仍为 unjudged。
+这是局部改善、仍不足以宣称可用的两类检测结果，不是识别能力验收通过；没有调参或重跑。
+本轮完整回归 908 passed / 3 既有权限 skipped，辅助检查 200 passed；
+训练后的 32,217 个历史文件哈希、新快照和导出均保护通过，两个环境 pip check 通过。
+本地结果 ZIP 已生成并校验；不会自动进入 Attempt 03 或下一模块。
 详见[Attempt 02 固定协议](docs/PHASE_C_ATTEMPT02_PROTOCOL.md)与
 [当前准备记录](docs/VERIFICATION_ATTEMPT02_PREPARATION.md)。不 push、不合并 main。
 人工确认后新锁和实际运行记录见[Attempt02 验证](docs/VERIFICATION_ATTEMPT02.md)。
