@@ -1,5 +1,36 @@
 # Decisions
 
+## 2026-10-07 — User-attested multiclass visual GT, annotation-only freeze
+
+### Decision
+
+Import the user's explicit confirmation of ChatGPT visual-review suggestions as
+reviewer=user, with actual_human_confirmation and human_review_attested true.
+Record review_basis=chatgpt_visual_review and
+confirmation_source=user_attestation_based_on_chatgpt_visual_review in separate
+SHA-bound attestation metadata; do not rename ChatGPT a human reviewer or extend
+the strict legacy return schema merely to carry those extra facts.
+
+### Context and Reason
+
+The first fixed24-frame batch receives exact user decisions:44 accepted boxes,
+2 rejected proposals,480 left pending,6 visual classes,5 non-null canonical
+mappings. User-confirmed visual class/bbox does not confirm a source card, card
+play, cross-frame entity, provenance clearance or training qualification.
+
+### Consequences
+
+Create a new exclusive annotation-only GT snapshot/lock without altering source
+predictions, packets or old locks. Cannon stays canonical_mapping=null; accepted
+form/origin stay unknown. Preserve only user-supported continuity; unsupported
+identity tokens name observations only and cannot be counted as independent
+entities, appearances or deployments. Missing boxes, uncertain/rejected areas
+and unlisted classes stay unresolved, never Negative. This batch has0 negatives
+and0 card plays. No primary/spawned role is inferred merely from a mapping.
+training_qualified and ordinary_training_export_allowed remain false. Freezing
+file consistency is not legal clearance or authenticity certification. No
+training, Module3, game HUD, push/main merge or new milestone is authorized.
+
 ## 2026-10-07 — Proposal-only KataCR and mock-only Capacitor prototype
 
 ### Decision
@@ -32,7 +63,9 @@ desired interaction without changing old experiment results or game behavior.
 
 ### Consequences
 
-No training or new lock is authorized. Third-party code/weights/game rights are
+At that original tool-only checkpoint no training or new lock was authorized;
+the later bounded annotation-only user-confirmed freeze is recorded above.
+Third-party code/weights/game rights are
 not cleared by this research use. Do not redistribute private assets or weights.
 Capacitor is the prototype UI choice, not a constraint on future native inference.
 No MediaProjection, detector bridge, SYSTEM_ALERT_WINDOW, Accessibility/input

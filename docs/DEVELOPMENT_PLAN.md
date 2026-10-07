@@ -6,8 +6,8 @@ start only after the previous module has been reviewed and accepted. Statuses ar
 
 ## Current authorization — Milestone 2: APK build and first human-GT batch
 
-Status: TaskB1 verified complete; TaskA1 packet prepared, actual human-GT return
-pending. User authorizes both on2026-10-07 after accepting Milestone1.
+Status: TaskB1 verified complete; TaskA1's explicitly user-attested first visual
+GT batch imported and frozen. User authorizes both on2026-10-07 after accepting Milestone1.
 Do not expand design/product scope or add features.
 
 - TaskB1: install only needed official JDK/SDK/build/platform-tools components,
@@ -15,14 +15,19 @@ Do not expand design/product scope or add features.
   version/permission/signature/hash report. Existing wrapper manages Gradle.
 - TaskA1: first24 chronological representative match01 frames through the current
   local proposal/correction tool; prepare a ChatGPT independent review packet.
-  The user's selected confirmation path needs returned decisions before any
-  confirmed GT counts. All five corrections and explicit selected-class coverage
-  stay available. No raw proposal becomes GT/Negative automatically.
+  Returned ChatGPT suggestions were explicitly attested by the user and imported
+  as reviewer=user, not a fabricated human ChatGPT reviewer. All five corrections
+  and explicit selected-class coverage stay available. No raw proposal becomes
+  GT/Negative automatically.
 
 Debug APK built with the unchanged App/wrapper; existing API37 emulator startup,
 mock 2/8, Reset and replay passed. Actual physical-phone installation is Not Run.
-First packet has24 first-match frames/526 pending proposals; confirmed GT/classes
-remain0 until explicit review return. Next step is that review/confirmation,
+First packet retains24 first-match frames/526 original teacher proposals.
+New annotation-only v1 has44 confirmed boxes/6 visual classes/5 non-null mappings,
+2 rejected and480 pending proposals,0 negatives and0 card plays. Cannon remains a
+visual structure with null mapping. Form/origin and unsupported identity remain
+unknown; repeated observations are not independent deployments. This freeze is
+not training readiness or a new Training Dataset Lock. Stop for stage acceptance,
 not training or more design. See [fresh evidence](VERIFICATION_MILESTONE2.md).
 
 The tasks have disjoint paths and can be verified separately. Preserve old

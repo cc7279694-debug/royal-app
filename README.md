@@ -1,10 +1,13 @@
 # Clash Tracker
 
-**当前：首个模拟 App Debug APK 已构建并在 Android 模拟器验证；首批 24 帧等待 ChatGPT 复核。**
+**当前：首个模拟 App Debug APK 已验证；首批 24 帧已按用户确认回填并冻结视觉 GT。**
 模拟功能不变，不接真实游戏、不训练。APK 声明最低 Android 7.0 / API24；
 模拟器启动、模拟 2/8、Reset 已验证，实体手机安装尚未验证。
-首批 526 个候选仍待审，已确认 GT / 类别均为 0；按用户选择先交 ChatGPT，
-收到明确确认结果后再回填，不把待审预测算作 GT。见[Milestone 2 验证](docs/VERIFICATION_MILESTONE2.md)。
+首批 526 个候选中，44 框接受、2 项拒绝、480 项仍 pending/unknown；确认 6 个
+visual classes、5 个非空 canonical mappings。reviewer=user，依据为 ChatGPT
+视觉审核建议，不把 ChatGPT 写成人类审核者。本批 0 Negative、0 confirmed card plays，
+不训练。新 annotation-only GT snapshot/lock 不覆盖旧锁，仍 training_qualified=false。
+见[Milestone 2 验证](docs/VERIFICATION_MILESTONE2.md)。
 
 **已实现并验证：本地预标注／人工纠错工具 + 纯模拟 App 原型。**
 KataCR 只提供待审核候选，不直接成为人工 GT 或最终 App 识别核心。
@@ -16,7 +19,7 @@ HUD 只在 App 内，不接游戏、detector、实时录屏或跨应用悬浮窗
 不实现卡序／觉醒／圣水；真实游戏 HUD 保持关闭。
 见[当前两任务设计与边界](docs/superpowers/specs/2026-10-07-preannotation-and-simulated-app-design.md)。
 
-预标注页面已准备第一场的 12 张原图和 272 个待审候选，尚不是已确认 GT；
+Milestone 1 的原始预标注页面仍保留 12 张原图和 272 个待审候选，未被修改；
 五种纠错操作与独立回传导入已用合成演示实际走通。
 见[预标注操作](tools/preannotation/README.md)和[模拟 App 操作](app/README.md)。
 模拟 App 已通过测试、Web 构建、Capacitor Android 同步和 Debug 编译。
@@ -51,7 +54,7 @@ Witch，也不能直接产生 `OpponentCardPlayed`。历史 spawned Skeleton 仍
 不恢复普通亡灵专项门槛，不自动采用模型。该 benchmark 当时未进入 Module 3、Android 或实时 HUD；
 当前另行授权的纯模拟 App 不包含真实游戏能力。
 历史 benchmark 分支 `codex/existing-multiclass-local-benchmark`；当前分支
-`codex/milestone1-data-and-simulated-app`，未 push／合并 main。
+`codex/milestone2-apk-and-first-gt`，未 push／合并 main。
 
 **已保留的历史：Attempt 02 唯一一次固定训练与 DEV_TUNE 评估。**
 用户转交 ChatGPT 的 Attempt 01 独立结论为

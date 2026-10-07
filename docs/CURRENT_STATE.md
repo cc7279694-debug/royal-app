@@ -18,9 +18,10 @@ No release signing or capture/overlay/Accessibility/game automation is authorize
 TaskA1: reuse existing proposal/correction tooling; first24 fixed-stride frames
 from original match01. Five corrections, selected-class exhaustive review,
 Unknown/reject protection and spawned/secondary semantics remain unchanged.
-The user chose ChatGPT independent review packet followed by returned decisions;
-until actual confirmed return, boxes/classes remain pending, not human GT or
-training-qualified material. Source02 remains truncated/training-excluded.
+The user chose ChatGPT independent review followed by explicit user confirmation.
+That confirmation has now been received and imported truthfully as user-attested
+visual GT; it does not qualify this new batch for training. Source02 remains
+truncated/training-excluded.
 
 Branch `codex/milestone2-apk-and-first-gt`, baseline
 `97d87d875e97b847e79fd00433a79d779e9abd1c`.
@@ -36,15 +37,42 @@ only AndroidX's own signature receiver permission, no capture/overlay/Internet/
 Accessibility permission. The pre-existing unrelated App was restored, not
 modified or cleared. No public App source/dependency change was needed.
 
-TaskA1 preparation is complete, but actual GT review/import is pending:
-24 chronological first-match frames / 526 pending teacher proposals / 39
-UNVERIFIED raw labels. Confirmed boxes/classes/primary/secondary classes,
-rejections, corrections and added missing boxes remain0; this is not a completed
-human-GT batch. The packet contains original review images and may show player
-UI; it is a user-controlled private handoff, never a public repository asset.
-Next action: user submits the packet to ChatGPT, relays/actually confirms the
-decisions, then imports a truthful confirmed return into a new exclusive revision.
-No new training, dataset lock or next milestone is implied.
+TaskA1's first confirmed batch is now frozen: 24 inspected first-match frames,
+44 accepted boxes on23 frames, 2 rejects and480 remaining pending/unknown
+proposals. Six visual classes are confirmed: Minion15, Skeleton Barrel6,
+Mortar10, Witch6, Golden Knight2, Cannon-like structure5. Five non-null canonical
+mappings are retained; Cannon mapping is null and its source card unknown.
+All accepted form/origin fields remain unknown. No bbox/label correction or
+missing box is invented. There are38 class-specific coverage records:
+32 exhaustive positive rows and6 unresolved/positive-only rows, zero eligible
+class-specific negatives and zero confirmed card plays.
+
+The user explicitly attests the ChatGPT visual-review suggestions as their
+confirmation basis: actual_human_confirmation=true, human_review_attested=true,
+reviewer=user, review_basis=chatgpt_visual_review,
+confirmation_source=user_attestation_based_on_chatgpt_visual_review. ChatGPT is
+not represented as a human reviewer. Exact decisions and extra attestation facts
+are in separate SHA-bound private files; the strict return schema is unchanged.
+
+New exclusive annotation-only revision:
+`outputs/milestone1/milestone2-first-multiclass-human-gt-v1/`.
+Lock: `first_multiclass_human_gt.snapshot_lock.v1.json`, file SHA256
+`7d4a9a7fafd627f1fbf82f73db3d66232163e5aac14dbdc8f5996c2c0b3a9dae`;
+canonical lock digest
+`82f27b0905d5a597a2564e37926470497b92b0a16cc353a02f2b1e01e192ad93`.
+It binds the unchanged source bundle/packet/predictions, exact PTS/frame metadata,
+return, user attestation, annotations, coverage/identity supplement and review CSVs.
+It is not a Training Dataset, Model or Test Lock: training_qualified=false and
+ordinary_training_export_allowed=false. No new training or blind split is assigned.
+
+Only the four user-specified appearance assignments are recorded (two Skeleton
+Barrel groups, one continuous Mortar and one Cannon-like group). Unconfirmed
+Minion/Witch/Golden Knight cross-frame identity uses explicitly observation-only
+unresolved tokens, not new entities, independent appearances or deployments.
+Do not count appearance_groups length as independent events or infer primary/
+spawned roles from canonical mappings. Missing/occluded evidence remains unresolved.
+Review packet images may show player UI and remain private, never public assets.
+Next action: stage acceptance; stop without training, Module3 or a new milestone.
 Fresh commands, artifacts, limitations and checks are in
 [Milestone2 verification](VERIFICATION_MILESTONE2.md).
 
