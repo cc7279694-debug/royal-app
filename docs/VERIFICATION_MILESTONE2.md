@@ -1,4 +1,4 @@
-# Milestone 2 — Debug APK and first multiclass review batch
+# Milestone 2 — Debug APK, multiclass review batches and phone-test boundary
 
 Original APK/review-packet checkpoint verified locally on2026-10-07; its record
 below is retained with its original pending-GT boundary. The later user-attested
@@ -346,3 +346,143 @@ is the preserved prior checkpoint, not re-executed now.
 Stop with the first user-confirmed visual-GT batch frozen. A focused local docs
 commit records the checkpoint on the feature branch; no push, main merge or
 later milestone. Old feature branches, locks and experiments remain preserved.
+
+## Follow-up — TaskA2 second pending batch and TaskB2 phone-test preparation
+
+Authorized2026-10-07; startHEAD `fc0df2137e048640f200e5a412f9ddad81a42b90`,
+same `codex/milestone2-apk-and-first-gt` branch. No new design, production source,
+schema, dependency, App/Android build or training change. Only four public
+state/verification documents are synchronized; preparation helpers/artifacts
+remain private ignored files. No main merge or push.
+
+### A2 actual chronology and one-shot proposals
+
+First batch ends69.5s; old benchmark ends71.75s. The next24 fixed2.5s targets
+are72..129.5s, all actual source PTS equal their requests. PTS6480000..11655000,
+step225000,timebase1/90000,source432×960,origin0. No prior frame overlap;
+only natural_match_01 pixels are used, no quality/class/confidence selection.
+Four original recordings are protected by hashes, not newly reviewed.
+
+New wrapper/config are exclusively created in
+`outputs/milestone2/second-gt-and-real-device/a2-proposals/`. Full source audit
+and read-only preflight precede generation and bind protected source/weights/
+runtime/source commit plus config/script SHA. The helper does not import the
+old wrapper (which changes old settings). New settings/cache/temp are local to
+the new directory, bytecode/network disabled, training/val/track/control imports
+blocked. These are process guards, not an OS sandbox or rights clearance.
+
+Actual single generation command,exit0:
+
+```powershell
+.\outputs\existing-multiclass-benchmark\katacr-20261007-01\venv\Scripts\python.exe -B outputs/milestone2/second-gt-and-real-device/a2-proposals/generate_proposals.py
+```
+
+24 samples,878 per-detector boxes→502 merged→11 fixedUI removals→491 pending
+proposals,48 raw teacher labels including UI/noise. CUDA1050Ti parameters used;
+no weights training/modification or accuracy judgment. Preserve confidence0.1,
+ROI[8,67,422,729],CUBIC canvas576×896,imgsz896,FP32,per-detectorNMS0.7,maxdet300,
+dual class-agnosticNMS0.6 and original fixedUI rules. No parameter tuning/rerun.
+New median376.34ms/P95608.22ms is offline preparation timing, not mobile/real-time
+qualification. Three network attempts denied; old settings/environment preserved.
+Prediction SHA256 `81d23490a9b045276af14122a338b9568aebe77d34ade6a893dc3a89fa643951`;
+config SHA256 `6534c59ee9b48d8bc31cc09f54850725383ae85f603a18d85844c67a6e395b38`;
+wrapper SHA256 `88bdca49a830053c5eb4f822cbc52473b943713e6120561cf41ae1714055ff68`.
+
+Diagnostics retained: `NMS time limit 2.050s exceeded` once and a new local
+Matplotlib font-cache notice. All24 frames complete, but no exhaustive teacher
+coverage claim is made; manual missing-box/class-specific exhaustive review is
+still necessary. Logs/summary/network denials are inside the review ZIP, not
+silently discarded. No completed prediction run is retried for better candidates.
+
+Actual existing prepare/validate and presentation-only pack commands,exit0 each:
+
+```powershell
+.\.venv\Scripts\python.exe -m tools.preannotation prepare --format generic --predictions outputs/milestone2/second-gt-and-real-device/a2-proposals/detections.json --config outputs/milestone2/second-gt-and-real-device/a2-proposals/proposal-config.json --inventory outputs/module2b2/data-preparation-20261005-9957a75d15744495935bb2fd67f07ac6/pending-dataset.v3.json --stride 1 --max-frames 24 --out outputs/milestone1/milestone2-second-review-batch02-v1
+.\.venv\Scripts\python.exe -m tools.preannotation validate --bundle outputs/milestone1/milestone2-second-review-batch02-v1
+.\.venv\Scripts\python.exe -B outputs/milestone2/second-gt-and-real-device/pack_second_batch.py pack
+```
+
+New source PNGs are decoded only for this next batch; no old frame is regenerated.
+Bundle digest `e2e9e435ce8fc953d2e26ba295c1d1d7fd7bda537ce3e4a94da3adf293cf98ac`.
+Package `outputs/milestone2/second-gt-and-real-device/Module_2_Milestone2_Second_Multiclass_Human_Review_Bundle_v1.zip`:
+15,658,177 bytes,51 members,24original PNGs,4contact sheets,existing reviewer,
+exact metadata/pending boxes/raw teacher/config,blank return,instructions and
+original generation diagnostics. ZIP SHA256
+`ab0e75f613bab96936f0c03434b9dabea1a92736ab6baf79c45f7851fae6ecaa`.
+CRC,unique/safe member paths,manifest/each-member SHA,file-byte equality,exact
+PTS/source bounds,counts and blank-attestation readback pass. Contact sheets are
+new thumbnails only; parent visually checked first sheet layout, not object GT.
+A separate read-only internal artifact audit also checks all50manifest-bound
+members,51ZIP paths,35page resources,reviewer assets byte-equal to existing code,
+zero prior frame overlap and blank confirmation; final readback exit0, no
+blocking finding. This is not ChatGPT's visual/human review. The audit's initial
+string-only JSON/LF assumptions were too strict for valid key order/WindowsCRLF;
+semantic and original-byte checks establish validity, not an artifact rewrite.
+Packet source images may contain player UI; private user-controlled review only,
+no external upload or public Git/release,video/weights/APK/signing material in ZIP.
+
+New batch inspected/confirmed/rejected/relabelled/corrected/missing-box counts
+remain0;491 pending,confirmed classes/primary/spawned role arrays empty.
+reviewer blank,actual_human_confirmation=false,human_review_attested=false;
+old44 confirmed boxes/6 classes are separate historical reference only.
+Unknown/reject/unmarked/teacher absence are never automatic Negative. Mapping
+uncertain=null; no identity/deployment inference or card events;match02 remains
+training-excluded. No human-return import,new GT lock,training export or training.
+
+### B2 actual device check and install handoff
+
+Fresh `adb devices -l`,exit0: physical0,emulator1. Parent independently repeats
+the device listing,APK hash and aapt permission inspection. Emulator evidence
+from B1 is history and is not rerun or counted as a real phone. Status
+`REAL_DEVICE_TEST_PENDING_USER`; no install,launch,log collection,manual touch,
+layout or cold-start check performed on a phone. Existing APK size3,977,891 bytes,
+SHA unchanged `774ed13e2ac69690330cf126084aee15b19ecf676e579a1872eaa7e37ea6bb0d`.
+Package `com.clashtracker.simulated`,.MainActivity,v0.1.0/code1,minAPI24,target36;
+only own AndroidX signature receiver permission,not zero total permissions.
+No Internet,capture,overlay,Accessibility,game/input control capability added.
+
+Two installation paths and nine-step user checklist are in private
+`b2/INSTALL_AND_CHECKLIST.md`: local USB file transfer/manual install,or existing
+adb explicitly targeting the user's real phone serial. Do not bypass unauthorized
+devices/signature failures or uninstall/clear data. Agent adb scope is install,
+own-App launch and own-process logs only;no input/force-stop/screenshot/settings.
+Manual Witch1/8→Balloon2/8→Reset0/8,replay,layout,background resume and true
+process-cold-start checks remain Pending. Memory-only newJScontext expects0/8;
+resume may retain state and is not evidence of cold restart. User must supply
+actual device/Android version/install and touch results; no phone success claim.
+
+### Fresh focused checks, protection and stop
+
+Fresh Python `pytest tools/preannotation/tests -q --tb=short` with JUnit output:
+51 passed,0failed/skipped,19.08s. Node reviewer/review-ui tests:8passed,0failed/
+skipped. Commands/output evidence is in the new private `focused-test-evidence.md`
+and `preannotation-regression.xml`, not an old test result reused as fresh.
+No public implementation/schema change; proportional tests and exact artifact
+readback used. Not Run: full historical offline suite,App unit/type/build,
+Android rebuild,physical phone,training,new human-GT import,later modules/liveHUD.
+
+Before/after main protection receipts both PASS:1,261 fixed existing paths,
+including firstGT9files,all236 pre-existing Milestone1 files,confirmation19,
+A1packet117,original4videos,Attempt02,selected pinnedKataCR67source files and
+installedUltralytics189source files,old settings,weights and APK. Directory
+membership and each byte hash remain unchanged. A separate append-only receipt
+extends checks to fullAttempt01's43files and3 actual Development/GT/Training
+locks; union1,280 unique protected old files all match historical/before hashes.
+The original1,261-path receipts are not overwritten by this extension.
+
+Fresh after `pip check` passes for offline/YOLOX/benchmark; their13/22/41package
+inventories before→after are raw identical. No installations/upgrades or new
+model environment; do not claim exhaustive venv byte preservation. Hygiene at
+the final protection receipt checks1,280 old+78 new=1,358 unique private paths,
+all Git-ignored,tracked private/media0. Paths added later for the stage report
+receive a separate final ignore check. Protected selected-source/artifact audit
+is not a new full32,217-file rehash. Historical908-test totals are not current.
+Private protection logs/receipts are under the new task directory `protection/`.
+
+Changed-document relative links87valid/0broken; credential-pattern scan0matches;
+`git diff --check` exit0. Only README,CURRENT_STATE,DEVELOPMENT_PLAN and this
+verification document change in Git. New source/prediction/image/return/ZIP,
+checks and device handoff stay ignored; App/preannotation/model code unchanged.
+A focused local docs checkpoint records the candidate/device-pending stage;
+no push,main merge,new split/training or later module. Stop for ChatGPT suggestions
+plus explicit user confirmation,and actual physical-device feedback.

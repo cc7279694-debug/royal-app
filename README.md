@@ -1,6 +1,20 @@
 # Clash Tracker
 
-**当前：首个模拟 App Debug APK 已验证；首批 24 帧已按用户确认回填并冻结视觉 GT。**
+**当前：Milestone 2 第二批审核包已准备；实体 Android 手机测试等待用户。**
+严格续接首批结束位置：第一场 72–129.5 秒，每 2.5 秒一帧，24 张原图、
+491 个待审候选、4 张 contact sheets。48 个原始 teacher labels 含 UI／噪声，
+不是确认类别；本批新增 confirmed GT=0。ChatGPT 建议仍须用户明确确认后才能回填。
+本次只对这 24 帧生成新 proposals；旧 benchmark、首批 GT、旧实验与模型环境不变，
+没有训练或自动 Negative。一次 NMS 超时警告及原日志已保留，不调参重跑。
+审核 ZIP 在私有忽略目录 `outputs/milestone2/second-gt-and-real-device/`，
+原图可能含玩家 UI，仅供用户控制的私人审核交接，不是公开素材或法律 clearance。
+当前设备查询仅有模拟器，没有真实手机；`REAL_DEVICE_TEST_PENDING_USER`。
+现有 APK 不重建、不改功能；安装命令、手动安装和触屏／真正冷启动清单在同目录
+`b2/INSTALL_AND_CHECKLIST.md`。真机安装、启动、2/8、Reset 与布局均未冒充通过。
+不训练、不进入 Module 3／真实游戏 HUD，不 push／合并 main。
+见[本阶段实际证据](docs/VERIFICATION_MILESTONE2.md)。
+
+**已完成的前序 checkpoint：首个模拟 App Debug APK；用户确认的首批视觉 GT。**
 模拟功能不变，不接真实游戏、不训练。APK 声明最低 Android 7.0 / API24；
 模拟器启动、模拟 2/8、Reset 已验证，实体手机安装尚未验证。
 首批 526 个候选中，44 框接受、2 项拒绝、480 项仍 pending/unknown；确认 6 个

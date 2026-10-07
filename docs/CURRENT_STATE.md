@@ -2,7 +2,64 @@
 
 Last verified: 2026-10-07.
 
-## Current work — Milestone 2: first Debug APK and first GT review batch
+## Current work — Milestone 2: second pending batch and physical-phone smoke
+
+User authorizes TaskA2 and TaskB2 on2026-10-07, with existing architecture,
+contracts and product behavior. Branch `codex/milestone2-apk-and-first-gt`;
+this stage starts from `fc0df2137e048640f200e5a412f9ddad81a42b90`.
+No training, Module3, real-game HUD, new model dependency, main merge or push.
+
+TaskA2 candidate preparation is complete, not human GT confirmation. Continue
+natural_match_01 immediately after first batch69.5s:24 chronological targets
+72..129.5s,2.5s stride. All exact PTS match these targets,1/90000 time base;
+first rawPTS6480000, last11655000. No first-batch/old-benchmark frame overlap,
+other recording use, class/confidence/ease-based frame selection or new split.
+The old benchmark ended71.75s, so this authorized stage generates proposals for
+these new24 frames once using its pinned runtime/weights and unchanged parameters.
+This is not an old benchmark rerun or a new accuracy experiment.
+
+New pending bundle: `outputs/milestone1/milestone2-second-review-batch02-v1/`,
+bundle digest `e2e9e435ce8fc953d2e26ba295c1d1d7fd7bda537ce3e4a94da3adf293cf98ac`.
+491 pending proposals,48 UNVERIFIED teacher labels including UI/noise; zero
+human-reviewed frames, new confirmed boxes/classes, new rejects, Negative or
+card events. All five corrections and per-class exhaustive review remain
+available. Teacher boxes, unmarked areas and rejects cannot establish absence.
+Unknown mapping/form/owner/origin must remain unknown/null. No new GT/Training
+Dataset Lock or standard training export; no inherited first-batch attestation.
+
+Private handoff ZIP:
+`outputs/milestone2/second-gt-and-real-device/Module_2_Milestone2_Second_Multiclass_Human_Review_Bundle_v1.zip`;
+24 original PNGs,4 contact sheets,reviewer assets/exact metadata/pending proposals,
+blank return and instructions,original generation logs;51 members,15,658,177 bytes.
+SHA256 `ab0e75f613bab96936f0c03434b9dabea1a92736ab6baf79c45f7851fae6ecaa`.
+One NMS time-limit warning is retained, not fixed by tuning/rerunning. Possible
+teacher misses must be handled through actual human review/missing-box addition,
+not background labels. Review images may contain player UI and stay private.
+Existing first24 inspected frames/44 accepted boxes/6 classes and their lock
+remain separate immutable history, not counts or confirmation for this new batch.
+Match02 stays truncated and training-excluded; all old locks/results retained.
+
+TaskB2 is `REAL_DEVICE_TEST_PENDING_USER`: fresh adb listing finds one emulator
+and zero physical phones. Existing APK SHA remains
+`774ed13e2ac69690330cf126084aee15b19ecf676e579a1872eaa7e37ea6bb0d`.
+Only AndroidX's own signature receiver permission remains, no game/capture/
+cross-app overlay/Accessibility permission. No rebuild, install, launch, log
+collection or physical touch/layout/restart smoke was performed this stage.
+USB commands target an explicitly identified real serial; manual local-transfer
+install is also documented in the private `b2/INSTALL_AND_CHECKLIST.md`.
+ADB is limited to installation, own-App launch and own-process logs; no input,
+force-stop, screenshots, unrelated data or system-setting operations.
+Mock state is in memory: Reset/new JS context0/8; resumed Activity may retain
+its existing state. Physical cold-start behavior still requires actual testing.
+
+Fresh focused regression:51 Python tests and8 Node reviewer/UI tests passed;
+pending-bundle validation, ZIP member SHA/CRC and chronological bindings passed.
+See [stage verification](VERIFICATION_MILESTONE2.md) for protection/limits.
+Next: user uploads the new private review ZIP to ChatGPT, then explicitly confirms
+the suggested decisions; separately install the exact APK on a phone and return
+the manual Witch/Balloon2/8,Reset,layout and cold-start results. Stop here.
+
+## Preserved checkpoint — Milestone 2: first Debug APK and first GT batch
 
 On2026-10-07 the user accepts Milestone1 and authorizes only two bounded tasks:
 build the unchanged mock App into a Debug APK using minimum official Android
