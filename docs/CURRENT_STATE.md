@@ -2,7 +2,43 @@
 
 Last verified: 2026-10-08.
 
-## Current checkpoint — Module 3D-Offline Recorded Event Replay
+## Current checkpoint — Module 3D accepted real-device closeout
+
+On2026-10-08 the user explicitly confirms personally completing the new APK's
+Android physical-device acceptance: `MODULE_3D_REAL_DEVICE_ACCEPTED`. Confirmed
+scope is local Oracle JSON import,0/8→5/8, start/pause/continue/restart,1×/4×,
+retained Mock and exclusion of the four unscored outputs from the confirmed deck.
+Reviewer/confirmation source is the user; this is not a new Codex physical-phone
+test. Phone model/OS, device-side APK hash, performance and broader compatibility
+are not supplied and are not invented.
+
+Authorized closeout starts from implementation
+`cf9d2995ac6d206ad57c40ce24b72538e3584af4` on the existing feature branch. Only
+acceptance/status/checkpoint documentation changes; event engine, App source,
+GT locks, Oracle results and private demo stay unchanged. Fresh full regression,
+build, artifact/privacy/hash and Git checks precede ff-only main merge and push;
+retain `codex/module3d-offline-recorded-replay`. Publication/ref evidence and actual
+fresh closeout results are appended to
+[Module3D verification](VERIFICATION_MODULE3D_OFFLINE.md).
+
+Accepted APK remains SHA256
+`52450eda8b0cbd6ff7dd27fb003fd6668e4d038366386ca4ec336f6c14052dc0`, private path
+`outputs/module3d-offline/clash-tracker-recorded-event-debug.apk`. Private demo JSON
+remains SHA256`bdefd0876d7b6b61d7aa63dc309eaaa6399e56435696929fa4e301348372b029`.
+All artifacts and raw test receipts are local/ignored, not public assets.
+
+Fresh final checks:1402 Python passed/4 existing permission skips;102 App and8 Node
+tests passed; build/dependencies/signature/permissions/diff/privacy/protection pass.
+Initial isolated-child timeout is preserved; same-test and full rerun pass without
+changing code/test rules. No production source changed. The accepted APK is intact;
+fresh rebuild is separately traced, not claimed byte-identical or phone-retested.
+
+Stopping point: **Module3D accepted release checkpoint; no active next module**. See
+[accepted checkpoint](checkpoints/2026-10-08-module3d-offline-replay-accepted.md).
+No next module is authorized or started. This remains offline retrospective replay,
+not detector/cross-match/live-game/cycle/evolution/elixir capability or permission.
+
+## Preserved checkpoint — Module 3D-Offline Recorded Event Replay
 
 The user's2026-10-08 authorization starts from published main/origin/main
 `293e26e00c2d2418fc78f2b2177f7780197d37f6`, on

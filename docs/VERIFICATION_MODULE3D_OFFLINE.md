@@ -1,9 +1,12 @@
 # Module 3D-Offline — Android Recorded Event Replay
 
-Verified2026-10-08 from published main/origin/main
+Original implementation verification2026-10-08 from published main/origin/main
 `293e26e00c2d2418fc78f2b2177f7780197d37f6`, feature branch
 `codex/module3d-offline-recorded-replay`. This is an offline App demonstration,
-not detector integration, live gameplay recognition or independent device acceptance.
+not detector integration or live gameplay recognition. The original ready-stage
+evidence below is preserved; subsequent user physical-device acceptance and fresh
+publication closeout are recorded in the final section, not retrospectively claimed
+as part of the original emulator test.
 
 ## Implemented behavior and boundaries
 
@@ -177,7 +180,7 @@ nonignored output. Native AndroidX PNG resources are checked byte-for-byte again
 the protected previous Mock APK, not misrepresented as private gameplay images.
 Old outputs are not overwritten.
 
-## Physical-phone handoff and stopping point
+## Original physical-phone handoff and stopping point (historical)
 
 Transfer **both** the APK and prepared JSON to the phone using a user-selected
 local method. Install the Debug APK, open App→Recorded mode→import the JSON from
@@ -190,3 +193,71 @@ new APK. **New physical-phone acceptance: Not Run by Codex; pending user.**
 No detector/cross-match/full-match FP/live-game/8-card inference/cycle/elixir claim.
 No main merge or push. Stop at `MODULE_3D_OFFLINE_REPLAY_READY`; next action is the
 user's new-APK offline smoke acceptance, not automatic next-module development.
+
+## User real-device acceptance and formal closeout — 2026-10-08
+
+The user explicitly attests personally completing the new Android APK acceptance:
+**`MODULE_3D_REAL_DEVICE_ACCEPTED`**. Local JSON import, automatic0/8→5/8,
+start/pause/continue/restart,1×/4×, retained Mock and exclusion of the four unscored
+outputs are accepted. Reviewer/source is **user**, not an agent-run phone test.
+No phone model/OS, device-side checksum, performance or device matrix was supplied.
+Original ready-stage receipts and pending-user wording above remain historical.
+
+This closeout changes six documentation files only: root/app README, CURRENT_STATE,
+DEVELOPMENT_PLAN, this verification and the accepted checkpoint. No production
+source/test/config/permission/dependency/schema change, engine run, Oracle export,
+GT edit, model training or next-module implementation.
+
+Fresh command/output/exit/JUnit/hash receipts are exclusively written under ignored
+`outputs/module3d-closeout/`; the same commands and fixed environment listed above
+are reused. Event/deployment/preannotation/replay tests:294 passed/1 skipped;
+smoke-training contract tests:200 passed (no training or inference); App:102 passed;
+Node review tests:8 passed. Pip check, TypeScript/Vite/Capacitor sync and offline
+Gradle Debug build exit0; Gradle reports BUILD SUCCESSFUL in8m35s,93 tasks.
+No toolchain/model installation or global environment change.
+
+The first closeout offline run is retained honestly:907 passed/3 skipped/**1 failed**,
+exit1 in1502.82s. `test_unknown_object_prevents_exhaustive_export` hit its unchanged
+180s isolated-child timeout; captured child stdout/stderr were empty, not a
+demonstrated data/assertion defect. Same test then passed independently in16.19s.
+A separate complete rerun without concurrent Android build is required before
+publication. No timeout increase, skip, deleted test, changed fixture or production
+patch is used. Initial logs/JUnit and child evidence remain alongside the rerun.
+Concurrent build is a plausible load contributor, not a proven root cause.
+
+The required complete stable rerun finished successfully: **908 passed/3 skipped**,
+exit0 in1094.94s (wrapper1096.359s). Same911 tests and original isolation/timeout
+rules; no production/test edits. Combined with the other two full Python groups,
+fresh final regression is **1402 passed/4 skipped, zero failures/errors**.
+All four final skips are the retained Windows symlink-permission cases. Both runs
+remain traceable through `offline.log/json/xml` and `offline-stable.log/json/xml`;
+the earlier failing run is not replaced or represented as a PASS.
+
+The accepted APK SHA remains
+`52450eda8b0cbd6ff7dd27fb003fd6668e4d038366386ca4ec336f6c14052dc0`.
+Fresh rebuild SHA is separately
+`f74d2aedade5efa5c40d5ad8fe2ddf42f30a41815212a853f0ec8b0deac6cdc3`, saved as
+`outputs/module3d-closeout/clash-tracker-recorded-event-revalidated-debug.apk`.
+These APKs are **not byte-identical**: all common ZIP members except asset-index
+HTML are identical; JS bytes and every existing CSS rule are identical, but fresh
+Tailwind output adds an unused `.filter` utility/property scaffold and changes
+hashed asset filenames/HTML references. No App UI uses the added utility. The
+fresh APK is build evidence, not an independently accepted new phone delivery.
+The original accepted APK is not replaced. Four current dist assets match the
+fresh APK; no private JSON/GT/media/model material is embedded. App manifest and
+permission bytes are unchanged. Local documentation links:111 valid.
+
+Read-only protection confirms2107 existing material files and144 tracked
+non-document sources unchanged. All inventoried private material and new receipts
+remain ignored; no private artifact is tracked. The accepted APK, private demo and
+all historical GT/FAIL/PASS/attempt/benchmark results remain intact. Privacy scans
+and hashes are consistency protection, not a claim of copyright clearance or
+authentication of arbitrary imported JSON.
+
+No new browser/emulator/physical-device run is claimed in this documentation-only
+closeout. Existing emulator/browser proof is retained; user acceptance supplies the
+new physical-phone fact. Formal publication uses ff-only from verified main
+`293e26e00c2d2418fc78f2b2177f7780197d37f6`, preserves the feature branch and reads
+back local/remote main after push. The commit containing the accepted checkpoint
+defines the publication SHA; exact refs and commands remain in private receipts.
+Stop after `MODULE_3D_RELEASED`; no later phase is authorized.

@@ -4,7 +4,23 @@ The project advances one independently verifiable module at a time. A module may
 start only after the previous module has been reviewed and accepted. Statuses are
 `Completed`, `In Progress`, `Planned`, `Paused`, or `Gated`.
 
-## Current authorized stage — Module 3D-Offline Recorded Event Replay
+## Current authorized stage — Module 3D accepted publication closeout
+
+Status: user physical-device acceptance **Completed** on2026-10-08,
+`MODULE_3D_REAL_DEVICE_ACCEPTED`. Implementation commit
+`cf9d2995ac6d206ad57c40ce24b72538e3584af4`; only documentation/status/checkpoint
+closeout, fresh full checks, ff-only integration and main push are authorized now.
+Keep the feature branch and all historical locks/results/private artifacts. No
+App/engine/rule/parameter change, regeneration of Oracle/private JSON or new module.
+
+Publication is confirmed only after main and origin/main read back as the accepted
+closeout commit, with a clean tree and the original feature branch retained at that
+commit. Actual results/ref evidence are linked in
+[verification](VERIFICATION_MODULE3D_OFFLINE.md) and the
+[accepted checkpoint](checkpoints/2026-10-08-module3d-offline-replay-accepted.md).
+Stop at `MODULE_3D_RELEASED`; later modules require separate authorization.
+
+## Preserved stage — Module 3D-Offline Recorded Event Replay
 
 Status: implementation and emulator smoke verified; stop for new-APK physical-phone
 acceptance. Baseline main`293e26e00c2d2418fc78f2b2177f7780197d37f6`; feature

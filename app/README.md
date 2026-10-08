@@ -101,7 +101,10 @@ absence of capture/overlay/Accessibility/Internet permissions remains verified.
 The previous Mock APK's physical-phone smoke was subsequently reported passed by
 the user. Module3D has a newly built Debug APK with local native-document-picker
 import and automatic5/8 replay tested in an isolated Android emulator; this new
-APK's physical-phone acceptance is still pending. See
+APK's physical-phone acceptance was explicitly confirmed by the user on2026-10-08:
+`MODULE_3D_REAL_DEVICE_ACCEPTED` (local import,0/8→5/8, replay controls/speeds, Mock,
+and exclusion of unscored events). This records user acceptance, not an agent-run
+device test; phone model/OS and device-side checksum were not supplied. See
 [Module3D verification](../docs/VERIFICATION_MODULE3D_OFFLINE.md). Native capture or
 inference still requires a separate approved module.
 
