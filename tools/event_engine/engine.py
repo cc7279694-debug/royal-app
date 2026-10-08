@@ -19,7 +19,8 @@ RULES = {
 }
 CONFIG = {'track_gap_seconds': 7.5, 'confirmation_window_seconds': 7.5,
           'minimum_iou': .05, 'center_distance_pixels': 90., 'diagonal_multiplier': 2.,
-          'group_birth_window_seconds': 2.5, 'group_distance_pixels': 120.}
+          'group_birth_window_seconds': 2.5, 'group_distance_pixels': 120.,
+          'grouped_motion_pixels_per_second': 90.}
 
 
 def stable_id(prefix, value):
@@ -99,6 +100,18 @@ class Track:
     def human(self): return self.first.get('appearance_group_id')
 
 
+@dataclass
+class GroupedCardEpisode:
+    episode_id: str
+    card_id: str
+    owner: str
+    member_track_ids: list[str]
+    first_seen: float
+    last_seen: float
+    emitted_event_id: str
+    state: str = 'active'
+
+
 def _association(track, row):
     a=track.last
     if any(a[k]!=row[k] for k in ('match_id','visual_class','owner','form','origin_kind')):
@@ -111,7 +124,13 @@ def _association(track, row):
         return None
     iou=_iou(a['bbox'],row['bbox']); distance=_distance(a['bbox'],row['bbox'])
     diagonal=max(math.hypot(b[2]-b[0],b[3]-b[1]) for b in (a['bbox'],row['bbox']))
-    if iou>=CONFIG['minimum_iou'] or distance<=max(CONFIG['center_distance_pixels'],CONFIG['diagonal_multiplier']*diagonal):
+    budget=max(CONFIG['center_distance_pixels'],CONFIG['diagonal_multiplier']*diagonal)
+    rule=RULES.get(row['visual_class'])
+    if rule and rule['kind']=='grouped':
+        # Sampling gap bounds motion, not time since a card event. Existing
+        # tracks remain one-to-one; exhausted tracks cannot absorb new units.
+        budget=max(budget,CONFIG['grouped_motion_pixels_per_second']*gap)
+    if iou>=CONFIG['minimum_iou'] or distance<=budget:
         return (1,-iou,distance)
     return None
 
@@ -132,8 +151,8 @@ def replay(observations):
     """
     validate_observations(observations)
     ordered=sorted(observations,key=lambda r:(r['match_id'],r['timestamp'],r['observation_id']))
-    tracks, groups, confirmation = [], {}, {}
-    for (_,time), frame_iter in groupby(ordered,key=lambda r:(r['match_id'],r['timestamp'])):
+    tracks, groups, confirmation, episodes = [], {}, {}, {}
+    for (match,time), frame_iter in groupby(ordered,key=lambda r:(r['match_id'],r['timestamp'])):
         frame=list(frame_iter); used_tracks=set(); used_rows=set()
         edges=[]
         for ti,track in enumerate(tracks):
@@ -156,6 +175,14 @@ def replay(observations):
             for gid,members in groups.items():
                 anchor=members[0].first
                 same=all(anchor[k]==row[k] for k in ('match_id','visual_class','owner','form'))
+                if gid in episodes:
+                    # A confirmed episode owns its members. Genuinely new
+                    # tracks must qualify a separate group, even immediately.
+                    # A trusted shared human identity instead proves that a
+                    # newly visible member already belongs to this episode.
+                    if same and track.human and members[0].human==track.human:
+                        options.append(gid)
+                    continue
                 identities=members[0].human==track.human
                 if same and identities and 0<=time-anchor['timestamp']<=CONFIG['group_birth_window_seconds'] and all(_distance(m.first['bbox'],row['bbox'])<=CONFIG['group_distance_pixels'] for m in members):
                     options.append(gid)
@@ -164,9 +191,21 @@ def replay(observations):
         # A broken single-unit track is not independent entity evidence. Only
         # simultaneous distinct boxes/tracks can confirm this Oracle group.
         for gid,members in groups.items():
+            if members[0].first['match_id']!=match: continue
             rule=RULES[members[0].first['visual_class']]
-            if sum(t.last['timestamp']==time for t in members)>=rule['minimum_new_units']:
+            visible=sum(t.last['timestamp']==time for t in members)
+            if gid not in episodes and visible>=rule['minimum_new_units']:
                 confirmation.setdefault(gid,time)
+                episodes[gid]=GroupedCardEpisode(
+                    gid,rule['card_id'],members[0].first['owner'],
+                    [t.track_id for t in members],members[0].first['timestamp'],time,
+                    stable_id('event-',[RULE_VERSION,match,gid]))
+            if gid in episodes:
+                episode=episodes[gid]
+                episode.member_track_ids=[t.track_id for t in members]
+                episode.last_seen=max(t.last['timestamp'] for t in members)
+                episode.state=('active' if visible else 'occluded'
+                               if time-episode.last_seen<=CONFIG['track_gap_seconds'] else 'closed')
         for track in tracks:
             row=track.first; rule=RULES.get(row['visual_class'])
             if not _eligible(row) or rule['kind']!='direct': continue
@@ -199,6 +238,10 @@ def replay(observations):
             'tracks':[{'track_id':t.track_id,'appearance_group_id':t.human,'spawn_group_id':t.group,
                        'observation_ids':[r['observation_id'] for r in t.rows],
                        'first_seen':t.first['timestamp'],'last_seen':t.last['timestamp']} for t in tracks],
+            'grouped_episodes':[dict(episode_id=e.episode_id,card_id=e.card_id,owner=e.owner,
+                                    member_track_ids=list(e.member_track_ids),first_seen=e.first_seen,
+                                    last_seen=e.last_seen,emitted_event_id=e.emitted_event_id,state=e.state)
+                                for e in sorted(episodes.values(),key=lambda e:e.episode_id)],
             'limitations':{'offline_retrospective':True,'onset_proven':False,'detector_performance':False,
                            'cross_match_validation':False,'unobserved_is_negative':False}}
 

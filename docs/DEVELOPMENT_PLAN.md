@@ -4,7 +4,20 @@ The project advances one independently verifiable module at a time. A module may
 start only after the previous module has been reviewed and accepted. Statuses are
 `Completed`, `In Progress`, `Planned`, `Paused`, or `Gated`.
 
-## Current authorized stage — Module 3B Oracle Event Engine
+## Current authorized stage — Module 3B Grouped Event Dedupe Repair
+
+Same-stream repair Oracle gate passes5/5 positives and3/3 dedupe; no next module
+is authorized. Add deterministic episode lifecycle and per-gap geometry motion
+allowance, not card cooldown. New coexisting tracks can qualify another episode;
+continuing/occluded members only update their existing one. Event GT and original
+FAIL artifacts stay immutable. See [verification](VERIFICATION_MODULE3B.md).
+Fresh regression:1370 Python passes/4 skips,59 JavaScript passes;1884 existing
+hashes unchanged, TypeScript/build/pip/diff/privacy/link checks pass. Local-only
+checkpoint; stop for review.
+No new architecture plan, detector mode, Module4, card history/cycle/elixir or App
+integration. Historical initial Oracle FAIL remains below.
+
+## Preserved stage — original Module 3B Oracle Event Engine
 
 Status: implementation, fixed replay and fresh regression/protection verified;
 acceptance gate FAIL, local-only checkpoint awaits independent review. User
@@ -614,8 +627,9 @@ Android/live use and push/main integration all remain separately Gated.
 
 Status: Module3A user-attested GT v1 locked and validated (5 confirmed events,
 3 continuity/dedupe,4 unresolved; confirmed events only match01);
-Module3B Oracle-only engine authorized/implemented; fixed acceptance gate FAIL
-(5/5 positives, candidate09 new-event error). Detector mode remains unauthorized.
+Module3B Oracle-only grouped repair verified5/5 positives and3/3 dedupe;
+original FAIL retained, repair awaiting independent acceptance. Detector mode
+remains unauthorized.
 
 Goal: promote repeated visual observations into one confirmed
 `OpponentCardPlayed` event per real deployment.

@@ -1,5 +1,63 @@
 # Module 3B — Oracle implementation and fixed replay verification
 
+## 2026-10-08 — Grouped Event Dedupe Repair
+
+Baseline `60494187aff7e3afc578c477212d963265460a46`, existing3B feature branch.
+Latest user explicitly authorizes the minimal repair. No new architecture plan,
+detector, App change, training, extraction/GT edits, main merge or push.
+
+Root cause: fixed displacement from the previous bbox fragmented moving Minions
+between sparse samples. New grouped-only geometry motion policy is
+max(existing bbox budget,90px/s*actual gap), retaining7.5s gap ceiling. No card
+cooldown. Explicit GroupedCardEpisode owns member IDs, emitted ID and deterministic
+active/occluded/closed tracking state. Existing members cannot emit another play;
+coexisting genuinely new unassigned tracks can form a separate episode even
+immediately. Trusted human identity can attach newly visible same-group members.
+
+TDD: first synthetic run7failed/3passed, catching repeated long-movement events
+and old episodes swallowing genuine new groups. One lifecycle test wrongly
+assumed hash-ID output order; corrected to assert first_seen/state mapping.
+Additional human-group membership growth regression failed as expected, then
+fixed. Final event engine suite84 tests, combined annotation/event contracts
+262passed/1 Windows symlink permission skip. Long movement, sampling gaps, new
+coexisting groups, expiry/reappearance, both cards, ownership/spawn/observe-only,
+human identity, deterministic replay and existing scoring guards are covered.
+
+Frozen original94-observation stream reused byte-for-byte; no adapter rerun or
+new frames. Repair replay-v1 followed the first synthetic fix; replay-v2 followed
+the additional synthetic human identity repair. Both configs/registries/sources
+are identical and both pass; outputs are preserved independently, not replaced.
+Code hash/config/source SHA recorded before each run. No result-driven tuning.
+Event GT remains `abd434cb5a8aba399295a87e0ad49a2997cf2304c2afff4792e16d991d8e03cb`.
+
+Final replay/evaluation exits0/0:5/5 positives exactly once,0 positive duplicates,
+dedupe04/09/12 counts0/0/0. Five matched event IDs, timestamps, confirmation times
+and rule semantics are unchanged. Only Minions source_observation_ids expands to
+include its continuation. A supplementary checker initially required unchanged
+entire event objects; it was corrected to permit this intended evidence growth
+while enforcing unchanged identity/timing/semantics and retaining all old source
+IDs. No replay/GT was edited to satisfy it.
+
+Nine events total,3 grouped episodes;4 unresolved outputs remain unscored. No
+Negative/FP is invented. Witch confirmation delay remains3s: retrospective
+timestamp hit is not validated<=2.5s online confirmation. No cross-match or
+detector performance/full-match FP claim. Fixed90px/s is not a proven physics
+calibration and can remain ambiguous in crowds.
+
+Fresh offline regression908passed/3skipped (927.13s), combined contracts262passed/
+1skip, smoke contracts200passed: total1370 Python passes/4 Windows permission
+skips. App51passed + Node review UI8passed =59 JavaScript passes;
+App TypeScript/build and pip check exit0. Bounded protection checks1884 original
+files, all hashes unchanged; private files ignored, no tracked private artifact,
+main unchanged. Diff/credential checks pass;103 relative links checked,0 broken.
+Full logs and receipts are in the repair completion report. All old artifacts,
+including the original FAIL, remain
+unchanged. Private receipts/replay/evaluation: `outputs/module3b-repair/`.
+Current status: `MODULE_3B_ORACLE_ENGINE_REPAIR_PASS` for the fixed Oracle gate;
+stop for independent acceptance, not detector mode or Module4.
+
+## Preserved original implementation verification — 2026-10-07
+
 Date:2026-10-07. Baseline `d4c5b94625dda49dfb1af2c1b5c8d4851751650a`;
 branch `codex/module3b-oracle-event-engine`, same local checkout. The latest user
 attachment explicitly authorizes3B only. No main merge/push or detector mode.

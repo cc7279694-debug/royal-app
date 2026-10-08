@@ -1,8 +1,35 @@
 # Current State
 
-Last verified: 2026-10-07.
+Last verified: 2026-10-08.
 
-## Current checkpoint — Module 3B Oracle engine implemented; fixed replay FAIL
+## Current checkpoint — Module 3B Grouped Event Dedupe Repair
+
+Current authorization is the minimal grouped repair, not detector mode or a new
+Module3B plan. Baseline `60494187aff7e3afc578c477212d963265460a46`, same feature
+branch `codex/module3b-oracle-event-engine`. Original FAIL outputs are unchanged.
+
+Final same-stream Oracle replay/evaluation exits0/0:5/5 positives each once,
+dedupe04/09/12 all0. The frozen94-observation stream is byte-identical; Event GT,
+card registry/minimum units, first event timestamps/IDs and scoring are unchanged.
+Minions continuation observations now extend the original event's evidence.
+
+GroupedCardEpisode records deterministic members, first/last seen, emitted ID and
+active/occluded/closed tracking state. Motion allowance uses actual elapsed gap
+with fixed90px/s bound and original box budget;7.5s gap ceiling remains unchanged.
+This is geometry/sampling continuity, not elapsed-card cooldown or a proven
+physical motion limit. Fresh tracks can form a new episode while old units live.
+Trusted human appearance continuity can restore previously unseen members.
+
+No detector/training, new frames/GT, App changes, next module, main merge or push.
+Fresh checks:1370 Python passed/4 permission skips;59 JavaScript passed;
+TypeScript/build/pip check exit0;1884 old file hashes unchanged; diff/privacy and
+103-link checks passed. Fresh verification and protection receipts are under ignored
+`outputs/module3b-repair/`; completion details in
+[verification](VERIFICATION_MODULE3B.md). Stop for independent review. Oracle
+PASS does not establish real-time latency, deployment-onset proof, cross-match
+generalization or full-match FP rate. Unknown remains unscored, not Negative.
+
+## Preserved checkpoint — original Module 3B fixed replay FAIL
 
 Latest2026-10-07 authorization accepts3A and explicitly permits only the3B
 detector-independent Oracle engine. Baseline

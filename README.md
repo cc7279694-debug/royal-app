@@ -1,6 +1,13 @@
 # Clash Tracker
 
-**当前：Module 3B Oracle 事件引擎已实现，固定回放结果为 FAIL。**
+**当前：Module 3B 分组去重修复的同流 Oracle 回放通过。**
+5/5 确认事件各一次，三个连续／去重窗口均为0新事件。
+通过 GroupedCardEpisode 成员身份与按采样 gap 计算的移动边界修复；
+没有 card cooldown，不读取 Event GT 来关联轨迹。仍不代表 detector 性能、
+跨场泛化或实时能力。完整回归与本地检查点见验证文档；不进入下一模块。
+见[本轮修复证据](docs/VERIFICATION_MODULE3B.md)。
+
+**保留的前序结果：Module 3B 原始固定回放为 FAIL。**
 5/5 个确认事件各命中一次，但127秒的亡灵持续画面被错当成第二次出牌；
 三个连续／去重窗口结果为0/1/0，所以不能宣布自动记牌已通过验收。
 输入只来自既有人工作为依据确认的视觉 GT，Event GT 只用于事后评分；

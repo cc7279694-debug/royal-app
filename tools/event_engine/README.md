@@ -46,6 +46,20 @@ App compatibility uses `recorded_oracle_events_v1`, source `recorded_oracle` and
 `RecordedEventSource.fromJSON()` accepts the projection, but is not wired to the
 App UI, phone APK or live game. Existing Witch/Balloon mock controls are unchanged.
 
-The current fixed real Oracle result is **FAIL**: all five positives match, but
+Grouped repair adds an explicit `grouped_episodes` artifact: deterministic episode
+ID, card/owner, member track IDs, first/last seen, emitted event ID and tracking
+state (`active`, `occluded`, `closed`). Emitted episodes cannot absorb unrelated
+new tracks; new coexisting units can establish another episode immediately.
+Only explicit trusted same-group human continuity can add newly visible members
+to an emitted episode. Closure is a tracking horizon, not death/absence GT.
+
+Grouped motion uses max(existing bbox budget,90px/s*observation gap), with the
+unchanged7.5s gap ceiling. This permits sparse-frame movement, not a card cooldown.
+It is a heuristic; geometry alone cannot prove birth or resolve every crowded
+association. Direct rules, minimum units and scoring window are unchanged.
+
+The repair's identical-stream Oracle gate is **PASS**:5/5 positives,3/3 dedupe;
+no detector/cross-match/real-time claim. The original fixed result remains **FAIL**:
+all five positives match, but
 the127s Minions continuity sample produces a new event. Do not tune parameters or
 rewrite GT to turn this into PASS. [Verification](../../docs/VERIFICATION_MODULE3B.md).

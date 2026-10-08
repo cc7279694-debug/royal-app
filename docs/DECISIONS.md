@@ -1,5 +1,28 @@
 # Decisions
 
+## 2026-10-08 — Grouped episode membership, not card cooldown
+
+### Decision
+
+Per latest explicit user authorization, repair grouped event dedupe using
+GroupedCardEpisode membership and deterministic tracking continuity. This
+supersedes the prior stop-before-repair gate only for the requested repair.
+
+### Reason and consequences
+
+Static last-box displacement incorrectly fragmented moving units at sparse
+sampling. Keep7.5s track gap, unchanged card rules and one-to-one association;
+grouped geometry accepts max(existing bbox budget,90px/s*actual gap). The motion
+bound is a fixed first-iteration heuristic, not calibrated game physics. No
+elapsed-card cooldown. Confirmed episodes own their members and emit at most
+once; truly unassigned new tracks can qualify a separate episode even while old
+members survive. Explicit trusted human identity remains the continuity priority.
+Closed means the association horizon elapsed, not proof a unit died.
+
+Event GT is grading only. Same frozen stream, unchanged timestamp/scoring/rules;
+old FAIL outputs preserved. Repair Oracle PASS is not detector/cross-match or
+real-time certification and does not authorize later modules or game integration.
+
 ## 2026-10-07 — Human-only Oracle event logic; no answer leakage
 
 ### Decision
