@@ -4,7 +4,25 @@ The project advances one independently verifiable module at a time. A module may
 start only after the previous module has been reviewed and accepted. Statuses are
 `Completed`, `In Progress`, `Planned`, `Paused`, or `Gated`.
 
-## Current authorized stage — Module 3D accepted publication closeout
+## Current authorized stage — Module 3C-1 offline detector integration
+
+The user authorizes actual retained KataCR predictions through the unchanged3B
+engine, from published main`602dd0f0d92f9bcd09b866b7ab081c5352ba5a93`, on
+`codex/module3c1-detector-event-baseline`. Complete match01 then match04 provide
+all five positive and three continuity windows. Seal predictions/replay before
+separate frozen GT scoring; no human identity, origin/owner answer injection,
+parameter tuning, training, App edits, live-game or third-party redistribution.
+
+Actual result: valid experiment FAIL,2/5 positive hits plus1 duplicate. Three
+dedupe windows emit0 each; match04 Witch has no predictions, not continuity proof.
+Three misses are earlier first-seen outputs under the unchanged one-sided window.
+Unknown/unresolved remain non-negative; no full-match FP/min claim. Preserve all
+outputs and historical locks/results. Final regression/protection and the local
+review packet precede `MODULE_3C_1_DETECTOR_BASELINE_READY`.
+Stop for independent review; no push/main merge or next-module implementation.
+See [verification](VERIFICATION_MODULE3C1.md).
+
+## Preserved stage — Module 3D accepted publication closeout
 
 Status: user physical-device acceptance **Completed** on2026-10-08,
 `MODULE_3D_REAL_DEVICE_ACCEPTED`. Implementation commit

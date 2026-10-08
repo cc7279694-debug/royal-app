@@ -1,5 +1,38 @@
 # Decisions
 
+## 2026-10-08 — Real detector observations without Oracle answer injection
+
+### Decision
+
+The user's3C-1 authorization adds a separate prediction adapter and post-score
+diagnostics, superseding the former Oracle-only gate only for this offline
+baseline. The accepted3B engine/Episode/scorer and all historical GT/results stay
+unchanged. Complete match01 first and match04 second cover the existing five
+positive/three continuity checks without GT-targeted inference.
+
+### Context and reason
+
+Human appearance identity makes Oracle tracking easier than noisy model output.
+Actual model owner is an unvalidated prediction; missing/conflicting owner stays
+unknown, and absent spawn/form classifiers cannot supply primary/normal truth.
+Prediction IDs never become human continuity IDs. Seal inputs/output before GT
+scoring; post-score displays and diagnostics cannot affect engine generation.
+
+### Consequences
+
+Origin stays unknown; the frozen implementation allows supported opponent visuals
+with unknown origin. This is an inherited experiment limitation, not new proof of
+primary card provenance. Unsupported/evolved classes are not coerced into normal
+cards. STRONG is an engine level, not human GT/calibrated model probability.
+Preserve actual event IDs/first-seen and separate confirmation times.
+
+Fixed one-sided scoring remains unchanged even for earlier same-class outputs.
+Explicit duplicate failures cannot disappear into the inherited unscored list.
+Four unresolved and unreviewed time are not Negative; FP/min remains unavailable.
+A sampled zero-output window with no target predictions does not prove tracking.
+No local research result authorizes model redistribution, App/live-game integration,
+zero-ban-risk promises or automatic repair/next-module work.
+
 ## 2026-10-08 — Recorded Oracle demo selection outside the event engine
 
 ### Decision

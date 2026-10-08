@@ -2,7 +2,41 @@
 
 Last verified: 2026-10-08.
 
-## Current checkpoint — Module 3D accepted real-device closeout
+## Current checkpoint — Module 3C-1 real detector baseline
+
+Authorized on2026-10-08 from published main
+`602dd0f0d92f9bcd09b866b7ab081c5352ba5a93`; feature
+`codex/module3c1-detector-event-baseline`. Actual retained KataCR predictions from
+complete match01, then match04, feed the unchanged3B engine.1523 actual PTS samples,
+33337 observations,2339 candidates,14 emitted events. No Human-GT identities,
+Event GT inputs, training, downloads, Android/App or live-game changes.
+
+Frozen scoring is a valid **FAIL** (exit3):2/5 positives,1 Royal Hogs duplicate,
+0 explicit no-new-play false emissions. Three dedupe windows are sampled and each
+has0 new event, but candidate12 has0 Witch predictions: not evidence of Witch
+continuity. Three fixed-window misses have earlier same-class first-seen outputs
+(-1/-0.25/-0.25s), not zero visual support; no GT/scoring adjustment.12 inherited
+unscored outputs include the Royal Hogs duplicate, whose failure remains counted.
+Four unresolved windows stay non-negative; full-match FP/min cannot be computed.
+
+Raw owner is unvalidated model output, origin/form unknown. Existing engine STRONG
+does not establish a true deployment or calibrated confidence. About3.2FPS steady
+model inference; not realtime/phone/cross-match validation. Model-vs-engine causes
+are separated as observed mechanics vs unproven physical explanations.
+
+Prediction, replay and evaluation versions are sealed separately; post-score
+timeline,12 redacted contact sheets and finite track/Episode forensic evidence
+remain local/ignored. Fresh final regression:1439 Python passed/4 existing permission
+skips (offline908/3, contracts331/1, smoke200); App102/Node8 and both pip checks pass.
+2165 old material files and144 old non-document sources remain byte-identical.
+Diff/privacy/manifest checks pass; no dependency or storage/schema change.
+See [actual baseline and limitations](VERIFICATION_MODULE3C1.md).
+
+Stopping point is the local baseline review packet, not detector acceptance.
+No push/main merge, automatic tuning or
+repair, training, App hookup, Module4/cycle/elixir/live-game/next module.
+
+## Preserved checkpoint — Module 3D accepted real-device closeout
 
 On2026-10-08 the user explicitly confirms personally completing the new APK's
 Android physical-device acceptance: `MODULE_3D_REAL_DEVICE_ACCEPTED`. Confirmed

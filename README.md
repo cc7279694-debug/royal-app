@@ -1,6 +1,16 @@
 # Clash Tracker
 
-**当前：Module 3D-Offline 已由用户亲自在 Android 真机验收通过。**
+**当前：Module 3C-1 已跑通真实 detector → 原事件引擎，但固定基线仍不足。**
+完整第一／第四场录像共1523个采样帧；预测封存后才评分，不拿人工GT生成事件。
+原规则结果为2/5命中、皇家野猪重复1次；三个连续窗口均0新增，但第四场没有
+女巫预测，不能据此声称跨场去重通过。其余三个评分未命中已有较早的同类输出，
+不等于完全没看见目标；GT和单向评分窗口未改。Unknown不当Negative，12条
+未计分输出仍保留（其中重复错误仍计失败），无法算全场误报率。
+本轮不训练、不改Android或引擎参数；完整回归已通过，基线停在本地复审，不push／
+合并main，不自动修复或进入下一阶段。
+见[3C-1实际结果与限制](docs/VERIFICATION_MODULE3C1.md)及[离线适配操作](tools/detector_events/README.md)。
+
+**保留的已发布 checkpoint：Module 3D-Offline 已由用户亲自在 Android 真机验收通过。**
 正式结论：`MODULE_3D_REAL_DEVICE_ACCEPTED`；记录用户确认，不冒充Codex重测真机。
 保留 Mock 模式；本地导入专用 JSON 后支持开始／暂停／继续／重播与1×/4×，
 五条已核实的真实引擎事件按时间把卡组从0/8推进到5/8。事件ID与时间来自冻结的
