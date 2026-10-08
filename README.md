@@ -1,6 +1,16 @@
 # Clash Tracker
 
-**当前：Module 3B Oracle 修复正式验收，PASS WITH NOTES。**
+**当前：Module 3D-Offline 已实现离线 Oracle 事件回放，等待新 APK 真机验收。**
+保留 Mock 模式；本地导入专用 JSON 后支持开始／暂停／继续／重播与1×/4×，
+五条已核实的真实引擎事件按时间把卡组从0/8推进到5/8。事件ID与时间来自冻结的
+引擎输出，不拿人工GT制造事件；四条未计分输出只在独立离线导出阶段排除。
+手机界面明确标注“离线 Oracle 回放”，不是detector、实时识别或真实游戏HUD。
+私人回放JSON不入Git、不内置APK；旧GT、Oracle评分和引擎逻辑不变。
+新Debug APK已构建，模拟器的本地文件导入、5/8、暂停／恢复／重播与Mock已验证；
+新APK实体手机验收由用户安装后完成。未push或合并main，不进入下一模块。
+见[Module3D验证与使用方式](docs/VERIFICATION_MODULE3D_OFFLINE.md)及[App操作](app/README.md)。
+
+**保留的已验收 checkpoint：Module 3B Oracle 修复正式验收，PASS WITH NOTES。**
 用户转交 ChatGPT 独立复审结论：
 `MODULE_3B_ORACLE_ENGINE_REPAIR_ACCEPTED — PASS WITH NOTES`，
 验收实现提交为 `8abe6ee534653100066a44f45034c93a8b61ad6a`。

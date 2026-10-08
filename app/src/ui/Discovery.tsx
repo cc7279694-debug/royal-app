@@ -5,18 +5,20 @@ interface DiscoveryProps {
   readonly overflowCardIds: readonly string[];
 }
 
-export function DiscoveryHud({ cardIds }: Pick<DiscoveryProps, 'cardIds'>) {
+export function DiscoveryHud({ cardIds, source = 'mock' }: Pick<DiscoveryProps, 'cardIds'> & {
+  readonly source?: 'mock' | 'recorded_oracle';
+}) {
   const names = cardIds.map((cardId) => getCardDisplay(cardId).name).join(' · ');
 
   return (
-    <section className="discovery-hud" aria-label="App 内部模拟 HUD">
+    <section className="discovery-hud" aria-label={source === 'mock' ? 'App 内部模拟 HUD' : 'App 内部离线 Oracle HUD'}>
       <p className="hud-metric" role="status" aria-live="polite" aria-atomic="true">
         <span>已发现</span>
         <strong>{cardIds.length}/8</strong>
       </p>
       <div className="hud-description">
-        <p className="hud-names">{names || '等待模拟事件'}</p>
-        <p className="hud-source">仅模拟事件 · 未连接游戏</p>
+        <p className="hud-names">{names || (source === 'mock' ? '等待模拟事件' : '等待离线事件')}</p>
+        <p className="hud-source">{source === 'mock' ? '仅模拟事件 · 未连接游戏' : '离线 Oracle 回放 · 未连接游戏'}</p>
       </div>
     </section>
   );

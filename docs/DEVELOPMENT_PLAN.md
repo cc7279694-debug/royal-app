@@ -4,7 +4,29 @@ The project advances one independently verifiable module at a time. A module may
 start only after the previous module has been reviewed and accepted. Statuses are
 `Completed`, `In Progress`, `Planned`, `Paused`, or `Gated`.
 
-## Current authorized stage — Module 3B accepted Oracle closeout
+## Current authorized stage — Module 3D-Offline Recorded Event Replay
+
+Status: implementation and emulator smoke verified; stop for new-APK physical-phone
+acceptance. Baseline main`293e26e00c2d2418fc78f2b2177f7780197d37f6`; feature
+`codex/module3d-offline-recorded-replay`. The latest explicit user scope authorizes
+App integration of the five verified frozen Oracle engine events only, not a
+detector/engine change or live game capability.
+
+- Separate offline source-bound exporter selects actual matched engineIDs/times;
+  four unscored events stay out of the confirmed deck without changing engine/GT.
+- Native local JSON import feeds the existing event consumer; replay supports
+  start/pause/resume/restart/1×/4×, unique-card slots/history and separate Mock.
+- UI says offline Oracle replay. First-seen timing is retrospective; Witch's3s
+  confirmation limitation remains. Demo JSON is private/ignored/external to APK.
+- Verify full JS/owned Python regressions, Debug build, permission/data protection
+  and isolated emulator. User performs the new APK's physical-phone final smoke.
+- No push/main merge, training, card cycle/evolution/elixir, capture, accessibility,
+  cross-App overlay or game connection. Stop at
+  `MODULE_3D_OFFLINE_REPLAY_READY`, not automatic Module4.
+
+See [actual evidence](VERIFICATION_MODULE3D_OFFLINE.md).
+
+## Preserved stage — Module 3B accepted Oracle closeout
 
 Status: Oracle repair formally accepted by the user after ChatGPT independent
 review of `8abe6ee534653100066a44f45034c93a8b61ad6a`:

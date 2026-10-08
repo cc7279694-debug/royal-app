@@ -2,7 +2,45 @@
 
 Last verified: 2026-10-08.
 
-## Current checkpoint — Module 3B accepted Oracle closeout
+## Current checkpoint — Module 3D-Offline Recorded Event Replay
+
+The user's2026-10-08 authorization starts from published main/origin/main
+`293e26e00c2d2418fc78f2b2177f7780197d37f6`, on
+`codex/module3d-offline-recorded-replay` in the existing checkout. Implemented:
+prepared local JSON import, strict validation, chronological automatic playback,
+start/pause/resume/restart and1×/4×; separate original Mock mode. Repeated card plays
+extend history without consuming another deck slot. App visibility loss pauses;
+imports/history are deliberately in memory and reset on cold restart.
+
+Only the five scored engine outputs from frozen repair replay/evaluation are
+selected by the separate offline exporter. Real engine IDs/first-seen times are
+retained: Witch32s, Royal Hogs77s, Flying Machine79.5s, Golden Knight104.5s,
+Minions117s. Four unscored outputs are excluded from the prepared demo, not
+deleted, reclassified as Negative or filtered inside the engine. Engine/card rules,
+scoring, visual/Event GT locks, originalFAIL and repair outputs remain unchanged.
+Witch's actual confirmation delay remains3s; playback is retrospective, not a
+real-time/detector/cross-match performance claim.
+
+The private ignored demo export is
+`outputs/module3d-offline/verified-oracle-demo-v1/recorded-oracle-demo.json`, SHA256
+`bdefd0876d7b6b61d7aa63dc309eaaa6399e56435696929fa4e301348372b029`.
+It is not compiled into the APK or tracked. Generic raw nine-event packets are
+not accepted by the App's demo importer. The metadata is provenance, not signed
+authentication of arbitrary edited imports. No new dependency, SQLite/schema,
+persistent repository or native permission is introduced.
+
+Fresh App tests and rendered browser interaction pass. An isolated task-owned
+API37 emulator verified actual native DocumentsUI JSON import and Android-clock
+0/8→5/8, pause/resume/restart/source separation and Mock. New Debug APK delivery
+and complete regression/protection evidence are recorded in
+[Module3D verification](VERIFICATION_MODULE3D_OFFLINE.md).
+
+**Stopping point:** `MODULE_3D_OFFLINE_REPLAY_READY`; this new APK's physical-phone
+acceptance is pending user installation. No main merge/push, detector mode,
+Module4/cycle/evolution/elixir, training, capture or real-game HUD. Next task is
+only the user's offline new-APK smoke acceptance, not automatic next-module work.
+
+## Preserved checkpoint — Module 3B accepted Oracle closeout
 
 The user reports ChatGPT's independent repair acceptance:
 `MODULE_3B_ORACLE_ENGINE_REPAIR_ACCEPTED — PASS WITH NOTES`, reviewing

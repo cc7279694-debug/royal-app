@@ -1,5 +1,35 @@
 # Decisions
 
+## 2026-10-08 — Recorded Oracle demo selection outside the event engine
+
+### Decision
+
+Per explicit Module3D-Offline authorization, replay only the five verified frozen
+engine event outputs through the existing App event interface. A separate offline
+exporter checks replay/evaluation manifest binding and selects scored eventIDs;
+it never synthesizes IDs/times from Event GT or changes engine/scoring results.
+
+### Context and reason
+
+The accepted Oracle run emits nine events, four still unscored. Loading all nine
+as confirmed would overclaim accepted evidence. Prepare a bounded private demo
+subset without teaching the event engine the answers or changing frozen history.
+
+### Consequences
+
+Recorded mode imports an external local prepared JSON; raw nine-event packets
+are rejected rather than silently filtered at runtime. Playback uses actual engine
+first-seen times as an explicitly retrospective offline timeline, preserving the
+Witch3s actual-confirmation limit. Source SHA/selection metadata is provenance,
+not authentication of arbitrary user-edited JSON. Recorded confidence remains
+null, never fabricated. Private JSON/GT/media are neither tracked nor embedded.
+
+Mock stays separate. The existing card/history reducer remains the contract;
+repeat plays do not add deck slots. Resettable state stays in memory, no database
+or migration is warranted. No new native plugin/permission, detector/capture,
+live-game HUD or later-state machine. New APK emulator smoke does not replace
+user physical-device acceptance or establish online-game safety permission.
+
 ## 2026-10-08 — Grouped episode membership, not card cooldown
 
 ### Decision
