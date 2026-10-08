@@ -1,11 +1,19 @@
 # Clash Tracker
 
-**当前：Module 3B 分组去重修复的同流 Oracle 回放通过。**
-5/5 确认事件各一次，三个连续／去重窗口均为0新事件。
-通过 GroupedCardEpisode 成员身份与按采样 gap 计算的移动边界修复；
-没有 card cooldown，不读取 Event GT 来关联轨迹。仍不代表 detector 性能、
-跨场泛化或实时能力。完整回归与本地检查点见验证文档；不进入下一模块。
-见[本轮修复证据](docs/VERIFICATION_MODULE3B.md)。
+**当前：Module 3B Oracle 修复正式验收，PASS WITH NOTES。**
+用户转交 ChatGPT 独立复审结论：
+`MODULE_3B_ORACLE_ENGINE_REPAIR_ACCEPTED — PASS WITH NOTES`，
+验收实现提交为 `8abe6ee534653100066a44f45034c93a8b61ad6a`。
+固定同流结果为5/5确认事件各一次，三个连续／去重窗口均为0新事件。
+必须保留：仍有4条未计分事件；Witch实际确认延迟为3秒，不能把回溯的
+first-seen时间命中写成实时确认通过。Unknown不当Negative，未计分事件
+不能因为被导出为RecordedEventSource就自动成为已验证出牌。
+仅收尾文档、回归和快进发布；tracking/episode参数、原FAIL、修复前后结果
+及GT锁保持不变。未接detector、未改App或APK，未实现卡序／圣水／真实游戏。
+收尾完整回归：Python 1370通过／4项既有权限跳过，JavaScript 59通过；
+构建、依赖、差异和隐私检查通过，1977个既有材料文件哈希未变。
+下一步Android离线RecordedEventSource回放仍需单独授权，且必须正确区分
+未计分事件。本轮不开始该工作。见[正式收尾与限制](docs/VERIFICATION_MODULE3B.md)。
 
 **保留的前序结果：Module 3B 原始固定回放为 FAIL。**
 5/5 个确认事件各命中一次，但127秒的亡灵持续画面被错当成第二次出牌；

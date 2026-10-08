@@ -1,5 +1,74 @@
 # Module 3B — Oracle implementation and fixed replay verification
 
+## 2026-10-08 — Formal independent acceptance and publication closeout
+
+The user reports the completed ChatGPT independent review verdict:
+`MODULE_3B_ORACLE_ENGINE_REPAIR_ACCEPTED — PASS WITH NOTES`.
+Review range: `60494187aff7e3afc578c477212d963265460a46` to
+`8abe6ee534653100066a44f45034c93a8b61ad6a`. Acceptance is based on that explicit
+user message, not a newly retrieved ChatGPT answer or a substituted local agent.
+
+Accepted fixed Oracle gate:5/5 positives each once,3/3 continuity/dedupe checks;
+Event GT remains scoring-only. Required notes preserved:
+
+- Four emitted outputs remain unresolved/unscored. They are not proven card
+  plays, false positives or Negative. The9-event RecordedEventSource projection
+  is export compatibility, not acceptance of all9 events. A future App playback
+  must handle this distinction under its own authorization.
+- Witch first supported appearance32s and confirmed_at34.5s versus GT31.5s:
+  actual confirmation delay3s. Retrospective first-seen scoring is not evidence
+  of<=2.5s real-time confirmation or exact deployment onset.
+
+The closeout changes only four public documents:README, CURRENT_STATE,
+DEVELOPMENT_PLAN and this verification record. No production source/test,
+schema/SQLite/migration, dependency, model, Android/Manifest/Gradle/APK change.
+Tracking/episode configuration and registry stay frozen at the accepted commit.
+Original Oracle FAIL, repair-v1/v2, all locks, review ZIP and old verification
+logs stay byte-identical. No real Oracle/evaluation experiment, detector,
+training, extraction, new GT or parameter search is run in the closeout.
+
+Fresh actual closeout checks (not the repair's prior1370 result):
+
+| Check actually run | Result |
+| --- | --- |
+| offline_video full pytest/JUnit |908 passed/3 existing Windows permission skips, exit0,962.81s|
+| event/deployment/preannotation complete contracts/JUnit |262 passed/1 existing Windows permission skip, exit0|
+| historical smoke contracts/JUnit, no real model training |200 passed/0 skips, exit0|
+| Python total |1370 passed/4 skipped;0 failures/errors|
+| App complete Vitest |51 passed, exit0|
+| Node reviewer/review-UI complete tests |8 passed, exit0|
+| JavaScript total |59 passed|
+| App TypeScript/Vite build |exit0|
+| fixed offline environment pip check |exit0, no broken requirements|
+| accepted-source/config/registry and sealed artifact readback |unchanged; manifests valid; original FAIL preserved|
+| bounded material/source protection |1977 old material files and138 non-document sources byte-identical|
+| diff/staged/credentials/privacy/link checks |exit0;141 publication files scanned; no credentials/private artifacts;100 links valid|
+
+Actual commands:fixed `.venv` Python with `-B -m pytest -q --tb=short -rs`, cwd
+`tools/offline_video`, plus JUnit; complete event/deployment/preannotation suites
+with importlib mode/short traceback/skip reasons/JUnit; both smoke contract suites
+with importlib mode/JUnit. App:`npm.cmd test -- --run`, `npm.cmd run build`;
+Node:`node --test tools/preannotation/tests/reviewer.test.cjs tools/preannotation/tests/review-ui.test.cjs`;
+dependencies:`.venv` Python `-B -m pip check`. Exact argv/cwd/exit/time/log SHA
+and complete output/JUnit are in new ignored `outputs/module3b-closeout/` receipts.
+
+The first Node log display interrupted on GBK encoding of a checkmark, not a
+test assertion. Only the ignored log wrapper's display encoding was fixed;
+partial `node.log` is preserved, complete `node-v2.log` and exit0 receipt replace
+no old file. Successful earlier suite outputs were retained. No test disabled.
+All4 skips are Windows symlink privileges, not passes. No Android build, phone
+test, detector, actual training or real Oracle/evaluation rerun in this closeout.
+
+The documentation-only acceptance commit is the authorized main publication
+checkpoint. Main integration must be a guarded fast-forward with the feature
+branch retained and remote SHA checked afterwards. Local FF ref advancement
+before switching to the identical tree avoids re-checking-out historical source
+bytes under Windows autocrlf; subsequent `merge --ff-only` is an identity check,
+not a fabricated merge commit. Post-integration source hashes and engine smoke
+checks must pass before push. No Release/PR/force push/branch deletion or next stage.
+Exact release/ref/output evidence is in Git/private receipts, not a self-referential
+SHA inserted into its own documentation commit.
+
 ## 2026-10-08 — Grouped Event Dedupe Repair
 
 Baseline `60494187aff7e3afc578c477212d963265460a46`, existing3B feature branch.

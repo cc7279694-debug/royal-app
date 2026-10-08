@@ -4,7 +4,32 @@ The project advances one independently verifiable module at a time. A module may
 start only after the previous module has been reviewed and accepted. Statuses are
 `Completed`, `In Progress`, `Planned`, `Paused`, or `Gated`.
 
-## Current authorized stage — Module 3B Grouped Event Dedupe Repair
+## Current authorized stage — Module 3B accepted Oracle closeout
+
+Status: Oracle repair formally accepted by the user after ChatGPT independent
+review of `8abe6ee534653100066a44f45034c93a8b61ad6a`:
+`MODULE_3B_ORACLE_ENGINE_REPAIR_ACCEPTED — PASS WITH NOTES`.
+Only acceptance documentation, fresh regressions/protection and ff-only main
+publication are authorized. Keep feature branch and all historical FAIL/repair
+outputs/GT locks; no parameter change or real Oracle rerun.
+Closeout verification complete:1370 Python passes/4 permission skips,59
+JavaScript passes; build/typecheck/dependencies pass.1977 old material hashes
+and138 non-document sources unchanged; diff/privacy/link checks pass. The
+documentation-only acceptance commit is the main publication checkpoint;
+exact release/ref evidence is retained in Git and private closeout receipts.
+Publication is confirmed only when local main, origin/main and the retained
+feature branch resolve to the publication commit, with remote readback recorded
+in private receipts.
+
+Retained notes:4 unresolved/unscored outputs are not validated card plays;
+Witch actual confirmation delay remains3s. Oracle first-seen hit is not real-time
+qualification. No detector/cross-match/full-match-FP claim. Unknown is not Negative.
+Android offline RecordedEventSource playback is the proposed next task, requiring
+separate authorization and not started here; it must not silently treat unscored
+outputs as verified events. Module4/cycle/elixir and live game remain closed.
+See [closeout evidence](VERIFICATION_MODULE3B.md).
+
+## Preserved stage — Module 3B Grouped Event Dedupe Repair
 
 Same-stream repair Oracle gate passes5/5 positives and3/3 dedupe; no next module
 is authorized. Add deterministic episode lifecycle and per-gap geometry motion
@@ -627,9 +652,10 @@ Android/live use and push/main integration all remain separately Gated.
 
 Status: Module3A user-attested GT v1 locked and validated (5 confirmed events,
 3 continuity/dedupe,4 unresolved; confirmed events only match01);
-Module3B Oracle-only grouped repair verified5/5 positives and3/3 dedupe;
-original FAIL retained, repair awaiting independent acceptance. Detector mode
-remains unauthorized.
+Module3B Oracle-only grouped repair formally accepted with notes at8abe6ee:
+5/5 positives and3/3 dedupe;4 unscored outputs and3s Witch confirmation delay
+retained. Original FAIL/results/locks unchanged. Closeout/main publication is
+authorized; detector mode and next-task implementation remain unauthorized.
 
 Goal: promote repeated visual observations into one confirmed
 `OpponentCardPlayed` event per real deployment.

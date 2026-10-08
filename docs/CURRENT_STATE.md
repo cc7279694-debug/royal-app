@@ -2,7 +2,45 @@
 
 Last verified: 2026-10-08.
 
-## Current checkpoint — Module 3B Grouped Event Dedupe Repair
+## Current checkpoint — Module 3B accepted Oracle closeout
+
+The user reports ChatGPT's independent repair acceptance:
+`MODULE_3B_ORACLE_ENGINE_REPAIR_ACCEPTED — PASS WITH NOTES`, reviewing
+`60494187aff7e3afc578c477212d963265460a46` through
+`8abe6ee534653100066a44f45034c93a8b61ad6a`. This records the user's explicit
+acceptance; this closeout does not claim to run another ChatGPT review.
+
+The sealed result is5/5 positives each once and3/3 explicit dedupe windows.
+Two mandatory retained notes:4 emitted events are unresolved/unscored, not
+validated card plays or Negative; Witch confirmed_at34.5s versus GT31.5s is a
+3s actual confirmation delay. Its first appearance32s is retrospective and
+does not prove real-time latency. This remains an Oracle-only result whose five
+accepted positives cover one match, not detector performance, cross-match
+validation or full-match FP certification.
+
+Authorized closeout: documentation-only acceptance recording, fresh full owned
+regressions/dependency/diff/privacy/protection checks, a Conventional Commit,
+ff-only main integration and main push while retaining the feature branch.
+Tracking/episode/card parameters, sources, GT locks, original FAIL and all repair
+versions remain unchanged. Fresh closeout regression:1370 Python passed/4 existing
+Windows permission skips (offline908/3 in962.81s; contracts262/1; smoke200/0),
+59 JavaScript passed, TypeScript/build/pip check exit0. Protection confirms1977
+existing material hashes and138 non-document source files unchanged,100 relative
+links valid, no credential patterns or tracked private media/GT/weights.
+This documentation-only acceptance commit is the authorized main publication
+checkpoint; exact release SHA and local/remote ref confirmation are in Git and
+ignored `outputs/module3b-closeout/` receipts. No history rewrite or branch removal.
+Publication is confirmed only when local main, origin/main and the retained
+feature branch resolve to the publication commit, with remote readback recorded
+in private receipts.
+See [verification](VERIFICATION_MODULE3B.md).
+
+Next possible task is Android offline RecordedEventSource playback, requiring
+separate authorization and explicit handling of unscored outputs. No App/UI/APK change,
+detector mode, Module4, card-cycle/elixir or live-game capability is authorized
+or implemented in this closeout. Stop after publication.
+
+## Preserved checkpoint — Module 3B Grouped Event Dedupe Repair
 
 Current authorization is the minimal grouped repair, not detector mode or a new
 Module3B plan. Baseline `60494187aff7e3afc578c477212d963265460a46`, same feature
