@@ -1,5 +1,37 @@
 # Decisions
 
+## 2026-10-09 — Experimental deployment evidence does not replace Oracle rules
+
+### Decision
+
+Per Module3C-3 authority, use an independent offline-retrospective Shadow layer;
+keep the accepted3B engine, tracker/Episode, rules, GT and scorer immutable.
+Shadow output is PROVISIONAL or UNRESOLVED, never confirmed card-play truth.
+First-seen and confirmation retain original times; estimated deployment is null
+without birth evidence. Source-video visible-cue intervals are separate analyst
+notes, not exact game timing or answers injected into generation.
+
+### Context and reason
+
+New model track IDs may represent late-discovered members of one deployment.
+Time/geometry/continuity can support possible association or separation but cannot
+prove physical identity or birth. Count, proximity, capacity and long cooldown
+alone must not silently confirm a card play. Sampled non-detection is not physical
+absence or Negative. Conflicting owner/form/origin observations remain uncertainty.
+
+### Consequences
+
+Freeze policy before scoring; keep all suppressed baseline outputs and ambiguous
+cohorts inspectable. Allow observationally separated second provisional groups,
+including while an old group survives, without claiming their card-play truth.
+Retrospective conflict analysis is not an online-causal/realtime implementation.
+
+The sole actual comparison yields0/5 versus2/5, despite duplicates falling1→0:
+both Royal Hogs outputs abstain before association, so no real Shadow group is
+created. Do not adopt this prototype as a production repair. Improve reliable
+visual identity/owner and birth evidence before a separately authorized follow-up;
+do not tune on these GT scores or infer cross-match capability from synthetic tests.
+
 ## 2026-10-08 — Real detector observations without Oracle answer injection
 
 ### Decision

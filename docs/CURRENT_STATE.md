@@ -2,7 +2,48 @@
 
 Last verified: 2026-10-09.
 
-## Current checkpoint — Module 3C-2 frozen detector failure diagnosis
+## Current checkpoint — Module 3C-3 experimental deployment / spawn Shadow
+
+Authorized from local diagnosis commit
+`bbcd0917493e8d04aa8a61bc74d3da4d2941b376` on
+`codex/module3c3-deployment-spawn-shadow`. Module3C-2 is closed by the user's
+explicit decision, not automatic detector acceptance. Production3B engine,
+adapter, tracker/Episode/rules, GT and one-sided scoring remain unchanged.
+
+One scored same-input Shadow experiment: baseline2/5 hits and1 duplicate becomes
+0/5 hits and0 duplicates, with2 PROVISIONAL outputs and2337 UNRESOLVED candidates.
+Twelve of14 original emitted events, including both Royal Hogs episodes and the
+previous Minions hit, abstain due to overlapping identity/owner conflicts.
+Actual Shadow groups are empty: reduced duplication comes from withholding both
+Hog events, NOT validated group association. Do not replace the production engine.
+All original candidates/events and IDs/times remain in the diagnostic output.
+
+First-seen, confirmation and estimated deployment fields are separate. Algorithmic
+deployment estimates are null. Four actual source-video windows support the three
+early target detections and one four-Hog arrival; adjacent PTS frames bound visible
+arrival cues, not exact player release/server spawn or new human GT. These notes
+never supply algorithm answers. Original early misses remain misses.
+
+Synthetic tests exercise staged discovery, moving/temporarily missing members,
+owner flicker, genuine separate second groups and ambiguous overlaps. No long
+cooldown, GT identity/duplicate injection or timing-window change. An initial
+unscored IO abort (49MB detector stream versus the old16MB Oracle loader) was
+fixed only in the independent Shadow CLI; policy remained exactly frozen.
+Both the abort and the sole subsequent scored FAIL are retained.
+
+Fresh complete Python regression:1478 passed/4 existing Windows permission skips
+(related370/1, offline908/3, smoke200). Both pip checks pass; no installation,
+model inference/training, App/Android build, persistent storage or old lock change.
+Private source-pixel sheets, sealed experiment, timeline and review index remain
+ignored under `outputs/module3c3/`. See
+[verification and checks](VERIFICATION_MODULE3C3.md) and
+[checkpoint](checkpoints/2026-10-09-module3c3-shadow-prototype.md).
+
+Stop after the local commit; no push/main merge or next-module work. A subsequent
+decision should prioritize visual identity/owner reliability and birth-related
+evidence, not another same-GT rule-tuning loop. No live-game authority is granted.
+
+## Preserved checkpoint — Module 3C-2 frozen detector failure diagnosis
 
 Latest explicit authority is diagnosis/minimal proven-defect repair only, from
 local3C-1 `b146a4f81a31d33e73d72cfcc49c33721608f9e9` on new feature

@@ -4,7 +4,32 @@ The project advances one independently verifiable module at a time. A module may
 start only after the previous module has been reviewed and accepted. Statuses are
 `Completed`, `In Progress`, `Planned`, `Paused`, or `Gated`.
 
-## Current authorized stage — Module 3C-2 detector failure diagnosis
+## Current authorized stage — Module 3C-3 deployment evidence / spawn prototype
+
+Status: bounded prototype experiment completed; stop for independent review after
+local commit. Baseline `bbcd0917493e8d04aa8a61bc74d3da4d2941b376`, feature
+`codex/module3c3-deployment-spawn-shadow`. No production engine/rule/scorer/GT,
+model, dependency, App or live-game change.
+
+Completed: separate time evidence; four source-pixel context/onset windows;
+GT-free independent Shadow cohort strategy; late-member versus genuine separate
+second-group synthetic tests; sealed same-input comparison and full regression.
+The policy is fixed before real scoring. A stream-size compatibility IO repair
+resumes one unscored abort without changing that policy; no score-driven rerun.
+
+Actual comparison is insufficient:2/5→0/5, duplicates1→0, only2 PROVISIONAL
+outputs. Both Royal Hogs episodes are UNRESOLVED due to identity conflict, with
+no actual Shadow group created. This does not demonstrate successful real-data
+spawn association. Synthetic success cannot substitute for that missing evidence.
+Do not formally replace3B. Preserve original FAIL and all locks and uncertainty.
+
+Fresh1478 Python tests pass/4 existing permission skips, both dependency checks
+pass. The next decision should improve trustworthy visual identity/owner/birth
+evidence rather than extend the same-GT heuristic loop. Training/integration and
+any next module need separate authority. No push/main merge in this module.
+See [actual results and limitations](VERIFICATION_MODULE3C3.md).
+
+## Preserved stage — Module 3C-2 detector failure diagnosis
 
 Scope: frozen3C-1 predictions/observations/track+episode/event/scoring forensic
 audit, minimal repair only if a deterministic implementation defect is proven.
