@@ -4,7 +4,37 @@ The project advances one independently verifiable module at a time. A module may
 start only after the previous module has been reviewed and accepted. Statuses are
 `Completed`, `In Progress`, `Planned`, `Paused`, or `Gated`.
 
-## Current authorized stage — Module3C Field-Level Confirmation & Freeze
+## Current authorized stage — Module3C5 Detector Improvement Sprint A
+
+Status: **Blocked at data admission / pending human review**, before training.
+Baseline `d699877...`, branch `codex/module3c5-detector-improvement-a`.
+
+Completed: read-only inventory of existing real locks, bbox versus partial fields,
+class-specific coverage, source independence and existing model prerequisites;
+an exclusive8-frame private bbox/coverage review supplement using existing pixels.
+33 accepted target bbox records remain annotation-only;49 field-review boxes
+unverified. Joint two-target exhaustive/qualified training frames0, Negative0.
+Prior Witch/Skeleton supervision does not silently become Royal/Minion data.
+
+Pending: pixel-level confirmation/correction/addition plus explicit per-class
+region coverage; independent Royal Hog sources and source-isolated TRAIN/DEV/
+RETAINED_EVAL assignment. No same-deployment adjacent-frame leakage. Existing
+03/04 battle material lacks finalized target GT, not evidence of absence; inspect
+it before requesting minimal new natural footage. Match02 stays excluded and
+match03 prior exposure prevents a blind claim. No reinstated4/8 or other new quota.
+
+Only after these gates pass: freeze the data/qualification/splits and fixed seed,
+parameters and one optimizer-step budget BEFORE any training/evaluation. Reuse
+existing Nano/official COCO provenance if valid. Compare strict matched visual
+metrics on verified boxes/coverage, owner accuracy AND unknown coverage, speed,
+and formal3B output separately; no GT-directed output/timestamp changes. Record
+failure or improvement without replacing3B/App. No experiment has run this stage.
+
+Stop for actual human confirmation and independent source support now; no push,
+main merge, new rules or Android/live integration. See [verified admission and
+review handoff](checkpoints/2026-10-09-module3c5-detector-data-admission.md).
+
+## Preserved stage — Module3C Field-Level Confirmation & Freeze
 
 Status: field-level user attestation imported and immutable private Snapshot v1
 created from unchanged v4 and the supplied suggestions ZIP. Local baseline

@@ -2,7 +2,50 @@
 
 Last verified: 2026-10-09.
 
-## Current checkpoint — Module3C field-level human review freeze
+## Current checkpoint — Module3C5 detector data admission / human-review gate
+
+Detector Improvement Sprint A is authorized from local `d699877...` on
+`codex/module3c5-detector-improvement-a`. Data admission is **Blocked**, not a
+completed detector improvement. No training/inference/metrics rerun occurred.
+Main remains published3D;3C-3/3C-4 are not promoted and3B/App stay unchanged.
+
+Version-deduplicated existing accepted bbox records:105 (83 multiclass plus22
+Witch/Skeleton, including partial-frame boxes). This is not105 trainable boxes.
+Royal Hog5/3 frames and Minion28/12 frames (33 boxes) all come from match01;
+multiclass locks remain annotation-only/training-unqualified. Minion has8
+single-class exhaustive positive frames; Royal Hog has0. Joint two-target
+exhaustive frames proven0, eligible target Negative0, qualified target standard
+training frames0. Old8 Witch/Skeleton negatives do not qualify for these targets.
+
+The field Snapshot SHA remains
+`da432cec5d25b018b69bf9f9da6c399df2859507fa30b5f68228be14d4b88aaa`.
+All49 bbox remain unverified; class/owner confirmation never promotes boxes.
+Older8 provisional boxes and6 combination/group boxes also are not new unit GT.
+
+Private minimal review ZIP:8 existing lossless PNG frames and two contact sheets,
+19 prior accepted bbox references plus9 unverified drafts (overlap, not28 new
+objects),16 pending target-region coverage rows and missing-box/correction forms.
+No new GT or Negative, no training/evaluation split or data lock. Royal currently
+has only one confirmed deployment-source window; Minion has two historical
+deployment sources in the same match, not33 independent observations. Other
+matches lack finalized target GT; that does not prove targets absent. Match02
+is truncated/excluded; match03/04 prior development exposure is disclosed.
+
+Next: user/ChatGPT pixel bbox and two-class region review, then confirm independent
+target sources from existing03/04 combat (or minimal additional natural footage
+if absent). Never split adjacent frames of one deployment across TRAIN/DEV/
+RETAINED_EVAL or claim cross-match/blind validation from reviewed match03. Freeze
+source-isolated assignments before the sole authorized model experiment; no new
+4-match/8-deployment quota is imposed.
+
+Fresh scoped regressions335 passed/0 skipped; offline and existing YOLOX pip
+checks pass.3210 protected materials and224 tracked non-status sources unchanged;
+198 final artifact/link/CLI checks pass. Original official Nano weight SHA/provenance is intact.
+GPU execution qualification is historical, not rerun. Full-suite/model/Android
+builds Not Run. See [data admission checkpoint](checkpoints/2026-10-09-module3c5-detector-data-admission.md).
+Stop at human/data gate after local commit; no push/merge.
+
+## Preserved checkpoint — Module3C field-level human review freeze
 
 User attested the ChatGPT field-level suggestions for immutable Mini-Batch v4.
 Reviewer is `user`, review basis `chatgpt_visual_review`, confirmation source
