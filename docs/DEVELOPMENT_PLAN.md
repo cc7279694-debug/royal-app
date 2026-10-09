@@ -4,7 +4,33 @@ The project advances one independently verifiable module at a time. A module may
 start only after the previous module has been reviewed and accepted. Statuses are
 `Completed`, `In Progress`, `Planned`, `Paused`, or `Gated`.
 
-## Current authorized stage — Module 3C-3 deployment evidence / spawn prototype
+## Current authorized stage — Module3C4 visual evidence improvement
+
+Status: bounded parallel experiment completed; local review, not production
+recognition acceptance. Baseline `f3cd570...`, branch
+`codex/module3c4-visual-evidence`. One audited ByteTrack source and separate
+tracking-only environment; frozen main predictions/GT/scorer remain intact.
+
+Real result4/5 versus2/5; Royal Hogs absent so duplicates0 is abstention, not
+successful four-member association.66/35 ByteTrack tracks/singletons versus
+original61/13, fixed792 observations and explicit85.61% assignment. Owner
+52→0 flips with42.30% unknown is not owner accuracy. No onset correction or
+time-window relaxation. MOT/cohort identity is diagnostic only;3B is unchanged.
+
+Retained third-match fixed20s prefix has no target support and is matchmaking
+UI; keep it as insufficient, not a blind or cross-match performance test.
+Small diagnostic metadata repair has v1/v2 history and identical owner/event
+inputs. No re-inference, re-tracking, rescoring or parameter tuning for that fix.
+
+Fresh suites1553 passed/4 existing permission skips, all dependency/diff checks
+pass;2580 protected materials and156 old sources unchanged. Record evidence,
+local commit and stop; no
+push/main merge, Android, training, live game or next module. Recommend a small
+independently reviewed identity/owner/battlefield-validity sample before any
+further model-data or integration decision; do not stack unverifiable rules.
+See [actual results](VERIFICATION_MODULE3C4.md).
+
+## Preserved stage — Module 3C-3 deployment evidence / spawn prototype
 
 Status: bounded prototype experiment completed; stop for independent review after
 local commit. Baseline `bbcd0917493e8d04aa8a61bc74d3da4d2941b376`, feature

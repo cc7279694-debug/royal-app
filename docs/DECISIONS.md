@@ -1,5 +1,39 @@
 # Decisions
 
+## 2026-10-09 — Algorithmic visual identity remains a hypothesis
+
+### Decision
+
+For authorized3C4, try one pinned official ByteTrack core in a new tracking-only
+environment, in parallel with accepted3B. Keep original detector/GT/scorer/rules,
+App, locks and histories immutable; no production replacement or new model.
+
+MOT IDs are not human-confirmed appearance IDs and stay in separate sidecars.
+Only schema-valid owner/source projection enters formal3B, which continues to
+compute its own tracks. Never mislabel algorithmic identity as human continuity.
+Owner history, initial region and trajectory can supply inspectable context;
+current map half and generic detection confidence cannot certify allegiance.
+Unknown/conflicting identity/owner remains unknown, never Negative.
+
+### Context and reason
+
+Raw KataCR binary owner predictions flicker; no owner probability or physical
+identity GT exists. Algorithmic stability can improve by withholding output,
+so unknown/assignment/link coverage must accompany scores and track proxies.
+Group time/proximity/capacity cannot establish birth or justify card emission.
+Freeze configuration before actual outputs and separate GT scoring from replay.
+
+### Consequences
+
+Sole3C4 score4/5 does not prove more accurate onset; Royal no-output duplicate0
+is abstention. ByteTrack identity proxy worsens under chosen defaults. Retained
+fixed third-match prefix has no battlefield target support, not generalization.
+Do not tune the same known windows until PASS or promote this strategy. Next
+authority should resolve visual input/owner/identity support and battlefield
+validity, rather than add unverified event rules. Root ByteTrack MIT and package
+licenses do not establish all source-history/game/model commercial rights;
+adapted core/license/notice/environment/media remain private/ignored.
+
 ## 2026-10-09 — Experimental deployment evidence does not replace Oracle rules
 
 ### Decision

@@ -2,7 +2,52 @@
 
 Last verified: 2026-10-09.
 
-## Current checkpoint — Module 3C-3 experimental deployment / spawn Shadow
+## Current checkpoint — Module3C4 parallel visual evidence experiment
+
+Authorized from local `f3cd570ae759f6998a3045971c0c4d475ec9372e` on
+`codex/module3c4-visual-evidence`; main stays published3D `602dd0f...`.
+Only official pinned ByteTrack is tried, using existing frozen model detections;
+no new detector/training/App/runtime game integration. Original3B, GT, scorer,
+rules and old3C1/3C3 results remain immutable.
+
+Sole actual same-input scoring is4/5 (baseline2/5), duplicate0 (baseline1), exit3.
+Royal Hogs is missed, so duplicate0 is abstention, not validated grouping.10
+outputs/6 unscored remain. Three newly matched direct entities become eligible
+later because owner consensus/fragmentation changes the input; onset improvement
+is not proven. All raw observation IDs/PTS/bboxes/confidence remain unchanged.
+
+Five-class fixed denominator792: ByteTrack66 tracks/35 singletons versus
+original61/13; assignment678/792. Owner flips52→0 on identical owner-agnostic
+links, known-known coverage69.28%, unknown335/792 (42.30%). No physical identity
+or owner GT, hence no accuracy/true fragmentation claim. Four stable Royal
+member identities are not established; a two-track cohort is only a hypothesis.
+
+An independently fixed diagnostic prefix of third recording (80 samples/301
+proposals) is matchmaking UI, with0 five-rule-class observations. It cannot
+test tracking/generalization; preserve without moving the window after results.
+Prior general data exposure is disclosed; not a blind test.
+
+Standalone tracking environment has NumPy1.26.4/SciPy1.13.1/LAP0.5.13; original
+environments unchanged. Source/notice/license bytes stay ignored/private and
+hash-bound. MOT IDs never become trusted human continuity; only owner/source
+projection enters unchanged3B. Context region/motion never decide map-half owner.
+Diagnostic-only earliest-member/span defect was reproduced synthetically and
+reconciled as v2; all33337 owner/evidence projections equal sealedv1, no new
+detector/tracker/engine/score run. No parameter-driven rerun.
+
+Fresh checks:1553 passed/4 existing Windows symlink-permission skips
+(new tracker75/0, related570/1, offline908/3). All three dependency checks and
+diff check pass.2580 existing material files and156 old non-document sources
+remain hash-identical;7546 private files are ignored and none tracked.
+App/Android checks are Not Run because those systems were not changed.
+
+See [fresh verification and recommendations](VERIFICATION_MODULE3C4.md) and
+[historical checkpoint](checkpoints/2026-10-09-module3c4-visual-evidence.md).
+Stop after local commit. Do not promote, push/merge, train or start the next
+module. Next recommendation is small reviewed visual identity/owner support
+plus battlefield-scene qualification, not another event-rule loop.
+
+## Preserved checkpoint — Module 3C-3 experimental deployment / spawn Shadow
 
 Authorized from local diagnosis commit
 `bbcd0917493e8d04aa8a61bc74d3da4d2941b376` on
