@@ -1,12 +1,20 @@
 # Clash Tracker
 
-**当前：Module 3C Visual Evidence Dataset Mini-Batch 审核材料已就绪，等待人工确认。**
+**当前：Module 3C Field-Level Human Review Snapshot v1 已冻结，仅确认有支持的字段。**
+用户依据 ChatGPT 视觉建议确认；`reviewer=user`，ChatGPT 仅为 review basis。
+22个 class、34个 owner、12个 presence 字段获确认，另4项仅确认视觉群组上下文。
+13条第三场连续性关系、9条同视觉群组关系获确认；9条亡灵身份待定、8条野猪身份未知。
+49个 bbox 全部未验证；没有完整对象GT、严格检测评分资格或新增出牌事件。
+40帧仍非穷尽审核，Negative为0；不训练、不替换引擎、不修改Android，不推送或合并。
+见[字段级冻结与实际检查](docs/checkpoints/2026-10-09-module3c-field-level-review-freeze.md)。
+
+**保留的前序 checkpoint：Mini-Batch v4 审核材料与原始候选保持不变。**
 按冻结顺序准备40帧：第一场皇家野猪74–82s共17帧、亡灵114–130s共17帧；
 第三场52–57s真实战斗共6帧，独立比赛但已有一般开发曝光，不称盲测。
 49个对象框、39条身份／分组关系、31个未知区域全部是待审草稿；确认GT为0。
 四个皇家野猪物理成员候选与共同部署组分开，遮挡后的身份仍未知，不凭数量确认出牌。
 原始无损PNG留本地；轻量JPG／CSV包、辅助模型对照和评估口径均Git ignored。
-正式视觉指标仍为null；不训练、不替换引擎、不修改Android，不推送或合并。
+该原包保持待审草稿状态；新字段级确认只写入另一份私有不可覆盖快照。正式视觉指标仍为null。
 用户决定不采用3C-3／3C-4实验性策略，不继续叠加事件规则。
 见[本轮范围、审核入口与实际检查](docs/checkpoints/2026-10-09-module3c-visual-evidence-mini-batch.md)。
 

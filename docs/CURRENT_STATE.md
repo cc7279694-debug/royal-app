@@ -2,7 +2,47 @@
 
 Last verified: 2026-10-09.
 
-## Current checkpoint — Module3C visual evidence mini-batch review preparation
+## Current checkpoint — Module3C field-level human review freeze
+
+User attested the ChatGPT field-level suggestions for immutable Mini-Batch v4.
+Reviewer is `user`, review basis `chatgpt_visual_review`, confirmation source
+`user_attestation_based_on_chatgpt_visual_review`; ChatGPT is not a human reviewer.
+Local baseline `552ddaf1e47c941fc4723d8b054b16e53cde4273`, same feature branch;
+main remains published3D. No promotion of3C-3/3C-4 or new event rules.
+
+Independent Field-Level Human Review Snapshot v1 and four returned CSVs are
+private/Git ignored, exclusively created instead of using the full-object GT
+importer. Byte SHA-256:
+`da432cec5d25b018b69bf9f9da6c399df2859507fa30b5f68228be14d4b88aaa`.
+Source v4 and suggestions ZIP/member hashes, exact candidate IDs, match/recording
+and PTS bindings, user attestation and all original suggestions are retained.
+
+49 objects:22 confirmed class,34 owner,12 presence cells (68), plus4 group-context
+cells only.72 confirmed object-field cells,418 unknown cells,49 unverified bbox
+cells; these counts are NOT independent objects/events. Class unknown27, owner
+unknown15, global physical ID unknown49. All objects remain
+`full_object_human_confirmed=false`; form/origin/global identity/deployment time
+are not inferred.13 supported third-match continuity links exist separately,
+without assigning global IDs or implying new deployments.
+
+39 relations:13 confirmed continuity,9 tentative Minion identity,8 unknown Royal
+Hog identity,9 confirmed same-visual-cohort links. Two visual cohorts have4/3
+members; membership is not a deployment event. Suggested arrival intervals are
+tentative, never exact card-play times. All40 frames nonexhaustive/nonnegative;
+F32–F34 flying units still incompletely reviewed. Negative0; new events0.
+Unverified boxes block strict detector scoring and training eligibility.
+
+No old source, draft, GT Lock, predictions, engine/rules/scorer, App, dependency
+or model environment is modified. Fresh validation/check details and limitations
+are in the [field-level freeze checkpoint](checkpoints/2026-10-09-module3c-field-level-review-freeze.md).
+Fresh328 tests passed/1 existing Windows symlink skip (27 mutation subtests
+separate);31 artifact checks pass.3198 protected materials and220 tracked
+sources unchanged; dependency/diff/link/privacy checks pass. No full offline
+suite or model/App/build rerun is claimed for this document/private-file change.
+Stop after local documentation commit; no push/main merge, inference, training,
+new scoring, Android or live game. A next stage requires separate authorization.
+
+## Preserved checkpoint — Module3C visual evidence mini-batch review preparation
 
 Authorized from local `1873ccf96617ca02804c0b3627687f5a4e557ce6` on
 `codex/module3c-visual-gt-mini-batch`. Main remains published3D `602dd0f...`.

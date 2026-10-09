@@ -4,7 +4,29 @@ The project advances one independently verifiable module at a time. A module may
 start only after the previous module has been reviewed and accepted. Statuses are
 `Completed`, `In Progress`, `Planned`, `Paused`, or `Gated`.
 
-## Current authorized stage — Module3C Visual Evidence Dataset Mini-Batch
+## Current authorized stage — Module3C Field-Level Confirmation & Freeze
+
+Status: field-level user attestation imported and immutable private Snapshot v1
+created from unchanged v4 and the supplied suggestions ZIP. Local baseline
+`552ddaf...`; branch `codex/module3c-visual-gt-mini-batch`. No production changes.
+
+Scope: exact-ID partial-field return, separate confirmed/tentative/unknown/
+unverified states, typed continuity/visual-cohort relations and independent
+readback/protection/privacy checks. Reviewer=user, ChatGPT only review basis.
+Never route partial confirmation through the legacy complete-object importer.
+
+Completed:22 class/34 owner/12 presence/4 group-context cells;13 continuity links,
+9 visual-cohort links, two4/3-member cohorts.9 Minion identity links tentative,
+8 Royal links unknown;49 boxes unverified and no global physical IDs assigned.
+All40 frames remain nonexhaustive and ineligible Negative; F32–F34 unresolved.
+New card events0, full-object GT0, strict detector scoring/training eligibility
+false. Old locks/results/drafts and3B unchanged; no inference or metrics rerun.
+
+Stop after local commit, no push/merge. Do not infer training readiness or event
+truth from confirmed fields. Additional pixel-level box/identity review or model
+work needs separate authority; see the [verified freeze checkpoint](checkpoints/2026-10-09-module3c-field-level-review-freeze.md).
+
+## Preserved stage — Module3C Visual Evidence Dataset Mini-Batch preparation
 
 Status: review preparation complete; pending human confirmation, not visual GT
 acceptance. Feature branch `codex/module3c-visual-gt-mini-batch`, local baseline

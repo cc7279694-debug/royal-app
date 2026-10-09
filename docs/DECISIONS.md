@@ -1,5 +1,36 @@
 # Decisions
 
+## 2026-10-09 — Field confirmation is not full-object or deployment GT
+
+### Decision
+
+For the explicitly user-attested3C return, create an independent immutable
+field-level snapshot. The existing preannotation importer requires complete
+objects/bbox/appearance; do not stretch that contract or replace old locks.
+Store `reviewer=user`, `review_basis=chatgpt_visual_review` and the explicit
+user-attestation source. ChatGPT recommendations remain separately preserved;
+ChatGPT is not registered as a human reviewer.
+
+### Context and reason
+
+JPEG/context review supports some class/owner/presence fields and typed links,
+not pixel-exact boxes or all indistinguishable member identities. Promotion of
+a whole object would fabricate certainty and make unsafe training/scoring GT.
+Group-level context cannot confirm individual class/owner. Tentative suggestions
+stay tentative even when they contain a proposed known class or owner.
+
+### Consequences
+
+Partial class-owner actions confirm those two fields only; presence-owner leaves
+class unknown. Keep all bbox unverified and all full-object flags false. Confirm
+third-match continuity relations without inferring card onset/global identity;
+Royal and Minion visual cohorts do not establish actual deployment events.
+Suggested arrival intervals remain tentative, not precise play times. All40
+frames remain nonexhaustive/nonnegative; unknowns, rejected/unreviewed regions
+never become background/Negative. Strict detector scoring/training eligibility
+stays false. New versions are exclusive; old evidence/GT/engines/rules/results
+remain immutable. This decision opens no inference, training, App or live usage.
+
 ## 2026-10-09 — Reviewable visual identity evidence before more event rules
 
 ### Decision
