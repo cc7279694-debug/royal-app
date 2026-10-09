@@ -4,7 +4,42 @@ The project advances one independently verifiable module at a time. A module may
 start only after the previous module has been reviewed and accepted. Statuses are
 `Completed`, `In Progress`, `Planned`, `Paused`, or `Gated`.
 
-## Current authorized stage — Module3C5 Detector Improvement Sprint A
+## Current authorized stage — Module3C6 Multiclass Discovery
+
+Status: **local discovery/review bundle ready; awaiting independent human review**.
+Baseline `1eda1a43fa7193eb8620ff2b7314b555c85a7787`, branch
+`codex/module3c6-multiclass-discovery`. Local commit only, no push/merge.
+
+Completed:4 new source registrations05..08 with separate recording identities,
+SHA/metadata/full decode/PTS/old-source duplicate and boundary visual checks;
+one fixed KataCR proposal-only scan194 scenes; curated card/visual distribution
+before selecting18 useful source frames. A14.23MB private review ZIP contains
+6 contact sheets,71 pending bbox,36 pending per-class coverage rows and
+correct-label/box/missing-object forms. No new Human GT or Negative.
+
+Next targets recommended: Witch(07/08) and Firecracker(06/08),2 visual classes,
+not trained classes or a readiness lock.3+1 and5+1 visual windows respectively
+are review locators; actual independent-deployment counts remain unknown.
+Other primary/secondary/ambiguous classes stay retained; do not force10–20
+classes or keep collecting Royal Hogs/Minions under the prior task.
+
+05/06/07 are development discovery;08 retained evaluation candidate was reserved
+before inference, not train/tune. Its class-discovery exposure excludes strict
+blind claims. Later data qualification must preserve whole-match/deployment
+isolation, explicit user/provenance scope, precise Human bbox and coverage.
+Unknowns/rejections/teacher misses never become Negative or card-play events.
+PTSs are file time, not game-clock time; early replay x1/x2 controls are observed.
+
+Stop for independent review of the lightweight bundle. No training, production
+engine/Android changes, old lock mutation or real-time game integration. If
+review reveals insufficient independent sources, state a minimal class-specific
+gap; do not train or claim cross-match generalization. See the
+[verified discovery checkpoint](checkpoints/2026-10-09-module3c6-multiclass-discovery.md).
+
+## Preserved stage — Module3C5 Detector Improvement Sprint A
+
+Historical admission/backfill only. Royal/Minion-focused collection below is
+superseded by3C6; preserved unresolved labels are not discarded or current gates.
 
 Status: **BBox decision backfill completed; data admission remains Blocked**, before training.
 Baseline `d699877...`, branch `codex/module3c5-detector-improvement-a`.

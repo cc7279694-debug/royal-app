@@ -1,5 +1,41 @@
 # Decisions
 
+## 2026-10-09 — New recordings determine multiclass discovery targets
+
+### Decision
+
+The user explicitly changes3C6 from Royal Hogs/Minions source collection to
+discovery of actual classes in four new natural recordings. Preserve all old
+admission, field-review, GT locks and failures as history; their target-specific
+data gaps are not a gate for discovering new targets. Recommend2–4 useful visual
+classes from observed material, without forcing a class count or training now.
+
+### Context and reason
+
+The user reports the new matches contain neither old target. This report is
+provenance, not exhaustive absence/Negative. The old detector generates many
+UI/effect labels and conflicts on newer appearances, so raw proposal counts
+cannot be interpreted as true cards, qualified boxes or independent deployments.
+
+### Consequences
+
+Bind actual PTS/bytes and separate recording from underlying match. Use a fixed
+filename order before discovering classes, disclose that capture chronology is
+not verified, and combine user match/completeness attestation with boundary and
+decode checks rather than equating SHA with match identity/authenticity.
+Reserve08 before inference for future evaluation without training/tuning; class
+discovery exposure excludes a strict-blind claim. Early replay x1/x2 controls
+require file PTS rather than assumed game-clock timing.
+
+Witch and Firecracker are tentative review recommendations supported by two new
+matches each, not a new Training Dataset Lock. Precise bbox, class/owner/form,
+spawn/source relationships, exhaustive regions and independently sourced plays
+must be reviewed separately. Teacher identity/owner/time bursts never promote
+to Human GT, Negative or OpponentCardPlayed. Historical accepted Witch references
+can later reduce review effort without changing locks. Keep all private media,
+review outputs and weights Git ignored; this stage grants no distribution rights,
+legal clearance, training, event-engine, App or live-game permissions.
+
 ## 2026-10-09 — Field confirmation is not full-object or deployment GT
 
 ### Decision

@@ -2,7 +2,92 @@
 
 Last verified: 2026-10-09.
 
-## Current checkpoint — Module3C5 BBox review decision backfill
+## Current checkpoint — Module3C6 new recording / multiclass discovery
+
+Local discovery/review preparation is complete from baseline
+`1eda1a43fa7193eb8620ff2b7314b555c85a7787` on
+`codex/module3c6-multiclass-discovery`. No training or new Human GT; main stays
+published3D `602dd0f0d92f9bcd09b866b7ab081c5352ba5a93`.
+The current task supersedes Royal Hogs/Minions-specific source collection, not
+its historical evidence.3C-3/3C-4 are not promoted;3B/App/old locks are unchanged.
+
+Four user-provided recordings are registered as independent-match candidates
+`natural_match_05` through08, separately bound to stable SHA-derived recording
+IDs. Filename-ascending intake order was fixed before class discovery; it is
+not a verified capture chronology. All4 decode completely (9,313 source frames),
+have increasing actual PTS and no large timestamp gaps. All12 opening/middle/end
+boundary images were viewed: opening/VS and terminal result UI support the user
+completion attestation; no visible boundary truncation conflict. This is not
+forensic proof of no internal edits. All4 differ bytewise from each other and
+5 historical source files; distinct visible match contexts support separate
+matches, but SHA alone does not prove underlying-match independence.
+
+Existing private KataCR source/env/weights reused without installation, download
+or training. One fixed0.5-FPS replay-layout scan:194 samples,5,412 raw proposals,
+108 raw labels including UI/effects/errors, NOT108 actual cards. Analyst source
+survey:19 contact pages covering194 sampled scenes. The curated36 per-match
+rows/30 candidate visual names and95 review windows are tentative discovery
+locators, NOT confirmed classes or independent deployment/card-play counts.
+All independent counts/onsets still require context review. Detector absence
+and user-reported no Royal Hogs/Minions are not exhaustive Negative evidence.
+
+Recommend2 next primary visual targets for review, not training admission:
+
+| Target | New match support (tentative) | Main gap |
+|---|---|---|
+|Witch|07 /08;3+1 review windows|exact boxes, class/form/owner, spawn and continuity review|
+|Firecracker|06 /08;5+1 review windows|small/edge targets, late discovery vs new plays, exact coverage|
+
+Old accepted Witch references may be audited/reused later without overwriting
+locks. Knight-like, Mega Knight, Magic Archer, other primary-looking targets,
+structures and secondary cohorts remain future candidates; no card identity is
+inferred from hand UI alone. Cannon-like source mapping stays unset. All newly
+displayed bbox/class/owner/form/origin/group fields remain pending/unconfirmed.
+
+Private review ZIP:
+`outputs/module3c6/discovery-v1/Module_3C6_Multiclass_Discovery_Review_Lite_v3.zip`.
+14,231,654 bytes (13.57MiB); SHA-256
+`485bca2e93aa06f12fba91060910d19fdec218ce45bd09cf169a3bdfd11a81cd`.
+18 representative source-PTS frames,6 contact sheets,71 pending teacher bbox,
+36 pending class-coverage rows, correction/missing-box forms and distribution
+tables. Native-resolution battlefield crops preserve explicit source rectangle
+`[0,534,1200,2309]`; CSV bbox remains full-source1200x2670, subtract534 from y
+for crop display. Original full-size exports remain private; no extra extraction
+for the lightweight derivative. JPEG/crop presentation is not pixel-confirmed GT.
+The lightweight supplement adds explicit coverage scope (crop exterior remains unreviewed/nonnegative)
+and errata for two inherited, nonexecuted configuration prose fields; predictions,
+boxes, chosen frames, pending states and frozen configs remain unchanged.
+V3 also corrects a hand-written analyst locator against unchanged raw predictions:
+07 teacher Minion guesses are isolated32.032/56.023s, not14–16s or continuous units.
+
+05/06/07 development discovery;08 reserved before inference as retained
+evaluation candidate and not available for training/tuning.08 has discovery
+exposure, therefore not strict blind. Replay controls show x1/x2 in early frames.
+08 is not an independent target-selection/prospective test, only an exposed
+exploratory retained evaluation candidate.
+File-relative PTS is not game clock and no constant replay-speed conversion is
+assumed. Whole-match isolation remains required for later splits.
+
+Fresh scoped tests182 passed/0 skipped:51 preannotation,84 event engine,47
+offline pipeline/CLI. Offline and existing KataCR dependency checks pass.
+Source/old-material/manifest/ZIP/privacy/link/diff checks preserve3,914 material
+files,224 existing tracked sources and all4 new MP4s; recorded in the
+[discovery checkpoint](checkpoints/2026-10-09-module3c6-multiclass-discovery.md).
+Full-suite/JS/Android/YOLOX training checks Not Run (no corresponding changes).
+The initial combined test invocation hit collection naming/import errors; the
+established per-module commands passed without modifying tests or production.
+
+Next: upload the small private bundle manually for independent visual review;
+confirm precise class/owner/bbox, missing objects and class-specific coverage,
+then inspect candidate onset/continuity before counting independent deployments.
+No current training dataset or experiment is qualified. No reinstated Royal/
+Minion quota, no additional footage request before this review. Stop after local
+commit; no push/merge, model training, engine/App or live-game changes.
+
+## Preserved checkpoint — Module3C5 BBox review decision backfill
+
+Historical task below; its Royal/Minion-specific next-step request is superseded
+by the current3C6 multiclass discovery authorization, not an active prerequisite.
 
 Decision-only backfill is complete from local `e65ae283...` on
 `codex/module3c5-detector-improvement-a`; detector training admission is still
