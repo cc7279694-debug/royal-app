@@ -1,8 +1,51 @@
 # Current State
 
-Last verified: 2026-10-08.
+Last verified: 2026-10-09.
 
-## Current checkpoint — Module 3C-1 real detector baseline
+## Current checkpoint — Module 3C-2 frozen detector failure diagnosis
+
+Latest explicit authority is diagnosis/minimal proven-defect repair only, from
+local3C-1 `b146a4f81a31d33e73d72cfcc49c33721608f9e9` on new feature
+`codex/module3c2-detector-failure-diagnosis`. No deterministic adapter/PTS/track
+implementation violation explaining the observed failures was established;
+production code, parameters, rules, scorer and GT remain unchanged. Do not
+describe this as a detector repair/PASS or as independent ChatGPT acceptance.
+
+All1523 frames/33337 predictions retain exact raw→observation coordinates,
+class/owner/confidence and PTS. Three missed events first appear at30.5/77.75/
+102.25s, confirm at30.75/78/102.75s, versus approximateGT31.5/78/102.5s.
+Their stable tracks begin at those exact first-seen times. Frozen scoring is
+one-sided and uses first-seen, not confirmation. Physical onset and whether an
+early box is the correct GT entity remain unproven; no shift/window change.
+
+Royal Hogs produces two different two-member episodes at75.75/76.0 and76.75/
+77.25s. Three then four same-frame opponent observations exhaust two then three
+existing tracks, yielding new tracks and a second episode. No same-episode
+reemission or avoidable association-cardinality failure was demonstrated.
+Late member discovery versus real new deployment is not established by these
+fields. GT-free subset/synthetic replays expose a known policy ambiguity:
+new track IDs are insufficient birth evidence, not an automatic grounds for
+merging or increasing cooldown. Owner flicker is a visual identity risk, not
+proven physical continuity or a mapping inversion.
+
+Fresh full related contracts:331 passed/1 existing Windows symlink skip; both
+dependency checks pass. Original predictions replay without new inference;
+observations/tracks/episodes/candidates/events are byte-identical to3C-1, and
+all scoring fields except run-manifest binding agree:2/5 hits,1 duplicate,
+3 zero-output dedupe windows,12 unscored outputs. Four unresolved stay
+non-negative; match04 candidate12 (69–75s) has zero Witch predictions and
+cannot demonstrate continuity. This is not a full-match absence claim.
+No full-match FP/min or cross-match-generalization claim.
+
+Read-only diagnostics/new replay/evaluation and test receipts remain ignored
+under `outputs/module3c2/`; no new persistent storage/schema/dependency or APK.
+See [diagnosis and fresh verification](VERIFICATION_MODULE3C2.md) and
+[checkpoint](checkpoints/2026-10-09-module3c2-detector-diagnosis.md).
+Stop after a local documentation commit. No push/main merge, training,
+Android/live integration or automatic next step. Recommended follow-up is
+independent diagnosis review, not immediate retraining or GT-tuned repair.
+
+## Preserved checkpoint — Module 3C-1 real detector baseline
 
 Authorized on2026-10-08 from published main
 `602dd0f0d92f9bcd09b866b7ab081c5352ba5a93`; feature

@@ -4,7 +4,26 @@ The project advances one independently verifiable module at a time. A module may
 start only after the previous module has been reviewed and accepted. Statuses are
 `Completed`, `In Progress`, `Planned`, `Paused`, or `Gated`.
 
-## Current authorized stage — Module 3C-1 offline detector integration
+## Current authorized stage — Module 3C-2 detector failure diagnosis
+
+Scope: frozen3C-1 predictions/observations/track+episode/event/scoring forensic
+audit, minimal repair only if a deterministic implementation defect is proven.
+Base `b146a4f81a31d33e73d72cfcc49c33721608f9e9`, feature
+`codex/module3c2-detector-failure-diagnosis`. No new detector inference/training,
+GT edits, timestamps shifted to GT, wider scoring windows or new card cooldown.
+
+Diagnosis completed without a production patch: raw→observation mappings and
+timing agree; three early first-seen events fail unchanged one-sided scoring.
+Royal Hogs has two distinct episodes from initially two and subsequently two
+newly observed tracks. The current contract cannot prove late same-play members
+versus new deployment; do not force a merge. Fixed-data replay/scoring remains
+2/5 plus1 duplicate, validFAIL; unscored and unresolved evidence preserved.
+Fresh related331/1 tests and both pip checks pass. Protect private history,
+record concise verified documents, local commit and stop for independent review.
+No new architecture, gate, model upgrade, Android work, push or main merge.
+See [verification](VERIFICATION_MODULE3C2.md).
+
+## Preserved stage — Module 3C-1 offline detector integration
 
 The user authorizes actual retained KataCR predictions through the unchanged3B
 engine, from published main`602dd0f0d92f9bcd09b866b7ab081c5352ba5a93`, on
