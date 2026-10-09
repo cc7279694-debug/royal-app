@@ -6,21 +6,31 @@ start only after the previous module has been reviewed and accepted. Statuses ar
 
 ## Current authorized stage — Module3C5 Detector Improvement Sprint A
 
-Status: **Blocked at data admission / pending human review**, before training.
+Status: **BBox decision backfill completed; data admission remains Blocked**, before training.
 Baseline `d699877...`, branch `codex/module3c5-detector-improvement-a`.
 
 Completed: read-only inventory of existing real locks, bbox versus partial fields,
 class-specific coverage, source independence and existing model prerequisites;
-an exclusive8-frame private bbox/coverage review supplement using existing pixels.
+an exclusive8-frame private bbox/coverage review supplement using existing pixels;
+separate user-attested decision record from `e65ae283...` with6 possible duplicate
+associations and3 pending candidates. No identity merge or new training box.
+19 old accepted references remain unchanged,16 coverage rows remain pending.
 33 accepted target bbox records remain annotation-only;49 field-review boxes
 unverified. Joint two-target exhaustive/qualified training frames0, Negative0.
 Prior Witch/Skeleton supervision does not silently become Royal/Minion data.
 
-Pending: pixel-level confirmation/correction/addition plus explicit per-class
-region coverage; independent Royal Hog sources and source-isolated TRAIN/DEV/
+Original-order03/04 inspection now covers30 existing contact sheets/266 sampled
+frames; no clearly identifiable independent Royal Hogs source was located.
+This is not whole-video absence proof, confirmed source GT or Negative. No new
+decoding/inference, and previously reviewed matches are not blind evaluation.
+
+Pending: precise pixel/identity review (including O011/O018/O021 and possible
+duplicate associations), explicit per-class region coverage, independently
+human-confirmed Royal Hog source support and source-isolated TRAIN/DEV/
 RETAINED_EVAL assignment. No same-deployment adjacent-frame leakage. Existing
-03/04 battle material lacks finalized target GT, not evidence of absence; inspect
-it before requesting minimal new natural footage. Match02 stays excluded and
+03/04 battle material lacks finalized target GT, not evidence of absence;
+original video context or minimal new natural footage is still needed to confirm
+an independent Royal Hogs source. Match02 stays excluded and
 match03 prior exposure prevents a blind claim. No reinstated4/8 or other new quota.
 
 Only after these gates pass: freeze the data/qualification/splits and fixed seed,
@@ -30,9 +40,10 @@ metrics on verified boxes/coverage, owner accuracy AND unknown coverage, speed,
 and formal3B output separately; no GT-directed output/timestamp changes. Record
 failure or improvement without replacing3B/App. No experiment has run this stage.
 
-Stop for actual human confirmation and independent source support now; no push,
-main merge, new rules or Android/live integration. See [verified admission and
-review handoff](checkpoints/2026-10-09-module3c5-detector-data-admission.md).
+Stop after decision backfill; the attestation does not resolve pixel/coverage or
+independent source support. No push, main merge, new rules or Android/live
+integration. See [decision backfill](checkpoints/2026-10-09-module3c5-bbox-review-backfill.md)
+and [preserved admission handoff](checkpoints/2026-10-09-module3c5-detector-data-admission.md).
 
 ## Preserved stage — Module3C Field-Level Confirmation & Freeze
 

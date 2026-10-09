@@ -2,12 +2,31 @@
 
 Last verified: 2026-10-09.
 
-## Current checkpoint — Module3C5 detector data admission / human-review gate
+## Current checkpoint — Module3C5 BBox review decision backfill
 
-Detector Improvement Sprint A is authorized from local `d699877...` on
-`codex/module3c5-detector-improvement-a`. Data admission is **Blocked**, not a
-completed detector improvement. No training/inference/metrics rerun occurred.
+Decision-only backfill is complete from local `e65ae283...` on
+`codex/module3c5-detector-improvement-a`; detector training admission is still
+**Blocked**. No new detector improvement, training/inference/metrics rerun.
 Main remains published3D;3C-3/3C-4 are not promoted and3B/App stay unchanged.
+
+Reviewer is `user`, review basis `chatgpt_visual_review`, confirmation source
+`user_attestation_based_on_chatgpt_visual_review`. The attestation confirms the
+review decisions, NOT exact pixel boxes, physical identity or exhaustive coverage.
+ChatGPT is not a human reviewer.
+
+Six explicit-ID associations are `duplicate_review_candidate`:O009/O010/O012/
+O017/O019/O020. Same-frame/class/match/time and descriptive bbox overlap support
+possible links to prior accepted GT, not proof of the same physical object.
+No irreversible merge or additional training box. O011/O018/O021 remain pending;
+O017/O018 owner remains unknown. All9 candidate boxes remain unverified.
+The19 old accepted references and16 pending class-coverage rows remain intact;
+new training-qualified boxes0, new Negative0, no exhaustive-region claim.
+
+New immutable private decision record:
+`outputs/module3c5/decision-backfill-v1/bbox-review-decisions.v1.json`.
+Byte SHA-256:
+`23b816f67b277f49a55b07320290ce6101c79a482282edff5b035ff6971c3742`.
+This is a separate review-decision record, not a Human GT or Training Dataset Lock.
 
 Version-deduplicated existing accepted bbox records:105 (83 multiclass plus22
 Witch/Skeleton, including partial-frame boxes). This is not105 trainable boxes.
@@ -22,28 +41,38 @@ The field Snapshot SHA remains
 All49 bbox remain unverified; class/owner confirmation never promotes boxes.
 Older8 provisional boxes and6 combination/group boxes also are not new unit GT.
 
-Private minimal review ZIP:8 existing lossless PNG frames and two contact sheets,
+Preserved private minimal review ZIP:8 existing lossless PNG frames and two contact sheets,
 19 prior accepted bbox references plus9 unverified drafts (overlap, not28 new
 objects),16 pending target-region coverage rows and missing-box/correction forms.
 No new GT or Negative, no training/evaluation split or data lock. Royal currently
 has only one confirmed deployment-source window; Minion has two historical
 deployment sources in the same match, not33 independent observations. Other
-matches lack finalized target GT; that does not prove targets absent. Match02
-is truncated/excluded; match03/04 prior development exposure is disclosed.
+matches lack finalized target GT. Original-order03/04 source inspection viewed
+30 existing contact sheets (159+107=266 sampled frames), including combat, and
+located no clearly identifiable additional Royal Hogs cohort/deployment support.
+This is analyst inspection of sampled material, NOT whole-video absence proof,
+new human GT or Negative. Crowded/small details stay unknown. Match02 remains
+truncated/excluded; match03/04 prior development exposure is disclosed, not blind.
 
-Next: user/ChatGPT pixel bbox and two-class region review, then confirm independent
-target sources from existing03/04 combat (or minimal additional natural footage
-if absent). Never split adjacent frames of one deployment across TRAIN/DEV/
+Next: precise bbox/identity review for unresolved candidates/possible duplicates,
+explicit16-row two-class region coverage, and original-video/human evidence for
+an independent Royal Hogs source (minimal additional natural footage if needed).
+The sampled03/04 check did not resolve that source gap. Never split adjacent
+frames of one deployment across TRAIN/DEV/
 RETAINED_EVAL or claim cross-match/blind validation from reviewed match03. Freeze
 source-isolated assignments before the sole authorized model experiment; no new
 4-match/8-deployment quota is imposed.
 
-Fresh scoped regressions335 passed/0 skipped; offline and existing YOLOX pip
-checks pass.3210 protected materials and224 tracked non-status sources unchanged;
-198 final artifact/link/CLI checks pass. Original official Nano weight SHA/provenance is intact.
-GPU execution qualification is historical, not rerun. Full-suite/model/Android
-builds Not Run. See [data admission checkpoint](checkpoints/2026-10-09-module3c5-detector-data-admission.md).
-Stop at human/data gate after local commit; no push/merge.
+Fresh scoped regressions135 passed/0 skipped (51 preannotation +84 event engine);
+offline and existing YOLOX pip checks pass. Existing actual human returns still
+validate exit0 at44/39 accepted boxes, training-qualified=false. Private decision
+readback checks reject unsafe promotion/merge/ID/coverage changes. Protection and
+privacy checks verify3904 existing material hashes and225 unchanged tracked files;
+new private outputs remain Git ignored. Receipts are retained with the new record. GPU qualification
+is historical, not rerun. Full-suite/model/Android builds Not Run.
+See [backfill checkpoint](checkpoints/2026-10-09-module3c5-bbox-review-backfill.md)
+and the preserved [data admission checkpoint](checkpoints/2026-10-09-module3c5-detector-data-admission.md).
+Stop after local documentation commit; no push/merge/training.
 
 ## Preserved checkpoint — Module3C field-level human review freeze
 
