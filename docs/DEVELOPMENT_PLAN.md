@@ -4,7 +4,29 @@ The project advances one independently verifiable module at a time. A module may
 start only after the previous module has been reviewed and accepted. Statuses are
 `Completed`, `In Progress`, `Planned`, `Paused`, or `Gated`.
 
-## Current authorized stage — Module3C4 visual evidence improvement
+## Current authorized stage — Module3C Visual Evidence Dataset Mini-Batch
+
+Status: review preparation complete; pending human confirmation, not visual GT
+acceptance. Feature branch `codex/module3c-visual-gt-mini-batch`, local baseline
+`1873ccf...`.3C-3/3C-4 are preserved experimental history, not promoted engines.
+No further event-rule experiment is authorized by this stage.
+
+Scope:40 source-PTS samples, original frames and proposed per-unit boxes/owner/
+physical identity/appearance/deployment relations, small private JPG+CSV review
+packet, model auxiliaries kept separate, and independent visual evaluation
+definitions. Royal four member identities do not imply four deployments or an
+exact spawn time. All49 object rows and39 links pending; uncertainty never
+becomes Negative. Source pixels are not seeded by tracker/detector predictions.
+
+Three fixed windows: first match74–82s/114–130s, third match52–57s actual combat.
+Third is reserved as another underlying match with prior exposure disclosed,
+not a blind test. The old third-match UI prefix is retained but not a test.
+No training-data sufficiency claim, new GT lock, production/app/environment
+changes, inference/tracking/scoring, push or merge. Human return must precede
+confirmed GT and all visual-performance metrics; model improvement needs
+separate authority. See [checkpoint and review instructions](checkpoints/2026-10-09-module3c-visual-evidence-mini-batch.md).
+
+## Preserved stage — Module3C4 visual evidence improvement
 
 Status: bounded parallel experiment completed; local review, not production
 recognition acceptance. Baseline `f3cd570...`, branch

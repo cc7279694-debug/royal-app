@@ -2,7 +2,49 @@
 
 Last verified: 2026-10-09.
 
-## Current checkpoint — Module3C4 parallel visual evidence experiment
+## Current checkpoint — Module3C visual evidence mini-batch review preparation
+
+Authorized from local `1873ccf96617ca02804c0b3627687f5a4e557ce6` on
+`codex/module3c-visual-gt-mini-batch`. Main remains published3D `602dd0f...`.
+The user explicitly declines promotion of3C-3/3C-4 experimental strategies;
+do not add event rules. This stage prepares inspectable pixels and pending
+identity/owner/group candidates, not confirmed visual GT or model acceptance.
+
+Frozen40 samples: match01 Royal Hogs74–82s at0.5s (17), match01 Minions114–130s
+at1s (17), match03 actual combat52–57s at1s (6). Underlying match and recording
+identities remain separate. Third-match scene is battlefield combat, not the
+old matchmaking prefix; reserved as a separate-match diagnostic, NOT blind
+because earlier general development exposure is disclosed. Match02 stays
+truncated/excluded without deletion or conversion to Negative.
+
+Private review packet has40 raw JPG previews/40 corresponding annotated JPGs,
+5 original-pixel contact sheets, a four-member Royal Hogs diagram,49 object
+candidate rows,39 pending relationships and31 unknown-region rows. The four
+physical member hypotheses are distinct from the shared deployment hypothesis;
+later crossings/occlusion leave identity unknown. No card-play onset is inferred
+from count. Actual class/bbox/identity/group fields are empty, owner unknown;
+all proposals require human confirmation, correction or addition of missing
+objects. Confirmed GT0, Negative0, no new lock or training qualification.
+
+Only existing model/track outputs are auxiliary; no new inference or tracking.
+Disjoint model boxes are not shown as object associations. Match03 selected
+window has no cached predictions and is not counted as a miss. Detection,
+fragmentation/ID-switch, owner coverage AND accuracy, group-link coverage and
+timing definitions are fixed for future independently confirmed visual GT;
+all current formal values null. Valid track ID is required for tracking match.
+
+34 artifact readback checks pass;2705 previous materials and220 protected
+tracked files are hash-identical. Artifact receipt checks491 enumerated private
+files; final privacy check493/493 ignored and none tracked. Complete offline
+suite908 pass/3 existing Windows symlink skips; original-pixel/proposal contracts
+48 pass (956 distinct tests combined). Pip check passes. No production code,
+dependency, storage,
+App/Android, original source/GT/scorer/engine/historical-result change.
+See [review packet and fresh verification](checkpoints/2026-10-09-module3c-visual-evidence-mini-batch.md).
+Stop at `MODULE_3C_VISUAL_GT_REVIEW_READY`; await user/ChatGPT review. Do not
+claim visual identity accuracy, training sufficiency or runtime capability.
+
+## Preserved checkpoint — Module3C4 parallel visual evidence experiment
 
 Authorized from local `f3cd570ae759f6998a3045971c0c4d475ec9372e` on
 `codex/module3c4-visual-evidence`; main stays published3D `602dd0f...`.

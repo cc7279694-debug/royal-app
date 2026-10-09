@@ -1,5 +1,34 @@
 # Decisions
 
+## 2026-10-09 — Reviewable visual identity evidence before more event rules
+
+### Decision
+
+The user declines promotion of3C-3 and3C-4 experimental strategies. Preserve
+their inputs/results and accepted3B unchanged. Prepare one40-frame diagnostic
+review batch instead of stacking unverified deployment rules or training now.
+Separate physical object identity, appearance and possible deployment group;
+four Royal Hogs may share a deployment while remaining four different objects.
+Their presence does not establish an exact new card-play timestamp.
+
+### Context and reason
+
+3C-4 scores4/5 but does not improve track stability, leaves42.30% owner unknown,
+and emits no Royal Hogs. Unknown/abstention cannot certify identity or grouping.
+Visual models and MOT output lack independently confirmed continuity/owner GT.
+
+### Consequences
+
+Use original pixels and keep analyst proposals pending with actual fields
+unknown/null. Detector/ByteTrack auxiliaries are separate, never GT. Require
+independent human confirmation before visual scoring; report assignment/owner/
+group coverage alongside conditional accuracy. Tracking fragmentation requires
+valid algorithm IDs; unassigned detections are not successful tracking.
+Reserve a real combat clip from another underlying match, disclose prior
+development exposure and do not call it blind. No automatic Negative from
+missing/rejected/unannotated evidence. Old locks stay immutable. Small private
+review packet is not anonymized, not redistributed, and not training-qualified.
+
 ## 2026-10-09 — Algorithmic visual identity remains a hypothesis
 
 ### Decision
