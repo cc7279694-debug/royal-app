@@ -1,5 +1,38 @@
 # Decisions
 
+## 2026-10-10 — User-fixed three-card priorities; observations are not deployments
+
+### Decision
+
+Prioritize Hog Rider, Goblin Barrel and Firecracker for discovery. Supersede
+previous Witch/Royal Hogs/Minions collection priorities without deleting any
+confirmed/pending evidence, locks, failed runs or other future classes.
+
+### Context and reason
+
+The user explicitly chooses these card targets. Existing predictions confuse
+mounted units with humanoids, wooden projectiles with effects/structures, and
+Firecracker with Bomber/other ranged units. A high score cannot establish card
+identity, owner, onset, physical continuity or independent deployment.
+
+### Consequences
+
+Rescreen the same four sources in original fixed order, not just18 old pictures.
+Keep actual class/owner/form/origin/identity unknown and teacher attributes separate.
+Create pending CardPlayCandidate only with flight/birth context; continued unit
+presence and standalone Goblins cannot become a new play. Goblin Barrel requires
+projectile-flight/arrival semantics, distinct from Skeleton/Barbarian Barrel,
+rolling Log, delivery crate and Goblin Drill. Hog Rider must not equal Royal Hogs.
+Firecracker normal/evolved stays unknown without supported visual confirmation.
+
+The claimed six prior Firecracker fields are six locally pending teacher objects
+and six locators; no attested new return was located. Preserve IDs and state,
+never invent reviewer confirmation.08 stays exposed retained evaluation, not
+training/tuning or strict blind. User priorities do not authorize training,
+licensing clearance, official engine/App changes or live-game use. Non-detection,
+rejection and crop exterior remain unknown/nonnegative. Local review delivery
+and commit only; no push/merge. Prior decisions below remain historical.
+
 ## 2026-10-09 — New recordings determine multiclass discovery targets
 
 ### Decision

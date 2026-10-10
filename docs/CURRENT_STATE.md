@@ -1,8 +1,52 @@
 # Current State
 
-Last verified: 2026-10-09.
+Last verified: 2026-10-10.
 
-## Current checkpoint — Module3C6 new recording / multiclass discovery
+## Current checkpoint — Three target cards / pending discovery review
+
+User priorities now **Hog Rider, Goblin Barrel, Firecracker**. Local rescreen/
+review preparation from `fef67ad650b073bda379a6abb6218bc32c38d582` on
+`codex/module3c-target-card-discovery`; no training, new Human GT or card events.
+Witch/Royal Hogs/Minions and all old evidence/locks/results remain historical,
+not deleted or current priority gates. Main remains published3D `602dd0f...`.
+
+Same four05..08 sources verified unchanged and fully decoded again:9,313 frames.
+Fixed whole-file2FPS source-PTS scan covers769 sampled scenes, not only the old18
+review pictures. All35 source survey pages reviewed;211 extra source-only6FPS
+context samples support projectile/spawn review. No new model/dependency/runtime
+installation, thresholds or event rules. One initial decoder compatibility failure
+before any prediction is preserved; source-bound prevalidation used existing envs.
+
+| Priority | Pixel-supported discovery, still pending | Main gap |
+|---|---|---|
+|Hog Rider|08 teacher44–52s window conflicts with bulky humanoid;05..07 guesses are confounded|no confirmed pig+rider source; absence remains unknown|
+|Goblin Barrel|06 five /07 five separated flight locators|card/owner, impact/successors and independent deployment/onset not Human-confirmed|
+|Firecracker|06 six birth/appearance contexts;08 presence26–34s|exact bbox/owner/form, identity, missing boxes and independent plays|
+
+Six prior Firecracker object IDs and six locators were found pending; no new
+attested Witch/Firecracker return was located. Reuse their IDs/source bindings,
+not a fabricated confirmation. Actual class/owner/form/origin/identity remain
+unknown, teacher attributes separate. Sixteen pending CardPlayCandidate hypotheses
+have flight/birth-context evidence, not sixteen confirmed independent plays.
+Hog08 presence conflict is visual-only, not a confirmed deployment candidate.
+
+Private ZIP `outputs/module3c-target-discovery/v2/Module_3C_Target_Card_Discovery_Human_Review_Lite_v2.zip`:
+19,135,637 bytes; SHA-256
+`cb775b3dee81d665baf4637cdaa0455d8a7aed9e6b83e3f3478e327b55ddc92d`.
+21 native arena JPG pairs,36 pending teacher boxes,63 pending coverage rows,
+7 paired contact sheets,19 continuity sheets,24 dense-context sheets/211 samples,
+observation/candidate tables and correction/missing-box forms. Oversized v1 retained;
+lite changes contact-sheet JPEG quality only, not native pairs/metadata/boxes.
+
+05..07 development discovery only;08 stays exposed retained evaluation, never
+training/tuning or strict blind. File PTS is not game clock/replay speed. Crop
+`[0,534,1200,2309]`, full-source bbox1200x2670; exterior unknown/nonnegative.
+New Human GT, qualified training boxes, Negative and OpponentCardPlayed all0.
+Next: independent human review of target class/owner/bbox, flight and continuity;
+do not train or request extra source collection before reviewing these candidates.
+See [target discovery checkpoint](checkpoints/2026-10-10-module3c-target-card-discovery.md).
+
+## Preserved preceding checkpoint — Module3C6 discovery (prior priorities superseded)
 
 Local discovery/review preparation is complete from baseline
 `1eda1a43fa7193eb8620ff2b7314b555c85a7787` on

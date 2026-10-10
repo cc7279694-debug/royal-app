@@ -4,7 +4,31 @@ The project advances one independently verifiable module at a time. A module may
 start only after the previous module has been reviewed and accepted. Statuses are
 `Completed`, `In Progress`, `Planned`, `Paused`, or `Gated`.
 
-## Current authorized stage — Module3C6 Multiclass Discovery
+## Current authorized stage — Target-card discovery review preparation
+
+Status: **local rescreen/review packet ready; stop for human review**.
+Baseline `fef67ad650b073bda379a6abb6218bc32c38d582`, branch
+`codex/module3c-target-card-discovery`. Local commit only; no push/merge.
+
+User-fixed priorities Hog Rider / Goblin Barrel / Firecracker replace previous
+Witch/Royal/Minion collection priorities, not their historical evidence. Same05..08
+sources: fixed original filename order,769 whole-file2FPS scenes and211 bounded
+source-only6FPS contexts. Separate pending VisualObservation proposals from16
+flight/birth-context CardPlayCandidate hypotheses. No confirmed card event.
+
+Review packet:21 native pairs,36 pending boxes,63 pending coverage rows,
+19 continuity sheets and24 dense sheets, under20MB. Review Hog identity conflicts,
+06/07 airborne barrel/arrival/owner,06 Firecracker birth/continuity/form and prior
+six pending reference IDs. No detector prediction becomes GT/Negative/event.
+08 remains exposed retained evaluation, excluded from training/tuning; known
+content cannot be described as blind. Qualified training data remains0.
+
+Stop for human confirmation. No production engine/Android changes, training,
+old-lock mutation or live-game use. Preserve initial decode compatibility failure
+and oversized presentation; no dependency upgrades or inference tuning.
+See [target checkpoint](checkpoints/2026-10-10-module3c-target-card-discovery.md).
+
+## Preserved preceding stage — Module3C6 Multiclass Discovery
 
 Status: **local discovery/review bundle ready; awaiting independent human review**.
 Baseline `1eda1a43fa7193eb8620ff2b7314b555c85a7787`, branch
@@ -17,7 +41,7 @@ before selecting18 useful source frames. A14.23MB private review ZIP contains
 6 contact sheets,71 pending bbox,36 pending per-class coverage rows and
 correct-label/box/missing-object forms. No new Human GT or Negative.
 
-Next targets recommended: Witch(07/08) and Firecracker(06/08),2 visual classes,
+Historical targets recommended: Witch(07/08) and Firecracker(06/08),2 visual classes,
 not trained classes or a readiness lock.3+1 and5+1 visual windows respectively
 are review locators; actual independent-deployment counts remain unknown.
 Other primary/secondary/ambiguous classes stay retained; do not force10–20
