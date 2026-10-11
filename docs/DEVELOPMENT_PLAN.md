@@ -6,12 +6,14 @@ start only after the previous module has been reviewed and accepted. Statuses ar
 
 ## Current authorized stage — Offline Assisted Card Tracking MVP
 
-Status: local candidate export and App review implemented and computer-verified;
-Debug APK built. Stop for independent acceptance; native Android review flow pending.
-No new architecture/model training. Reuse the frozen first-match detector adapter/
-formal3B output to prepare source-bound pending hypotheses with screenshots; do not
-manufacture predictions or events from GT. Expand App only after the real list is
-visually useful (18 candidates reviewed).
+Status: **Completed / user real-device accepted**. The offline assisted MVP is
+accepted as `OFFLINE_ASSISTED_TRACKING_REAL_DEVICE_ACCEPTED`, basis
+`user_real_device_attestation`; this is not a Codex native automation PASS.
+Current authorization is documentation, verification and safe fast-forward release only.
+The completed implementation reused the frozen first-match detector adapter/
+formal3B output for source-bound pending hypotheses with screenshots, never
+manufactured predictions/events from GT. App expansion followed review of the
+real list (18 candidates). No new architecture/model training is authorized.
 
 Assisted is separate from Mock/Recorded. User confirms/excludes/corrects/adds a
 missing card; only confirmed opponent rows enter a deduplicated deck. Duplicate
@@ -23,14 +25,21 @@ Geometry suggestions TO017/GB07 6.018/6.676 remain assistant-provisional, not Hu
 GT or qualified training boxes; four other items unknown, old locks unchanged.
 The old pixel-confirmation loop is no longer the active milestone gate.
 
-Acceptance: one real source-to-packet-to-App flow, honest supported/false/unknown
-counts, scoped scoring/miss limits, dedup/confirmation/mobile checks, Android Debug
-artifact and privacy/protection checks. Local feature commit then stop for independent
-acceptance, not merge/push/release. See [bounded implementation plan](superpowers/plans/2026-10-11-offline-assisted-tracking-mvp.md)
-and [checkpoint](checkpoints/2026-10-11-offline-assisted-tracking-mvp.md).
+Acceptance now includes the user's successful native install/launch/import/images,
+confirmation/exclusion/correction/manual workflow, 0/8→5/8 and duplicate-card handling.
+18 detector hypotheses /14 visually supported /1 false /3 unresolved remain
+hypothesis counts, not confirmed independent plays or automated accuracy.
+Fresh regression/build/privacy/protection checks gate the authorized release;
+retain the feature branch and all old results. See [release checkpoint](checkpoints/2026-10-11-offline-assisted-tracking-release.md),
+[bounded implementation plan](superpowers/plans/2026-10-11-offline-assisted-tracking-mvp.md)
+and [historical implementation checkpoint](checkpoints/2026-10-11-offline-assisted-tracking-mvp.md).
 Native picker opened on a clean API36 emulator, but later WebView QA timed out;
 file delivery to the importer and Android Assisted confirmation are not established.
-No new physical-phone acceptance is claimed. Preserve this limitation and evidence.
+That automated native result is still unverified; preserve its failure evidence.
+The later physical-phone acceptance is explicitly user-attested, not a rewritten
+emulator result. Session persistence/recovery, independent cross-match performance
+and reliable fully automatic tracking remain unfinished. Real-game capture/HUD
+remain Gated. Stop after release; no next-stage implementation is authorized.
 
 ## Preserved preceding stage — Precise visual backfill and minimal data finalization
 

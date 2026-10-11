@@ -1,6 +1,8 @@
 # Clash Tracker
 
-**当前：Offline Assisted Card Tracking MVP 已完成本地实现与电脑端验证，等待独立验收。**
+**当前：离线半自动记牌 MVP 已通过用户 Android 真机验收。**
+验收状态为 `OFFLINE_ASSISTED_TRACKING_REAL_DEVICE_ACCEPTED`，依据为
+`user_real_device_attestation`；不是 Codex 独立完成的 Android 自动化验收。
 真实第一场冻结 detector 候选经固定筛选得到18条，配47张源PTS绑定截图；
 不是用Human GT制造检测。App新增独立Assisted模式：导入全部待确认，用户可
 确认、排除、更正或手动补漏；只有明确确认的对手卡牌进入去重后的8个卡位。
@@ -9,11 +11,13 @@
 不生成新出牌GT、Negative或训练资格，不训练、不接实时游戏、不改正式引擎。
 自动候选的完整性和实际出牌时间仍未解决，正式3C基线仍为2/5、皇家野猪重复1次。
 野猪骑士、哥布林飞桶和烟花炮手目前只能未知或明确手动补录，不冒称自动支持。
-见[本轮验证与限制](docs/checkpoints/2026-10-11-offline-assisted-tracking-mvp.md)、
+见[正式验收与发布记录](docs/checkpoints/2026-10-11-offline-assisted-tracking-release.md)、
+[原实现验证与限制](docs/checkpoints/2026-10-11-offline-assisted-tracking-mvp.md)、
 [候选导出工具](tools/assisted_tracking/README.md)及[App使用说明](app/README.md)。
-私人候选、截图、旧锁和Debug APK全部留本地；仅本地提交，等待独立验收。
-Debug APK已构建、安装并启动；Android原生JSON导入检查超时，尚未验证通过，
-不把电脑端确认流程或既有真机验收当成本次Android辅助审核通过的证据。
+用户确认新 APK 安装启动、真实候选 JSON 导入、截图、确认／排除／更正／手动补漏、
+0/8→5/8及重复卡牌不占新卡位均通过。原模拟器原生导入超时记录保留，不改写为通过。
+私人候选、截图、旧锁和Debug APK全部留本地，不随公开 Git 发布。
+用户确认卡组不等于 detector 自动记牌准确率达标；尚无独立跨场性能验证或会话保存／恢复。
 
 **保留的前序 checkpoint：Module 3C Field-Level Human Review Snapshot v1 已冻结，仅确认有支持的字段。**
 用户依据 ChatGPT 视觉建议确认；`reviewer=user`，ChatGPT 仅为 review basis。

@@ -4,11 +4,15 @@ Last verified: 2026-10-11.
 
 ## Current checkpoint — Offline Assisted Card Tracking MVP
 
-Status: local implementation and computer end-to-end verified; stop for independent
-acceptance. Native Android Assisted import/confirmation remains unverified.
-Feature branch `codex/offline-assisted-tracking-mvp`; start HEAD
-`1d0856217fed7a01384e5502c20826e52944e6c5`. Main remains `602dd0f...`;
-local implementation only, no push/merge/release.
+Status: **offline assisted card-tracking MVP accepted on the user's Android phone**.
+`OFFLINE_ASSISTED_TRACKING_REAL_DEVICE_ACCEPTED`; basis
+`user_real_device_attestation`, reviewer=user. Codex has not independently passed
+the same native automation scope. Release closeout is authorized, not new development.
+Accepted development commit `2fbb23db5536628e315a8e3d272692c89af5c3ff`;
+feature branch `codex/offline-assisted-tracking-mvp`, preceding main
+`602dd0f0d92f9bcd09b866b7ab081c5352ba5a93`. The release is the documentation
+commit containing the new release checkpoint; final local/remote SHA is recorded
+in the release completion report. Retain the feature branch.
 
 - Geometry loop closed by a separate private record, SHA-256
   `02367a06abcc4b6ffc1e2dfd58a51d5b48d1ef189627539ad170b478165ebf56`.
@@ -33,21 +37,35 @@ local implementation only, no push/merge/release.
 - State is session-only, not persisted: reset/mode switch/reopen/reimport clears
   reviews, explicitly disclosed. No SQLite/Migration/native capability or dependency
   changes. All screenshots/event exports/locks/APKs remain local/ignored.
-- Fresh checks:145 App tests;315 scoped Python tests passed,1 existing permission
+- Original implementation checks:145 App tests;315 scoped Python tests passed,1 existing permission
   skip;3 private geometry tests passed; pip check passed. Rendered mobile review
   passes at390x844 and320x568, no runtime errors or external requests during QA.
   Historical SHA check:5,692 unchanged;34 more precise-review files captured for
   end-guard. Formal engine/adapter/offline/native/dependencies unchanged.
-- Fresh Android sync/typecheck/build passed; Debug APK SHA-256
+- Original local delivery Debug APK SHA-256 (no device-side checksum supplied):
   `7d278add5ea903d652249604a39d22abf5ae653682cc5db3779cbaa1a4a146e2`.
   Emulator installation/launch and Mock flow passed. Clean API36 opened the native
   picker and displayed the real JSON; subsequent WebView QA timed out. File delivery
   to the importer is not established; final screen was Mock0/8, cause unknown.
-  Native Assisted5/8 is not claimed. No physical-phone test; failure receipts retained.
+  These original automation outcomes remain unchanged; failure receipts retained.
+- User's new real-device attestation passes install/launch, real candidate JSON
+  import, card/screenshot display, confirm/exclude/correct/manual addition,
+  0/8→5/8 and duplicate-card slot handling. This establishes App usability, not
+  detector accuracy, new Human GT, precise deployment timing or cross-match validation.
+- Release-only fresh regression, rebuild, license metadata, privacy and history
+  protection passed:145 App tests;1,569 public Python tests/four existing Windows
+  permission skips;three additional geometry tests. TypeScript/Vite/Android Debug
+  and both pip checks pass; rebuilt APK is byte-identical to the original delivery.
+  All5,726 prior file hashes match;5,859 stable files protected in total.
+  Detailed evidence is recorded in the release checkpoint. No production code,
+  tests, dependencies, storage, tracking policy or prior scientific result changed.
 
-Next: independent review of the local delivery, including actual Android JSON
-import/confirmation verification. Do not train, merge, push or begin next stage.
-See [MVP checkpoint](checkpoints/2026-10-11-offline-assisted-tracking-mvp.md).
+Next: stop at this documentation-only release boundary. Safe fast-forward and
+remote verification are the authorized closeout, not a new module. Later work
+requires separate authorization; session persistence/recovery and independent-match
+evaluation remain pending.
+See [release checkpoint](checkpoints/2026-10-11-offline-assisted-tracking-release.md)
+and [preserved implementation checkpoint](checkpoints/2026-10-11-offline-assisted-tracking-mvp.md).
 
 ## Preserved preceding checkpoint — FC06 / GB07-01 precise visual review frozen
 
