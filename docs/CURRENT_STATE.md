@@ -2,12 +2,42 @@
 
 Last verified: 2026-10-11.
 
-## Current checkpoint — Offline Assisted Card Tracking MVP
+## Current module — Module 3E Assisted Review Session Persistence
+
+Status: **Implementation Ready / awaiting user real-device acceptance**. User authorized this
+bounded storage module and approved the minimal architecture. Baseline/main
+`7269a02c9ba418796afeabbd0091036a0b72f3d5`; feature branch
+`codex/module3e-assisted-review-persistence`. Local commit only; no push/merge.
+
+One current Assisted session uses a shared Repository/controller: Android built-in
+SQLite stores versioned metadata and review rows; the immutable imported packet
+and its embedded JPEG evidence live in an App-private no-backup file. Web preview
+uses IndexedDB with the same business model. No dependency/cloud/account added.
+Committed decisions derive the deduplicated deck; original predictions remain
+separate. Replacement and restart require confirmation; corruption, incompatible
+version, conflict and I/O failure preserve existing data and block unsafe writes.
+
+Fresh App tests (201), browser checks (23 states), native storage checks (30),
+scoped Python regression (586 passed/one permission skip) and Debug build pass.
+Android App force-stop, actual emulator reboot and covering-install restore the
+same20 review rows/5/8/revision12 and all47 original evidence images. Confirmed
+restart resets to18 pending/0/8, retains images and persists after force-stop.
+The aggregate console-clean assertion failed on two unchanged Capacitor SystemBars
+startup errors; Android system/process UI ANRs and boot/socket timeouts are retained.
+Behavioral persistence passed, not a blanket console-clean or ANR-free emulator PASS.
+See the [Module3E checkpoint](checkpoints/2026-10-11-module3e-assisted-review-persistence.md).
+Do not claim physical-phone
+acceptance for this new APK. Old GT locks, formal event engine/scoring and detector
+results remain unchanged; user review is not training Human GT. No backup/export,
+multi-session platform, model training, live capture or cross-App HUD is authorized.
+
+## Preserved release checkpoint — Offline Assisted Card Tracking MVP
 
 Status: **offline assisted card-tracking MVP accepted on the user's Android phone**.
 `OFFLINE_ASSISTED_TRACKING_REAL_DEVICE_ACCEPTED`; basis
 `user_real_device_attestation`, reviewer=user. Codex has not independently passed
-the same native automation scope. Release closeout is authorized, not new development.
+the same native automation scope. This is the preserved prior release, not the
+current Module3E authorization.
 Accepted development commit `2fbb23db5536628e315a8e3d272692c89af5c3ff`;
 feature branch `codex/offline-assisted-tracking-mvp`, preceding main
 `602dd0f0d92f9bcd09b866b7ab081c5352ba5a93`. The release is the documentation
@@ -34,7 +64,7 @@ in the release completion report. Retain the feature branch.
   Exclusion/correction/manual/Unknown/reset/error-import/mode isolation verified.
   Review decisions and raw predictions stay separate from formal event history.
   Manual unsupported card selection is explicitly manual, not detector success.
-- State is session-only, not persisted: reset/mode switch/reopen/reimport clears
+- At that release, state was session-only, not persisted: reset/mode switch/reopen/reimport cleared
   reviews, explicitly disclosed. No SQLite/Migration/native capability or dependency
   changes. All screenshots/event exports/locks/APKs remain local/ignored.
 - Original implementation checks:145 App tests;315 scoped Python tests passed,1 existing permission
@@ -60,10 +90,10 @@ in the release completion report. Retain the feature branch.
   Detailed evidence is recorded in the release checkpoint. No production code,
   tests, dependencies, storage, tracking policy or prior scientific result changed.
 
-Next: stop at this documentation-only release boundary. Safe fast-forward and
-remote verification are the authorized closeout, not a new module. Later work
-requires separate authorization; session persistence/recovery and independent-match
-evaluation remain pending.
+That documentation-only closeout produced the current `7269a02c...` baseline.
+Its session-only limitation is being addressed by separately authorized Module3E;
+independent-match detector evaluation remains pending. The historical phone
+acceptance does not accept the new persistence APK.
 See [release checkpoint](checkpoints/2026-10-11-offline-assisted-tracking-release.md)
 and [preserved implementation checkpoint](checkpoints/2026-10-11-offline-assisted-tracking-mvp.md).
 

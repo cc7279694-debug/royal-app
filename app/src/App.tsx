@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useRef, useState } from 'react';
+import { useEffect, useReducer, useRef, useState, useSyncExternalStore } from 'react';
 import { mockEvents } from './demo/mock-events';
 import { RecordedEventSource, type RecordedDemo } from './demo/recorded-event-source';
 import { RecordedReplay, type ReplaySnapshot } from './demo/recorded-replay';
@@ -6,6 +6,7 @@ import { createTrackerState, getDiscovery, trackerReducer } from './domain/track
 import { DiscoveryHud, DiscoverySlots } from './ui/Discovery';
 import { EventHistory } from './ui/EventHistory';
 import { AssistedReview } from './ui/AssistedReview';
+import { getAssistedSessionController } from './assisted/session-controller';
 
 export function App() {
   const [state, dispatch] = useReducer(trackerReducer, null, createTrackerState);
@@ -16,6 +17,9 @@ export function App() {
   const [importing, setImporting] = useState(false);
   const [importError, setImportError] = useState<string | null>(null);
   const importToken = useRef(0);
+  const modeChosen = useRef(false);
+  const [sessionController] = useState(getAssistedSessionController);
+  const assistedSession = useSyncExternalStore(sessionController.subscribe, sessionController.getSnapshot, sessionController.getSnapshot);
   const activeState = mode === 'mock' ? state : (snapshot?.events ?? []).reduce(
     (current, event) => trackerReducer(current, { type: 'event', event }), createTrackerState());
   const discovery = getDiscovery(activeState);
@@ -23,6 +27,16 @@ export function App() {
   const playLabel = nextEvent
     ? state.events.length === 0 ? '播放模拟事件' : '播放下一个事件'
     : '模拟事件已播完';
+
+  useEffect(() => {
+    let active = true;
+    void sessionController.initialize().then(() => {
+      if (!active) return;
+      const restored = sessionController.getSnapshot();
+      if (restored.state.packet && !modeChosen.current) setMode('assisted');
+    });
+    return () => { active = false; };
+  }, [sessionController]);
 
   useEffect(() => {
     if (mode !== 'recorded_oracle' || !replay || snapshot?.status !== 'playing') return;
@@ -42,6 +56,7 @@ export function App() {
   }, [mode, replay]);
 
   function chooseMode(next: typeof mode) {
+    modeChosen.current = true;
     if (next === mode) return;
     importToken.current += 1;
     replay?.pause();
@@ -96,6 +111,8 @@ export function App() {
         <button className="mode-button" type="button" aria-pressed={mode === 'recorded_oracle'} onClick={() => chooseMode('recorded_oracle')}>Recorded 模式</button>
         <button className="mode-button" type="button" aria-pressed={mode === 'assisted'} onClick={() => chooseMode('assisted')}>Assisted 模式</button>
       </div>
+
+      {assistedSession.phase === 'error' && mode !== 'assisted' ? <p className="event-error" role="alert">上次审核恢复失败，文件未清空。请进入 Assisted 模式查看并重试。</p> : null}
 
       {mode === 'recorded_oracle' ? (
         <section className="replay-panel" aria-label="离线回放控制">

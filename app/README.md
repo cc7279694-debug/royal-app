@@ -33,8 +33,8 @@ account, API or remote font requirement.
 The initial state is `已发现 0/8`. Each button click consumes exactly one event:
 Witch at 12 seconds, then Balloon at 28 seconds, giving `已发现 2/8`.
 The playback button is then disabled. Reset clears the complete in-memory state
-and allows replay. Refresh also clears it. There is no localStorage, IndexedDB,
-SQLite or persistent user data to migrate or back up in this resettable demo.
+and allows replay. Refresh also clears Mock state. Mock has no persistent data;
+Assisted uses the separate local session store described below.
 
 The independent event consumer validates the five typed fields, rejects future
 sources and unexpected fields, preserves accepted events on input error, and
@@ -53,7 +53,7 @@ Choose **Recorded 模式**, import the private `recorded-oracle-demo.json` suppl
 with this module, then start at 1× or 4×. The prepared five verified engine events
 appear chronologically, taking the discovered deck from0/8 to5/8. Pause freezes
 the virtual clock and history; continue excludes paused wall time. Restart clears
-history and starts from0 at the chosen speed. Switching modes resets both views;
+history and starts from0 at the chosen speed. Switching Mock/Recorded modes resets their views;
 leaving the visible App pauses Recorded playback. Refresh/cold restart clears the
 in-memory import, so reimport the JSON. Mock Witch/Balloon remains separate.
 
@@ -115,18 +115,53 @@ cannot be used as image sources. Invalid imports keep the previous review.
 Hashes establish packet/source consistency, not authentication of arbitrary
 user-edited data. A corrupt JPEG that fails rendering displays an error.
 
-Imports, images and user decisions stay only in memory. Reset, switching modes,
-refresh or reopening clears Assisted data and requires reimport. There is no
-SQLite, IndexedDB, localStorage, migration, persistent review export or cloud
-service in this MVP. The private packet is externally selected, ignored and
-never bundled in `dist`/the APK or tracked in Git.
+## Module3E — one local Assisted review session
+
+Import creates one persistent current review. Android uses the built-in SQLite
+store for metadata and review rows, plus an immutable packet file containing the
+original candidates and embedded JPEG evidence. DB/journals/packet live under
+App-private `noBackupFilesDir`; Web preview uses IndexedDB through the same
+Repository. No dependency, account, cloud or localStorage business store is added.
+The packet is externally selected, private/ignored and never bundled in dist/APK/Git.
+
+Confirm/exclude/correct/manual changes save automatically; wait for **已保存到本机**.
+Saved Assisted state survives mode changes, process termination and reopening;
+the App opens the restored Assisted review automatically. Original detector
+predictions are retained separately from editable reviewer rows. Evidence uses
+saved inline bytes, not temporary document-picker URI permissions.
+
+New import is fully validated before **替换当前审核？** confirmation. Cancel keeps
+the existing review. **重新开始当前审核** also requires confirmation; it retains
+the imported candidates/images, resets all decisions to pending, and removes
+manual additions. Successful replacement/restart starts a new session UUID;
+unapplied input drafts never carry to the new review. Only one review is managed.
+
+The version1 session format binds packet SHA256, stable candidate IDs, review
+provenance, timestamps and revisions. Native DB schema version1 initializes only
+in pristine storage; a missing database with surviving packet/journal files is
+an error, not an empty review. Future/invalid versions block rather than destructive-reset. Writes
+are serialized and session/revision guarded; UI publishes committed changes only.
+Corrupt/missing images or packet, incompatible versions, conflict and storage I/O
+failure show an error, retain existing files/state, and block unsafe mutation.
+**重试恢复已保存审核** reloads the last committed version; it never silently clears
+an unreadable session or pretends a failed change was saved.
+
+This is not backup/export or cross-device sync. Uninstall, clear-app-data, device
+loss or browser-site-data removal may destroy the only local copy. Old immutable
+packet files remain private after replacement/restart rather than aggressive
+cleanup; repeated imports can grow local storage. Browser quota/persistence is
+browser-managed. Physical-device final acceptance of the new APK is separate
+from emulator/code verification; see the
+[Module3E checkpoint](../docs/checkpoints/2026-10-11-module3e-assisted-review-persistence.md)
+for actual results.
 
 Assisted uses its own review reducer and confirmed-card projection. It does not
 create `OpponentCardPlayed`, change Oracle selection, run the formal event engine,
 declare human GT/training labels or estimate card cycle/elixir. Screenshot
 coverage is partial; detector absence does not establish card absence. Mock and
-Recorded keep their existing contracts. No native plugin/permission, capture,
-cross-App overlay, game interaction, runtime or dependency is added.
+Recorded keep their existing contracts. The only new native plugin is local
+AssistedSessionStore storage; no new permission, capture, cross-App overlay,
+game interaction, runtime dependency, detector or training capability is added.
 
 ## Android source project
 

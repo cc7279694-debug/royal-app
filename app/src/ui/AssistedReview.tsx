@@ -1,7 +1,8 @@
-import { useEffect, useReducer, useRef, useState } from 'react';
-import type { AssistedEvidence, CandidateOwner } from '../assisted/contract';
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
+import type { AssistedEvidence, AssistedPacket, CandidateOwner } from '../assisted/contract';
 import { AssistedSource } from '../assisted/import';
-import { assistedReducer, createAssistedState, getConfirmedDiscovery, type AssistedAction, type CandidateReview } from '../assisted/review-state';
+import { getConfirmedDiscovery, type AssistedAction, type CandidateReview } from '../assisted/review-state';
+import { getAssistedSessionController } from '../assisted/session-controller';
 import { DiscoveryHud, DiscoverySlots } from './Discovery';
 import { getCardDisplay } from './card-display';
 
@@ -92,12 +93,23 @@ function ManualCandidate({ onAction }: { readonly onAction: (action: AssistedAct
 }
 
 export function AssistedReview() {
-  const [state, dispatch] = useReducer(assistedReducer, null, () => createAssistedState());
+  const [controller] = useState(getAssistedSessionController);
+  const saved = useSyncExternalStore(controller.subscribe, controller.getSnapshot, controller.getSnapshot);
+  const { state } = saved;
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [importing, setImporting] = useState(false);
   const [importError, setImportError] = useState<string | null>(null);
+  const [replacement, setReplacement] = useState<AssistedPacket | null>(null);
+  const [confirmation, setConfirmation] = useState<'replace' | 'restart' | null>(null);
+  const confirmationDialog = useRef<HTMLDialogElement>(null);
   const token = useRef(0);
+  useEffect(() => { void controller.initialize(); }, [controller]);
   useEffect(() => () => { token.current += 1; }, []);
+  useEffect(() => {
+    const dialog = confirmationDialog.current;
+    if (confirmation && dialog && !dialog.open) dialog.showModal();
+  }, [confirmation]);
+  const busy = importing || saved.phase !== 'ready' || confirmation !== null;
   const discovery = getConfirmedDiscovery(state);
   const row = state.rows.find(item => item.candidateId === selectedId) ?? state.rows[0];
   const screenshotMap = new Map(state.packet?.evidence.map(item => [item.evidence_id, item]) ?? []);
@@ -111,8 +123,13 @@ export function AssistedReview() {
     try {
       const packet = await AssistedSource.fromFile(file);
       if (currentToken !== token.current) return;
-      dispatch({ type: 'load', packet });
-      setSelectedId(packet.candidates[0]?.candidate_id ?? null);
+      if (controller.getSnapshot().state.packet) {
+        setReplacement(packet);
+        setConfirmation('replace');
+      } else {
+        await controller.importPacket(packet);
+        if (currentToken === token.current) setSelectedId(null);
+      }
     } catch {
       if (currentToken === token.current) setImportError('候选文件无效或截图校验失败。请导入专用本地 JSON（最大 24 MiB）；原审核记录已保留。');
     } finally {
@@ -121,51 +138,77 @@ export function AssistedReview() {
   }
 
   function onAction(action: AssistedAction) {
-    if (importing) return;
-    dispatch(action);
-    if (action.type === 'manual') setSelectedId(null);
+    if (busy) return;
+    let manualId: string | null = null;
+    if (action.type === 'manual') {
+      let suffix = state.rows.length + 1;
+      while (state.rows.some(item => item.candidateId === `manual:${suffix}`)) suffix++;
+      manualId = `manual:${suffix}`;
+    }
+    void controller.applyAction(action).then(() => {
+      if (manualId && controller.getSnapshot().state.rows.some(item => item.candidateId === manualId)) setSelectedId(manualId);
+    });
+  }
+
+  async function confirmReplacement() {
+    const choice = confirmation;
+    const packet = replacement;
+    setConfirmation(null);
+    setReplacement(null);
+    setImportError(null);
+    if (choice === 'restart') await controller.restart();
+    else if (choice === 'replace' && packet) await controller.importPacket(packet);
+    setSelectedId(null);
   }
 
   return <div className="assisted-panel" aria-label="离线 Assisted 候选审核">
     <section className="replay-panel">
-      <label className="replay-import">导入本地候选 JSON<input type="file" accept=".json,application/json" disabled={importing} onChange={event => {
+      <label className="replay-import">导入本地候选 JSON<input type="file" accept=".json,application/json" disabled={busy} onChange={event => {
         const file = event.currentTarget.files?.[0]; event.currentTarget.value = ''; if (file) void importFile(file);
       }} /></label>
-      <p className="replay-status" role="status">{importing ? '正在验证本地候选与截图' : state.packet ? `${state.packet.match_id} · ${state.packet.candidates.length} 条检测器候选` : '等待本地候选文件'}</p>
-      <p className="replay-note">最多 24 MiB，截图仅在本地内存读取。所有导入项先为待确认。重置、切换模式或重新打开 App 会清空审核，需要重新导入。</p>
+      <p className="replay-status" role="status">{importing ? '正在验证本地候选与截图' : saved.phase === 'loading' ? '正在恢复上次审核' : state.packet ? `${state.packet.match_id} · ${state.packet.candidates.length} 条检测器候选` : '等待本地候选文件'}</p>
+      <p className="session-save-status" role="status" aria-live="polite">{saved.phase === 'saving' ? '正在保存，请等待完成' : saved.phase === 'error' ? '本机存储异常 · 原有文件保留' : saved.phase === 'loading' ? '正在检查本机审核记录' : state.packet ? `已保存到本机 · 审核版本 ${saved.revision}` : '本机尚无审核会话'}</p>
+      <p className="replay-note">最多 24 MiB。候选、审核与截图仅保存到本机，重新打开 App 可继续上次审核。所有新导入项先为待确认；切换模式不会清空审核。</p>
+      <p className="replay-note">请等待显示“已保存到本机”后退出。卸载 App、清除应用数据或设备损坏仍可能丢失记录；本功能不等于备份。</p>
       <p className="replay-note">检测器候选不是已确认出牌。截图是局部抽样，未发现不等于不存在；不连接游戏，不生成出牌、循环或圣水结论。</p>
       {state.packet ? <p className="replay-note">原始 {state.packet.summary.total_match_candidates} 条候选，本包导出 {state.packet.summary.exported_candidates} 条，排除 {state.packet.summary.excluded_candidates} 条。来源哈希用于绑定，不是真实性认证。</p> : null}
-      <button className="mode-button" type="button" disabled={!state.packet && !importing} onClick={() => {
-        token.current += 1; dispatch({ type: 'reset' }); setSelectedId(null); setImporting(false); setImportError(null);
-      }}>重置 Assisted</button>
+      <button className="mode-button" type="button" disabled={!state.packet || busy} onClick={() => setConfirmation('restart')}>重新开始当前审核</button>
+      {confirmation ? <dialog ref={confirmationDialog} className="session-confirmation" role="alertdialog" aria-modal="true" aria-labelledby="session-confirm-title" onCancel={event => {
+        event.preventDefault(); setConfirmation(null); setReplacement(null);
+      }}>
+        <h2 id="session-confirm-title">{confirmation === 'replace' ? '替换当前审核？' : '重新开始当前审核？'}</h2>
+        <p>{confirmation === 'replace' ? '新文件将替换当前审核会话，已有确认、排除、更正和手动补漏不会带入。' : '当前候选与截图保留，所有审核恢复待确认，手动补漏记录移除。'}</p>
+        <p>取消会保留全部当前进度。</p>
+        <div className="review-actions">
+          <button className="mode-button" type="button" autoFocus onClick={() => { setConfirmation(null); setReplacement(null); }}>取消</button>
+          <button className="demo-button primary-button" type="button" onClick={() => { void confirmReplacement(); }}>{confirmation === 'replace' ? '确认替换审核' : '确认重新开始'}</button>
+        </div>
+      </dialog> : null}
       {importError ? <p className="event-error" role="alert">{importError}</p> : null}
+      {saved.error ? <div className="event-error" role="alert"><p>{saved.error}</p>
+        <button className="mode-button" type="button" onClick={() => { void controller.retryRestore(); }}>重试恢复已保存审核</button>
+        <p>失败的操作未计入已保存结果；不会自动清空或覆盖异常文件。</p>
+      </div> : null}
     </section>
     <DiscoveryHud cardIds={discovery.cardIds} source="assisted" />
     <DiscoverySlots {...discovery} confirmed />
     {state.packet ? <>
       <p className="review-counts" role="status">待确认 {state.rows.length - confirmed - excluded} · 已确认记录 {confirmed} · 已排除 {excluded}</p>
-      <fieldset className="assisted-workspace" disabled={importing}>
+      <fieldset className="assisted-workspace" disabled={busy}>
         <label className="assisted-field">查看候选<select value={row?.candidateId ?? ''} onChange={event => setSelectedId(event.currentTarget.value)}>
           {state.rows.map(item => <option key={item.candidateId} value={item.candidateId}>{item.timestamp.toFixed(2)}s · {getCardDisplay(item.cardId ?? 'Unknown').name} · {statusNames[item.status]}</option>)}
         </select></label>
         {row ? <>
-          <CandidateEditor key={`${row.candidateId}:${row.cardId}:${row.owner}`} row={row} onAction={onAction} />
+          <CandidateEditor key={`${saved.sessionId}:${row.candidateId}:${row.cardId}:${row.owner}`} row={row} onAction={onAction} />
           {row.raw?.evidence_ids.map((evidenceId, index) => {
             const image = screenshotMap.get(evidenceId);
             return image ? <details key={evidenceId} className="evidence-details" open={index === 0}><summary>查看证据 {index + 1} · {image.timestamp.toFixed(3)} 秒</summary><CandidateEvidence key={evidenceId} evidence={image} /></details> : null;
           })}
         </> : null}
-        <ManualCandidate onAction={action => {
-          onAction(action);
-          if (action.type === 'manual') {
-            let suffix = state.rows.length + 1;
-            while (state.rows.some(item => item.candidateId === `manual:${suffix}`)) suffix++;
-            setSelectedId(`manual:${suffix}`);
-          }
-        }} />
+        <ManualCandidate key={saved.sessionId} onAction={onAction} />
       </fieldset>
       <section className="review-records" aria-label="候选审核记录"><h2>候选审核记录</h2>
-        <ol>{state.rows.map(item => <li key={item.candidateId}><button type="button" disabled={importing} onClick={() => setSelectedId(item.candidateId)}>
+        <ol>{state.rows.map(item => <li key={item.candidateId}><button type="button" disabled={busy} onClick={() => setSelectedId(item.candidateId)}>
           <span>{item.timestamp.toFixed(2)}s · {getCardDisplay(item.cardId ?? 'Unknown').name}</span>
           <span>{ownerNames[item.owner]} · {statusNames[item.status]} · {item.decisionSource === 'manual' ? '手动' : item.decisionSource === 'user_choice' ? '人工选择' : '检测器原候选'}</span>
         </button></li>)}</ol>

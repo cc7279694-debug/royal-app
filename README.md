@@ -1,13 +1,22 @@
 # Clash Tracker
 
-**当前：离线半自动记牌 MVP 已通过用户 Android 真机验收。**
+**当前交付：Module 3E — Assisted 审核会话保存与恢复，等待用户真机验收。**
+用户已批准单会话本地方案：Android SQLite 保存审核记录，私有文件保留原候选与截图；
+Web 预览使用 IndexedDB，业务模型一致。自动保存确认／排除／更正／手动补漏；
+替换和重新开始均二次确认，异常存储不静默清空。新 Debug APK 已生成；
+Android 模拟器的关闭／重启／覆盖安装恢复及截图一致性通过。
+模拟器系统 ANR 与既有 Capacitor 启动样式错误保留，不宣称全绿原生 UI 验证；
+尚未登记本版用户真机验收。本轮仅本地提交，不推送／合并，不训练、不接真实游戏。
+详见[当前状态](docs/CURRENT_STATE.md)和[保存与恢复说明](app/README.md#module3e--one-local-assisted-review-session)。
+
+**保留的发布基线：离线半自动记牌 MVP 已通过用户 Android 真机验收。**
 验收状态为 `OFFLINE_ASSISTED_TRACKING_REAL_DEVICE_ACCEPTED`，依据为
 `user_real_device_attestation`；不是 Codex 独立完成的 Android 自动化验收。
 真实第一场冻结 detector 候选经固定筛选得到18条，配47张源PTS绑定截图；
 不是用Human GT制造检测。App新增独立Assisted模式：导入全部待确认，用户可
 确认、排除、更正或手动补漏；只有明确确认的对手卡牌进入去重后的8个卡位。
 重复卡牌仍保留审核记录。Mock与离线Oracle Recorded模式保留。
-审核状态仅当前会话有效，切换模式、关闭、重置或重新导入会清空，界面明确提示。
+该发布基线的审核仅会话有效；此历史限制由当前 Module3E 专项实现改进，旧验收不改写。
 不生成新出牌GT、Negative或训练资格，不训练、不接实时游戏、不改正式引擎。
 自动候选的完整性和实际出牌时间仍未解决，正式3C基线仍为2/5、皇家野猪重复1次。
 野猪骑士、哥布林飞桶和烟花炮手目前只能未知或明确手动补录，不冒称自动支持。
@@ -17,7 +26,7 @@
 用户确认新 APK 安装启动、真实候选 JSON 导入、截图、确认／排除／更正／手动补漏、
 0/8→5/8及重复卡牌不占新卡位均通过。原模拟器原生导入超时记录保留，不改写为通过。
 私人候选、截图、旧锁和Debug APK全部留本地，不随公开 Git 发布。
-用户确认卡组不等于 detector 自动记牌准确率达标；尚无独立跨场性能验证或会话保存／恢复。
+用户确认卡组不等于 detector 自动记牌准确率达标；独立跨场性能验证仍未完成。
 
 **保留的前序 checkpoint：Module 3C Field-Level Human Review Snapshot v1 已冻结，仅确认有支持的字段。**
 用户依据 ChatGPT 视觉建议确认；`reviewer=user`，ChatGPT 仅为 review basis。

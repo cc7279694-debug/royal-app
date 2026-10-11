@@ -4,12 +4,30 @@ The project advances one independently verifiable module at a time. A module may
 start only after the previous module has been reviewed and accepted. Statuses are
 `Completed`, `In Progress`, `Planned`, `Paused`, or `Gated`.
 
-## Current authorized stage — Offline Assisted Card Tracking MVP
+## Current authorized stage — Module 3E Assisted Review Session Persistence
+
+Status: **Completed implementation / awaiting user phone acceptance**. One reliable local current-session store,
+autosave confirmed/excluded/corrected/manual decisions, source packet and evidence;
+restore the same deduplicated deck after reopening/process death/reboot. Use
+Android SQLite/private files and Web IndexedDB behind a Repository. No new
+dependencies, cloud, training labels, formal event changes or permissions.
+
+Gate import/restart with explicit confirmation. Validate stored versions, source
+binding and review rows; preserve corrupt/incompatible files, never silently reset.
+App tests, browser UI, native storage and Android behavioral recovery are verified;
+an additive Debug APK is built. Retain the emulator OS ANRs/timeouts and unchanged
+Capacitor startup style errors: the console-clean aggregate did not pass.
+See [verification and limitations](checkpoints/2026-10-11-module3e-assisted-review-persistence.md).
+Local commit/report and stop for user phone acceptance.
+No main merge/push, next module, backup platform, detector or live-game work.
+
+## Preserved released stage — Offline Assisted Card Tracking MVP
 
 Status: **Completed / user real-device accepted**. The offline assisted MVP is
 accepted as `OFFLINE_ASSISTED_TRACKING_REAL_DEVICE_ACCEPTED`, basis
 `user_real_device_attestation`; this is not a Codex native automation PASS.
-Current authorization is documentation, verification and safe fast-forward release only.
+At that release, authorization was documentation, verification and safe
+fast-forward release only; Module3E is a separate current authorization above.
 The completed implementation reused the frozen first-match detector adapter/
 formal3B output for source-bound pending hypotheses with screenshots, never
 manufactured predictions/events from GT. App expansion followed review of the
@@ -37,9 +55,10 @@ Native picker opened on a clean API36 emulator, but later WebView QA timed out;
 file delivery to the importer and Android Assisted confirmation are not established.
 That automated native result is still unverified; preserve its failure evidence.
 The later physical-phone acceptance is explicitly user-attested, not a rewritten
-emulator result. Session persistence/recovery, independent cross-match performance
+emulator result. Session persistence/recovery was unfinished at that release and
+is now separately authorized as Module3E above. Independent cross-match performance
 and reliable fully automatic tracking remain unfinished. Real-game capture/HUD
-remain Gated. Stop after release; no next-stage implementation is authorized.
+remain Gated. The prior release did not authorize a next stage by itself.
 
 ## Preserved preceding stage — Precise visual backfill and minimal data finalization
 

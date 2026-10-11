@@ -165,3 +165,20 @@ h2 { font-size: 16px; line-height: 1.5; font-weight: 650; letter-spacing: -0.3px
   .discovery-section, .history-section { margin-top: 23px; }
   .app-footer { margin-top: 27px; }
 }
+.session-save-status {
+  margin: .6rem 0;
+  font-size: .875rem;
+  color: #435d4b;
+}
+
+.session-confirmation {
+  margin: auto;
+  width: min(28rem, calc(100% - 2rem));
+  padding: 1rem;
+  border: 1px solid #d0b58c;
+  border-radius: .75rem;
+  background: #fff8eb;
+}
+
+.session-confirmation h2 { margin: 0 0 .5rem; font-size: 1rem; }
+.session-confirmation::backdrop { background: rgb(0 0 0 / .35); }

@@ -9,7 +9,7 @@ import { makePacket } from '../assisted/test-fixture';
 import { DiscoveryHud, DiscoverySlots } from './Discovery';
 import { getCardDisplay } from './card-display';
 
-it('offers Assisted alongside unchanged Mock and Recorded and states session-only import behavior', () => {
+it('offers Assisted alongside unchanged Mock and Recorded and explains local recovery', () => {
   const app = renderToStaticMarkup(createElement(App));
   expect(app).toContain('Assisted 模式');
   expect(app).toContain('Recorded 模式');
@@ -57,4 +57,15 @@ it('labels Assisted cards as human confirmation and keeps new display names inde
   expect(hud).not.toContain('离线 Oracle 回放');
   expect(slots).toContain('已确认的对手卡组');
   expect(['hog_rider', 'goblin_barrel', 'firecracker'].map(id => getCardDisplay(id).name)).toEqual(['野猪骑士', '哥布林飞桶', '烟花炮手']);
+});
+
+it('blocks candidate import until recovery completes rather than overwriting saved progress', () => {
+  const panel = renderToStaticMarkup(createElement(AssistedReview));
+  expect(panel).toMatch(/<input[^>]*type="file"[^>]*disabled/);
+});
+
+it('offers restart of the current review without the old immediate-clear reset control', () => {
+  const panel = renderToStaticMarkup(createElement(AssistedReview));
+  expect(panel).toContain('重新开始当前审核');
+  expect(panel).not.toContain('重置 Assisted');
 });

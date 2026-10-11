@@ -1,5 +1,34 @@
 # Decisions
 
+## 2026-10-11 — One local Assisted review session, commit-before-display persistence
+
+### Decision
+
+The user approved a bounded Module3E store: native Android SQLite metadata/review
+rows plus an immutable App-private source packet file, and Web IndexedDB behind
+the same Repository. No npm/Maven storage plugin, cloud or localStorage business
+store. Schema/format start at1; unsupported versions block, not destructive-reset.
+
+### Context, alternatives and reason
+
+Assisted decisions must survive App/process/device restarts, including embedded
+JPEG evidence. A generic database plugin or multi-session platform is unnecessary
+for one current review. Keeping packet bytes/images in a private file avoids
+SQLite image blobs; storing only temporary picker URIs would not support recovery.
+
+### Consequences
+
+Use no-backup private storage for DB, journals and packets. Atomic revision/session
+checks prevent stale writes; serialize operations and publish only committed
+results. Replacement/restart have confirmations; corrupt/missing/incompatible
+records are preserved, never automatically cleared. Old source packet files are
+retained instead of aggressive deletion, so repeated replacement can grow private
+storage. No backup/export or uninstall/device-loss recovery guarantee in3E.
+Raw prediction and explicit user review remain separate, never training GT or
+confirmed deployment evidence. Mock/Recorded stay in memory; saved Assisted state
+survives switching modes. This supersedes only the prior session-only MVP storage
+choice, not scientific results, account-safety gates or old locks.
+
 ## 2026-10-11 — Delegated provisional review and offline assisted deck confirmation
 
 ### Decision
