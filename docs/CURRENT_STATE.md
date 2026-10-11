@@ -2,7 +2,55 @@
 
 Last verified: 2026-10-11.
 
-## Current checkpoint — Target-card field review frozen; precise review pending
+## Current checkpoint — FC06 / GB07-01 precise visual review frozen, pixels pending
+
+User confirms the current ChatGPT visual-review conclusions, **not pixel-level
+bbox confirmation**. Reviewer=user; review_basis=chatgpt_visual_review;
+confirmation_source=user_attestation_based_on_chatgpt_visual_review. ChatGPT is
+not the human reviewer. Unknown fields remain unknown.
+
+New independent immutable review Snapshot v1:
+`outputs/module3c-precise-review-finalization/snapshot-v1/module3c.precise_visual_review_snapshot.v1.json`.
+SHA-256 `7bc56a8feeb42552cf0c6736de631ea373ec10b6f877c2fcc767398abbc7bb53`.
+Freeze and separate validation exit0; reconstruction binds the prior Snapshot,
+two original review manifests, ID/match/frame/PTS and21 unchanged lossless PNGs.
+The prior target Snapshot `733aef78...` and all historical locks remain unchanged.
+
+- FC06:8 class/opponent references; original TO005/TO019 teacher owner=own retained
+  separately. Form/origin/identity/independent deployment unknown. Two tighter
+  bbox drafts (TO007/TO017); six occluded observations keep unresolved geometry.
+  All8 bbox_verified=false. TO016/TO017 possible continuity is not two plays.
+- GB07-01:one Visual Flight Episode,13 actual sampled frames5.523–7.500s.
+  Flight/trajectory/landing context supports the Goblin Barrel hypothesis, not
+  confirmed card GT. Eight unverified barrel-geometry drafts; five unresolved
+  samples contain no fabricated/interpolated bbox. Actual owner/physical identity,
+  exact onset/impact and independent deployment remain unknown.5.523 is first
+  observed source time, **not deployment time**.
+- New full-object GT / pixel-verified bbox / qualified training boxes / Negative /
+  confirmed card-play GT all0. All coverage remains partial/nonexhaustive.
+- Seven small native-pixel geometry comparison PNGs and two review CSVs are under
+  `outputs/module3c-precise-review-finalization/geometry-review-v1/`; only unresolved
+  geometry/context is handed off, not all old candidates. Source/display offsets
+  are explicit. Codex drafts are not human-attested geometry.
+- Existing01/04 have unconfirmed teacher locators, not independent confirmed
+  sources. No second qualified Firecracker development source or confirmed
+  Goblin Barrel deployment is established.02 stays truncated/excluded;08 stays
+  exposed retained evaluation, never TRAIN/tune or strict blind.
+
+Current task is a bounded private review freeze, not training readiness or an
+engine upgrade. No new frames/inference/training, production code/schema/tests,
+Android or formal3B changes. Local baseline `6f282b4f...`, branch
+`codex/module3c-target-card-discovery`; no push/merge, main stays `602dd0f...`.
+Next only if separately authorized: pixel-level review of the small geometry
+handoff and independent-source/coverage qualification. See
+[precise-review checkpoint](checkpoints/2026-10-11-module3c-precise-review-finalization.md).
+
+Fresh verification:414 scoped tests passed,1 skipped,39 subtests separately;
+full offline-video regression908 passed,3 skipped,exit0. Pip/diff checks pass;
+5,692 pre-existing private files unchanged. JS/Android checks not run because
+neither subsystem changed. Private artifacts remain ignored.
+
+## Preserved preceding checkpoint — Target-card field review frozen
 
 User attests the supplied ChatGPT visual suggestions as the confirmation basis.
 Reviewer is **user**, not ChatGPT; only explicitly supported fields/target-mapping

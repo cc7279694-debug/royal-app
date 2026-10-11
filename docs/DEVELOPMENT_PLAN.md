@@ -4,7 +4,34 @@ The project advances one independently verifiable module at a time. A module may
 start only after the previous module has been reviewed and accepted. Statuses are
 `Completed`, `In Progress`, `Planned`, `Paused`, or `Gated`.
 
-## Current authorized stage — Target-card field review backfill
+## Current authorized stage — Precise visual backfill and minimal data finalization
+
+Status: **new partial-review Snapshot frozen/validated; stop for acceptance**.
+Baseline `6f282b4f45daf73f619cba7ec20c22202201a471`, same branch
+`codex/module3c-target-card-discovery`; local commit only, no push/merge.
+
+Completed scope:FC06 eight Firecracker/opponent visual references and separate
+original teacher attributes; GB07-01 visually supported flight/landing hypothesis
+in one Visual Flight Episode. Twenty-one existing lossless source frames remain
+SHA/PTS-bound. Source files and prior locks are never edited. First observed
+5.523s is not exact deployment time. No physical identity or new card-play GT.
+
+Geometry is still pending:two FC correction drafts/six unresolved observations,
+eight GB draft silhouettes/five unresolved samples. Seven small comparison PNGs
+and complete eight-/thirteen-row CSVs preserve source/display coordinates. No
+pixel-human confirmation, exhaustive coverage, training readiness or Negative.
+
+Independent-source audit01–08 retains unconfirmed01/04 teacher locators; no
+second qualified Firecracker development source or confirmed Goblin Barrel play
+is established.08 is exposed retained evaluation, not TRAIN/tune/strict blind;
+02 is truncated/excluded. Multiple frames are not independent deployments.
+
+Stop after local commit/report. A later explicit task may confirm minimal
+pixel geometry and coverage/source eligibility; no automatic training, inference,
+data expansion, formal3B/App changes or next module. See
+[precise-review checkpoint](checkpoints/2026-10-11-module3c-precise-review-finalization.md).
+
+## Preserved preceding stage — Target-card field review backfill
 
 Status: **field Snapshot v1 frozen/validated; stop for precise human review**.
 Baseline `65004237885edf447ea185fd3c01ad7e7288af0a`, same focused branch

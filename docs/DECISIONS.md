@@ -1,5 +1,34 @@
 # Decisions
 
+## 2026-10-11 — Visual attestation is separate from geometry and flight onset
+
+### Decision
+
+Freeze FC06/GB07-01 in a new independent partial-review snapshot. User-attested
+class/owner or flight/landing evidence cannot promote an unverified bbox,
+physical identity, independent deployment, training qualification or card event.
+Keep Codex geometry corrections explicitly pending pixel-level human review.
+
+### Context and reason
+
+The user confirms visual conclusions, expressly not the eight FC06 pixel boxes.
+TO005/TO019 teacher owner=own must survive beside reviewed opponent. TO016/TO017
+may be continuous, not two independently confirmed plays. A sampled airborne
+barrel trajectory toward the blue left tower and later red-level small units
+supports Goblin Barrel as a hypothesis, but neither first_seen nor arrival
+establishes an exact deployment time or causal spawn identity.
+
+### Consequences
+
+Keep one separate Visual Flight Episode for GB07-01's13 actual source frames;
+never interpolate real observations. Unresolvable geometry stays null/unknown,
+not Negative. All bbox_verified/training_qualified/confirmed_card_play_GT remain
+false; no old lock, engine rule or score is changed.08 remains exposed retained
+evaluation and02 remains truncated/excluded. Existing teacher locators in01/04
+are possible future review material, not verified independent sources. The new
+snapshot binds original bytes/IDs/PTS and validates by exact semantic rebuild;
+it is not an authenticity or legal-rights certification.
+
 ## 2026-10-11 — User-attested target fields are not complete object/event GT
 
 ### Decision
