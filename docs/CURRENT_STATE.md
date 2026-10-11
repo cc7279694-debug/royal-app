@@ -1,8 +1,48 @@
 # Current State
 
-Last verified: 2026-10-10.
+Last verified: 2026-10-11.
 
-## Current checkpoint — Three target cards / pending discovery review
+## Current checkpoint — Target-card field review frozen; precise review pending
+
+User attests the supplied ChatGPT visual suggestions as the confirmation basis.
+Reviewer is **user**, not ChatGPT; only explicitly supported fields/target-mapping
+decisions are confirmed. Source ZIP/CSV and original detector predictions remain
+unchanged. Binding checks cover all36 object IDs, match/frame/PTS/teacher/bbox
+references and all16 original candidate windows; no CSV row-number matching.
+
+New immutable private Snapshot v1:
+`outputs/module3c-target-human-review/snapshot-v1/module3c.target_field_human_review_snapshot.v1.json`.
+SHA-256 `733aef78d771eb16a1c96f1977d5ddf34351df44ff9013185565e5471f06f7bd`.
+Validated by rebuilding the exact field-scoped result from SHA-bound source and
+suggestion archives, not by trusting a recomputed digest alone.
+
+- Firecracker:9 class+opponent field confirmations (8 in06,1 in08).
+  TO005/TO019 teacher owner=own is retained beside reviewed opponent.
+- Airborne barrel:6 generic visual-class confirmations; Goblin Barrel remains
+  a hypothesis, actual card/owner/independent deployment unknown.
+- 11 target-mapping rejection decisions;9 objects stay pending and TO031 unknown.
+  Hog Rider confirmed boxes remain0. Rejection never becomes Negative.
+- 36 bbox remain unverified; all identity/form/origin/onsets unconfirmed.
+ 16 event candidates and63 coverage rows remain pending; complete-object GT,
+ qualified training boxes, Negative and new OpponentCardPlayed all0.
+
+Only two new precise-review jobs are prepared under
+`outputs/module3c-target-human-review/precise-review-v1/`: GB07-01 flight/arrival/
+small-unit context5.5–7.5s (13 existing6FPS source frames,5 native examples), and
+FC06 bbox/missing-box/continuity/coverage (8 observation refs/8 source frames,
+not8 independent units or plays). Native JPG/crop PNG and source/display offsets
+are provided; boxes are UNVERIFIED.08 is excluded from FC06 and still exposed
+retained evaluation, never training/tuning or strict blind.
+
+No production code/tests/schema, event engine, Android, detector weights or
+environment changes. No inference/training; no push/merge. Local baseline
+`65004237885edf447ea185fd3c01ad7e7288af0a`, branch
+`codex/module3c-target-card-discovery`; main remains `602dd0f...`.
+Next: independent precise human review of these two small jobs only; do not
+automatically confirm boxes, infer Goblin Barrel plays, train or enter another
+module. See [backfill checkpoint](checkpoints/2026-10-11-module3c-target-review-backfill.md).
+
+## Preserved preceding checkpoint — Three target cards / pending discovery review
 
 User priorities now **Hog Rider, Goblin Barrel, Firecracker**. Local rescreen/
 review preparation from `fef67ad650b073bda379a6abb6218bc32c38d582` on

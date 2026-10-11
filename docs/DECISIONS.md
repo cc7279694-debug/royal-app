@@ -1,5 +1,33 @@
 # Decisions
 
+## 2026-10-11 — User-attested target fields are not complete object/event GT
+
+### Decision
+
+Apply the supplied target-card suggestions only at their supported field scope.
+Reviewer=user; review_basis=chatgpt_visual_review; confirmation_source=
+user_attestation_based_on_chatgpt_visual_review. ChatGPT is not a human reviewer.
+Freeze a new independent immutable partial-review snapshot, leaving source
+predictions and all historical locks/results unchanged.
+
+### Context and reason
+
+The user confirms9 Firecracker class/opponent rows and6 generic airborne-barrel
+visual rows, but not their exact boxes, form, origin, identity or deployment time.
+TO005/TO019 owner corrections must not overwrite the teacher's own prediction.
+Barrel appearance alone cannot establish Goblin Barrel, owner or a new play.
+Mapping rejection cannot establish another class or absence.
+
+### Consequences
+
+All36 boxes remain unverified;16 event windows and63 coverage rows pending.
+No new complete-object GT, qualified training boxes, Negative or card events.
+Only GB07-01 and FC06 precise review are prepared next. FC06 contains8 observation
+references, not9: the ninth supported Firecracker row TO026 belongs to08,
+which remains exposed retained evaluation and excluded from training/tuning.
+Partial confirmation never grants training, licensing clearance, engine/App
+changes or live-game permission. Retain unknown rather than promote evidence.
+
 ## 2026-10-10 — User-fixed three-card priorities; observations are not deployments
 
 ### Decision

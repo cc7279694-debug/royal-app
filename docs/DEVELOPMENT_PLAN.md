@@ -4,7 +4,29 @@ The project advances one independently verifiable module at a time. A module may
 start only after the previous module has been reviewed and accepted. Statuses are
 `Completed`, `In Progress`, `Planned`, `Paused`, or `Gated`.
 
-## Current authorized stage — Target-card discovery review preparation
+## Current authorized stage — Target-card field review backfill
+
+Status: **field Snapshot v1 frozen/validated; stop for precise human review**.
+Baseline `65004237885edf447ea185fd3c01ad7e7288af0a`, same focused branch
+`codex/module3c-target-card-discovery`; local commit only, no push/merge.
+
+Completed user-attested field backfill:9 Firecracker class/owner rows,6 generic
+airborne-barrel class rows and11 mapping-only rejection decisions. Original
+teacher attributes/36 proposed boxes/all16 event windows/source tables retained.
+No full-object GT, verified training boxes, Negative or confirmed new plays.
+
+Two bounded precise-review jobs only: GB07-01 flight/arrival/small-unit context,
+and FC06 eight observation references for pixel bbox/dedupe/coverage review.
+08 remains exposed retained evaluation and is excluded from FC06 and training.
+All36 boxes,16 event candidates and63 per-class coverage rows stay unconfirmed.
+Historical locks/results/targets remain preserved; no new model/data readiness
+approval follows from these24 confirmed field cells.
+
+Stop after local handoff. No training, production engine/App changes, source
+upload, push/merge or live-game use. See
+[backfill checkpoint](checkpoints/2026-10-11-module3c-target-review-backfill.md).
+
+## Preserved preceding stage — Target-card discovery review preparation
 
 Status: **local rescreen/review packet ready; stop for human review**.
 Baseline `fef67ad650b073bda379a6abb6218bc32c38d582`, branch
