@@ -2,10 +2,12 @@
 
 A local React/TypeScript/Vite prototype packaged with Capacitor. Mock mode accepts
 invented `source=mock` events. Recorded mode imports a prepared local Oracle-event
-JSON and plays it automatically; it does not read video or connect to a detector,
-Clash Royale or live gameplay. The HUD is an ordinary non-interactive section
-inside this App. All text, controls and letter icons are rendered as UI; no game
-art, model weights or screenshot is shipped.
+JSON and plays it automatically. Assisted mode imports externally prepared
+detector candidates and JPEG evidence from user-provided recordings for human
+review. The App runs no detector and does not read video or connect to Clash
+Royale or live gameplay. The HUD is an ordinary section inside this App. All
+text, controls and letter icons are rendered as UI; no game art, model weights
+or recording screenshot is shipped in the APK.
 
 ## Run locally
 
@@ -76,6 +78,55 @@ signature: arbitrary user-edited JSON is not independently authenticated by the 
 Playback is explicitly retrospective **离线 Oracle 回放**, not live recognition.
 Witch retains the documented3s actual confirmation delay. The four unscored outputs
 are excluded from this demo only; their history/Unknown status is unchanged.
+
+## Offline Assisted candidate review
+
+Choose **Assisted 模式** and import the private `candidates.json` prepared by
+`tools/assisted_tracking`. This is the versioned
+`offline_assisted_candidates_v1` packet, separate from Oracle replay. It holds
+detector candidates, source/provenance hashes, a bounded selection summary and
+native JPEG evidence. It does not import reviewer or confirmation fields. Every
+candidate starts **pending**, even when the raw detector engine records a support
+time in `confirmed_at`. That field is preserved raw prediction metadata, not an
+App decision or human-confirmed play.
+
+Select a candidate, inspect its evidence and use **确认对手卡牌**, **排除候选** or
+**应用修正**. Source-pixel boxes scale with their native screenshot and are
+explicitly labelled **检测器候选框（未经GT确认）**. A shared frame can contain boxes
+from several exported candidates. Card/owner corrections preserve the original
+prediction and return the row to pending, requiring a fresh confirmation. Restore
+a confirmed or excluded row to pending when needed. The confirmed deck includes
+only explicitly confirmed, non-Unknown opponent cards. Repeated confirmations of
+one card retain all review records and consume one slot; overflow beyond eight
+unique cards is retained and shown. Exclusion is not Negative evidence.
+
+**手动补漏 / 添加 Unknown** adds a separate pending record at a user-entered
+recording time. Empty card ID and unknown/own ownership stay outside the confirmed
+deck. A known opponent card may then be confirmed explicitly. Manual IDs are
+trimmed, lowercased and normalized to underscores, bounded and validated. Display
+labels for Hog Rider, Goblin Barrel and Firecracker are available for manual
+choices; they do not mean the current detector supports those cards.
+
+The importer bounds files to24MiB, evidence to128 native images, each decoded
+JPEG to512KiB, and candidates to5000. It validates the exact schema, IDs/counts,
+references, finite times/confidence, source dimensions/xyxy boxes, JPEG MIME and
+header dimensions, and decoded-image SHA256. SVG, external URLs and file paths
+cannot be used as image sources. Invalid imports keep the previous review.
+Hashes establish packet/source consistency, not authentication of arbitrary
+user-edited data. A corrupt JPEG that fails rendering displays an error.
+
+Imports, images and user decisions stay only in memory. Reset, switching modes,
+refresh or reopening clears Assisted data and requires reimport. There is no
+SQLite, IndexedDB, localStorage, migration, persistent review export or cloud
+service in this MVP. The private packet is externally selected, ignored and
+never bundled in `dist`/the APK or tracked in Git.
+
+Assisted uses its own review reducer and confirmed-card projection. It does not
+create `OpponentCardPlayed`, change Oracle selection, run the formal event engine,
+declare human GT/training labels or estimate card cycle/elixir. Screenshot
+coverage is partial; detector absence does not establish card absence. Mock and
+Recorded keep their existing contracts. No native plugin/permission, capture,
+cross-App overlay, game interaction, runtime or dependency is added.
 
 ## Android source project
 

@@ -2,7 +2,54 @@
 
 Last verified: 2026-10-11.
 
-## Current checkpoint — FC06 / GB07-01 precise visual review frozen, pixels pending
+## Current checkpoint — Offline Assisted Card Tracking MVP
+
+Status: local implementation and computer end-to-end verified; stop for independent
+acceptance. Native Android Assisted import/confirmation remains unverified.
+Feature branch `codex/offline-assisted-tracking-mvp`; start HEAD
+`1d0856217fed7a01384e5502c20826e52944e6c5`. Main remains `602dd0f...`;
+local implementation only, no push/merge/release.
+
+- Geometry loop closed by a separate private record, SHA-256
+  `02367a06abcc4b6ffc1e2dfd58a51d5b48d1ef189627539ad170b478165ebf56`.
+  FC06 TO017 and GB07 6.018/6.676 are assistant-reviewed provisional geometry,
+  not pixel Human GT. Four other displayed items remain unknown. Old Snapshot
+  `7bc56a8f...` remains unchanged; zero new qualified training labels or Negative.
+- Existing real first-match detector replay is reused, never Oracle visual GT.
+  Fixed supported/opponent/STRONG-or-MEDIUM filter exports18 of1,188 candidates;
+  903 owner-guard and267 unsupported-mapping candidates excluded.47 native JPEGs
+  preserve actual PTS/dimensions and unverified detector boxes. Private packet SHA
+  `99c3337e6f4e5d35fcaffdf4ed1360629aeda1af3c44a944beef2439c0e41af0`.
+- Actual assistant screenshot review:14 supported visual/card hypotheses,
+  1 false target mapping,3 unresolved. Two pairs may be duplicate cohorts.
+  This is not14 confirmed independent plays, pixel GT or exhaustive match review.
+  Frozen scoring remains2/5,1 Royal Hogs duplicate,3 early unmatched event times;
+  four unresolved GT windows never become Negative. Full-match misses/FP rate null.
+- App Assisted import starts18 pending and0/8. Local operator QA confirms five
+  distinct cards to5/8; another same-card candidate retains its record, not a slot.
+  Exclusion/correction/manual/Unknown/reset/error-import/mode isolation verified.
+  Review decisions and raw predictions stay separate from formal event history.
+  Manual unsupported card selection is explicitly manual, not detector success.
+- State is session-only, not persisted: reset/mode switch/reopen/reimport clears
+  reviews, explicitly disclosed. No SQLite/Migration/native capability or dependency
+  changes. All screenshots/event exports/locks/APKs remain local/ignored.
+- Fresh checks:145 App tests;315 scoped Python tests passed,1 existing permission
+  skip;3 private geometry tests passed; pip check passed. Rendered mobile review
+  passes at390x844 and320x568, no runtime errors or external requests during QA.
+  Historical SHA check:5,692 unchanged;34 more precise-review files captured for
+  end-guard. Formal engine/adapter/offline/native/dependencies unchanged.
+- Fresh Android sync/typecheck/build passed; Debug APK SHA-256
+  `7d278add5ea903d652249604a39d22abf5ae653682cc5db3779cbaa1a4a146e2`.
+  Emulator installation/launch and Mock flow passed. Clean API36 opened the native
+  picker and displayed the real JSON; subsequent WebView QA timed out. File delivery
+  to the importer is not established; final screen was Mock0/8, cause unknown.
+  Native Assisted5/8 is not claimed. No physical-phone test; failure receipts retained.
+
+Next: independent review of the local delivery, including actual Android JSON
+import/confirmation verification. Do not train, merge, push or begin next stage.
+See [MVP checkpoint](checkpoints/2026-10-11-offline-assisted-tracking-mvp.md).
+
+## Preserved preceding checkpoint — FC06 / GB07-01 precise visual review frozen
 
 User confirms the current ChatGPT visual-review conclusions, **not pixel-level
 bbox confirmation**. Reviewer=user; review_basis=chatgpt_visual_review;

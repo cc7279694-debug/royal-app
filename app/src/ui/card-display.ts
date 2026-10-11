@@ -11,6 +11,9 @@ const cards: ReadonlyMap<string, CardDisplay> = new Map([
   ['flying_machine', { label: 'Flying Machine', name: '飞行器', letter: 'F' }],
   ['golden_knight', { label: 'Golden Knight', name: '黄金骑士', letter: 'G' }],
   ['minions', { label: 'Minions', name: '亡灵', letter: 'M' }],
+  ['hog_rider', { label: 'Hog Rider', name: '野猪骑士', letter: 'H' }],
+  ['goblin_barrel', { label: 'Goblin Barrel', name: '哥布林飞桶', letter: 'G' }],
+  ['firecracker', { label: 'Firecracker', name: '烟花炮手', letter: 'F' }],
 ]);
 
 export function getCardDisplay(cardId: string): CardDisplay {

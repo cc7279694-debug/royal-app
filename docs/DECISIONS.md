@@ -1,5 +1,39 @@
 # Decisions
 
+## 2026-10-11 — Delegated provisional review and offline assisted deck confirmation
+
+### Decision
+
+Close the repeated professional geometry-confirmation loop without promoting
+assistant review to pixel Human GT. Preserve three accepted suggestions as
+assistant-reviewed provisional geometry and the four unresolved items as unknown;
+append a separate record, never rewrite frozen snapshots.
+
+Reuse frozen real detector candidates for an independently versioned, source-bound
+local presentation packet. The exporter has no Event GT input. Add a separate App
+review reducer: imports pending, explicit opponent confirmation only, duplicate
+card slots deduplicated with records retained. Manual/corrected choices remain
+separate from raw predictions and do not create `OpponentCardPlayed` or training GT.
+
+### Context, alternatives and reason
+
+The user delegates routine technical/data priorities and wants to review proposed
+cards rather than draw boxes or arbitrate thresholds/schemas. Automatically promoting
+detector output/assistant geometry to GT would misstate evidence. Repeating Human GT
+confirmation or training before a useful candidate list would not serve this milestone.
+Existing18 source-supported review hypotheses allow a bounded assisted UI without
+claiming automatic event accuracy or the three new target mappings are solved.
+
+### Consequences
+
+No source locks, formal engine/scoring, detector parameters, Android permissions or
+dependencies change. Unknown/reject/omitted data is not Negative. Runtime and source
+hashes bind artifacts, not authenticity or legal clearance. Local images remain
+private and are not bundled in APK/source. State stays explicitly session-only,
+matching the current prototype; persistence is not silently promised. Technical
+delegation is not actual user pixel review or permission to disclose private assets.
+Stop at independent acceptance. Future live functionality remains permission-gated.
+
 ## 2026-10-11 — Visual attestation is separate from geometry and flight onset
 
 ### Decision

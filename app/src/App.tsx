@@ -5,10 +5,11 @@ import { RecordedReplay, type ReplaySnapshot } from './demo/recorded-replay';
 import { createTrackerState, getDiscovery, trackerReducer } from './domain/tracker';
 import { DiscoveryHud, DiscoverySlots } from './ui/Discovery';
 import { EventHistory } from './ui/EventHistory';
+import { AssistedReview } from './ui/AssistedReview';
 
 export function App() {
   const [state, dispatch] = useReducer(trackerReducer, null, createTrackerState);
-  const [mode, setMode] = useState<'mock' | 'recorded_oracle'>('mock');
+  const [mode, setMode] = useState<'mock' | 'recorded_oracle' | 'assisted'>('mock');
   const [demo, setDemo] = useState<RecordedDemo | null>(null);
   const [replay, setReplay] = useState<RecordedReplay | null>(null);
   const [snapshot, setSnapshot] = useState<ReplaySnapshot | null>(null);
@@ -85,14 +86,15 @@ export function App() {
       <header className="app-header">
         <div className="brand-row flex items-center justify-between gap-3">
           <h1>Clash Tracker</h1>
-          <span className="mock-badge">{mode === 'mock' ? '模拟演示' : '离线 Oracle 回放'}</span>
+          <span className="mock-badge">{mode === 'mock' ? '模拟演示' : mode === 'assisted' ? '离线辅助审核' : '离线 Oracle 回放'}</span>
         </div>
-        <p className="app-intro">{mode === 'mock' ? '先看见原型，再连接真实能力' : '已核实事件子集 · 不识别真实游戏'}</p>
+        <p className="app-intro">{mode === 'mock' ? '先看见原型，再连接真实能力' : mode === 'assisted' ? '本地录像候选 · 人工确认对手卡组' : '已核实事件子集 · 不识别真实游戏'}</p>
       </header>
 
       <div className="mode-controls" aria-label="演示模式">
         <button className="mode-button" type="button" aria-pressed={mode === 'mock'} onClick={() => chooseMode('mock')}>模拟模式</button>
         <button className="mode-button" type="button" aria-pressed={mode === 'recorded_oracle'} onClick={() => chooseMode('recorded_oracle')}>Recorded 模式</button>
+        <button className="mode-button" type="button" aria-pressed={mode === 'assisted'} onClick={() => chooseMode('assisted')}>Assisted 模式</button>
       </div>
 
       {mode === 'recorded_oracle' ? (
@@ -125,11 +127,12 @@ export function App() {
         </section>
       ) : null}
 
-      <DiscoveryHud cardIds={discovery.cardIds} source={mode} />
-      <DiscoverySlots {...discovery} />
-      <EventHistory events={activeState.events} source={mode} />
-
-      {activeState.error ? <p className="event-error" role="alert">{activeState.error.message}</p> : null}
+      {mode === 'assisted' ? <AssistedReview /> : <>
+        <DiscoveryHud cardIds={discovery.cardIds} source={mode} />
+        <DiscoverySlots {...discovery} />
+        <EventHistory events={activeState.events} source={mode} />
+        {activeState.error ? <p className="event-error" role="alert">{activeState.error.message}</p> : null}
+      </>}
 
       {mode === 'mock' ? <div className="demo-controls grid gap-2.5" aria-label="模拟事件控制">
         <button

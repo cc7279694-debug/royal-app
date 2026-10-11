@@ -4,7 +4,35 @@ The project advances one independently verifiable module at a time. A module may
 start only after the previous module has been reviewed and accepted. Statuses are
 `Completed`, `In Progress`, `Planned`, `Paused`, or `Gated`.
 
-## Current authorized stage — Precise visual backfill and minimal data finalization
+## Current authorized stage — Offline Assisted Card Tracking MVP
+
+Status: local candidate export and App review implemented and computer-verified;
+Debug APK built. Stop for independent acceptance; native Android review flow pending.
+No new architecture/model training. Reuse the frozen first-match detector adapter/
+formal3B output to prepare source-bound pending hypotheses with screenshots; do not
+manufacture predictions or events from GT. Expand App only after the real list is
+visually useful (18 candidates reviewed).
+
+Assisted is separate from Mock/Recorded. User confirms/excludes/corrects/adds a
+missing card; only confirmed opponent rows enter a deduplicated deck. Duplicate
+rows stay visible, unknown/reject never becomes Negative, manual choice is not
+automatic support. No cycle/elixir/real-game/overlay work. Session reset behavior
+is explicit; no new storage/native/dependency layer.
+
+Geometry suggestions TO017/GB07 6.018/6.676 remain assistant-provisional, not Human
+GT or qualified training boxes; four other items unknown, old locks unchanged.
+The old pixel-confirmation loop is no longer the active milestone gate.
+
+Acceptance: one real source-to-packet-to-App flow, honest supported/false/unknown
+counts, scoped scoring/miss limits, dedup/confirmation/mobile checks, Android Debug
+artifact and privacy/protection checks. Local feature commit then stop for independent
+acceptance, not merge/push/release. See [bounded implementation plan](superpowers/plans/2026-10-11-offline-assisted-tracking-mvp.md)
+and [checkpoint](checkpoints/2026-10-11-offline-assisted-tracking-mvp.md).
+Native picker opened on a clean API36 emulator, but later WebView QA timed out;
+file delivery to the importer and Android Assisted confirmation are not established.
+No new physical-phone acceptance is claimed. Preserve this limitation and evidence.
+
+## Preserved preceding stage — Precise visual backfill and minimal data finalization
 
 Status: **new partial-review Snapshot frozen/validated; stop for acceptance**.
 Baseline `6f282b4f45daf73f619cba7ec20c22202201a471`, same branch
