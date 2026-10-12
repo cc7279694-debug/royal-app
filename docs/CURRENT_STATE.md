@@ -1,13 +1,19 @@
 # Current State
 
-Last verified: 2026-10-11.
+Last verified: 2026-10-12.
 
 ## Current module — Module 3E Assisted Review Session Persistence
 
-Status: **Implementation Ready / awaiting user real-device acceptance**. User authorized this
-bounded storage module and approved the minimal architecture. Baseline/main
-`7269a02c9ba418796afeabbd0091036a0b72f3d5`; feature branch
-`codex/module3e-assisted-review-persistence`. Local commit only; no push/merge.
+Status: **Completed / user real-device accepted; release verification complete**.
+`MODULE_3E_REAL_DEVICE_ACCEPTED`; basis `user_real_device_attestation`, reviewer=user.
+The user reports successful covering install/start, saved Assisted decisions,
+reopen and phone-reboot recovery of5/8, evidence images and confirmation/exclusion/
+correction/manual entries, without a startup fault or data loss affecting acceptance.
+This is not Codex independent automated physical-phone testing or a phone DB/hash audit.
+Accepted development: `8b5029e01ba58093ce69a48177f06506ce418307`.
+Preceding main: `7269a02c9ba418796afeabbd0091036a0b72f3d5`; retain feature branch
+`codex/module3e-assisted-review-persistence`. The user now authorizes docs-only
+closeout, fresh verification and checked fast-forward main/push; no new features.
 
 One current Assisted session uses a shared Repository/controller: Android built-in
 SQLite stores versioned metadata and review rows; the immutable imported packet
@@ -17,19 +23,40 @@ Committed decisions derive the deduplicated deck; original predictions remain
 separate. Replacement and restart require confirmation; corruption, incompatible
 version, conflict and I/O failure preserve existing data and block unsafe writes.
 
-Fresh App tests (201), browser checks (23 states), native storage checks (30),
-scoped Python regression (586 passed/one permission skip) and Debug build pass.
+Original implementation evidence: App201, browser23 states, native storage30,
+scoped Python586 passed/one permission skip and Debug build passed.
 Android App force-stop, actual emulator reboot and covering-install restore the
 same20 review rows/5/8/revision12 and all47 original evidence images. Confirmed
 restart resets to18 pending/0/8, retains images and persists after force-stop.
 The aggregate console-clean assertion failed on two unchanged Capacitor SystemBars
 startup errors; Android system/process UI ANRs and boot/socket timeouts are retained.
 Behavioral persistence passed, not a blanket console-clean or ANR-free emulator PASS.
-See the [Module3E checkpoint](checkpoints/2026-10-11-module3e-assisted-review-persistence.md).
-Do not claim physical-phone
-acceptance for this new APK. Old GT locks, formal event engine/scoring and detector
-results remain unchanged; user review is not training Human GT. No backup/export,
-multi-session platform, model training, live capture or cross-App HUD is authorized.
+The later user phone acceptance is separate; it does not rewrite that failed
+aggregate or establish an ANR-free emulator result. Accepted APK SHA-256:
+`b95ab9d1362e0eab8e4bb0c7012f8e42991a2d8abc08ab4561ccd1e42b9896b6`.
+Local file: `outputs/module3e/android/clash-tracker-assisted-persistence-debug.apk`.
+Session `formatVersion=1` / SQLite schema1 stay unchanged; corruption/unsupported
+version blocks mutation, retry reloads the last commit, never clears data.
+One current session only; old packets can grow private storage. This is not backup,
+uninstall/device-loss recovery, sync or a future-schema migration implementation.
+Fresh release checks: App201 passed; public Python1,569 passed/four existing
+Windows-permission skips, plus three private geometry tests; TypeScript, Vite/
+Capacitor sync, Android Debug and both pip checks pass. Local npm metadata checks
+pass. Fresh historical hashes:5,859 unchanged, plus160 Module3E files protected.
+The retained native30 tests are original evidence, not a new emulator run.
+Accepted APK remains unchanged. Rebuilt APK SHA
+`2beb0bfab70734e8201ceb3d6325e73a4b38fea2d92574a8796f7704f8286294`
+differs only in explained Web entries/signing; JS/DEX/native payloads match,
+CSS adds one unused utility. It is not substituted for the phone-accepted file.
+Publication uses final scope/link/guard checks, a safe fast-forward and verified
+local/remote SHA equality; final publication SHA and receipts live in the ignored
+completion report. Stop on any new failure/divergence. Retain the feature branch.
+See the [release acceptance matrix](checkpoints/2026-10-12-module3e-release.md)
+and [preserved implementation checkpoint](checkpoints/2026-10-11-module3e-assisted-review-persistence.md).
+Old GT locks, formal event engine/scoring and detector results stay unchanged;
+user review is not training Human GT. No backup/export, multi-session platform,
+model training, live capture or cross-App HUD is authorized. Stop after publication;
+the next module needs separate authorization.
 
 ## Preserved release checkpoint — Offline Assisted Card Tracking MVP
 
@@ -91,7 +118,7 @@ in the release completion report. Retain the feature branch.
   tests, dependencies, storage, tracking policy or prior scientific result changed.
 
 That documentation-only closeout produced the current `7269a02c...` baseline.
-Its session-only limitation is being addressed by separately authorized Module3E;
+Its session-only limitation is addressed by the separately accepted Module3E;
 independent-match detector evaluation remains pending. The historical phone
 acceptance does not accept the new persistence APK.
 See [release checkpoint](checkpoints/2026-10-11-offline-assisted-tracking-release.md)

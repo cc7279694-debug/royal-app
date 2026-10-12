@@ -6,7 +6,9 @@ start only after the previous module has been reviewed and accepted. Statuses ar
 
 ## Current authorized stage — Module 3E Assisted Review Session Persistence
 
-Status: **Completed implementation / awaiting user phone acceptance**. One reliable local current-session store,
+Status: **Completed / user real-device accepted; release verification complete**.
+`MODULE_3E_REAL_DEVICE_ACCEPTED`, basis `user_real_device_attestation`; not an
+independent Codex physical-phone automation result. One reliable local current-session store,
 autosave confirmed/excluded/corrected/manual decisions, source packet and evidence;
 restore the same deduplicated deck after reopening/process death/reboot. Use
 Android SQLite/private files and Web IndexedDB behind a Repository. No new
@@ -18,8 +20,17 @@ App tests, browser UI, native storage and Android behavioral recovery are verifi
 an additive Debug APK is built. Retain the emulator OS ANRs/timeouts and unchanged
 Capacitor startup style errors: the console-clean aggregate did not pass.
 See [verification and limitations](checkpoints/2026-10-11-module3e-assisted-review-persistence.md).
-Local commit/report and stop for user phone acceptance.
-No main merge/push, next module, backup platform, detector or live-game work.
+The new user authorization is documentation-only closeout, fresh regression/build/
+dependency/privacy/history checks and safe fast-forward main/push. Preserve the
+feature branch and original failed emulator evidence. Stop on any new check failure,
+Git divergence or storage/privacy risk. See the
+[release checkpoint and acceptance matrix](checkpoints/2026-10-12-module3e-release.md).
+Fresh App201 and public Python1,569/four permission skips plus geometry3 pass;
+TypeScript/Debug build/dependencies/history checks pass. Original accepted APK
+is retained; the explained CSS-only rebuilt Web delta is documented, not hidden.
+Only checked fast-forward/normal push and final SHA verification remain the
+publication operations; no new feature is authorized by acceptance.
+No next module, backup platform, detector, training or live-game work.
 
 ## Preserved released stage — Offline Assisted Card Tracking MVP
 

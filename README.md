@@ -1,13 +1,18 @@
 # Clash Tracker
 
-**当前交付：Module 3E — Assisted 审核会话保存与恢复，等待用户真机验收。**
+**当前阶段：Module 3E — Assisted 审核会话保存与恢复已通过用户真机验收。**
 用户已批准单会话本地方案：Android SQLite 保存审核记录，私有文件保留原候选与截图；
 Web 预览使用 IndexedDB，业务模型一致。自动保存确认／排除／更正／手动补漏；
 替换和重新开始均二次确认，异常存储不静默清空。新 Debug APK 已生成；
 Android 模拟器的关闭／重启／覆盖安装恢复及截图一致性通过。
-模拟器系统 ANR 与既有 Capacitor 启动样式错误保留，不宣称全绿原生 UI 验证；
-尚未登记本版用户真机验收。本轮仅本地提交，不推送／合并，不训练、不接真实游戏。
+用户已确认覆盖安装、审核保存、退出重开及手机重启后的5/8、截图和审核结果均正常恢复；
+登记 `MODULE_3E_REAL_DEVICE_ACCEPTED`，依据 `user_real_device_attestation`，不是 Codex 自动化真机测试。
+模拟器系统 ANR 与既有 Capacitor 启动样式错误保留，不宣称全绿原生 UI 验证。
+发布复验：App201项、Python1,569项／4项既有权限跳过、另3项几何测试通过，类型检查与Debug构建通过。
+已验收APK保持原SHA；重建版因多出一条未使用CSS工具样式而不完全同字节，不替换已验收版。
+本轮只做验收记录、发布复验和安全快进 main；不训练、不接真实游戏、不开始下一模块。
 详见[当前状态](docs/CURRENT_STATE.md)和[保存与恢复说明](app/README.md#module3e--one-local-assisted-review-session)。
+本版[正式验收矩阵与发布检查](docs/checkpoints/2026-10-12-module3e-release.md)与原失败记录分开保存。
 
 **保留的发布基线：离线半自动记牌 MVP 已通过用户 Android 真机验收。**
 验收状态为 `OFFLINE_ASSISTED_TRACKING_REAL_DEVICE_ACCEPTED`，依据为
